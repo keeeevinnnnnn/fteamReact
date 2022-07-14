@@ -13,3 +13,8 @@
   -webkit-box-shadow: 5px 5px 0px 1px #000000;
   box-shadow: 5px 5px 0px 1px #000000;
 }
+
+.lessonmain {
+  position: absolute;
+  right: 10%;
+}
