@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-const SideBar = () => {
+const SideBar = ({ sideBar, setSideBar }) => {
   const navArr = ['MEMBER', 'LESSON', 'PRODUCTS', 'CUSTOMIZED', 'ORDERS'];
   return (
     <>
@@ -9,7 +9,13 @@ const SideBar = () => {
           <Link to={'/'}>HOME</Link>
           {navArr.map((v, i) => {
             return (
-              <Link key={i} to={`/${v}`}>
+              <Link
+                onClick={() => {
+                  setSideBar(i === 0 ? true : false);
+                }}
+                key={i}
+                to={`/${v}`}
+              >
                 {v}
               </Link>
             );
