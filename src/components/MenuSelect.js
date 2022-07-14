@@ -5,7 +5,7 @@ import MenuItem from '@mui/material/MenuItem';
 import { Link } from 'react-router-dom';
 
 export default function MenuSelect() {
-  const [anchorEl, setAnchorEl] = useState(null);
+  const [anchorEl, setAnchorEl] = useState(false);
   const open = anchorEl;
   const handleClick = (e) => {
     setAnchorEl(e.currentTarget);
