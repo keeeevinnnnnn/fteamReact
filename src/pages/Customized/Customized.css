@@ -1,11 +1,11 @@
-.cus_mask{
-    /* background: url(../../Images/Customized/cus_bg_02.jpg); */
-   
-    /* background: url(../../Images/Customized/cus_bg_mask.svg); */
-    background-repeat: no-repeat;
-    background-repeat: no-repeat;
-    background-size:contain;
-    background-position: 200px;
+
+.cus_matte{
+    background-color: blue;
+    position: absolute;
+    z-index: -2;
+    
+    mask:url(../../Images/Customized/cus_bg_mask.svg);
+    mask-size: cover;
     
 }
 
