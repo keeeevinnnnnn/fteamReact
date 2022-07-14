@@ -4,7 +4,7 @@ const SideBar = ({ sideBar, setSideBar }) => {
   const navArr = ['MEMBER', 'LESSON', 'PRODUCTS', 'CUSTOMIZED', 'ORDERS'];
   return (
     <>
-      <div className="col-2  sidebar_container">
+      <div className="col-2 d-md-block d-none sidebar_container">
         <div className="sidebar-wrap d-flex flex-column">
           <Link to={'/'}>HOME</Link>
           {navArr.map((v, i) => {
