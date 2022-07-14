@@ -7,7 +7,7 @@ import Home from './pages/Home';
 import Member from './pages/Member';
 import Lesson from './pages/Lesson';
 import Products from './pages/Products';
-import Customized from './pages/Customized';
+import Customized from './pages/Customized/Customized';
 import Orders from './pages/Orders';
 import Login from './pages/Login';
 function App() {
