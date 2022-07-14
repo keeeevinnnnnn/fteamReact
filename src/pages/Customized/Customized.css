@@ -1,6 +1,11 @@
 .cus_mask{
-    background: url(../../Images/Customized/cus_bg_mask.svg);
+    /* background: url(../../Images/Customized/cus_bg_02.jpg); */
+   
+    /* background: url(../../Images/Customized/cus_bg_mask.svg); */
+    background-repeat: no-repeat;
     background-repeat: no-repeat;
     background-size:contain;
+    background-position: 200px;
     
 }
+
