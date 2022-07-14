@@ -1,0 +1,39 @@
+import React from 'react';
+import './App.css';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Navbar from './components/Navbar';
+import SideBar from './components/SideBar';
+import Home from './pages/Home';
+import Member from './pages/Member';
+import Lesson from './pages/Lesson';
+import Products from './pages/Products';
+import Customized from './pages/Customized';
+import Orders from './pages/Orders';
+function App() {
+  return (
+    <Router>
+      <div className="container-fluid vh-100 fteam-wrap">
+        <div className="row h-100">
+          <div className="p-0 d-flex flex-column w-100 h-100">
+            <Navbar />
+            <div className="w-100 bottom-grid d-flex">
+              <SideBar />
+              {/* col-2 的側邊欄 */}
+              {/* <div className="col-10 h-100 p-0 "></div>有要加sidebar的 用col-10 這段 沒有的用 col-12 */}
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/MEMBER" element={<Member />} />
+                <Route path="/LESSON" element={<Lesson />} />
+                <Route path="/PRODUCTS" element={<Products />} />
+                <Route path="/CUSTOMIZED" element={<Customized />} />
+                <Route path="/ORDERS" element={<Orders />} />
+              </Routes>
+            </div>
+          </div>
+        </div>
+      </div>
+    </Router>
+  );
+}
+
+export default App;
