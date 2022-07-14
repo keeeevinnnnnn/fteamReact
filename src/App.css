@@ -4,7 +4,7 @@
   box-sizing: border-box;
   font-family: 'Anton', sans-serif;
   font-family: 'Montserrat', sans-serif;
-  outline: thin solid rgb(203, 108, 108);
+  /* outline: thin solid rgb(203, 108, 108); */
 }
 
 .nav-column {
