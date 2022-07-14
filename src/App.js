@@ -5,7 +5,7 @@ import Navbar from './components/Navbar';
 import SideBar from './components/SideBar';
 import Home from './pages/Home';
 import Member from './pages/Member';
-import Lesson from './pages/Lesson';
+import Lesson from './pages/Lesson/Lesson';
 import Products from './pages/Products';
 import Customized from './pages/Customized/Customized';
 import Orders from './pages/Orders/Orders';

@@ -1,0 +1,15 @@
+.arrowsize {
+  font-size: 2rem;
+}
+
+.center {
+  /* padding-top: 15%; */
+  display: flex;
+  /* justify-items: center; */
+  align-items: center;
+}
+
+.shadowblack {
+  -webkit-box-shadow: 5px 5px 0px 1px #000000;
+  box-shadow: 5px 5px 0px 1px #000000;
+}
