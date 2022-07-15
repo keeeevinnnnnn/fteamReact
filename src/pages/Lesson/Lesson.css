@@ -1,20 +1,39 @@
-.arrowsize {
-  font-size: 2rem;
-}
-
-.center {
+/* .center {
   /* padding-top: 15%; */
-  display: flex;
-  /* justify-items: center; */
-  align-items: center;
-}
+/* display: flex; */
+/* justify-items: center; */
+/* align-items: center; */
+/* }  */
 
 .shadowblack {
   -webkit-box-shadow: 5px 5px 0px 1px #000000;
   box-shadow: 5px 5px 0px 1px #000000;
 }
 
-.lessonmain {
+/* .lessonmain {
   position: absolute;
   right: 10%;
+} */
+
+/* svg改顏色範例 */
+/*.icon-wrap svg{
+  fill: aliceblue;
+} */
+
+/* .row {
+  background-color: #0f0;
+  width: 100%;
+} */
+
+/* .fteam-wrap {
+  width: 60%;
+} */
+
+/* .bubu {
+  background-color: #f00;
+outline: 5px solid #00f;
+} */
+
+.abc {
+  background-color: blue;
 }
