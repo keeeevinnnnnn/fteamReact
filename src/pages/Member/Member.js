@@ -1,7 +1,6 @@
-// 製作區域前置參考
-// 呈現區域
 import React, { useEffect } from 'react';
-const Sample = ({ sideBar, setSideBar }) => {
+
+const Member = ({ sideBar, setSideBar }) => {
   useEffect(() => {
     setSideBar('justify-content-end');
   }, []);
@@ -16,4 +15,4 @@ const Sample = ({ sideBar, setSideBar }) => {
   );
 };
 
-export default Sample;
+export default Member;
