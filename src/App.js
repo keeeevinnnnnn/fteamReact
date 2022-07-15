@@ -12,7 +12,7 @@ import Orders from './pages/Orders/Orders';
 import Login from './pages/Login/Login';
 import Carts from './pages/Carts/Carts';
 function App() {
-  const [sideBar, setSideBar] = useState(true);
+  const [sideBar, setSideBar] = useState('');
   return (
     <Router>
       <div className="container-fluid vh-100 fteam-wrap">
