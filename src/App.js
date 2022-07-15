@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
@@ -12,7 +12,6 @@ import Orders from './pages/Orders/Orders';
 import Login from './pages/Login/Login';
 import Carts from './pages/Carts/Carts';
 function App() {
-  const [sideBar, setSideBar] = useState('');
   return (
     <Router>
       <div className="container-fluid vh-100 fteam-wrap">
@@ -24,42 +23,14 @@ function App() {
               {/* col-2 的側邊欄 */}
               {/* <div className="col-10 h-100 p-0 "></div>有要加sidebar的 用col-10 這段 沒有的用 col-12 */}
               <Routes>
-                <Route
-                  path="/"
-                  element={<Home sideBar={sideBar} setSideBar={setSideBar} />}
-                />
-                <Route
-                  path="/member"
-                  element={<Member sideBar={sideBar} setSideBar={setSideBar} />}
-                />
-                <Route
-                  path="/login"
-                  element={<Login sideBar={sideBar} setSideBar={setSideBar} />}
-                />
-                <Route
-                  path="/lesson"
-                  element={<Lesson sideBar={sideBar} setSideBar={setSideBar} />}
-                />
-                <Route
-                  path="/products"
-                  element={
-                    <Products sideBar={sideBar} setSideBar={setSideBar} />
-                  }
-                />
-                <Route
-                  path="/customized"
-                  element={
-                    <Customized sideBar={sideBar} setSideBar={setSideBar} />
-                  }
-                />
-                <Route
-                  path="/carts"
-                  element={<Carts sideBar={sideBar} setSideBar={setSideBar} />}
-                />
-                <Route
-                  path="/orders"
-                  element={<Orders sideBar={sideBar} setSideBar={setSideBar} />}
-                />
+                <Route path="/" element={<Home />} />
+                <Route path="/member" element={<Member />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/lesson" element={<Lesson />} />
+                <Route path="/products" element={<Products />} />
+                <Route path="/customized" element={<Customized />} />
+                <Route path="/carts" element={<Carts />} />
+                <Route path="/orders" element={<Orders />} />
               </Routes>
             </div>
           </div>

@@ -8,13 +8,10 @@ import { Carousel } from 'react-responsive-carousel';
 import './Login.scss';
 import './Btn8.scss';
 
-const Login = ({ sideBar, setSideBar }) => {
-  useEffect(() => {
-    setSideBar('');
-  }, []);
+const Login = () => {
   return (
     <>
-      <div className={`w-100 vh-100 d-flex align-items-end ${sideBar}`}>
+      <div className="w-100 vh-100 d-flex align-items-end">
         <div className="work-area col-12 col-md-10 p-0">
           <div className="px-0 LoginBox">
             <div className="col-xl-6 h-100 LoginCarousel">

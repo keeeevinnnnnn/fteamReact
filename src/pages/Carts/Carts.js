@@ -1,14 +1,9 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import './Carts.css';
-const Carts = ({ sideBar, setSideBar }) => {
-  useEffect(() => {
-    setSideBar('justify-content-end');
-  }, []);
+const Carts = () => {
   return (
     <>
-      <div
-        className={`carts-bg w-100 vh-100 d-flex align-items-end ${sideBar}`}
-      >
+      <div className="carts-bg w-100 vh-100 d-flex justify-content-end align-items-end">
         <div className="work-area col-12 col-md-10 p-0 d-flex">
           <div className="col-12 col-md-10 h-100">
             <div className="tabs-section w-100"></div>
