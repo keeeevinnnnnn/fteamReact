@@ -2,3 +2,11 @@
     background: url(../../Images/Orders/bg01.svg);
     background-size: cover;
 }
+
+
+@media screen and (max-width: 768px) {
+    .od-bg {
+        background: url(../../Images/Orders/bg03.svg);
+        background-size: cover;
+    }
+}

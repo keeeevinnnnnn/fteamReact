@@ -2,3 +2,35 @@
   background: url(../../Images/Orders/bg01.svg);
   background-size: cover;
 }
+
+* {
+  outline: 1px solid black;
+}
+
+.tabs-section {}
+
+.carts-section {}
+
+.total-count-section {}
+
+@media screen and (max-width: 768px) {
+  .carts-bg {
+    background: url(../../Images/Orders/bg03.svg);
+    background-size: cover;
+  }
+
+  .tabs-section {
+    background-color: #fff;
+    height: 15%;
+  }
+
+  .carts-card-section {
+    background-color: rgb(95, 93, 93);
+    height: 60%
+  }
+
+  .total-count-section {
+    background-color: antiquewhite;
+    height: 25%;
+  }
+}

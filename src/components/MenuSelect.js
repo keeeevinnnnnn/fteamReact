@@ -13,7 +13,14 @@ export default function MenuSelect() {
   const handleClose = () => {
     setAnchorEl(null);
   };
-  const navArr = ['MEMBER', 'LESSON', 'PRODUCTS', 'CUSTOMIZED', 'ORDERS'];
+  const navArr = [
+    'MEMBER',
+    'LESSON',
+    'PRODUCTS',
+    'CUSTOMIZED',
+    'CARTS',
+    'ORDERS',
+  ];
   return (
     <div className=" d-md-none d-flex justify-content-end align-items-center w-100 h-100 menu-wrap">
       <Button
@@ -51,7 +58,7 @@ export default function MenuSelect() {
         {navArr.map((v, i) => {
           return (
             <MenuItem key={i} onClick={handleClose}>
-              <Link to={`/${v}`}>{v}</Link>
+              <Link to={`/${v.toLocaleLowerCase()}`}>{v}</Link>
             </MenuItem>
           );
         })}
