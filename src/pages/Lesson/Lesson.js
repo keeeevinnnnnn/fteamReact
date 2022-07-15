@@ -5,9 +5,9 @@ const Lesson = () => {
     <>
       <div className="w-100 vh-100 d-flex justify-content-end align-items-end">
         <div className="work-area col-12 col-md-10 p-0">
-          <div className="row">
+          <div className="d-flex flex-wrap">
             <div className="col-12 col-md-1 d-none d-sm-block ">
-              <i className=" fa-solid fa-arrow-left arrowsize center"></i>
+              <i className=" fa-solid fa-arrow-left  center"></i>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-6 w-6"
@@ -70,7 +70,7 @@ const Lesson = () => {
               </div>
             </div>
             <div className="col-12 col-md-1 d-none d-sm-block ">
-              <i className="fa-solid fa-arrow-right arrowsize center"></i>
+              <i className="fa-solid fa-arrow-right  center"></i>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-6 w-6"
