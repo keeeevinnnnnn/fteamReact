@@ -10,6 +10,7 @@ import Products from './pages/Products';
 import Customized from './pages/Customized/Customized';
 import Orders from './pages/Orders/Orders';
 import Login from './pages/Login';
+import Carts from './pages/Carts/Carts';
 function App() {
   const [sideBar, setSideBar] = useState(true);
   return (
@@ -29,6 +30,7 @@ function App() {
                 <Route path="/lesson" element={<Lesson />} />
                 <Route path="/products" element={<Products />} />
                 <Route path="/customized" element={<Customized />} />
+                <Route path="/carts" element={<Carts />} />
                 <Route path="/orders" element={<Orders />} />
               </Routes>
             </div>
