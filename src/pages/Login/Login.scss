@@ -79,6 +79,7 @@
     }
     .LoginCarousel {
         display: block;
+        z-index: 5;
     }
     .LoginInputsBox {
         background: linear-gradient(to right, #555555 0%, #2D2D2D 50%, #2D2D2D 100%);
