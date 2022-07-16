@@ -78,19 +78,20 @@
     .ForgotAdmin {
         height: 17%;
         font-size: 1.5rem;
-        text-shadow: #2ce6ff 2px 2px 0px, #9C9C9C 4px 4px 0px;
+        font-weight: 600;
+        color: var(--main);
     }
 
     .ForgotAdmin p:nth-child(1):hover {
         font-weight: 600;
         font-size: 2rem;
-        text-shadow: 2px 2px 0px #2ce6ff;
+        text-shadow: 2px 2px 0px var(--main);
     }
 
     .ForgotAdmin p:nth-child(2):hover {
         font-weight: 600;
         font-size: 2rem;
-        text-shadow: 2px 2px 0px #2ce6ff;
+        text-shadow: 2px 2px 0px var(--main);
     }
 }
 
@@ -113,9 +114,6 @@
             }
         }
         .LoginForm {
-            .LoginFormBox {
-                // margin-bottom: 40px;
-            }
             .rwdNoneBlock {
                 display: block;
             }

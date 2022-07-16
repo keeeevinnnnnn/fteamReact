@@ -1,12 +1,19 @@
 import React from 'react';
 import LoginLogo from './LoginLogo';
 
-const Register = ({ setLoginCard }) => {
+const Register = ({
+  setLoginCard,
+  registerNone,
+  loginLogoText,
+  setLoginLogoText,
+}) => {
   return (
     <>
-      <div className="h-100 w-100 d-flex justify-content-center LoginFront">
+      <div
+        className={`h-100 w-100 d-flex justify-content-center LoginBack ${registerNone}`}
+      >
         <div className="LoginInputsBox col-12">
-          <LoginLogo />
+          <LoginLogo loginLogoText={loginLogoText} />
           <form action="" className="LoginForm">
             <div className="LoginFormBox d-flex justify-content-around flex-wrap">
               <div className="col-12 d-flex justify-content-center align-items-center mb-3">
@@ -82,12 +89,13 @@ const Register = ({ setLoginCard }) => {
               </div>
             </div>
           </form>
-          <div className="d-flex  ForgotAdmin mt-5">
+          <div className="d-flex  ForgotAdmin pt-5">
             <div className="col-12 d-flex justify-content-center">
               <p
                 className="cursorpointer"
                 onClick={() => {
-                  setLoginCard('LoginCardRotate');
+                  setLoginCard('');
+                  setLoginLogoText('Login');
                 }}
               >
                 Back To Login

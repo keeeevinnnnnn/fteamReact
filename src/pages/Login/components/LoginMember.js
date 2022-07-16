@@ -1,12 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import LoginLogo from './LoginLogo';
 
-const LoginMember = ({ setLoginCard }) => {
+const LoginMember = ({
+  setLoginCard,
+  setRegisterNone,
+  loginLogoText,
+  setLoginLogoText,
+}) => {
   return (
     <>
       <div className="h-100 w-100 d-flex justify-content-center LoginFront">
         <div className="LoginInputsBox col-12">
-          <LoginLogo />
+          <LoginLogo loginLogoText={loginLogoText} />
           <form action="" className="LoginForm">
             <div className="LoginFormBox">
               <label className="w-100 text-center mt-3 LoginFormAccountPassword">
@@ -74,9 +79,16 @@ const LoginMember = ({ setLoginCard }) => {
                 </button>
               </div>
               <div className="mt-4 d-flex justify-content-center">
-                <button className="custom-btn btn-8">
-                  <span>SIGN UP</span>
-                </button>
+                <div
+                  className="custom-btn btn-8"
+                  onClick={() => {
+                    setLoginCard('LoginCardRotate');
+                    setRegisterNone('');
+                    setLoginLogoText('Register');
+                  }}
+                >
+                  <span className="text-center">SIGN UP</span>
+                </div>
               </div>
             </div>
           </form>
@@ -89,6 +101,7 @@ const LoginMember = ({ setLoginCard }) => {
                 className="cursorpointer"
                 onClick={() => {
                   setLoginCard('LoginCardRotate');
+                  setRegisterNone('d-none');
                 }}
               >
                 Admin

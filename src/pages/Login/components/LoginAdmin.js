@@ -1,12 +1,12 @@
 import React from 'react';
 import LoginLogo from './LoginLogo';
 
-const LoginAdmin = ({ setLoginCard }) => {
+const LoginAdmin = ({ setLoginCard, loginLogoText }) => {
   return (
     <>
       <div className="h-100 w-100 d-flex justify-content-center LoginBack">
         <div className="LoginInputsBox col-12">
-          <LoginLogo />
+          <LoginLogo loginLogoText={loginLogoText} />
           <form action="" className="LoginForm">
             <div className="LoginFormBox">
               <label className="w-100 text-center mt-3 LoginFormAccountPassword">

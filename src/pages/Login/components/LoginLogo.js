@@ -3,7 +3,7 @@ import React from 'react';
 import Texty from 'rc-texty';
 import 'rc-texty/assets/index.css';
 
-const LoginLogo = () => {
+const LoginLogo = ({ loginLogoText }) => {
   return (
     <>
       <div className="LoginLogoBox pt-3">
@@ -13,7 +13,7 @@ const LoginLogo = () => {
           interval={200}
           repeat={-1}
         >
-          Login
+          {loginLogoText}
         </Texty>
       </div>
     </>
