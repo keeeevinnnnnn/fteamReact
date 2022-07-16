@@ -1,3 +1,7 @@
+.cursorpointer {
+    cursor: pointer;
+}
+
 .LoginBox {
     width: 100%;
     position: absolute;
@@ -6,9 +10,6 @@
     background: #2D2D2D;
 }
 
-.cursorpointer {
-    cursor: pointer;
-}
 
 .LoginCarousel {
     display: none;
@@ -46,20 +47,28 @@
     }
     .LoginForm {
         height: 65%;
+        .rwdNoneBlock {
+            display: none;
+        }
         .LoginFormBox {
             margin-bottom: 0;
+        }
+        .loginAvatar {
+            aspect-ratio: 1/1;
+            border-radius: 50%;
+            object-fit: cover;
         }
         .LoginFormAccountPassword {
             font-size: 1.5rem;
             text-shadow: 3px 5px 2px #2d0096;
         }
-        input {
+        input,textarea {
             font-size: 1.2rem;
             border: 1px solid white;
             border-radius: 25px;
             background-color: #ffffffcf;
         }
-        img {
+        .passwordEyes {
             display: none;
         }
         .LoginSignUp {
@@ -104,14 +113,16 @@
             }
         }
         .LoginForm {
-            // margin-bottom: 30px;
             .LoginFormBox {
-                margin-bottom: 40px;
+                // margin-bottom: 40px;
+            }
+            .rwdNoneBlock {
+                display: block;
             }
             .LoginFormAccountPassword {
                 font-size: 1.5rem;
             }
-            input {
+            input,textarea {
                 font-size: 1rem;
                 height: 30px;
                 width: 40%;
@@ -119,7 +130,7 @@
             .passwordInput {
                 position: relative;
             }
-            img {
+            .passwordEyes {
                 display: block;
                 position: absolute;
                 width: 30px;
