@@ -1,7 +1,6 @@
-// 製作區域前置參考
-// 呈現區域
 import React from 'react';
-const Sample = () => {
+
+const Member = () => {
   return (
     <>
       <div className="w-100 vh-100 d-flex justify-content-end align-items-end">
@@ -13,4 +12,4 @@ const Sample = () => {
   );
 };
 
-export default Sample;
+export default Member;

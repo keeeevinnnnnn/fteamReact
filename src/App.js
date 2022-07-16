@@ -1,18 +1,17 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import SideBar from './components/SideBar';
 import Home from './pages/Home/Home';
-import Member from './pages/Member';
+import Member from './pages/Member/Member';
 import Lesson from './pages/Lesson/Lesson';
 import Products from './pages/Product/Products';
 import Customized from './pages/Customized/Customized';
 import Orders from './pages/Orders/Orders';
-import Login from './pages/Login';
+import Login from './pages/Login/Login';
 import Carts from './pages/Carts/Carts';
 function App() {
-  const [sideBar, setSideBar] = useState(true);
   return (
     <Router>
       <div className="container-fluid vh-100 fteam-wrap">
@@ -20,7 +19,7 @@ function App() {
           <div className="p-0 d-flex flex-column w-100 h-100">
             <Navbar />
             <div className="w-100 bottom-grid d-flex">
-              <SideBar sideBar={sideBar} setSideBar={setSideBar} />
+              <SideBar />
               {/* col-2 的側邊欄 */}
               {/* <div className="col-10 h-100 p-0 "></div>有要加sidebar的 用col-10 這段 沒有的用 col-12 */}
               <Routes>
