@@ -5,8 +5,8 @@ import 'rc-texty/assets/index.css';
 // 輪播牆
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import { Carousel } from 'react-responsive-carousel';
-import './Login.css';
-import './Btn8.css';
+import './style/Login.css';
+import './style/Btn8.css';
 
 const Login = () => {
   return (
