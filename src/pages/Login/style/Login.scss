@@ -1,14 +1,9 @@
-.NavBar {
-    height: 80px;
-    color: white;
-    font-size: 3.5rem;
-    background-color: #2D2D2D;
-}
-
 .LoginBox {
+    width: 100%;
     position: absolute;
     top: 80px;
     height: calc(100vh - 80px);
+    background: #2D2D2D;
 }
 
 .cursorpointer {
@@ -17,6 +12,25 @@
 
 .LoginCarousel {
     display: none;
+}
+
+.LoginCard {
+    position: relative;
+    transition: 1.5s;
+    transform-style: preserve-3d;
+    .LoginFront {
+        position: absolute;
+        backface-visibility: hidden;
+    }
+    .LoginBack {
+        position: absolute;
+        transform: rotateY(-180deg);
+        backface-visibility: hidden;
+    }
+}
+
+.LoginCardRotate {
+    transform: rotateY(180deg);
 }
 
 .LoginInputsBox {
@@ -45,6 +59,9 @@
             border-radius: 25px;
             background-color: #ffffffcf;
         }
+        img {
+            display: none;
+        }
         .LoginSignUp {
             margin-top: 0;
         }
@@ -69,9 +86,6 @@
 }
 
 @media screen and (min-width: 1200px) {
-    .NavBar{
-        height: 88px;
-    }
     .LoginBox{
         display: flex;
         top: 88px;
@@ -101,6 +115,15 @@
                 font-size: 1rem;
                 height: 30px;
                 width: 40%;
+            }
+            .passwordInput {
+                position: relative;
+            }
+            img {
+                display: block;
+                position: absolute;
+                width: 30px;
+                right: 31%;
             }
             .FbLineGoogle {
                 margin-left: 20%;
