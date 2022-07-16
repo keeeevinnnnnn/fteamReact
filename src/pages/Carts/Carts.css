@@ -16,21 +16,36 @@
 @media screen and (max-width: 768px) {
   .carts-bg {
     background: url(../../Images/Orders/bg03.svg);
+    background-position: 1 0;
     background-size: cover;
   }
 
   .tabs-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background-color: #fff;
     height: 15%;
   }
 
+  .carts-selection {
+    border: none;
+    border-bottom: .5px solid black;
+  }
+
   .carts-card-section {
     background-color: rgb(95, 93, 93);
-    height: 60%
+    min-height: 85%;
+  }
+
+  .carts-card-wrap {
+    width: 90%;
   }
 
   .total-count-section {
+    position: fixed;
     background-color: antiquewhite;
-    height: 25%;
+    bottom: 0;
+    height: 125px;
   }
 }
