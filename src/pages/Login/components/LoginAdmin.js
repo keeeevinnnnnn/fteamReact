@@ -22,7 +22,7 @@ const LoginAdmin = ({ setLoginCard, loginLogoText }) => {
               <label className="w-100 text-center mt-5 LoginFormAccountPassword">
                 Admin Password
               </label>
-              <div className="d-flex justify-content-center mt-3">
+              <div className="d-flex justify-content-center mt-3 d-flex align-items-center">
                 <input
                   type="password"
                   placeholder="Admin Password"
@@ -40,11 +40,9 @@ const LoginAdmin = ({ setLoginCard, loginLogoText }) => {
                 <span>LOGIN</span>
               </button>
             </div>
-          </form>
-          <div className="d-flex pt-4 ForgotAdmin">
-            <div className="col-12 d-flex justify-content-center">
+            <div className="col-12 d-flex justify-content-center ForgotAdmin pt-5">
               <p
-                className="cursorpointer"
+                className="cursorpointer mt-5"
                 onClick={() => {
                   setLoginCard('');
                 }}
@@ -52,7 +50,7 @@ const LoginAdmin = ({ setLoginCard, loginLogoText }) => {
                 Member
               </p>
             </div>
-          </div>
+          </form>
         </div>
       </div>
     </>

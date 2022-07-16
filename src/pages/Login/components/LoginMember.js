@@ -27,7 +27,7 @@ const LoginMember = ({
               <label className="w-100 text-center mt-3 LoginFormAccountPassword">
                 Password
               </label>
-              <div className="d-flex justify-content-center mt-3">
+              <div className="d-flex justify-content-center mt-3 d-flex align-items-center">
                 <input
                   type="password"
                   placeholder="User Password"
