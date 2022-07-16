@@ -9,8 +9,7 @@ const LoginLogo = ({ loginLogoText }) => {
       <div className="LoginLogoBox pt-3">
         <Texty
           className="text-center LoginLogoBoxText"
-          delay={600}
-          interval={200}
+          interval={100}
           repeat={-1}
         >
           {loginLogoText}
