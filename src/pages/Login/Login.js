@@ -4,6 +4,7 @@ import './style/Btn8.css';
 import LoginCariusel from './components/LoginCariusel';
 import LoginMember from './components/LoginMember';
 import LoginAdmin from './components/LoginAdmin';
+import Register from './components/RegisterTry';
 
 const Login = () => {
   // 會員登入 管理員登入 切換動畫
