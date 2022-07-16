@@ -16,10 +16,18 @@ const Customized = () => {
                 </div>
                <div className='cus_card'>
                   <div className='cus_main_card'>
-                    <h2 className='text-info'>Make YOur Own Board</h2>
-                    <p className='text-white'>
-                      lasklaksjlsjfoij
+                    <h2 className='text-info'>Make Your Own Board</h2>
+                   
+                    <p className='viv-p'>
+                      客製化您自己專屬的滑板，與朋友們分享，或是發掘喜歡的作品。
                     </p>
+                    <br/>
+                    <br/>
+
+                    <button className='viv-btn'>Create</button>
+                    <button className='viv-btn'>Explore</button>
+      
+                     
                   </div>
               </div>
             </div>
