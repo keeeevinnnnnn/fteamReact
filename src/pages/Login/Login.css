@@ -1,0 +1,109 @@
+.NavBar {
+  height: 80px;
+  color: white;
+  font-size: 3.5rem;
+  background-color: #2D2D2D;
+}
+
+.LoginBox {
+  position: absolute;
+  top: 80px;
+  height: calc(100vh - 80px);
+}
+
+.cursorpointer {
+  cursor: pointer;
+}
+
+.LoginCarousel {
+  display: none;
+}
+
+.LoginInputsBox {
+  color: white;
+  background: #2D2D2D;
+}
+.LoginInputsBox .LoginLogoBox {
+  height: 15%;
+}
+.LoginInputsBox .LoginLogoBox .LoginLogoBoxText {
+  font-size: 3rem;
+  font-weight: 600;
+  text-shadow: #FFF 0px 0px 5px, #FFF 0px 0px 10px, #FFF 0px 0px 15px, black 0px 0px 20px, gray 0px 0px 30px, black 0px 0px 40px, gray 0px 0px 50px, gray 0px 0px 75px;
+}
+.LoginInputsBox .LoginForm {
+  height: 65%;
+}
+.LoginInputsBox .LoginForm .LoginFormBox {
+  margin-bottom: 0;
+}
+.LoginInputsBox .LoginForm .LoginFormAccountPassword {
+  font-size: 1.5rem;
+  text-shadow: 3px 5px 2px #2d0096;
+}
+.LoginInputsBox .LoginForm input {
+  font-size: 1.2rem;
+  border: 1px solid white;
+  border-radius: 25px;
+  background-color: rgba(255, 255, 255, 0.8117647059);
+}
+.LoginInputsBox .LoginForm .LoginSignUp {
+  margin-top: 0;
+}
+.LoginInputsBox .ForgotAdmin {
+  height: 17%;
+  font-size: 1.5rem;
+  text-shadow: #2ce6ff 2px 2px 0px, #9C9C9C 4px 4px 0px;
+}
+.LoginInputsBox .ForgotAdmin p:nth-child(1):hover {
+  font-weight: 600;
+  font-size: 2rem;
+  text-shadow: 2px 2px 0px #2ce6ff;
+}
+.LoginInputsBox .ForgotAdmin p:nth-child(2):hover {
+  font-weight: 600;
+  font-size: 2rem;
+  text-shadow: 2px 2px 0px #2ce6ff;
+}
+
+@media screen and (min-width: 1200px) {
+  .NavBar {
+    height: 88px;
+  }
+  .LoginBox {
+    display: flex;
+    top: 88px;
+    height: calc(100% - 88px);
+  }
+  .LoginCarousel {
+    display: block;
+    z-index: 5;
+  }
+  .LoginInputsBox {
+    background: linear-gradient(to right, #555555 0%, #2D2D2D 50%, #2D2D2D 100%);
+  }
+  .LoginInputsBox .LoginLogoBox {
+    height: 15%;
+  }
+  .LoginInputsBox .LoginLogoBox .LoginLogoBoxText {
+    font-size: 3.8rem;
+  }
+  .LoginInputsBox .LoginForm .LoginFormBox {
+    margin-bottom: 40px;
+  }
+  .LoginInputsBox .LoginForm .LoginFormAccountPassword {
+    font-size: 1.5rem;
+  }
+  .LoginInputsBox .LoginForm input {
+    font-size: 1rem;
+    height: 30px;
+    width: 40%;
+  }
+  .LoginInputsBox .LoginForm .FbLineGoogle {
+    margin-left: 20%;
+    width: 60%;
+  }
+  .LoginInputsBox .LoginForm .LoginSignUp {
+    margin-top: 35px;
+  }
+}/*# sourceMappingURL=Login.css.map */
