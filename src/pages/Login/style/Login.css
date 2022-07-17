@@ -29,12 +29,13 @@
 .LoginCard .LoginBack {
   position: absolute;
   transform: rotateY(-180deg);
+  transform: rotateX(-180deg);
   -webkit-backface-visibility: hidden;
           backface-visibility: hidden;
 }
 
 .LoginCardRotate {
-  transform: rotateY(180deg);
+  transform: rotateX(-180deg);
 }
 
 .LoginInputsBox {

@@ -16,7 +16,7 @@ const LoginCariusel = () => {
     <>
       <div className="col-xl-6 h-100 LoginCarousel">
         <Swiper
-          speed={3000}
+          speed={1000}
           grabCursor={true}
           loop={true}
           spaceBetween={0}
@@ -24,7 +24,7 @@ const LoginCariusel = () => {
           modules={[EffectCube, Autoplay]}
           effect="cube"
           autoplay={{
-            delay: 1000,
+            delay: 3000,
             disableOnInteraction: false,
             pauseOnMouseEnter: true,
           }}
