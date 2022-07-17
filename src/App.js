@@ -11,6 +11,8 @@ import Customized from './pages/Customized/Customized';
 import Orders from './pages/Orders/Orders';
 import Login from './pages/Login/Login';
 import Carts from './pages/Carts/Carts';
+import Customized_add from './pages/Customized/Customized_add';
+
 function App() {
   return (
     <Router>
@@ -20,8 +22,11 @@ function App() {
             <Navbar />
             <div className="w-100 bottom-grid d-flex">
               <SideBar />
+  
+               {/* <Customized_add/> */}
               {/* col-2 的側邊欄 */}
               {/* <div className="col-10 h-100 p-0 "></div>有要加sidebar的 用col-10 這段 沒有的用 col-12 */}
+
               <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/member" element={<Member />} />
