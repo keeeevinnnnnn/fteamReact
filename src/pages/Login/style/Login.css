@@ -1,22 +1,41 @@
-.NavBar {
-  height: 80px;
-  color: white;
-  font-size: 3.5rem;
-  background-color: #2D2D2D;
-}
-
-.LoginBox {
-  position: absolute;
-  top: 80px;
-  height: calc(100vh - 80px);
-}
-
 .cursorpointer {
   cursor: pointer;
 }
 
+.LoginBox {
+  width: 100%;
+  position: absolute;
+  top: 80px;
+  height: calc(100vh - 80px);
+  background: #2D2D2D;
+}
+
 .LoginCarousel {
   display: none;
+  background: #2D2D2D;
+  z-index: 5;
+}
+
+.LoginCard {
+  position: relative;
+  transition: 1.5s;
+  transform-style: preserve-3d;
+}
+.LoginCard .LoginFront {
+  position: absolute;
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+}
+.LoginCard .LoginBack {
+  position: absolute;
+  transform: rotateY(-180deg);
+  transform: rotateX(-180deg);
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+}
+
+.LoginCardRotate {
+  transform: rotateX(-180deg);
 }
 
 .LoginInputsBox {
@@ -34,18 +53,30 @@
 .LoginInputsBox .LoginForm {
   height: 65%;
 }
+.LoginInputsBox .LoginForm .rwdNoneBlock {
+  display: none;
+}
 .LoginInputsBox .LoginForm .LoginFormBox {
   margin-bottom: 0;
+}
+.LoginInputsBox .LoginForm .loginAvatar {
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 .LoginInputsBox .LoginForm .LoginFormAccountPassword {
   font-size: 1.5rem;
   text-shadow: 3px 5px 2px #2d0096;
 }
-.LoginInputsBox .LoginForm input {
+.LoginInputsBox .LoginForm input, .LoginInputsBox .LoginForm textarea {
   font-size: 1.2rem;
   border: 1px solid white;
   border-radius: 25px;
   background-color: rgba(255, 255, 255, 0.8117647059);
+}
+.LoginInputsBox .LoginForm .passwordEyes {
+  display: none;
 }
 .LoginInputsBox .LoginForm .LoginSignUp {
   margin-top: 0;
@@ -53,23 +84,21 @@
 .LoginInputsBox .ForgotAdmin {
   height: 17%;
   font-size: 1.5rem;
-  text-shadow: #2ce6ff 2px 2px 0px, #9C9C9C 4px 4px 0px;
+  font-weight: 600;
+  color: var(--main);
 }
 .LoginInputsBox .ForgotAdmin p:nth-child(1):hover {
   font-weight: 600;
   font-size: 2rem;
-  text-shadow: 2px 2px 0px #2ce6ff;
+  text-shadow: 2px 2px 0px var(--main);
 }
 .LoginInputsBox .ForgotAdmin p:nth-child(2):hover {
   font-weight: 600;
   font-size: 2rem;
-  text-shadow: 2px 2px 0px #2ce6ff;
+  text-shadow: 2px 2px 0px var(--main);
 }
 
 @media screen and (min-width: 1200px) {
-  .NavBar {
-    height: 88px;
-  }
   .LoginBox {
     display: flex;
     top: 88px;
@@ -77,7 +106,6 @@
   }
   .LoginCarousel {
     display: block;
-    z-index: 5;
   }
   .LoginInputsBox {
     background: linear-gradient(to right, #555555 0%, #2D2D2D 50%, #2D2D2D 100%);
@@ -88,16 +116,25 @@
   .LoginInputsBox .LoginLogoBox .LoginLogoBoxText {
     font-size: 3.8rem;
   }
-  .LoginInputsBox .LoginForm .LoginFormBox {
-    margin-bottom: 40px;
+  .LoginInputsBox .LoginForm .rwdNoneBlock {
+    display: block;
   }
   .LoginInputsBox .LoginForm .LoginFormAccountPassword {
     font-size: 1.5rem;
   }
-  .LoginInputsBox .LoginForm input {
+  .LoginInputsBox .LoginForm input, .LoginInputsBox .LoginForm textarea {
     font-size: 1rem;
     height: 30px;
     width: 40%;
+  }
+  .LoginInputsBox .LoginForm .passwordInput {
+    position: relative;
+  }
+  .LoginInputsBox .LoginForm .passwordEyes {
+    display: block;
+    position: absolute;
+    width: 25px;
+    right: 31%;
   }
   .LoginInputsBox .LoginForm .FbLineGoogle {
     margin-left: 20%;
