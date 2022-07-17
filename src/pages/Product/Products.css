@@ -2,44 +2,29 @@
 * {
   padding: 0;
   margin: 0;
-  -webkit-box-sizing: 0;
-          box-sizing: 0;
-  font-family: 'Roboto', sans-serif;
+  box-sizing: 0;
+  font-family: "Roboto", sans-serif;
 }
 
 .mainPicRow {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  align-items: center;
+  justify-content: center;
   margin: auto;
 }
 
 .mainPic {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  align-items: center;
+  justify-content: center;
   margin: auto;
   position: relative;
 }
-
 .mainPic img {
   width: 100%;
   background-size: cover;
   background-position: center;
-  -webkit-box-shadow: 30px 30px 2px black;
-          box-shadow: 30px 30px 2px black;
+  box-shadow: 30px 30px 2px black;
 }
 
 .mainPicText {
@@ -47,7 +32,6 @@
   right: 60px;
   top: 170px;
 }
-
 .mainPicText h2 {
   font-weight: 400;
   font-size: 3.8rem;
@@ -64,7 +48,6 @@
   /* 切割部分 */
   /* 剩餘部分 */
 }
-
 .mainPicText-h2 h2 {
   position: relative;
   color: transparent;
@@ -72,7 +55,6 @@
   font-weight: 300;
   letter-spacing: 4px;
 }
-
 .mainPicText-h2 h2::before,
 .mainPicText-h2 h2::after {
   /* 通過 attr 獲取屬性的值 */
@@ -83,13 +65,11 @@
   overflow: hidden;
   color: black;
 }
-
 .mainPicText-h2 h2::before {
   /* 上對齊 */
   top: 0px;
   height: 45%;
 }
-
 .mainPicText-h2 h2::after {
   /* 下對齊 */
   bottom: 0;
@@ -97,28 +77,19 @@
 }
 
 .mainPicMore {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  align-items: center;
+  justify-content: center;
   background-color: #03DAC5;
   position: absolute;
   width: 250px;
   right: -20px;
   top: 300px;
-  -webkit-box-shadow: 5px 8px 0px #03dac579;
-          box-shadow: 5px 8px 0px #03dac579;
+  box-shadow: 5px 8px 0px rgba(3, 218, 197, 0.4745098039);
 }
-
 .mainPicMore h2 {
   text-align: center;
   font-size: 2rem;
   letter-spacing: 6px;
   margin: auto;
-}
-/*# sourceMappingURL=Products.css.map */
+}/*# sourceMappingURL=Products.css.map */

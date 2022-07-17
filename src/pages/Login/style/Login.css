@@ -29,13 +29,12 @@
 .LoginCard .LoginBack {
   position: absolute;
   transform: rotateY(-180deg);
-  transform: rotateX(-180deg);
   -webkit-backface-visibility: hidden;
           backface-visibility: hidden;
 }
 
 .LoginCardRotate {
-  transform: rotateX(-180deg);
+  transform: rotateY(180deg);
 }
 
 .LoginInputsBox {
@@ -108,7 +107,7 @@
     display: block;
   }
   .LoginInputsBox {
-    background: linear-gradient(to right, #555555 0%, #2D2D2D 50%, #2D2D2D 100%);
+    background: linear-gradient(to right, #2D2D2D 0%, #2D2D2D 50%, #555555 100%);
   }
   .LoginInputsBox .LoginLogoBox {
     height: 15%;
