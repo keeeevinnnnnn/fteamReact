@@ -7,10 +7,11 @@ import LoginAdmin from './components/LoginAdmin';
 import Register from './components/Register';
 
 const Login = () => {
-  // 會員登入 管理員登入 切換CSS動畫
+  // 點擊後卡片翻轉
   const [loginCard, setLoginCard] = useState('');
-  // 會員註冊 切換動畫 切換CSS動畫
+  // 背面要呈現管理員登入還是會員註冊
   const [registerNone, setRegisterNone] = useState('d-none');
+  // 文字動畫
   const [loginLogoText, setLoginLogoText] = useState('Login');
 
   return (
