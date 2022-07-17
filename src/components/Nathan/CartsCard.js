@@ -4,7 +4,6 @@ const CartsCard = () => {
   return (
     <>
       <div className="carts-card"></div>
-      <div className="carts-card"></div>
     </>
   );
 };

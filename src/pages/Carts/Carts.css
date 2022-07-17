@@ -24,17 +24,28 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #fff;
+    /* background-color: #fff; */
     height: 15%;
   }
 
   .carts-selection {
+    background-color: transparent;
     border: none;
     border-bottom: .5px solid black;
   }
 
+  /* 清除 bootstrap 預設focus外框 */
+  .carts-selection:focus {
+    outline: none;
+  }
+
+  .carts-selection option:focus {
+    background-color: transparent;
+    outline: none;
+  }
+
   .carts-card-section {
-    background-color: rgb(95, 93, 93);
+    /* background-color: rgb(95, 93, 93); */
     min-height: 85%;
   }
 
@@ -42,10 +53,37 @@
     width: 90%;
   }
 
+  .card-scroll-list-wrap {
+    width: 100%;
+    height: 350px;
+    position: relative;
+    overflow: hidden;
+    transition: 0.5s;
+  }
+
+  .card-scroll-list {
+    transition: 0.5s;
+    display: flex;
+    width: 300%;
+    height: 100%;
+    position: absolute;
+    left: -0%;
+  }
+
+  .products-card-scroll,
+  .customized-card-scroll,
+  .lesson-card-scroll {
+    width: 33.33%;
+    height: 350px;
+    overflow-y: scroll;
+
+  }
+
   .total-count-section {
     position: fixed;
-    background-color: antiquewhite;
+    background-color: black;
     bottom: 0;
     height: 125px;
   }
+
 }
