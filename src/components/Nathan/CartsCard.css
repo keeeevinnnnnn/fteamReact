@@ -1,0 +1,16 @@
+@media screen and (max-width: 768px) {
+  .carts-card {
+    background-color: white;
+    width: 90%;
+    height: 150px;
+    border: 1px solid rgb(0, 0, 0);
+    transition: .3s;
+    box-shadow: 6px 7px 0px 1px #000000;
+    margin-bottom: 20px;
+  }
+
+  .carts-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 12px 14px 0px 1px #000000;
+  }
+}
