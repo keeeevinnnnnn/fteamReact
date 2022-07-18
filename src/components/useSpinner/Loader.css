@@ -1,0 +1,13 @@
+.LoaderBox {
+    background: white;
+    position: absolute;
+    z-index: 10;
+    top: 88px;
+    height: calc(100vh - 88px);
+}
+
+.LoaderKidBox {
+    padding-top: 3%;
+    margin-right: auto;
+    margin-left: auto;
+}
