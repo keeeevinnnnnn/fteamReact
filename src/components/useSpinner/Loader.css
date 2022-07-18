@@ -7,17 +7,17 @@
 }
 
 .LoaderKidBox {
-    padding-top: 3%;
+    padding-top: 45%;
     margin-right: auto;
     margin-left: auto;
 }
 
 @media screen and (min-width: 1200px) {
     .LoaderBox {
-        background: white;
-        position: absolute;
-        z-index: 10;
         top: 88px;
         height: calc(100vh - 88px);
+    }
+    .LoaderKidBox {
+        padding-top: 3%;
     }
 }

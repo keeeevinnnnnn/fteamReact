@@ -1,8 +1,14 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useSpinner } from '../../components/useSpinner';
 
 const Member = () => {
+  const { spinner, setLoading } = useSpinner(4000);
+  useEffect(() => {
+    setLoading(true);
+  }, []);
   return (
     <>
+      {spinner}
       <div className="w-100 vh-100 d-flex justify-content-end align-items-end">
         <div className="work-area col-12 col-md-10 p-0">
           大家製作放這邊～～～～
