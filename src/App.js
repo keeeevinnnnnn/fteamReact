@@ -12,6 +12,8 @@ import Orders from './pages/Orders/Orders';
 import Login from './pages/Login/Login';
 import Carts from './pages/Carts/Carts';
 import Customized_add from './pages/Customized/Customized_add';
+import Cus_product_card_wheel from './pages/Customized/Cus_product_card_wheel';
+import Cus_product_card_struct from './pages/Customized/Cus_product_card_struct';
 
 function App() {
   return (
@@ -38,6 +40,9 @@ function App() {
                 <Route path="/lesson" element={<Lesson />} />
                 <Route path="/products" element={<Products />} />
                 <Route path="/customized" element={<Customized />} />
+                <Route path="/customized_add" element={<Customized_add />} />
+                <Route path="/cus_product_card_wheel" element={<Cus_product_card_wheel />} />
+                <Route path="/cus_product_card_struct" element={<Cus_product_card_struct />} />
                 <Route path="/carts" element={<Carts />} />
                 <Route path="/orders" element={<Orders />} />
               </Routes> 

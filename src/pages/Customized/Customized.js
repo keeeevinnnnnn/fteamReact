@@ -1,5 +1,6 @@
 import React from 'react';
 import './Customized.css';
+import { Link } from 'react-router-dom';
 
 const Customized = () => {
   return (
@@ -23,7 +24,12 @@ const Customized = () => {
                     </p>
                     
 
+                    
+                   
+                    <Link to={'/customized_add'}>
                     <button className='viv-btn'>Create</button>
+                    </Link>
+
                     <button className='viv-btn'>Explore</button>
       
                      
