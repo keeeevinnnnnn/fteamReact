@@ -2,9 +2,10 @@ import React, { useState, Fragment } from 'react';
 import CartsCard from '../../components/Nathan/CartsCard';
 import Scroll from 'react-scroll';
 import './Carts.css';
+import OffcanvasTest from '../../components/Nathan/OffcanvasTest';
 const Carts = () => {
   const cartItemArr = ['PRODUCTS', 'CUSTOMIZED', 'LESSON'];
-  const [selectItem, setSelectItem] = useState('');
+  const [selectItem, setSelectItem] = useState('PRODUCTS');
   return (
     <>
       <div className="carts-bg w-100 vh-100 d-flex justify-content-end align-items-end">
@@ -43,27 +44,38 @@ const Carts = () => {
                     }}
                     className="card-scroll-list"
                   >
-                    <Scroll.Element className="products-card-scroll">
-                      <CartsCard />
-                      <CartsCard />
-                      <CartsCard />
-                    </Scroll.Element>
-                    <Scroll.Element className="customized-card-scroll">
-                      <CartsCard />
-                      <CartsCard />
-                      <CartsCard />
-                    </Scroll.Element>
-                    <Scroll.Element className="lesson-card-scroll">
-                      <CartsCard />
-                      <CartsCard />
-                      <CartsCard />
-                    </Scroll.Element>
+                    <Scroll.Element className="products-card-scroll"></Scroll.Element>
+                    <Scroll.Element className="customized-card-scroll"></Scroll.Element>
+                    <Scroll.Element className="lesson-card-scroll"></Scroll.Element>
                   </div>
                 </div>
               </div>
             </div>
             <div className="total-count-section w-100">
-              <div className="total-count-wrap w-100 h-100 p-4">das</div>
+              <div className="total-count-wrap w-100 h-100 ">
+                <div className="total-top-grid w-100 d-flex">
+                  <div className="cart-total-title col-4 h-100 d-flex justify-content-center align-items-center">
+                    <span>TOTAL</span>
+                  </div>
+                  <div className="cart-total-title col-4 h-100 d-flex justify-content-center align-items-center">
+                    <span>ITEMS</span>
+                  </div>
+                  <div className="cart-total-title col-4 h-100 d-flex justify-content-center align-items-center"></div>
+                </div>
+                <div className="total-bottom-grid w-100 d-flex">
+                  <div className="cart-total-text col-4 h-100 d-flex justify-content-center align-items-center">
+                    {/* total price */}
+                    <span>$ {'4990'}</span>
+                  </div>
+                  <div className="cart-total-text col-4 h-100 d-flex justify-content-center align-items-center">
+                    {/* total counts */}
+                    <span>{'4'}</span>
+                  </div>
+                  <div className="col-4 h-100 d-flex justify-content-start align-items-center">
+                    <OffcanvasTest />
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
           <div className="d-none col-md-2  h-100"></div>

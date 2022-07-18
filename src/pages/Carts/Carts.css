@@ -3,8 +3,14 @@
   background-size: cover;
 }
 
+.btn-close {
+  background: url(../../Images/Orders/close.svg);
+  width: 16px;
+  height: 16px;
+}
+
 /* * {
-  outline: 1px solid black;
+  outline: 1px solid rgb(0, 0, 0);
 } */
 
 .tabs-section {}
@@ -13,9 +19,14 @@
 
 .total-count-section {}
 
+.card-scroll-list {
+  display: flex;
+}
+
 @media screen and (max-width: 768px) {
   .carts-bg {
-    background: url(../../Images/Orders/bg03.svg);
+    /* background: none; */
+    background: url('../../Images/Orders/Frame\ 56\ \(2\).png');
     background-position: 1 0;
     background-size: cover;
   }
@@ -74,9 +85,16 @@
   .customized-card-scroll,
   .lesson-card-scroll {
     width: 33.33%;
-    height: 350px;
+    height: 320px;
     overflow-y: scroll;
+  }
 
+  .products-card-scroll::-webkit-scrollbar,
+  .customized-card-scroll::-webkit-scrollbar,
+  .lesson-card-scroll::-webkit-scrollbar {
+    /* background-color: rgba(0, 0, 0, 0.425); */
+    scrollbar-width: 0;
+    background-color: transparent;
   }
 
   .total-count-section {
@@ -84,6 +102,37 @@
     background-color: black;
     bottom: 0;
     height: 125px;
+  }
+
+  .cart-total-title {
+    font-weight: 700;
+    color: var(--main);
+  }
+
+  .cart-total-text {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: whitesmoke;
+  }
+
+  .total-top-grid {
+    height: 33.33%;
+  }
+
+  .total-bottom-grid {
+    height: 66.66%;
+  }
+
+  .checkout-btn {
+    font-size: .8rem;
+    background-color: var(--main);
+    color: black;
+    transition: .3s ease;
+  }
+
+  .checkout-btn:hover {
+    transform: translateX(-2px) translateY(-2px);
+    box-shadow: 4px 4px 0px 0px #047d92;
   }
 
 }

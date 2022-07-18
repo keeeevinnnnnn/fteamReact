@@ -5,12 +5,65 @@
     height: 150px;
     border: 1px solid rgb(0, 0, 0);
     transition: .3s;
-    box-shadow: 6px 7px 0px 1px #000000;
-    margin-bottom: 20px;
+    box-shadow: 20px 7px 0px 1px #000000;
+    margin-top: 5px;
+    margin-bottom: 15px;
   }
 
   .carts-card:hover {
     transform: translateY(-4px);
-    box-shadow: 12px 14px 0px 1px #000000;
+    box-shadow: 20px 14px 0px 1px #000000;
+  }
+
+  .cart-img-wrap {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    overflow: hidden;
+  }
+
+  .carts-price-section {
+    position: relative;
+  }
+
+  .carts-price-section a {
+    display: block;
+    width: 16px;
+    height: 16px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+
+  }
+
+  .carts-price-section svg {
+    width: 100%;
+    height: 100%;
+    transition: 0.3s ease;
+  }
+
+  .carts-price-section svg:hover {
+    transform: translateY(-5px);
+  }
+
+  .cart-minus-icon svg,
+  .cart-plus-icon svg {
+    width: 100%;
+    height: 100%;
+    transition: 0.3s ease;
+    stroke: rgb(0, 0, 0);
+    fill: #ffffff;
+  }
+
+  .cart-minus-icon svg:hover,
+  .cart-plus-icon svg:hover {
+    stroke: white;
+    fill: #000000;
+  }
+
+  .cart-count-text span {
+    font-size: 1.15rem;
+    display: inline-block;
+    height: 100%;
   }
 }
