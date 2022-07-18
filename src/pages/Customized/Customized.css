@@ -19,14 +19,7 @@
     width: 100%;
     height: auto;
 }
-.cus_card{
-    width: 100%;
-    position: fixed;
-    right: auto;
-    bottom: 0;
-    margin-right: auto;
-   
-}
+
 .cus_main_card{
     width: 100%;
     padding: 24px;
@@ -49,7 +42,7 @@
     transition: 1s ease;
     margin-right: 16px;
     margin-top: 24px;
-    
+    text-decoration: none;
    
    
 }
@@ -74,7 +67,7 @@
 .cus-product-container{
     width: 100%;
     height: auto;
-    border: 1px solid lightcoral;
+    /* border: 1px solid lightcoral; */
 }
 
 .cus-product-matte{
@@ -91,8 +84,8 @@
 input {
     border: none; /* Removes the default border */
     }
-    ​
-    input:focus {
+    
+input:focus {
     outline: none /* Removes the border when the input is clicked */
     }
 
@@ -100,8 +93,84 @@ input {
 .viv-input{
     width: 100%;
     padding-top: 16px;
-     border-bottom: 1px solid gray;
+    border-bottom: 1px solid gray;
 }
+
+
+.skbtn-prev{
+    min-width: 64px;
+    min-height: 64px;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 100%;
+    outline: 2px solid black;
+    background-image: url(../../Images/Customized/arrow_prev.svg);
+    background-position: center;
+    background-size: cover;
+    transition: .5s ease;
+    margin: 12px;
+    
+}
+
+.skbtn-prev:hover{
+    background: rgba(0, 0, 0, 1);
+    
+    background-image: url(../../Images/Customized/arrow_prev_w.svg);
+    
+    background-position: center;
+    background-size: cover;
+   
+
+    
+    
+}
+
+.skbtn-next{
+    min-width: 64px;
+    min-height: 64px;
+    background: rgba(255, 255, 255, .5);
+    border-radius: 100%;
+    outline: 2px solid black;
+    background-image: url(../../Images/Customized/arrow_next.svg);
+    background-position: center;
+    background-size: cover;
+    transition: .5s ease;
+    margin: 12px;
+    
+}
+
+.skbtn-next:hover{
+
+    background: rgba(0, 0, 0, 1);
+    background-image: url(../../Images/Customized/arrow_next_w.svg);
+    background-position: center;
+    background-size: cover;
+   
+
+    
+    
+}
+
+.step-control{
+   
+    padding: 0px 12px;
+}
+.cus_card_container{
+    position: absolute;
+    z-index: 15;
+   
+    bottom: 0;
+    height: 45%;
+    width: 100%;
+   
+}
+
+.cus_card{
+    width: 100%;
+   
+    margin-right: 24px;
+    padding: 24px;
+   
+  }
 
 
 
@@ -138,6 +207,13 @@ input {
 
 
 @media only screen and (min-width: 768px) {
+    .cus_container{
+        position: relative;
+        border: 1px solid gray;
+        display: flex;
+        justify-content: end;
+        padding: 48px;
+    }
    
     .cus_board_main{
         width: auto;
@@ -145,16 +221,7 @@ input {
         
     }
 
-    .cus_card{
-      width: auto;
-      position: absolute;
-      z-index: 5;
-      right: 0;
-      bottom: 30%;
-      margin-right: 24px;
-      padding: 24px;
-      box-sizing: content-box;
-    }
+    
 
     .viv-p{
         margin-bottom: 24px;
@@ -175,6 +242,38 @@ input {
 
     .cus_product_card{
         width: 500px;
+        border:1px solid lightgreen;
+       
+    }
+
+    .cus_card_container{
+        position: absolute;
+        z-index: 10;
+        right: 0;
+        top:0;
+        height: 100%;
+        width: 60%;
+        border: 1px solid lightcoral;
+
+    }
+    .cus_card{
+        border: 1px solid lightsalmon;
+        display: flex;
+        justify-content: end;
+
+       
+      }
+
+
+
+    
+
+    .step-control{
+        display: flex;
+        justify-content: end;
+        margin-top: 48px;
+        
+        padding: 24px 48px 24px 48px;
     }
 
    

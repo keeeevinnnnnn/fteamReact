@@ -1,9 +1,9 @@
-/* .center {
-  /* padding-top: 15%; */
-/* display: flex; */
-/* justify-items: center; */
-/* align-items: center; */
-/* }  */
+.cooler_arrowcenter {
+  padding-top: 15%;
+  /* display: flex; */
+  /* justify-items: center; */
+  /* align-items: center; */
+}
 
 .shadowblack {
   -webkit-box-shadow: 5px 5px 0px 1px #000000;
@@ -34,6 +34,14 @@
 outline: 5px solid #00f;
 } */
 
-.abc {
-  background-color: blue;
+* {
+  /* outline: 1px solid red; */
+}
+
+.coolermap {
+  color: #000000;
+}
+
+.coolermap:hover {
+  color: #61dafbd2;
 }
