@@ -40,7 +40,7 @@ const LoginAdmin = ({ setLoginCard, loginLogoText }) => {
                 <span>LOGIN</span>
               </button>
             </div>
-            <div className="col-12 d-flex justify-content-center ForgotAdmin pt-5">
+            <div className="col-12 d-flex justify-content-center ForgotAdmin">
               <p
                 className="cursorpointer mt-5"
                 onClick={() => {

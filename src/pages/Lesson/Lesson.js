@@ -6,11 +6,13 @@ const Lesson = () => {
       <div className="w-100 vh-100 d-flex justify-content-end align-items-end">
         <div className="work-area col-12 col-md-10 p-0">
           <div className="d-flex flex-wrap">
-            <div className="col-12 col-md-1 d-none d-sm-block ">
-              <i className=" fa-solid fa-arrow-left  center"></i>
+            {/* <div className="d-flex "> */}
+            {/* <div className="row"> */}
+
+            <div className="col-12 col-md-1 d-none d-sm-block  cooler_arrowcenter  m-4">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                className="h-6 w-6"
+                className="h-6 w-6  "
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -23,7 +25,7 @@ const Lesson = () => {
                 />
               </svg>
             </div>
-            <div className="col-12 col-md-4 m-4 card  shadowblack  ">
+            <div className="col-12 col-md-4 m-md-4 card  shadowblack  ">
               <img
                 src="./imgs/lesson_imgs/l01.jpg"
                 className="card-img-top"
@@ -36,17 +38,21 @@ const Lesson = () => {
                 <h6 className="card-title text-center fs-5 fw-bold">
                   【忠孝館】
                 </h6>
-                <i className="fa-solid fa-location-dot fs-4"></i>
-                <span className="fs-6"> 國父紀念館</span>
-                <p className="card-text">
-                  HRC舞蹈工作室提供最優質的舞蹈教學服務，每月超過三百堂多樣化課程、數十種舞蹈風格，多元的課程選擇、由淺入深的漸進式學...
-                </p>
-                <a href="#/" className="btn btn-primary">
-                  Go
+                <a href="#/">
+                  <i className="fa-solid fa-location-dot fs-4 coolermap"></i>
                 </a>
+                <span className="fs-6 fw-bold"> 國父紀念館</span>
+                <p className="card-text  pt-4">
+                  HRC舞蹈工作室提供最優質的舞蹈教學服務，每月超過三百堂多樣化課程、數十種舞蹈風格，多元的課程選擇、由淺入深的漸進式學習，讓你輕鬆踏出舞蹈的第一步，打穩基礎、深根學習、挑戰自己！
+                </p>
+                <div className=" w-100 d-flex justify-content-end">
+                  <a href="#/" className="viv-btn ">
+                    Go
+                  </a>
+                </div>
               </div>
             </div>
-            <div className="col-12 col-md-4 m-4 card  shadowblack ">
+            <div className="col-12 col-md-4 m-md-4 card  shadowblack ">
               <img
                 src="./imgs/lesson_imgs/l02.jpg"
                 className="card-img-top"
@@ -59,18 +65,19 @@ const Lesson = () => {
                 <h6 className="card-title text-center fs-5 fw-bold">
                   【板橋民生旗艦館】
                 </h6>
-                <i className="fa-solid fa-location-dot fs-4"></i>
-                <span className="fs-6"> 新埔站</span>
-                <p className="card-text">
-                  HRC舞蹈工作室提供最優質的舞蹈教學服務，每月超過三百堂多樣化課程、數十種舞蹈風格，多元的課程選擇、由淺入深的漸進式學...
+                <i className="fa-solid fa-location-dot fs-4 coolermap"></i>
+                <span className="fs-6 fw-bold"> 新埔站</span>
+                <p className="card-text  pt-4">
+                  HRC舞蹈工作室提供最優質的舞蹈教學服務，每月超過三百堂多樣化課程、數十種舞蹈風格，多元的課程選擇、由淺入深的漸進式學習，讓你輕鬆踏出舞蹈的第一步，打穩基礎、深根學習、挑戰自己！
                 </p>
-                <a href="#/" className="btn btn-primary">
-                  Go
-                </a>
+                <div className=" w-100 d-flex justify-content-end">
+                  <a href="#/" className="viv-btn ">
+                    Go
+                  </a>
+                </div>
               </div>
             </div>
-            <div className="col-12 col-md-1 d-none d-sm-block ">
-              <i className="fa-solid fa-arrow-right  center"></i>
+            <div className="col-12 col-md-1 d-none d-sm-block cooler_arrowcenter m-4">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-6 w-6"

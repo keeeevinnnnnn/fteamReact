@@ -18,7 +18,7 @@
 
 .LoginCard {
   position: relative;
-  transition: 1.5s;
+  transition: 0.5s;
   transform-style: preserve-3d;
 }
 .LoginCard .LoginFront {
@@ -29,13 +29,12 @@
 .LoginCard .LoginBack {
   position: absolute;
   transform: rotateY(-180deg);
-  transform: rotateX(-180deg);
   -webkit-backface-visibility: hidden;
           backface-visibility: hidden;
 }
 
 .LoginCardRotate {
-  transform: rotateX(-180deg);
+  transform: rotateY(180deg);
 }
 
 .LoginInputsBox {
@@ -48,7 +47,6 @@
 .LoginInputsBox .LoginLogoBox .LoginLogoBoxText {
   font-size: 3rem;
   font-weight: 600;
-  text-shadow: #FFF 0px 0px 5px, #FFF 0px 0px 10px, #FFF 0px 0px 15px, black 0px 0px 20px, gray 0px 0px 30px, black 0px 0px 40px, gray 0px 0px 50px, gray 0px 0px 75px;
 }
 .LoginInputsBox .LoginForm {
   height: 65%;
@@ -71,9 +69,14 @@
 }
 .LoginInputsBox .LoginForm input, .LoginInputsBox .LoginForm textarea {
   font-size: 1.2rem;
-  border: 1px solid white;
-  border-radius: 25px;
-  background-color: rgba(255, 255, 255, 0.8117647059);
+  color: white;
+  background-color: transparent;
+  border: none; /* Removes the default border */
+  border-bottom: 1px solid gray;
+  padding-bottom: 10px;
+}
+.LoginInputsBox .LoginForm input:focus {
+  outline: none;
 }
 .LoginInputsBox .LoginForm .passwordEyes {
   display: none;
@@ -82,8 +85,9 @@
   margin-top: 0;
 }
 .LoginInputsBox .ForgotAdmin {
+  padding-top: 40px;
   height: 17%;
-  font-size: 1.5rem;
+  font-size: 1rem;
   font-weight: 600;
   color: var(--main);
 }
@@ -108,7 +112,7 @@
     display: block;
   }
   .LoginInputsBox {
-    background: linear-gradient(to right, #555555 0%, #2D2D2D 50%, #2D2D2D 100%);
+    background: linear-gradient(to right, #2D2D2D 0%, #2D2D2D 50%, #555555 100%);
   }
   .LoginInputsBox .LoginLogoBox {
     height: 15%;
@@ -116,15 +120,18 @@
   .LoginInputsBox .LoginLogoBox .LoginLogoBoxText {
     font-size: 3.8rem;
   }
+  .LoginInputsBox .LoginForm {
+    padding-top: 3%;
+  }
   .LoginInputsBox .LoginForm .rwdNoneBlock {
     display: block;
   }
   .LoginInputsBox .LoginForm .LoginFormAccountPassword {
-    font-size: 1.5rem;
+    font-size: 1rem;
   }
   .LoginInputsBox .LoginForm input, .LoginInputsBox .LoginForm textarea {
     font-size: 1rem;
-    height: 30px;
+    height: 25px;
     width: 40%;
   }
   .LoginInputsBox .LoginForm .passwordInput {

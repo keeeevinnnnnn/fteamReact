@@ -52,14 +52,14 @@ const Register = ({
                 </label>
                 <input type="date" className="text-center w-50 rwdNoneBlock" />
               </div>
-              <div className="col-8 mb-3 d-flex justify-content-around">
-                <label className="text-center LoginFormAccountPassword col-6 col-xl-3">
+              <div className="col-9 col-xl-8 mb-3 d-flex justify-content-around">
+                <label className="text-center LoginFormAccountPassword col-xl-3">
                   Account
                 </label>
                 <input type="text" className="text-center w-50" />
               </div>
-              <div className="col-8 d-flex mb-3 d-flex justify-content-around">
-                <label className="text-center LoginFormAccountPassword col-6 col-xl-3">
+              <div className="col-9 col-xl-8 d-flex mb-3 d-flex justify-content-around">
+                <label className="text-center LoginFormAccountPassword col-xl-3">
                   Password
                 </label>
                 <div className="w-50">
@@ -67,8 +67,8 @@ const Register = ({
                   <input type="password" className="text-center w-100" />
                 </div>
               </div>
-              <div className="col-8 mb-3 d-flex justify-content-around">
-                <label className="text-center LoginFormAccountPassword col-6 col-xl-3">
+              <div className="col-9 col-xl-8 mb-3 d-flex justify-content-around">
+                <label className="text-center LoginFormAccountPassword col-xl-3">
                   Email
                 </label>
                 <input type="text" className="text-center w-50" />
@@ -82,26 +82,22 @@ const Register = ({
                   className="text-center w-50 rwdNoneBlock"
                 />
               </div>
-              <div className="col-12 d-flex justify-content-center pt-3">
+              <div className="col-12 col-xl-8 d-flex justify-content-around pt-3">
+                <div
+                  className="cursorpointer custom-btn btn-8"
+                  onClick={() => {
+                    setLoginCard('');
+                    setLoginLogoText('Login');
+                  }}
+                >
+                  <span className="text-center">Back To Login</span>
+                </div>
                 <button className="custom-btn btn-8">
                   <span>CONFIRM</span>
                 </button>
               </div>
             </div>
           </form>
-          <div className="d-flex  ForgotAdmin pt-5">
-            <div className="col-12 d-flex justify-content-center">
-              <p
-                className="cursorpointer"
-                onClick={() => {
-                  setLoginCard('');
-                  setLoginLogoText('Login');
-                }}
-              >
-                Back To Login
-              </p>
-            </div>
-          </div>
         </div>
       </div>
     </>

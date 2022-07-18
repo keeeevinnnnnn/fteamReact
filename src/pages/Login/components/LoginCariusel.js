@@ -1,6 +1,6 @@
 import React from 'react';
 import { Autoplay } from 'swiper';
-import { EffectCube } from 'swiper';
+import { EffectFade } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css/bundle';
 
@@ -16,15 +16,15 @@ const LoginCariusel = () => {
     <>
       <div className="col-xl-6 h-100 LoginCarousel">
         <Swiper
-          speed={1000}
-          grabCursor={true}
+          speed={2000}
+          grabCursor={false}
           loop={true}
           spaceBetween={0}
           slidesPerView={1}
-          modules={[EffectCube, Autoplay]}
-          effect="cube"
+          modules={[EffectFade, Autoplay]}
+          effect="fade"
           autoplay={{
-            delay: 3000,
+            delay: 2000,
             disableOnInteraction: false,
             pauseOnMouseEnter: true,
           }}
@@ -32,10 +32,10 @@ const LoginCariusel = () => {
           {datas.map((data) => (
             <SwiperSlide key={data.src}>
               <img
+                className="w-100"
                 style={{
                   objectFit: 'cover',
                   height: 'calc(100vh - 88px)',
-                  width: '100%',
                 }}
                 src={data.src}
                 alt=""

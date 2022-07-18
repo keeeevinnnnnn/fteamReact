@@ -9,7 +9,7 @@ const LoginLogo = ({ loginLogoText }) => {
       <div className="LoginLogoBox pt-3">
         <Texty
           className="text-center LoginLogoBoxText"
-          interval={100}
+          interval={50}
           repeat={-1}
         >
           {loginLogoText}
