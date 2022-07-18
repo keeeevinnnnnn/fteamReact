@@ -11,7 +11,7 @@ import Customized from './pages/Customized/Customized';
 import Orders from './pages/Orders/Orders';
 import Login from './pages/Login/Login';
 import Carts from './pages/Carts/Carts';
-// import Customized_add from './pages/Customized/Customized_add';
+import Customized_add from './pages/Customized/Customized_add';
 
 function App() {
   return (
@@ -23,7 +23,7 @@ function App() {
             <div className="w-100 bottom-grid d-flex">
               <SideBar />
 
-               {/* <Customized_add/> */}
+               
 
 
               {/* <Customized_add/> */}
@@ -40,7 +40,7 @@ function App() {
                 <Route path="/customized" element={<Customized />} />
                 <Route path="/carts" element={<Carts />} />
                 <Route path="/orders" element={<Orders />} />
-              </Routes>
+              </Routes> 
 
             </div>
           </div>
