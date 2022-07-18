@@ -92,7 +92,7 @@ const LoginMember = ({
               </div>
             </div>
           </form>
-          <div className="d-flex  ForgotAdmin pt-4">
+          <div className="d-flex  ForgotAdmin">
             <div className="col-6 d-flex justify-content-center">
               <p className="cursorpointer">Forgot?</p>
             </div>
