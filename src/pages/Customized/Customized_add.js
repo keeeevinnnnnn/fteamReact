@@ -29,6 +29,7 @@ function Customized_add() {
                  <h3 className='text-black'>Project Name</h3>
             
                  <input type="text" placeholder='Give your board a name' className='viv-input'/>
+                 <input type="text" placeholder='Give your board a name' className='viv-input'/>
                 
             
                </div>
