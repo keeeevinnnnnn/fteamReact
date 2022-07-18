@@ -12,7 +12,7 @@ const Lesson = () => {
             <div className="col-12 col-md-1 d-none d-sm-block  cooler_arrowcenter  m-4">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                className="h-6 w-6  "
+                className="h-6 w-6 cooler_icon_wrap "
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -46,7 +46,7 @@ const Lesson = () => {
                   HRC舞蹈工作室提供最優質的舞蹈教學服務，每月超過三百堂多樣化課程、數十種舞蹈風格，多元的課程選擇、由淺入深的漸進式學習，讓你輕鬆踏出舞蹈的第一步，打穩基礎、深根學習、挑戰自己！
                 </p>
                 <div className=" w-100 d-flex justify-content-end">
-                  <a href="#/" className="viv-btn ">
+                  <a href="#/" className="cooler-btn ">
                     Go
                   </a>
                 </div>
@@ -71,16 +71,16 @@ const Lesson = () => {
                   HRC舞蹈工作室提供最優質的舞蹈教學服務，每月超過三百堂多樣化課程、數十種舞蹈風格，多元的課程選擇、由淺入深的漸進式學習，讓你輕鬆踏出舞蹈的第一步，打穩基礎、深根學習、挑戰自己！
                 </p>
                 <div className=" w-100 d-flex justify-content-end">
-                  <a href="#/" className="viv-btn ">
+                  <a href="#/" className="cooler-btn ">
                     Go
                   </a>
                 </div>
               </div>
             </div>
-            <div className="col-12 col-md-1 d-none d-sm-block cooler_arrowcenter m-4">
+            <div className="col-12 col-md-1 d-none d-sm-block cooler_arrowcenter m-4 ">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                className="h-6 w-6"
+                className="h-6 w-6 cooler_icon_wrap"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"

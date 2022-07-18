@@ -10,29 +10,11 @@
   box-shadow: 5px 5px 0px 1px #000000;
 }
 
-/* .lessonmain {
-  position: absolute;
-  right: 10%;
-} */
-
 /* svg改顏色範例 */
-/*.icon-wrap svg{
-  fill: aliceblue;
-} */
-
-/* .row {
-  background-color: #0f0;
-  width: 100%;
-} */
-
-/* .fteam-wrap {
-  width: 60%;
-} */
-
-/* .bubu {
-  background-color: #f00;
-outline: 5px solid #00f;
-} */
+.cooler_icon_wrap:hover {
+  stroke: rgb(253, 253, 253);
+  fill: black;
+}
 
 * {
   /* outline: 1px solid red; */
@@ -44,4 +26,22 @@ outline: 5px solid #00f;
 
 .coolermap:hover {
   color: #61dafbd2;
+}
+
+.cooler-btn {
+  padding: 0.5em 2em 0.5em 2em;
+  background-color: var(--main);
+  box-shadow: 3px 3px 0 0 #61dafb82;
+  outline: none;
+  transition: 1s ease;
+  margin-right: 16px;
+  margin-top: 24px;
+  text-decoration: none;
+}
+
+.cooler-btn:hover {
+  box-shadow: 8px 8px 0 0 #61dafbd2;
+  background-color: black;
+  color: var(--main);
+  outline: 1px solid var(--main);
 }
