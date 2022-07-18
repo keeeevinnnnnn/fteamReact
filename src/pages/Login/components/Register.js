@@ -82,26 +82,22 @@ const Register = ({
                   className="text-center w-50 rwdNoneBlock"
                 />
               </div>
-              <div className="col-12 d-flex justify-content-center pt-3">
+              <div className="col-8 d-flex justify-content-around pt-3">
+                <div
+                  className="cursorpointer custom-btn btn-8"
+                  onClick={() => {
+                    setLoginCard('');
+                    setLoginLogoText('Login');
+                  }}
+                >
+                  <span className="text-center">Back To Login</span>
+                </div>
                 <button className="custom-btn btn-8">
                   <span>CONFIRM</span>
                 </button>
               </div>
             </div>
           </form>
-          <div className="d-flex  ForgotAdmin pt-5">
-            <div className="col-12 d-flex justify-content-center">
-              <p
-                className="cursorpointer"
-                onClick={() => {
-                  setLoginCard('');
-                  setLoginLogoText('Login');
-                }}
-              >
-                Back To Login
-              </p>
-            </div>
-          </div>
         </div>
       </div>
     </>

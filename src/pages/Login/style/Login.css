@@ -82,7 +82,7 @@
 }
 .LoginInputsBox .ForgotAdmin {
   height: 17%;
-  font-size: 1.5rem;
+  font-size: 1rem;
   font-weight: 600;
   color: var(--main);
 }
@@ -115,15 +115,18 @@
   .LoginInputsBox .LoginLogoBox .LoginLogoBoxText {
     font-size: 3.8rem;
   }
+  .LoginInputsBox .LoginForm {
+    padding-top: 3%;
+  }
   .LoginInputsBox .LoginForm .rwdNoneBlock {
     display: block;
   }
   .LoginInputsBox .LoginForm .LoginFormAccountPassword {
-    font-size: 1.5rem;
+    font-size: 1rem;
   }
   .LoginInputsBox .LoginForm input, .LoginInputsBox .LoginForm textarea {
     font-size: 1rem;
-    height: 30px;
+    height: 25px;
     width: 40%;
   }
   .LoginInputsBox .LoginForm .passwordInput {
