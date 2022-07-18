@@ -20,8 +20,15 @@
     height: auto;
 }
 
+.main_img_container{
+    width: 100%;
+    height: 60%;
+   
+}
+
 .cus_main_card{
     width: 100%;
+    
     padding: 24px;
     background-color: black;
 }
@@ -213,7 +220,15 @@ input:focus {
         display: flex;
         justify-content: end;
         padding: 48px;
+        
     }
+
+.main_img_container{
+    width: 100%;
+    height: 100%;
+    border: 1px solid lightcoral;
+}
+
    
     .cus_board_main{
         width: auto;

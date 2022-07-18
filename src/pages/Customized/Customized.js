@@ -11,7 +11,7 @@ const Customized = () => {
          
         <div className="work-area col-12 col-md-10 p-0 overflow-hidden">
             <div class="cus_container h-100  ">
-                <div className='w-100 h-mb-100 h-auto '>
+                <div className='main_img_container'>
                     <img src='/imgs/Customized/main_board.png' className='cus_board_main'/>
                 </div>
                <div className='cus_card'>
@@ -21,8 +21,7 @@ const Customized = () => {
                     <p className='viv-p'>
                       客製化您自己專屬的滑板，與朋友們分享，或是發掘喜歡的作品。
                     </p>
-                    <br/>
-                    <br/>
+                    
 
                     <button className='viv-btn'>Create</button>
                     <button className='viv-btn'>Explore</button>
