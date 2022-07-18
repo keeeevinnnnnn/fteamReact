@@ -23,11 +23,11 @@ function App() {
             <div className="w-100 bottom-grid d-flex">
               <SideBar />
   
-               {/* <Customized_add/> */}
+               <Customized_add/>
               {/* col-2 的側邊欄 */}
               {/* <div className="col-10 h-100 p-0 "></div>有要加sidebar的 用col-10 這段 沒有的用 col-12 */}
 
-              <Routes>
+              {/* <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/member" element={<Member />} />
                 <Route path="/login" element={<Login />} />
@@ -36,7 +36,8 @@ function App() {
                 <Route path="/customized" element={<Customized />} />
                 <Route path="/carts" element={<Carts />} />
                 <Route path="/orders" element={<Orders />} />
-              </Routes>
+              </Routes> */}
+
             </div>
           </div>
         </div>
