@@ -71,7 +71,7 @@ const Register = ({
                 <label className="text-center LoginFormAccountPassword col-xl-3">
                   Email
                 </label>
-                <input type="text" className="text-center w-50" />
+                <input type="text" className="text-center w-100" />
               </div>
               <div className="col-8 mb-3 d-flex justify-content-around">
                 <label className="text-center LoginFormAccountPassword col-6 col-xl-3 rwdNoneBlock">
@@ -79,7 +79,7 @@ const Register = ({
                 </label>
                 <textarea
                   type="text"
-                  className="text-center w-50 rwdNoneBlock"
+                  className="text-center w-100 rwdNoneBlock"
                 />
               </div>
               <div className="col-12 col-xl-8 d-flex justify-content-around pt-3">

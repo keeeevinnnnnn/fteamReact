@@ -62,6 +62,7 @@
   border-radius: 50%;
   -o-object-fit: cover;
      object-fit: cover;
+  background-color: white;
 }
 .LoginInputsBox .LoginForm .LoginFormAccountPassword {
   font-size: 1.5rem;
@@ -73,7 +74,7 @@
   background-color: transparent;
   border: none; /* Removes the default border */
   border-bottom: 1px solid gray;
-  padding-bottom: 10px;
+  padding-bottom: 5px;
 }
 .LoginInputsBox .LoginForm input:focus {
   outline: none;
@@ -131,7 +132,7 @@
   }
   .LoginInputsBox .LoginForm input, .LoginInputsBox .LoginForm textarea {
     font-size: 1rem;
-    height: 25px;
+    height: 30px;
     width: 40%;
   }
   .LoginInputsBox .LoginForm .passwordInput {
