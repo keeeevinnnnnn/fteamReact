@@ -1,0 +1,44 @@
+/* 姓名 */
+.errorInputName {
+    position: relative;
+}
+.errorTextName {
+    right: 58%;
+    position: absolute;
+    background: black;
+    color: red;
+    border-radius: 10px;
+}
+/* 帳號 */
+.errorInputAccount {
+    position: relative;
+}
+.errorTextAccount {
+    right: 21%;
+    position: absolute;
+    background: black;
+    color: red;
+    border-radius: 10px;
+}
+/* 密碼 */
+.errorInputPassword {
+    position: relative;
+}
+.errorTextPassword {
+    right: 21%;
+    position: absolute;
+    background: black;
+    color: red;
+    border-radius: 10px;
+}
+/* 信箱 */
+.errorInputEmail {
+    position: relative;
+}
+.errorTextEmail {
+    right: 17%;
+    position: absolute;
+    background: black;
+    color: red;
+    border-radius: 10px;
+}
