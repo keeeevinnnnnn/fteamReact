@@ -19,7 +19,7 @@
 
 .LoginCard {
     position: relative;
-    transition: 1.5s;
+    transition: .5s;
     transform-style: preserve-3d;
     .LoginFront {
         position: absolute;
@@ -46,7 +46,7 @@
         .LoginLogoBoxText {
             font-size: 3rem;
             font-weight: 600;
-            text-shadow: #FFF 0px 0px 5px, #FFF 0px 0px 10px, #FFF 0px 0px 15px, black 0px 0px 20px, gray 0px 0px 30px, black 0px 0px 40px, gray 0px 0px 50px, gray 0px 0px 75px;
+            // text-shadow: #FFF 0px 0px 5px, #FFF 0px 0px 10px, #FFF 0px 0px 15px, black 0px 0px 20px, gray 0px 0px 30px, black 0px 0px 40px, gray 0px 0px 50px, gray 0px 0px 75px;
         }
     }
     .LoginForm {
@@ -69,10 +69,18 @@
         }
         input,textarea {
             font-size: 1.2rem;
-            border: 1px solid white;
-            border-radius: 25px;
-            background-color: #ffffffcf;
+            // border: 1px solid white;
+            // border-radius: 25px;
+            // background: linear-gradient(to right, #2D2D2D 0%, #2D2D2D 50%, #555555 100%);
+            color: white;
+            background-color: transparent;
+            border: none; /* Removes the default border */
+            border-bottom: 1px solid gray;
+            padding-bottom: 10px;
         }
+        input:focus {
+            outline: none /* Removes the border when the input is clicked */
+            }
         .passwordEyes {
             display: none;
         }
@@ -81,6 +89,7 @@
         }
     }
     .ForgotAdmin {
+        margin-top: 20px;
         height: 17%;
         font-size: 1rem;
         font-weight: 600;

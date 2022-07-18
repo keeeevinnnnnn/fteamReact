@@ -16,7 +16,7 @@
 
 .btn-8 {
   background-color: #f0ecfc;
-  background-image: linear-gradient(315deg, #f0ecfc 0%, var(--main) 74%);
+  background-image: linear-gradient(315deg, #f0ecfc 0%, white 74%);
   line-height: 42px;
   padding: 0;
   border: none;
@@ -35,7 +35,7 @@
   content: "";
   right: 0;
   bottom: 0;
-  background: var(--main);
+  background: white;
   transition: all 0.3s ease;
 }
 
@@ -62,7 +62,7 @@
 }
 
 .btn-8 span:hover {
-  color: var(--main);
+  color: white;
 }
 
 .btn-8 span:before,
@@ -71,7 +71,7 @@
   content: "";
   left: 0;
   top: 0;
-  background: var(--main);
+  background: white;
   transition: all 0.3s ease;
 }
 

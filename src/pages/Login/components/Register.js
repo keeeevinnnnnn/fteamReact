@@ -82,7 +82,7 @@ const Register = ({
                   className="text-center w-50 rwdNoneBlock"
                 />
               </div>
-              <div className="col-8 d-flex justify-content-around pt-3">
+              <div className="col-12 col-xl-8 d-flex justify-content-around pt-3">
                 <div
                   className="cursorpointer custom-btn btn-8"
                   onClick={() => {
