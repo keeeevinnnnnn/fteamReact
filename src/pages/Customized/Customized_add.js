@@ -9,7 +9,7 @@ function Customized_add() {
     
    <div className="work-area col-12 col-md-10 p-0 overflow-hidden">
        <div class="cus_container">
-           <div className='w-100 vh-mb-100 '>
+           <div className='w-100 vh-mb-100 h-100'>
                  <div className='cus-product-container'>
                      <div className='cus-product-matte'>
                          <img src='/imgs/Customized/pattern/pattern05.jpg' className='cus-bg w-100 h-100' />
