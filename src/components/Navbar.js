@@ -1,7 +1,8 @@
 import Logo from '../logo_imgs/fteam-logo2.png';
 import MenuSelect from './MenuSelect';
 import { Link } from 'react-router-dom';
-const Navbar = () => {
+const Navbar = ({ auth }) => {
+  console.log(auth);
   return (
     <>
       <div className="w-100 top-grid d-flex">
@@ -30,7 +31,7 @@ const Navbar = () => {
                 />
               </svg>
             </div>
-            <Link to={'/login'}>
+            <Link to={auth === null ? '/login' : '/member'}>
               <div className="user-icon-wrap">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -65,6 +66,9 @@ const Navbar = () => {
                   />
                 </svg>
               </div>
+            </Link>
+            <Link to={'/carts'}>
+              <div className="cart-icon-wrap">LOGOUT</div>
             </Link>
           </div>
         </div>

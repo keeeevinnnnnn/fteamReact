@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
@@ -16,17 +16,17 @@ import Cus_product_card_wheel from './pages/Customized/Cus_product_card_wheel';
 import Cus_product_card_struct from './pages/Customized/Cus_product_card_struct';
 
 function App() {
+  const user_token = localStorage.getItem('user_token');
+  const [auth, setAuth] = useState(user_token);
+
   return (
     <Router>
       <div className="container-fluid vh-100 fteam-wrap">
         <div className="row h-100">
           <div className="p-0 d-flex flex-column w-100 h-100">
-            <Navbar />
+            <Navbar auth={auth} />
             <div className="w-100 bottom-grid d-flex">
               <SideBar />
-
-               
-
 
               {/* <Customized_add/> */}
 
@@ -41,12 +41,17 @@ function App() {
                 <Route path="/products" element={<Products />} />
                 <Route path="/customized" element={<Customized />} />
                 <Route path="/customized_add" element={<Customized_add />} />
-                <Route path="/cus_product_card_wheel" element={<Cus_product_card_wheel />} />
-                <Route path="/cus_product_card_struct" element={<Cus_product_card_struct />} />
+                <Route
+                  path="/cus_product_card_wheel"
+                  element={<Cus_product_card_wheel />}
+                />
+                <Route
+                  path="/cus_product_card_struct"
+                  element={<Cus_product_card_struct />}
+                />
                 <Route path="/carts" element={<Carts />} />
                 <Route path="/orders" element={<Orders />} />
-              </Routes> 
-
+              </Routes>
             </div>
           </div>
         </div>
