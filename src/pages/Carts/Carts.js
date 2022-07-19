@@ -1,9 +1,9 @@
 import React, { useState, Fragment } from 'react';
-import CartsCard from '../../components/Nathan/CartsCard';
+import CartsCard from './Nathan/CartsCard';
 import Scroll from 'react-scroll';
 import './Carts.scss';
-import OffcanvasTest from '../../components/Nathan/OffcanvasTest';
-import MuiTabs from '../../components/Nathan/MuiTabs';
+import OffcanvasTest from './Nathan/OffcanvasTest';
+import MuiTabs from './Nathan/MuiTabs';
 const Carts = () => {
   const cartItemArr = ['PRODUCTS', 'CUSTOMIZED', 'LESSONS'];
   const [selectItem, setSelectItem] = useState('PRODUCTS');

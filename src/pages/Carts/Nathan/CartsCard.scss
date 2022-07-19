@@ -84,7 +84,7 @@
 @media screen and (max-width: 768px) {
   .carts-card {
     background-color: white;
-    width: 90%;
+    width: 95%;
     height: 150px;
     border: 1px solid rgb(0, 0, 0);
     transition: .3s;
@@ -99,10 +99,23 @@
   }
 
   .cart-img-wrap {
+    transform: none;
     width: 80px;
     height: 80px;
     border-radius: 50%;
     overflow: hidden;
+  }
+
+  .carts-item-text-wrap {
+    p {
+      font-size: 1rem;
+    }
+  }
+
+  .carts-price {
+    font-size: 1rem;
+    transform: none;
+    padding-right: 10px;
   }
 
   .carts-price-section {

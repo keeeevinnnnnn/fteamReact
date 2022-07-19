@@ -46,7 +46,7 @@
 .customized-card-scroll,
 .lesson-card-scroll {
   width: 33.33%;
-  height: 90%;
+  height: 99%;
   overflow-y: scroll;
   overflow-x: scroll;
 }
@@ -55,8 +55,27 @@
 .customized-card-scroll::-webkit-scrollbar,
 .lesson-card-scroll::-webkit-scrollbar {
   /* background-color: rgba(0, 0, 0, 0.425); */
-  width: 15px;
-  // background-color: transparent;
+  width: 5px;
+  height: 5px;
+  background-color: #46424000;
+}
+
+.products-card-scroll::-webkit-scrollbar-track,
+.customized-card-scroll::-webkit-scrollbar-track,
+.lesson-card-scroll::-webkit-scrollbar-track {
+  background-color: #46424000;
+}
+
+.products-card-scroll::-webkit-scrollbar-thumb,
+.customized-card-scroll::-webkit-scrollbar-thumb,
+.lesson-card-scroll::-webkit-scrollbar-thumb {
+  background-color: #F5F5F5;
+}
+
+.products-card-scroll::-webkit-scrollbar-corner,
+.customized-card-scroll::-webkit-scrollbar-corner,
+.lesson-card-scroll::-webkit-scrollbar-corner {
+  background-color: #464240;
 }
 
 .card-scroll-list {
