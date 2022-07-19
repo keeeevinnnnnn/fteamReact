@@ -7,7 +7,7 @@ import LoginMember from './components/LoginMember';
 import LoginAdmin from './components/LoginAdmin';
 import Register from './components/Register';
 
-const Login = () => {
+const Login = ({ setAuth }) => {
   // 點擊後卡片翻轉
   const [loginCard, setLoginCard] = useState('');
   // 背面要呈現管理員登入還是會員註冊
@@ -27,10 +27,12 @@ const Login = () => {
                 setRegisterNone={setRegisterNone}
                 loginLogoText={loginLogoText}
                 setLoginLogoText={setLoginLogoText}
+                setAuth={setAuth}
               />
               <LoginAdmin
                 setLoginCard={setLoginCard}
                 loginLogoText={loginLogoText}
+                setAuth={setAuth}
               />
               <Register
                 registerNone={registerNone}

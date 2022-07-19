@@ -1,8 +1,10 @@
+import { useNavigate } from 'react-router-dom';
 import Logo from '../logo_imgs/fteam-logo2.png';
 import MenuSelect from './MenuSelect';
 import { Link } from 'react-router-dom';
-const Navbar = ({ auth }) => {
-  console.log(auth);
+const Navbar = ({ auth, setAuth }) => {
+  // 頁面導向
+  const navigate = useNavigate();
   return (
     <>
       <div className="w-100 top-grid d-flex">
@@ -67,9 +69,22 @@ const Navbar = ({ auth }) => {
                 </svg>
               </div>
             </Link>
-            <Link className=" text-decoration-none text-black" to={'/carts'}>
-              <div className="auth-text-wrap">LOGOUT</div>
-            </Link>
+            {auth ? (
+              <div
+                className="text-decoration-none text-black auth-text-wrap"
+                onClick={() => {
+                  setAuth(false);
+                  localStorage.clear();
+                  navigate('/', { replace: true });
+                }}
+              >
+                SIGNOUT
+              </div>
+            ) : (
+              <Link className=" text-decoration-none text-black" to={'/login'}>
+                <div className="auth-text-wrap">LOGIN</div>
+              </Link>
+            )}
           </div>
         </div>
       </div>

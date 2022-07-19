@@ -17,15 +17,14 @@ import Cus_product_card_wheel from './pages/Customized/Cus_product_card_wheel';
 import Cus_product_card_struct from './pages/Customized/Cus_product_card_struct';
 
 function App() {
-  const user_token = localStorage.getItem('user_token');
-  const [auth, setAuth] = useState(user_token);
+  const [auth, setAuth] = useState(false);
 
   return (
     <Router>
       <div className="container-fluid vh-100 fteam-wrap">
         <div className="row h-100">
           <div className="p-0 d-flex flex-column w-100 h-100">
-            <Navbar auth={auth} />
+            <Navbar auth={auth} setAuth={setAuth} />
             <div className="w-100 bottom-grid d-flex">
               <SideBar />
 
@@ -37,7 +36,7 @@ function App() {
               <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/member" element={<Member />} />
-                <Route path="/login" element={<Login />} />
+                <Route path="/login" element={<Login setAuth={setAuth} />} />
                 <Route path="/lesson" element={<Lesson />} />
                 <Route path="/products" element={<Products />} />
                 <Route path="/customized" element={<Customized />} />
