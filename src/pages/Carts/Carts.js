@@ -1,8 +1,9 @@
 import React, { useState, Fragment } from 'react';
 import CartsCard from '../../components/Nathan/CartsCard';
 import Scroll from 'react-scroll';
-import './Carts.css';
+import './Carts copy.scss';
 import OffcanvasTest from '../../components/Nathan/OffcanvasTest';
+import MuiTabs from '../../components/Nathan/MuiTabs';
 const Carts = () => {
   const cartItemArr = ['PRODUCTS', 'CUSTOMIZED', 'LESSON'];
   const [selectItem, setSelectItem] = useState('PRODUCTS');
@@ -12,6 +13,9 @@ const Carts = () => {
         <div className="work-area col-12 col-md-10 p-0 d-flex">
           <div className="col-12 col-md-10 h-100">
             <div className="tabs-section w-100">
+              <div className="w-100 h-100 d-none d-md-block">
+                <MuiTabs />
+              </div>
               <div className="carts-tabs-wrap w-100 h-100 p-4 d-md-none">
                 <select
                   onChange={(e) => {
@@ -44,7 +48,9 @@ const Carts = () => {
                     }}
                     className="card-scroll-list"
                   >
-                    <Scroll.Element className="products-card-scroll"></Scroll.Element>
+                    <Scroll.Element className="products-card-scroll">
+                      {/* <CartsCard /> */}
+                    </Scroll.Element>
                     <Scroll.Element className="customized-card-scroll"></Scroll.Element>
                     <Scroll.Element className="lesson-card-scroll"></Scroll.Element>
                   </div>
