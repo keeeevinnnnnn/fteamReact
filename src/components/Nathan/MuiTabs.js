@@ -3,8 +3,8 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
 
-function BasicTabs() {
-  const [tabValue, setTabValue] = useState(0);
+function MuiTabs() {
+  const [tabValue, setTabValue] = useState('PRODUCTS');
   const handleChange = (event, newValue) => {
     console.log(newValue);
     setTabValue(newValue);
@@ -18,12 +18,27 @@ function BasicTabs() {
           onChange={handleChange}
           aria-label="basic tabs example"
         >
-          <Tab disableRipple={true} label="PRODUCTS" value={'PRODUCTS'} />
-          <Tab disableRipple={true} label="CUSTOMIZED" value={'CUSTOMIZED'} />
-          <Tab disableRipple={true} label="LESSON" value={'LESSON'} />
+          <Tab
+            sx={{ fontSize: '1.1rem' }}
+            disableRipple={true}
+            label="PRODUCTS"
+            value={'PRODUCTS'}
+          />
+          <Tab
+            sx={{ fontSize: '1.1rem' }}
+            disableRipple={true}
+            label="CUSTOMIZED"
+            value={'CUSTOMIZED'}
+          />
+          <Tab
+            sx={{ fontSize: '1.1rem' }}
+            disableRipple={true}
+            label="LESSONS"
+            value={'LESSONS'}
+          />
         </Tabs>
       </Box>
     </Box>
   );
 }
-export default BasicTabs;
+export default MuiTabs;
