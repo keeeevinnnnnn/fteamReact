@@ -1,5 +1,6 @@
 // import { click } from '@testing-library/user-event/dist/click';
 import React, { useState, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import LoginLogo from './LoginLogo';
 import axios from 'axios';
 
@@ -9,6 +10,7 @@ const Register = ({
   loginLogoText,
   setLoginLogoText,
 }) => {
+  const navigate = useNavigate();
   // 取得頭貼input
   const registerAvatarRef = useRef(null);
   const [memberAvatar, setMemberAvatar] = useState('');
@@ -29,7 +31,6 @@ const Register = ({
     );
     console.log(response.data.filename);
     setMemberAvatar(response.data.filename);
-    // const avatarValue = response.data.filename;
     setFields({ ...fields, avatar: response.data.filename });
   }
 
@@ -46,6 +47,20 @@ const Register = ({
     email: '',
     address: '',
   });
+
+  // 結束時清空欄位用
+  const endRegister = {
+    avatar: '',
+    name: '',
+    nickname: '',
+    mobile: '',
+    birthday: '',
+    account: '',
+    password: '',
+    confirmPassword: '',
+    email: '',
+    address: '',
+  };
 
   // onChange存值到fields
   const handleFieldsChange = (e) => {
@@ -77,22 +92,9 @@ const Register = ({
   };
 
   // 表單點擊送出後
-  const handleSubmit = (e) => {
+  async function handleSubmit(e) {
     // 先阻擋預設送出行為
     e.preventDefault();
-
-    // 這裡可以得到目前輸入的值
-    // 第一種方式: 從狀態得到
-    console.log(fields);
-
-    // 第二種方式: 用FormData物件
-    // const formData = new FormData(e.target);
-
-    // console.log(
-    //   formData.get('fullName'),
-    //   formData.get('email'),
-    //   formData.get('password')
-    // );
 
     // 作更多驗証
     if (fields.name.length < 2) {
@@ -116,9 +118,24 @@ const Register = ({
       return;
     }
 
-    // 送到伺服器(fetch/ajax)
-    // fetch...
-  };
+    const response = await axios.post(
+      'http://localhost:3000/member/register',
+      fields
+    );
+
+    if (response.data.success === true) {
+      alert('註冊成功');
+      // 清空欄位
+      setFields({ ...endRegister });
+      // 頭貼狀態設回空字串
+      setMemberAvatar('');
+      // 卡片翻回去
+      setLoginCard('');
+      setLoginLogoText('Login');
+    } else {
+      alert('註冊失敗');
+    }
+  }
 
   // 表單更動時用於讓使用者清空某個正在修改的欄位的錯誤訊息
   const handleFormChange = (e) => {
