@@ -1,4 +1,3 @@
-// import { click } from '@testing-library/user-event/dist/click';
 import React, { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import LoginLogo from './LoginLogo';

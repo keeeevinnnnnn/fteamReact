@@ -7,6 +7,8 @@ const LoginMember = ({
   loginLogoText,
   setLoginLogoText,
 }) => {
+  const [memberSeePassword, setMemberSeePassword] = useState(false);
+
   return (
     <>
       <div className="h-100 w-100 d-flex justify-content-center LoginFront">
@@ -29,14 +31,21 @@ const LoginMember = ({
               </label>
               <div className="d-flex justify-content-center mt-3 d-flex align-items-center">
                 <input
-                  type="password"
+                  type={memberSeePassword ? 'text' : 'password'}
                   placeholder="User Password"
                   className="text-center passwordInput"
                 />
                 <img
-                  src="../../imgs/GaryComponents/eyes_off.png"
+                  src={
+                    memberSeePassword
+                      ? '../../imgs/GaryComponents/eyes_on.png'
+                      : '../../imgs/GaryComponents/eyes_off.png'
+                  }
                   alt=""
                   className="cursorpointer passwordEyes"
+                  onClick={() => {
+                    setMemberSeePassword(!memberSeePassword);
+                  }}
                 />
               </div>
             </div>

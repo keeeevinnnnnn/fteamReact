@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import LoginLogo from './LoginLogo';
 
 const LoginAdmin = ({ setLoginCard, loginLogoText }) => {
+  const [adminSeePassword, setAdminSeePassword] = useState(false);
   return (
     <>
       <div className="h-100 w-100 d-flex justify-content-center LoginBack">
@@ -24,14 +25,21 @@ const LoginAdmin = ({ setLoginCard, loginLogoText }) => {
               </label>
               <div className="d-flex justify-content-center mt-3 d-flex align-items-center">
                 <input
-                  type="password"
+                  type={adminSeePassword ? 'text' : 'password'}
                   placeholder="Admin Password"
                   className="text-center passwordInput"
                 />
                 <img
-                  src="../../imgs/GaryComponents/eyes_off.png"
+                  src={
+                    adminSeePassword
+                      ? '../../imgs/GaryComponents/eyes_on.png'
+                      : '../../imgs/GaryComponents/eyes_off.png'
+                  }
                   alt=""
                   className="cursorpointer passwordEyes"
+                  onClick={() => {
+                    setAdminSeePassword(!adminSeePassword);
+                  }}
                 />
               </div>
             </div>
