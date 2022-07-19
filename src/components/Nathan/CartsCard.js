@@ -1,5 +1,5 @@
 import React from 'react';
-import './CartsCard.css';
+import './CartsCard.scss';
 const CartsCard = () => {
   return (
     <>
@@ -20,7 +20,7 @@ const CartsCard = () => {
                   />
                 </div>
               </div>
-              <div className="w-50 h-100 d-flex flex-column justify-content-center">
+              <div className="w-50 h-100 d-flex flex-column justify-content-center carts-item-text-wrap">
                 {/* info data */}
                 <p className="m-0">Brand Skate</p>
                 <p className="m-0 mb-4">Red</p>
@@ -45,12 +45,14 @@ const CartsCard = () => {
                   />
                 </svg>
               </a>
-              <p className="w-100 text-center">$ {'4990'}</p>
+              <p className="w-100 text-center mb-md-0 carts-price">
+                $ {'4990'}
+              </p>
             </div>
           </div>
           {/* bottom grid */}
           <div className="w-100 h-25 d-flex justify-content-center align-items-center">
-            <div className=" w-50 h-75 d-flex justify-content-around">
+            <div className="w-50 h-75 d-flex justify-content-center mb-md-3">
               {/* minus */}
               <div className="cart-minus-icon cursorpointer w-25">
                 <svg

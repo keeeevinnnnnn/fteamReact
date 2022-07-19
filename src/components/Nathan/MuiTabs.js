@@ -3,18 +3,18 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
 
-function MuiTabs() {
-  const [tabValue, setTabValue] = useState('PRODUCTS');
+function MuiTabs(props) {
+  const { selectItem, setSelectItem } = props;
   const handleChange = (event, newValue) => {
     console.log(newValue);
-    setTabValue(newValue);
+    setSelectItem(newValue);
   };
 
   return (
-    <Box sx={{ width: '100%' }}>
+    <Box sx={{ width: '90%' }}>
       <Box sx={{ borderBottom: 1, borderColor: 'black' }}>
         <Tabs
-          value={tabValue}
+          value={selectItem}
           onChange={handleChange}
           aria-label="basic tabs example"
         >

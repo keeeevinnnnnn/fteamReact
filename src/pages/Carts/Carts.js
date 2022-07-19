@@ -1,11 +1,11 @@
 import React, { useState, Fragment } from 'react';
 import CartsCard from '../../components/Nathan/CartsCard';
 import Scroll from 'react-scroll';
-import './Carts copy.scss';
+import './Carts.scss';
 import OffcanvasTest from '../../components/Nathan/OffcanvasTest';
 import MuiTabs from '../../components/Nathan/MuiTabs';
 const Carts = () => {
-  const cartItemArr = ['PRODUCTS', 'CUSTOMIZED', 'LESSON'];
+  const cartItemArr = ['PRODUCTS', 'CUSTOMIZED', 'LESSONS'];
   const [selectItem, setSelectItem] = useState('PRODUCTS');
   return (
     <>
@@ -14,7 +14,10 @@ const Carts = () => {
           <div className="col-12 col-md-10 h-100">
             <div className="tabs-section w-100">
               <div className="w-100 h-100 d-none d-md-block">
-                <MuiTabs />
+                <MuiTabs
+                  selectItem={selectItem}
+                  setSelectItem={setSelectItem}
+                />
               </div>
               <div className="carts-tabs-wrap w-100 h-100 p-4 d-md-none">
                 <select
@@ -35,7 +38,7 @@ const Carts = () => {
               </div>
             </div>
             <div className="carts-card-section w-100">
-              <div className="carts-card-wrap w-100 h-100 px-4">
+              <div className="carts-card-wrap w-100 h-100 px-4 px-md-0">
                 <div className="card-scroll-list-wrap">
                   <div
                     style={{
@@ -49,16 +52,23 @@ const Carts = () => {
                     className="card-scroll-list"
                   >
                     <Scroll.Element className="products-card-scroll">
-                      {/* <CartsCard /> */}
+                      <CartsCard />
+                      <CartsCard />
+                      <CartsCard />
+                      <CartsCard />
                     </Scroll.Element>
-                    <Scroll.Element className="customized-card-scroll"></Scroll.Element>
-                    <Scroll.Element className="lesson-card-scroll"></Scroll.Element>
+                    <Scroll.Element className="customized-card-scroll">
+                      <CartsCard />
+                    </Scroll.Element>
+                    <Scroll.Element className="lesson-card-scroll">
+                      <CartsCard />
+                    </Scroll.Element>
                   </div>
                 </div>
               </div>
             </div>
             <div className="total-count-section w-100">
-              <div className="total-count-wrap w-100 h-100 ">
+              <div className="total-count-wrap h-100">
                 <div className="total-top-grid w-100 d-flex">
                   <div className="cart-total-title col-4 h-100 d-flex justify-content-center align-items-center">
                     <span>TOTAL</span>
@@ -77,7 +87,7 @@ const Carts = () => {
                     {/* total counts */}
                     <span>{'4'}</span>
                   </div>
-                  <div className="col-4 h-100 d-flex justify-content-start align-items-center">
+                  <div className="col-4 h-100 d-flex justify-content-start align-items-center btn-check-wrap">
                     <OffcanvasTest />
                   </div>
                 </div>
