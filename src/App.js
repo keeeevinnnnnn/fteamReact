@@ -14,6 +14,7 @@ import Carts from './pages/Carts/Carts';
 import Customized_add from './pages/Customized/Customized_add';
 import Cus_product_card_wheel from './pages/Customized/Cus_product_card_wheel';
 import Cus_product_card_struct from './pages/Customized/Cus_product_card_struct';
+import Cus_product_card_fcolor from './pages/Customized/Cus_product_card_fcolor';
 
 function App() {
   return (
@@ -24,9 +25,6 @@ function App() {
             <Navbar />
             <div className="w-100 bottom-grid d-flex">
               <SideBar />
-
-               
-
 
               {/* <Customized_add/> */}
 
@@ -40,13 +38,22 @@ function App() {
                 <Route path="/lesson" element={<Lesson />} />
                 <Route path="/products" element={<Products />} />
                 <Route path="/customized" element={<Customized />} />
-                <Route path="/customized_add" element={<Customized_add />} />
-                <Route path="/cus_product_card_wheel" element={<Cus_product_card_wheel />} />
-                <Route path="/cus_product_card_struct" element={<Cus_product_card_struct />} />
+                <Route path="/customized/create" element={<Customized_add />} />
+                <Route
+                  path="/customized/create/wheel"
+                  element={<Cus_product_card_wheel />}
+                />
+                <Route
+                  path="/customized/create/carrier"
+                  element={<Cus_product_card_struct />}
+                />
+                <Route
+                  path="/customized/create/front_deck"
+                  element={<Cus_product_card_fcolor />}
+                />
                 <Route path="/carts" element={<Carts />} />
                 <Route path="/orders" element={<Orders />} />
-              </Routes> 
-
+              </Routes>
             </div>
           </div>
         </div>
