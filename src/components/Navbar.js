@@ -5,6 +5,10 @@ import { Link } from 'react-router-dom';
 const Navbar = ({ auth, setAuth }) => {
   // 頁面導向
   const navigate = useNavigate();
+  const user_token = localStorage.getItem('user_token');
+  if (user_token !== null) {
+    setAuth(true);
+  }
   return (
     <>
       <div className="w-100 top-grid d-flex">
