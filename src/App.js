@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './App.css';
+import './Nootstrap.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import SideBar from './components/SideBar';

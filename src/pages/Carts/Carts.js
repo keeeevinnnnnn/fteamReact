@@ -68,7 +68,7 @@ const Carts = () => {
               </div>
             </div>
             <div className="total-count-section w-100">
-              <div className="total-count-wrap h-100">
+              <div className="total-count-wrap h-100 m-0">
                 <div className="total-top-grid w-100 d-flex">
                   <div className="cart-total-title col-4 h-100 d-flex justify-content-center align-items-center">
                     <span>TOTAL</span>

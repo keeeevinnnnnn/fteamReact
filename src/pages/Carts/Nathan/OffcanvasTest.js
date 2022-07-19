@@ -1,7 +1,8 @@
 import { Offcanvas } from 'react-bootstrap';
 import { useState } from 'react';
 import './Offcanvas.scss';
-import HorizontalLinearStepper from './Step';
+import zIndex from '@mui/material/styles/zIndex';
+import { height } from '@mui/system';
 
 export default function OffcanvasTest() {
   const [show, setShow] = useState(false);
@@ -32,8 +33,12 @@ export default function OffcanvasTest() {
               />
             </svg>
           </div>
-          <div className="check-body-list w-100 h-100">
-            <HorizontalLinearStepper />
+          <div className="check-body-list-wrap w-100 h-100">
+            <div className="check-body-list">
+              <div className="distribution-page"></div>
+              <div className="credit-detail-page"></div>
+              <div className="check-compele-page"></div>
+            </div>
           </div>
         </div>
       </Offcanvas>
