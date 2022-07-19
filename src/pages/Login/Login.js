@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import './style/Login.css';
-import './style/Btn8.css';
-import './style/ErrorText.css';
+import './style/Login.scss';
+import './style/Btn8.scss';
+import './style/ErrorText.scss';
 import LoginCariusel from './components/LoginCariusel';
 import LoginMember from './components/LoginMember';
 import LoginAdmin from './components/LoginAdmin';

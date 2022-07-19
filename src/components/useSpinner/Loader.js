@@ -3,7 +3,7 @@ import { Autoplay } from 'swiper';
 import { EffectCube } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css/bundle';
-import './Loader.css';
+import './Loader.scss';
 // 圖片陣列
 const datas = [
   { src: '../../imgs/Logoin/Rectangle.png' },

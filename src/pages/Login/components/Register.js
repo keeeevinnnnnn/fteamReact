@@ -122,13 +122,18 @@ const Register = ({
 
   // 表單更動時用於讓使用者清空某個正在修改的欄位的錯誤訊息
   const handleFormChange = (e) => {
-    // 填入錯誤訊息
     setFieldErrors({
       ...fieldErrors,
       [e.target.name]: '',
     });
   };
 
+  const clickErrorText = (e) => {
+    setFieldErrors({
+      ...fieldErrors,
+      [e.target.name]: '',
+    });
+  };
   return (
     <>
       <div
@@ -160,7 +165,7 @@ const Register = ({
                 />
                 <div className="w-25 d-flex justify-content-center">
                   <img
-                  // 有選頭貼就給頭貼照片 否則給預設照片
+                    // 有選頭貼就給頭貼照片 否則給預設照片
                     src={
                       memberAvatar === ''
                         ? '../../imgs/GaryComponents/images.png'
@@ -184,6 +189,7 @@ const Register = ({
                   required // 必填欄位
                   value={fields.name}
                   onChange={handleFieldsChange}
+                  onClick={clickErrorText}
                   className="text-center w-50 errorInputName"
                 />
                 <span className="errorTextName">{fieldErrors.name}</span>
@@ -234,6 +240,7 @@ const Register = ({
                   required
                   value={fields.account}
                   onChange={handleFieldsChange}
+                  onClick={clickErrorText}
                   className="text-center w-50 errorInputAccount"
                 />
                 <span className="errorTextAccount">{fieldErrors.account}</span>
@@ -249,6 +256,7 @@ const Register = ({
                     required
                     value={fields.password}
                     onChange={handleFieldsChange}
+                    onClick={clickErrorText}
                     className="text-center w-100 mb-3 errorInputPassword"
                   />
                   <span className="errorTextPassword">
@@ -260,6 +268,7 @@ const Register = ({
                     required
                     value={fields.confirmPassword}
                     onChange={handleFieldsChange}
+                    onClick={clickErrorText}
                     className="text-center w-100 errorInputPassword"
                   />
                   <span className="errorTextPassword">
@@ -277,6 +286,7 @@ const Register = ({
                   required
                   value={fields.email}
                   onChange={handleFieldsChange}
+                  onClick={clickErrorText}
                   className="text-center w-100 errorInputEmail"
                 />
                 <span className="errorTextEmail">{fieldErrors.email}</span>
