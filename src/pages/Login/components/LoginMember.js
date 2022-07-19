@@ -8,6 +8,7 @@ const LoginMember = ({
   setRegisterNone,
   loginLogoText,
   setLoginLogoText,
+  setAuth,
 }) => {
   // 頁面導向
   const navigate = useNavigate();
@@ -64,6 +65,9 @@ const LoginMember = ({
       localStorage.setItem('user_info', JSON.stringify(response.data.info));
       localStorage.setItem('user_token', response.data.token);
       alert('登入成功');
+      // 整個網站判斷有沒有登入
+      setAuth(true);
+      // 頁面轉向
       navigate('/', { replace: true });
     } else if (response.data.bollen === true) {
       alert('帳號已被停用');
