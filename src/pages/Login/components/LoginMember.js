@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import LoginLogo from './LoginLogo';
 
@@ -8,6 +9,9 @@ const LoginMember = ({
   loginLogoText,
   setLoginLogoText,
 }) => {
+  // 頁面導向
+  const navigate = useNavigate();
+  // 眼睛查看密碼
   const [memberSeePassword, setMemberSeePassword] = useState(false);
   // 記錄表單每個欄位輸入值
   const [fields, setFields] = useState({
@@ -60,6 +64,7 @@ const LoginMember = ({
       localStorage.setItem('user_info', JSON.stringify(response.data.info));
       localStorage.setItem('user_token', response.data.token);
       alert('登入成功');
+      navigate('/', { replace: true });
     } else if (response.data.bollen === true) {
       alert('帳號已被停用');
     } else {

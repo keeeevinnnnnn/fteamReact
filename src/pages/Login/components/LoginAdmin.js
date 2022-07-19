@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import LoginLogo from './LoginLogo';
 
 const LoginAdmin = ({ setLoginCard, loginLogoText }) => {
+  // 頁面導向
+  const navigate = useNavigate();
+  // 眼睛查看密碼
   const [adminSeePassword, setAdminSeePassword] = useState(false);
   // 記錄表單每個欄位輸入值
   const [fields, setFields] = useState({
@@ -56,6 +60,7 @@ const LoginAdmin = ({ setLoginCard, loginLogoText }) => {
       localStorage.setItem('user_info', JSON.stringify(response.data.info));
       localStorage.setItem('user_token', response.data.token);
       alert('登入成功');
+      navigate('/', { replace: true });
     } else {
       alert('登入失敗');
     }

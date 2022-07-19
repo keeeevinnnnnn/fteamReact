@@ -9,6 +9,7 @@ const Register = ({
   loginLogoText,
   setLoginLogoText,
 }) => {
+  // 頁面導向
   const navigate = useNavigate();
   // 取得頭貼input
   const registerAvatarRef = useRef(null);
