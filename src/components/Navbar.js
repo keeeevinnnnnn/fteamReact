@@ -67,8 +67,8 @@ const Navbar = ({ auth }) => {
                 </svg>
               </div>
             </Link>
-            <Link to={'/carts'}>
-              <div className="cart-icon-wrap">LOGOUT</div>
+            <Link className=" text-decoration-none text-black" to={'/carts'}>
+              <div className="auth-text-wrap">LOGOUT</div>
             </Link>
           </div>
         </div>

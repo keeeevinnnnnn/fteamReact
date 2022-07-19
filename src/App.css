@@ -72,6 +72,17 @@
   cursor: pointer;
 }
 
+.auth-text-wrap {
+  font-size: 18px;
+  margin-right: 32px;
+  transform: translateY(5px);
+  transition: .3s ease;
+}
+
+.auth-text-wrap:hover {
+  transform: translateY(5px) scale(1.2);
+}
+
 .like-icon-wrap svg {
   width: 100%;
   height: 100%;
