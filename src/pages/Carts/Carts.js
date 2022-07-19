@@ -44,7 +44,9 @@ const Carts = () => {
                     }}
                     className="card-scroll-list"
                   >
-                    <Scroll.Element className="products-card-scroll"></Scroll.Element>
+                    <Scroll.Element className="products-card-scroll">
+                      {/* <CartsCard /> */}
+                    </Scroll.Element>
                     <Scroll.Element className="customized-card-scroll"></Scroll.Element>
                     <Scroll.Element className="lesson-card-scroll"></Scroll.Element>
                   </div>
