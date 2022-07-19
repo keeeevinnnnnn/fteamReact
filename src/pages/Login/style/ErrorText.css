@@ -8,6 +8,7 @@
     background: black;
     color: red;
     border-radius: 10px;
+    font-size: 8px;
 }
 /* 帳號 */
 .errorInputAccount {
@@ -19,6 +20,7 @@
     background: black;
     color: red;
     border-radius: 10px;
+    font-size: 8px;
 }
 /* 密碼 */
 .errorInputPassword {
@@ -30,6 +32,7 @@
     background: black;
     color: red;
     border-radius: 10px;
+    font-size: 8px;
 }
 /* 信箱 */
 .errorInputEmail {
@@ -41,4 +44,5 @@
     background: black;
     color: red;
     border-radius: 10px;
+    font-size: 8px;
 }
