@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import LoginLogo from './LoginLogo';
 import axios from 'axios';
+import LoginLogo from './LoginLogo';
 
 const Register = ({
   setLoginCard,

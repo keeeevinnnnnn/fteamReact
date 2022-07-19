@@ -1,3 +1,5 @@
+/* 註冊頁面 */
+
 /* 姓名 */
 .errorInputName {
     position: relative;
@@ -40,6 +42,19 @@
 }
 .errorTextEmail {
     right: 17%;
+    position: absolute;
+    background: black;
+    color: lightcoral;
+    border-radius: 10px;
+    font-size: 8px;
+}
+
+/* 登入頁面 */
+.loginErrorInput {
+    position: relative;
+}
+.loginErrorText {
+    left: 30%;
     position: absolute;
     background: black;
     color: lightcoral;
