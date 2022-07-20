@@ -24,6 +24,7 @@ const Navbar = ({ auth, setAuth }) => {
       setAuth(true);
       axios
         .get('http://localhost:3000/member/memberself', {
+          // 發JWT一定要加這個headers
           headers: {
             Authorization: `Bearer ${user_token}`,
           },
@@ -53,7 +54,7 @@ const Navbar = ({ auth, setAuth }) => {
           <MenuSelect />
           <div className="nav-icon-wrap w-100 h-100 d-md-flex d-none justify-content-end align-items-center">
             {auth ? (
-              // 登入狀態顯示
+              // 登入狀態顯示頭貼跟姓名(暱稱)
               <Link className="text-decoration-none d-flex" to={'/member'}>
                 <div className="userLogin-icon-box">
                   <img
@@ -70,7 +71,7 @@ const Navbar = ({ auth, setAuth }) => {
                 </div>
               </Link>
             ) : (
-              //未登入狀態顯示
+              //未登入狀態顯示會員icon
               <Link to={'/login'}>
                 <div className="user-icon-wrap">
                   <svg
@@ -125,7 +126,7 @@ const Navbar = ({ auth, setAuth }) => {
               </div>
             </Link>
             {auth ? (
-              // 登入狀態顯示
+              // 登入狀態顯示SIGNOUT
               <div
                 className="text-decoration-none text-black auth-text-wrap"
                 onClick={() => {
@@ -137,7 +138,7 @@ const Navbar = ({ auth, setAuth }) => {
                 SIGNOUT
               </div>
             ) : (
-              // 未登入狀態顯示
+              // 未登入狀態顯示LOGIN
               <Link className=" text-decoration-none text-black" to={'/login'}>
                 <div className="auth-text-wrap">LOGIN</div>
               </Link>
