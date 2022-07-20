@@ -5,19 +5,17 @@ import MenuSelect from './MenuSelect';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
-const Navbar = ({ auth, setAuth }) => {
+const Navbar = ({ auth, setAuth, token }) => {
   // 頁面導向方法
   const navigate = useNavigate();
   // 接該會員的所有資料
   const [navMember, setNavMember] = useState([]);
   // 接NavBar要顯示的性命或暱稱
   const [navName, setNavName] = useState('');
-  // 登入後會存的值user_token JWT
-  const user_token = localStorage.getItem('user_token');
   // 判斷有沒有登入存的值
   useEffect(() => {
     // 如果user_token不是空值再執行 否則直接return
-    if (user_token === null) {
+    if (token === null) {
       return;
     } else {
       // 如果有值就把登入狀態改成true
@@ -26,7 +24,7 @@ const Navbar = ({ auth, setAuth }) => {
         .get('http://localhost:3000/member/memberself', {
           // 發JWT一定要加這個headers
           headers: {
-            Authorization: `Bearer ${user_token}`,
+            Authorization: `Bearer ${token}`,
           },
         })
         .then((res) => {
@@ -40,7 +38,7 @@ const Navbar = ({ auth, setAuth }) => {
           }
         });
     }
-  }, [user_token]);
+  }, [token]);
   return (
     <>
       <div className="w-100 top-grid d-flex">

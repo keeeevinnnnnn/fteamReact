@@ -22,12 +22,14 @@ import ProductMain from './pages/Product/ProductMain';
 function App() {
   // 登入狀態判斷
   const [auth, setAuth] = useState(false);
+   // 登入後會存的值user_token JWT
+   const token = localStorage.getItem('user_token');
   return (
     <Router>
       <div className="container-fluid vh-100 fteam-wrap">
         <div className="row h-100">
           <div className="p-0 d-flex flex-column w-100 h-100">
-            <Navbar auth={auth} setAuth={setAuth} />
+            <Navbar auth={auth} setAuth={setAuth} token={token} />
             <div className="w-100 bottom-grid d-flex">
               <SideBar />
 
