@@ -5,7 +5,7 @@ function Cus_product_card_struct() {
   return (
     <div className="w-100 vh-100 d-flex justify-content-end align-items-end">
       <div className="cus_matte w-100 h-100 ovweflow-hidden">
-        <img src="/imgs/Customized/cus_bg_05.jpg" className="cus-bg" />
+        <img src="/imgs/Customized/cus_bg_05.jpg" className="cus-bg" alt="" />
       </div>
 
       <div className="work-area col-12 col-md-10 p-0 overflow-hidden">
@@ -14,7 +14,7 @@ function Cus_product_card_struct() {
             <div className="main_img_container">
               <img
                 src="/imgs/Customized/struck.png"
-                className="cus_board_main"
+                className="cus_board_main" alt=""
               />
             </div>
           </div>

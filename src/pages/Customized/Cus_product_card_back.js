@@ -1,15 +1,5 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import {
-  MdImagesearchRoller,
-  MdPhoto,
-  MdPhotoFilter,
-  MdAutoAwesomeMotion,
-} from 'react-icons/md';
-
-
-
-
 
 import BasicTabs from './cus_component/Cus_tab';
 

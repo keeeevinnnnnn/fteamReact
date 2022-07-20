@@ -15,12 +15,9 @@ import Carts from './pages/Carts/Carts';
 import Customized_add from './pages/Customized/Customized_add';
 import Cus_product_card_wheel from './pages/Customized/Cus_product_card_wheel';
 import Cus_product_card_struct from './pages/Customized/Cus_product_card_struct';
-<<<<<<< HEAD
 import Cus_product_card_fcolor from './pages/Customized/Cus_product_card_fcolor';
 import Cus_product_card_back from './pages/Customized/Cus_product_card_back';
-=======
 import ProductMain from './pages/Product/ProductMain';
->>>>>>> d21e5ca7ecd2a18fc8bb65a152235189fe23d3cc
 
 function App() {
     // 登入狀態判斷
@@ -34,41 +31,10 @@ function App() {
                         <div className="w-100 bottom-grid d-flex">
                             <SideBar />
 
-<<<<<<< HEAD
-              {/* <Customized_add/> */}
+                            
 
-              {/* col-2 的側邊欄 */}
-              {/* <div className="col-10 h-100 p-0 "></div>有要加sidebar的 用col-10 這段 沒有的用 col-12 */}
 
-              <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/member" element={<Member />} />
-                <Route path="/login" element={<Login />} />
-                <Route path="/lesson" element={<Lesson />} />
-                <Route path="/products" element={<Products />} />
-                <Route path="/customized" element={<Customized />} />
-                <Route path="/customized/create" element={<Customized_add />} />
-                <Route
-                  path="/customized/create/wheel"
-                  element={<Cus_product_card_wheel />}
-                />
-                <Route
-                  path="/customized/create/carrier"
-                  element={<Cus_product_card_struct />}
-                />
-                <Route
-                  path="/customized/create/front_deck"
-                  element={<Cus_product_card_fcolor />}
-                />
-                <Route
-                  path="/customized/create/back"
-                  element={<Cus_product_card_back/>}
-                />
-                <Route path="/carts" element={<Carts />} />
-                <Route path="/orders" element={<Orders />} />
-              </Routes>
-=======
-                            {/* <Customized_add/> */}
+
 
                             {/* col-2 的側邊欄 */}
                             {/* <div className="col-10 h-100 p-0 "></div>有要加sidebar的 用col-10 這段 沒有的用 col-12 */}
@@ -90,16 +56,24 @@ function App() {
                                     element={<Customized />}
                                 />
                                 <Route
-                                    path="/customized_add"
+                                    path="/customized/create"
                                     element={<Customized_add />}
                                 />
                                 <Route
-                                    path="/cus_product_card_wheel"
+                                    path="/customized/create/wheel"
                                     element={<Cus_product_card_wheel />}
                                 />
                                 <Route
-                                    path="/cus_product_card_struct"
+                                    path="/customized/create/carrier"
                                     element={<Cus_product_card_struct />}
+                                />
+                                 <Route
+                                    path="/customized/create/front_deck"
+                                    element={<Cus_product_card_fcolor />}
+                                />
+                                <Route
+                                    path="/customized/create/back"
+                                    element={<Cus_product_card_back />}
                                 />
                                 <Route path="/carts" element={<Carts />} />
                                 <Route path="/orders" element={<Orders />} />
@@ -107,7 +81,6 @@ function App() {
                         </div>
                     </div>
                 </div>
->>>>>>> d21e5ca7ecd2a18fc8bb65a152235189fe23d3cc
             </div>
         </Router>
     );

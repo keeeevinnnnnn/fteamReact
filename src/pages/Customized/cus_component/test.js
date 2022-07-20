@@ -3,12 +3,7 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
-import {
-  MdImagesearchRoller,
-  MdPhoto,
-  MdPhotoFilter,
-  MdAutoAwesomeMotion,
-} from 'react-icons/md';
+
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -44,7 +39,7 @@ export default function BasicTabs() {
           onChange={handleChange}
           aria-label="basic tabs example"
         >
-          <Tab icon={<MdImagesearchRoller/>}  />
+          <Tab label="Item Hahahaha"  />
           <Tab label="Item Hahahaha" />
           <Tab label="Item Three" />
         </Tabs>
