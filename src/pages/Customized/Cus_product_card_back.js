@@ -7,8 +7,21 @@ import {
   MdAutoAwesomeMotion,
 } from 'react-icons/md';
 
-function Cus_product_card_back() {
+
+
+
+
+import BasicTabs from './cus_component/Cus_tab';
+
+function Cus_product_card_back(props) {
   const [inputvalue, setInputvalue] = useState('');
+
+  const [value, setValue] = React.useState('1');
+
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
+
   return (
     <div className="w-100 vh-100 d-flex justify-content-end align-items-end">
       <div className="cus_matte w-100 h-100 ovweflow-hidden">
@@ -33,23 +46,23 @@ function Cus_product_card_back() {
                 <button className="skbtn-next"></button>
               </Link>
             </div>
-            
 
-           
             <div className="cus_card flex-column">
-            <div class="select_toggle border border-dark">
-              <MdImagesearchRoller className='style-icon'/>
-              <MdPhoto className='style-icon'/>
-              <MdPhotoFilter className='style-icon'/>
-              <MdAutoAwesomeMotion className='style-icon'/>
-            </div>
-            
-            
-              <div className="cus_product_card">
-                <h3 className="text-black">Choose a Style</h3>
+              {/* <div class="select_toggle border border-dark">
+                <MdImagesearchRoller className="style-icon" />
+                <MdPhoto className="style-icon" />
+                <MdPhotoFilter className="style-icon" />
+                <MdAutoAwesomeMotion className="style-icon" />
+              </div> */}
 
+              <div className="cus_product_card">
+               <BasicTabs/>
+        
+
+                {/* <BasicTabs/> */}
+                {/* <h3 className="text-black">Choose a Style</h3> */}
                 {/* 喔椰未來要map喔喔喔 */}
-                <div class="cus-select-box d-flex justify-content-between">
+                {/* <div class="cus-select-box d-flex justify-content-between">
                   <div className="cus_select">
                     <input
                       type="radio"
@@ -95,14 +108,9 @@ function Cus_product_card_back() {
                 
 
                 
-                </div>
+                </div> */}
               </div>
-
-              
             </div>
-
-          
-
           </div>
         </div>
       </div>
