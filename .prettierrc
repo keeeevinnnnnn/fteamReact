@@ -1,7 +1,15 @@
 {
+<<<<<<< HEAD
   "singleQuote": true,
   "trailingComma": "es5",
   "semi": true,
   "endOfLine": "auto",
   "prettier.tabWidth": 4
+=======
+    "singleQuote": true,
+    "trailingComma": "es5",
+    "semi": true,
+    "endOfLine": "auto",
+    "tabWidth": 4
+>>>>>>> d21e5ca7ecd2a18fc8bb65a152235189fe23d3cc
 }

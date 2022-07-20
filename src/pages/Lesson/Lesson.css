@@ -14,6 +14,7 @@
 .cooler_icon_wrap:hover {
   stroke: rgb(253, 253, 253);
   fill: black;
+  cursor: pointer;
 }
 
 * {
