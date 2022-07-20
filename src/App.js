@@ -15,6 +15,7 @@ import Customized_add from './pages/Customized/Customized_add';
 import Cus_product_card_wheel from './pages/Customized/Cus_product_card_wheel';
 import Cus_product_card_struct from './pages/Customized/Cus_product_card_struct';
 import Cus_product_card_fcolor from './pages/Customized/Cus_product_card_fcolor';
+import Cus_product_card_back from './pages/Customized/Cus_product_card_back';
 
 function App() {
   return (
@@ -50,6 +51,10 @@ function App() {
                 <Route
                   path="/customized/create/front_deck"
                   element={<Cus_product_card_fcolor />}
+                />
+                <Route
+                  path="/customized/create/back"
+                  element={<Cus_product_card_back/>}
                 />
                 <Route path="/carts" element={<Carts />} />
                 <Route path="/orders" element={<Orders />} />
