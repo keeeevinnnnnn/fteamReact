@@ -40,7 +40,7 @@ const Navbar = ({ auth, setAuth }) => {
           }
         });
     }
-  }, [auth]);
+  }, [user_token]);
   return (
     <>
       <div className="w-100 top-grid d-flex">
