@@ -54,7 +54,12 @@ const CartsCard = () => {
           <div className="w-100 h-25 d-flex justify-content-center align-items-center">
             <div className="w-50 h-75 d-flex justify-content-center mb-md-3">
               {/* minus */}
-              <div className="cart-minus-icon cursorpointer mx-3 mx-md-5">
+              <div
+                onClick={() => {
+                  console.log('minus');
+                }}
+                className="cart-minus-icon cursorpointer mx-3 mx-md-5"
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="h-6 w-6"
@@ -75,7 +80,12 @@ const CartsCard = () => {
               </div>
 
               {/* plus */}
-              <div className="cart-plus-icon cursorpointer mx-3 mx-md-5">
+              <div
+                onClick={() => {
+                  console.log('plus');
+                }}
+                className="cart-plus-icon cursorpointer mx-3 mx-md-5"
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="h-6 w-6"
