@@ -17,8 +17,8 @@ import Cus_product_card_wheel from './pages/Customized/Cus_product_card_wheel';
 import Cus_product_card_struct from './pages/Customized/Cus_product_card_struct';
 
 function App() {
+  // 登入狀態判斷
   const [auth, setAuth] = useState(false);
-
   return (
     <Router>
       <div className="container-fluid vh-100 fteam-wrap">
