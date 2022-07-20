@@ -8,12 +8,15 @@ import axios from 'axios';
 const Navbar = ({ auth, setAuth }) => {
   // 頁面導向方法
   const navigate = useNavigate();
+  // 接該會員的所有資料
   const [navMember, setNavMember] = useState([]);
+  // 接NavBar要顯示的性命或暱稱
   const [navName, setNavName] = useState('');
   // 登入後會存的值user_token JWT
   const user_token = localStorage.getItem('user_token');
   // 判斷有沒有登入存的值
   useEffect(() => {
+    // 如果user_token不是空值再執行 否則直接return
     if (user_token === null) {
       return;
     } else {
@@ -26,8 +29,11 @@ const Navbar = ({ auth, setAuth }) => {
           },
         })
         .then((res) => {
+          // 會員所有資料
           setNavMember(res.data);
+          // 先接會員暱稱
           setNavName(res.data.mem_nickname);
+          // 如果會員沒有暱稱改接姓名
           if (res.data.mem_nickname === '') {
             setNavName(res.data.mem_name);
           }
