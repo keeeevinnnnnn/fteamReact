@@ -1,9 +1,8 @@
-import React,{useState} from 'react';
+import React, { useState } from 'react';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
-
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -42,24 +41,92 @@ export default function BasicTabs() {
   return (
     <Box sx={{ width: '100%' }}>
       <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-        <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
-          <Tab label="Item Hahahaha"  {...a11yProps(0)} />
-          <Tab label="Item Hahahaha"  {...a11yProps(1)} />
-          <Tab label="Item Hahahaha"  {...a11yProps(2)} />
-          <Tab label="Item Hahahaha"  {...a11yProps(3)} />
+        <Tabs
+          value={value}
+          onChange={handleChange}
+          aria-label="basic tabs example"
+        >
+          <Tab label="Style" {...a11yProps(0)} sx={{width:'20%'}}/>
+          <Tab label="Upload" {...a11yProps(1)} sx={{width:'20%'}} />
+          <Tab label="Stickers" {...a11yProps(2)} sx={{width:'20%'}} />
+          <Tab label="Filter" {...a11yProps(3)} sx={{width:'20%'}} />
         </Tabs>
       </Box>
       <TabPanel value={value} index={0}>
         Item One
+        <div class="cus-select-box d-flex justify-content-between">
+          <div className="cus_select">
+            <input type="radio" value="第一個圖案" className="cus-radio" />
+            <img src="/imgs/Customized/pattern/pattern05.jpg" alt="" />
+          </div>
+
+          <div className="cus_select">
+            <input type="radio" value="第一個圖案" className="cus-radio" />
+            <img src="/imgs/Customized/pattern/pattern05.jpg" alt="" />
+          </div>
+
+          <div className="cus_select">
+            <input type="radio" value="第一個圖案" className="cus-radio" />
+            <img src="/imgs/Customized/pattern/pattern05.jpg" alt="" />
+          </div>
+
+          <div className="cus_select">
+            <input type="radio" value="第一個圖案" className="cus-radio" />
+            <img src="/imgs/Customized/pattern/pattern05.jpg" alt="" />
+          </div>
+        </div>
       </TabPanel>
       <TabPanel value={value} index={1}>
-        Item Two
+        Item Two LALALALA
+        
       </TabPanel>
       <TabPanel value={value} index={2}>
         Item Three
+        <div class="cus-select-box d-flex justify-content-between">
+          <div className="cus_select">
+            <input type="radio" value="第一個圖案" className="cus-radio" />
+            <img src="/imgs/Customized/pattern/pattern_02.jpg" alt="" />
+          </div>
+
+          <div className="cus_select">
+            <input type="radio" value="第一個圖案" className="cus-radio" />
+            <img src="/imgs/Customized/pattern/pattern_02.jpg" alt="" />
+          </div>
+
+          <div className="cus_select">
+            <input type="radio" value="第一個圖案" className="cus-radio" />
+            <img src="/imgs/Customized/pattern/pattern_02.jpg" alt="" />
+          </div>
+
+          <div className="cus_select">
+            <input type="radio" value="第一個圖案" className="cus-radio" />
+            <img src="/imgs/Customized/pattern/pattern_02.jpg" alt="" />
+          </div>
+        </div>
       </TabPanel>
       <TabPanel value={value} index={3}>
         Item Four
+        <div class="cus-select-box d-flex justify-content-between">
+          <div className="cus_select">
+            <input type="radio" value="第一個圖案" className="cus-radio" />
+            <img src="/imgs/Customized/pattern/pattern_01.jpg" alt="" />
+          </div>
+
+          <div className="cus_select">
+            <input type="radio" value="第一個圖案" className="cus-radio" />
+            <img src="/imgs/Customized/pattern/pattern_01.jpg" alt="" />
+          </div>
+
+          <div className="cus_select">
+            <input type="radio" value="第一個圖案" className="cus-radio" />
+            <img src="/imgs/Customized/pattern/pattern_01.jpg" alt="" />
+          </div>
+
+          <div className="cus_select">
+            <input type="radio" value="第一個圖案" className="cus-radio" />
+            <img src="/imgs/Customized/pattern/pattern_01.jpg" alt="" />
+          </div>
+        </div>
       </TabPanel>
     </Box>
   );

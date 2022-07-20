@@ -9,9 +9,9 @@ import Cus_product_card_name from './Cus_product_card_name';
 // `member_id`
 // `custom_product_name`
 // `wheel_color`
+//'輪架'
 // `front_color`
 // `back_style`
-// `back_pattern`
 // `back_sticker`
 // `back_filter`
 // `back_img`
