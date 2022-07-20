@@ -104,7 +104,7 @@
 .userLogin-icon-wrap {
   height: 35px;
   width: 35px;
-  border: 1px solid black;
+  /* box-shadow: 10px var(--main); */
   right: 0%;
 }
 
