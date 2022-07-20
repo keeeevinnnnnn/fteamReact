@@ -71,7 +71,7 @@ const Navbar = ({ auth, setAuth }) => {
                 </div>
               </Link>
             ) : (
-              //未登入狀態顯示會員icon
+              // 未登入狀態顯示會員icon
               <Link to={'/login'}>
                 <div className="user-icon-wrap">
                   <svg
