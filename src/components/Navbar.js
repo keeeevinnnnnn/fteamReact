@@ -16,8 +16,10 @@ const Navbar = ({ auth, setAuth, token }) => {
   useEffect(() => {
     // 如果user_token不是空值再執行 否則直接return
     if (token === null) {
+      console.log(token);
       return;
     } else {
+      console.log(token);
       // 如果有值就把登入狀態改成true
       setAuth(true);
       axios
