@@ -26,7 +26,7 @@ function Cus_product_card_back(props) {
             </div>
           </div>
 
-          <div class="cus_card_container text-ali">
+          <div class="cus_card_container ">
             <div class="step-control">
               <Link to={'/customized/create/carrier'}>
                 <button className="skbtn-prev"></button>
@@ -38,16 +38,8 @@ function Cus_product_card_back(props) {
             </div>
 
             <div className="cus_card flex-column">
-              {/* <div class="select_toggle border border-dark">
-                <MdImagesearchRoller className="style-icon" />
-                <MdPhoto className="style-icon" />
-                <MdPhotoFilter className="style-icon" />
-                <MdAutoAwesomeMotion className="style-icon" />
-              </div> */}
-
               <div className="cus_product_card">
-               <BasicTabs/>
-        
+                <BasicTabs />
 
                 {/* <BasicTabs/> */}
                 {/* <h3 className="text-black">Choose a Style</h3> */}
