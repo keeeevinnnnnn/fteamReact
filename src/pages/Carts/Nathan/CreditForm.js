@@ -1,6 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './CreditForm.scss';
 const CreditForm = () => {
+  const [rotateDeg, setRotateDeg] = useState(0);
+  const rotateToZero = () => {
+    setRotateDeg(0);
+  };
+  const rotateToBack = () => {
+    setRotateDeg(180);
+  };
   return (
     <div className="w-100 h-100 d-flex flex-column">
       <div className=" w-100 h-10 d-flex step-page-title-wrap justify-content-center align-items-center">
@@ -62,21 +69,25 @@ const CreditForm = () => {
             <div className="w-100 h-65 text-gray d-flex justify-content-between align-items-end">
               {/* 1~4 */}
               <input
+                onFocus={rotateToZero}
                 type="text"
                 className="border-bottom w-20 focus-none text-gray bg-transparent"
               />
               {/* 5~8 */}
               <input
+                onFocus={rotateToZero}
                 type="text"
                 className="border-bottom w-20 focus-none text-gray bg-transparent"
               />
               {/* 9~12 */}
               <input
+                onFocus={rotateToZero}
                 type="text"
                 className="border-bottom w-20 focus-none text-gray bg-transparent"
               />
               {/* 13~16 */}
               <input
+                onFocus={rotateToZero}
                 type="text"
                 className="border-bottom w-20 focus-none text-gray bg-transparent"
               />
@@ -91,11 +102,13 @@ const CreditForm = () => {
               <div className="w-100 h-65 d-flex justify-content-between align-items-end text-gray">
                 {/* 到期日 XX月*/}
                 <input
+                  onFocus={rotateToZero}
                   className=" w-40 border-bottom  focus-none text-gray bg-transparent"
                   type="text"
                 />
                 /{/* YY年 */}
                 <input
+                  onFocus={rotateToZero}
                   className="  w-40 border-bottom  focus-none text-gray bg-transparent"
                   type="text"
                 />
@@ -108,6 +121,7 @@ const CreditForm = () => {
               <div className="w-100 h-65 d-flex justify-content-start align-items-end text-gray">
                 {/* 驗證碼 */}
                 <input
+                  onFocus={rotateToBack}
                   className="w-100 border-bottom  focus-none text-gray bg-transparent"
                   type="text"
                 />
@@ -118,9 +132,12 @@ const CreditForm = () => {
         {/* 信用卡翻轉 */}
         <div className="w-100 h-30">
           <div className="flip-card">
-            <div className="flip-card-inner">
+            <div
+              style={{ transform: `rotateY(${rotateDeg}deg)` }}
+              className="flip-card-inner"
+            >
               <div className="flip-card-front"></div>
-              <div class="flip-card-back"></div>
+              <div className="flip-card-back"></div>
             </div>
           </div>
         </div>
