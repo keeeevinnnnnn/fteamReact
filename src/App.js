@@ -10,7 +10,7 @@ import Lesson from './pages/Lesson/Lesson';
 import Products from './pages/Product/Products';
 import Customized from './pages/Customized/Customized';
 import Orders from './pages/Orders/Orders';
-import Login from './pages/Login/Login';
+import Login from './pages/Login';
 import Carts from './pages/Carts/Carts';
 import Customized_add from './pages/Customized/Customized_add';
 import Cus_product_card_wheel from './pages/Customized/Cus_product_card_wheel';

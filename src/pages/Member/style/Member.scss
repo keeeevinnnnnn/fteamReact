@@ -2,9 +2,15 @@
     // outline: 1px solid red;
 }
 
-.memberAvatarBox {
-    img {
-        border-radius: 50%;
-        aspect-ratio: 1/1;
+.memberInformationWrap {
+    overflow: hidden;
+    .memberInformationTrain {
+        transform: translateY(-100%);
+        transition: 0.5s ease;
+    }
+    .memberEdit {
+        p {
+            margin-bottom: 0;
+        }
     }
 }
