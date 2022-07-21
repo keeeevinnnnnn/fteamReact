@@ -1,35 +1,46 @@
-import React from 'react';
+import React, { useState } from 'react';
 import '../../styles/MemberEdit.scss';
 
 const MemberEdit = ({
   setmoveTrain,
   setAvatarFromNone,
   setInformationWrap,
+  member,
 }) => {
+  // 記錄表單每個欄位輸入值
+  const [fields, setFields] = useState({
+    account: member.mem_account,
+    name: member.mem_name,
+    nickname: member.mem_nickname,
+    birthday: member.mem_birthday,
+    mobile: member.mem_mobile,
+    email: member.mem_email,
+    address: member.mem_address,
+  });
   return (
     <>
       <div className="h-100 d-flex justify-content-center align-items-center">
         {/* 個人資料修改 */}
         <form action="" className="w-80 text-center memberEdit pt-3">
           <h5>Account</h5>
-          <input type="text" />
+          <input type="text" value={fields.account} />
           <p>錯誤訊息</p>
           <h5>User Name</h5>
-          <input type="text" />
-          <h5>Birthday</h5>
-          <input type="date" />
+          <input type="text" value={fields.name} />
           <p>錯誤訊息</p>
           <h5>Nickname</h5>
-          <input type="text" />
+          <input type="text" value={fields.nickname} />
+          <h5>Birthday</h5>
+          <input type="date" value={fields.birthday} />
           <p>錯誤訊息</p>
           <h5>Mobile</h5>
-          <input type="namber" />
+          <input type="namber" value={fields.mobile} />
           <p>錯誤訊息</p>
           <h5>Email</h5>
-          <input type="email" />
+          <input type="email" value={fields.email} />
           <p>錯誤訊息</p>
           <h5>Address</h5>
-          <textarea type="text" />
+          <textarea type="text" value={fields.address} />
           <div className="d-flex justify-content-around">
             <button
               onClick={(e) => {

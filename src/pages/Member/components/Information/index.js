@@ -17,7 +17,7 @@ const Information = () => {
   return (
     <>
       <div className={`h-25 ${avatarFromNone}`}>
-        <AvatarForm />
+        <AvatarForm member={member} />
       </div>
       <div className={`${informationWrap} memberInformationWrap`}>
         <div
@@ -31,11 +31,13 @@ const Information = () => {
             setmoveTrain={setmoveTrain}
             setAvatarFromNone={setAvatarFromNone}
             setInformationWrap={setInformationWrap}
+            member={member}
           />
           <MemberEdit
             setmoveTrain={setmoveTrain}
             setAvatarFromNone={setAvatarFromNone}
             setInformationWrap={setInformationWrap}
+            member={member}
           />
           <PasswordEdit setmoveTrain={setmoveTrain} />
         </div>
