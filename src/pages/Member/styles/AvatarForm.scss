@@ -1,0 +1,21 @@
+.memberAvatarForm {
+    img {
+        border-radius: 50%;
+        aspect-ratio: 1/1;
+    }
+    button {
+        padding: .5em 2em .5em 2em;
+        background-color: var(--main);
+        box-shadow: 3px 3px 0 0 #61dafb82;
+        border: none;
+        transition: 1s ease;
+        text-decoration: none;
+    }
+
+    button:hover {
+        box-shadow: 8px 8px 0 0 #61dafbd2;
+        background-color: black;
+        color: var(--main);
+        border: 1px solid var(--main);
+    }
+}
