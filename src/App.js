@@ -38,6 +38,7 @@ function App() {
     <Router>
       {/* 所有人都可以直接拿到token */}
       <TokenContext.Provider value={token}>
+      {/* 把登入狀態傳下去 */}
         <AuthContext.Provider value={authObj}>
           <div className="container-fluid vh-100 fteam-wrap">
             <div className="row h-100">
