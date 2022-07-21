@@ -3,6 +3,7 @@ import { useState } from 'react';
 import './Offcanvas.scss';
 import TWZipCode from './TWZipCode';
 import axios from 'axios';
+import CreditForm from './CreditForm';
 export default function OffcanvasTest() {
   // offcanvas setting
   const [show, setShow] = useState(false);
@@ -22,7 +23,7 @@ export default function OffcanvasTest() {
     fullAddress: '',
   });
   const [pickSelfForm, setPickSelfForm] = useState({});
-  const [delivery, setDelivery] = useState('');
+  const [delivery, setDelivery] = useState('toHome');
   const [paySelected, setPaySelected] = useState('cash');
   // 宅配表單handler
   const toHomeFormHandler = (e) => {
@@ -81,6 +82,7 @@ export default function OffcanvasTest() {
           </div>
           <div className="check-body-list-wrap w-100">
             <div style={{ left: `-${displace}%` }} className="check-body-list">
+              {/* 配送方式頁面 */}
               <div className="distribution-page">
                 <div className="w-100 distribution-form-wrap">
                   <div className="w-75 h-90 d-flex flex-column justify-content-between">
@@ -105,12 +107,13 @@ export default function OffcanvasTest() {
                     <div className="w-100 h-75">
                       {/* 宅配表單 */}
                       <div
+                        className=" w-100 h-100 flex-column justify-content-around"
                         style={{
-                          display: delivery === 'pickSelf' ? 'none' : '',
+                          display: delivery === 'pickSelf' ? 'none' : 'flex',
                         }}
                       >
                         <input
-                          className=" border-bottom w-100 focus-none text-gray bg-transparent mb-4"
+                          className=" border-bottom w-100 focus-none text-gray bg-transparent"
                           name="fullName"
                           value={toHomeForm.fullName}
                           type="text"
@@ -118,7 +121,7 @@ export default function OffcanvasTest() {
                           onChange={toHomeFormHandler}
                         />
                         <input
-                          className=" border-bottom w-100 focus-none text-gray bg-transparent mb-4"
+                          className=" border-bottom w-100 focus-none text-gray bg-transparent"
                           name="mobile"
                           value={toHomeForm.mobile}
                           type="text"
@@ -126,7 +129,7 @@ export default function OffcanvasTest() {
                           onChange={toHomeFormHandler}
                         />
                         <input
-                          className=" border-bottom w-100 focus-none text-gray bg-transparent mb-4"
+                          className=" border-bottom w-100 focus-none text-gray bg-transparent"
                           name="email"
                           value={toHomeForm.email}
                           type="text"
@@ -138,7 +141,7 @@ export default function OffcanvasTest() {
                           setToHomeForm={setToHomeForm}
                         />
                         <input
-                          className=" border-bottom w-100 focus-none text-gray bg-transparent mb-5"
+                          className=" border-bottom w-100 focus-none text-gray bg-transparent"
                           name="fullAddress"
                           value={toHomeForm.fullAddress}
                           type="text"
@@ -178,12 +181,12 @@ export default function OffcanvasTest() {
                       </div>
                       {/* 超取表單 */}
                       <div
-                        className=" h-100"
+                        className="w-100 h-100"
                         style={{
-                          display: delivery === 'toHome' ? 'none' : '',
+                          display: delivery === 'toHome' ? 'none' : 'flex',
                         }}
                       >
-                        <div className=" w-100 h-100 bg-danger"></div>
+                        <div className=" w-100 h-100 bg-black"></div>
                       </div>
                     </div>
                   </div>
@@ -192,14 +195,18 @@ export default function OffcanvasTest() {
                   <span>Next Step</span>
                 </button>
               </div>
+              {/* 信用卡表單頁面 */}
               <div className="credit-detail-page">
                 <div className="w-100 credit-form-wrap">
-                  <div className="w-80 h-90"></div>
+                  <div className="w-80 h-90">
+                    <CreditForm />
+                  </div>
                 </div>
                 <button onClick={nextStep} className="w-100">
                   <span>Next Step</span>
                 </button>
               </div>
+              {/* 結帳完成頁面 */}
               <div className="check-compele-page">
                 <div className="w-100 check-compele-wrap">
                   <div className="w-80 h-90"></div>
