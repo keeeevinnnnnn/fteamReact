@@ -25,7 +25,7 @@ function Cus_product_detail() {
               </div>
               
             </div>
-            <div className="right col-12 col-sm-6 d-flex flex-column">
+            <div className="right col-12 col-sm-6 d-flex flex-column border border-gray">
            
              
               <div className="message mb-5">

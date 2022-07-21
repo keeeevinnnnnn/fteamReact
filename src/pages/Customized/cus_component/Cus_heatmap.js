@@ -6,14 +6,10 @@ function Cus_heatmap() {
   return (
     <>
       <CalendarHeatmap 
-        startDate={new Date('2022-01-01')}
+        startDate={new Date('2022-03-01')}
         endDate={new Date('2022-08-30')}
         values={[
-          { date: '2022-01-02', count: 1 },
-          { date: '2022-02-03', count: 4 },
-          { date: '2022-02-04', count: 4 },
-          { date: '2022-02-07', count: 4 },
-          { date: '2022-02-022', count: 4 },
+         
           { date: '2022-03-15', count: 3 },
           { date: '2022-03-17', count: 3 },
           { date: '2022-03-18', count: 3 },
