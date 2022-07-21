@@ -1,27 +1,31 @@
 import React from 'react';
 import '../../styles/MemberEdit.scss';
 
-const MemberEdit = ({ setmoveTrain }) => {
+const MemberEdit = ({
+  setmoveTrain,
+  setAvatarFromNone,
+  setInformationWrap,
+}) => {
   return (
     <>
-      <div className="h-100 memberEdit">
+      <div className="h-100 d-flex justify-content-center align-items-center">
         {/* 個人資料修改 */}
-        <form action="" className="text-center">
+        <form action="" className="w-80 text-center memberEdit pt-3">
           <h5>Account</h5>
           <input type="text" />
           <p>錯誤訊息</p>
-          <h5>USER NAME</h5>
+          <h5>User Name</h5>
           <input type="text" />
           <h5>Birthday</h5>
           <input type="date" />
           <p>錯誤訊息</p>
-          <h5>NICKNAME</h5>
+          <h5>Nickname</h5>
           <input type="text" />
           <p>錯誤訊息</p>
           <h5>Mobile</h5>
           <input type="namber" />
           <p>錯誤訊息</p>
-          <h5>EMAIL</h5>
+          <h5>Email</h5>
           <input type="email" />
           <p>錯誤訊息</p>
           <h5>Address</h5>
@@ -31,6 +35,8 @@ const MemberEdit = ({ setmoveTrain }) => {
               onClick={(e) => {
                 // 阻擋按鈕預設行為
                 e.preventDefault();
+                setAvatarFromNone('');
+                setInformationWrap('h-75');
                 // 移動到顯示個人資料
                 setmoveTrain('translateY(-0%)');
               }}

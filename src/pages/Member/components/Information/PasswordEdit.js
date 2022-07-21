@@ -1,11 +1,12 @@
 import React from 'react';
+import '../../styles/PasswordEdit.scss';
 
 const PasswordEdit = ({ setmoveTrain }) => {
   return (
     <>
-      <div className="h-100 d-flex align-items-center">
+      <div className="h-100 d-flex justify-content-center align-items-center">
         {/* 修改密碼 */}
-        <div className="w-100">
+        <div className="w-80 passwordEdit pt-5">
           <form action="" className="text-center">
             <h4>USER Password</h4>
             <input type="password" />

@@ -1,8 +1,7 @@
-.memberAvatarForm {
-    img {
-        border-radius: 50%;
-        aspect-ratio: 1/1;
-    }
+.personal {
+    background-color: rgba(0, 0, 0, 0.575);
+    color: white;
+    border-radius: 2%;
     button {
         padding: .5em 2em .5em 2em;
         background-color: var(--main);
