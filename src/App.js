@@ -29,9 +29,9 @@ function App() {
   // 登入後會存的值user_token JWT
   const token = localStorage.getItem('user_token');
   return (
-    // 所有人都可以直接拿到token
-    <TokenContext.Provider value={token}>
-      <Router>
+    <Router>
+      {/* 所有人都可以直接拿到token */}
+      <TokenContext.Provider value={token}>
         <div className="container-fluid vh-100 fteam-wrap">
           <div className="row h-100">
             <div className="p-0 d-flex flex-column w-100 h-100">
@@ -42,51 +42,54 @@ function App() {
                 {/* col-2 的側邊欄 */}
                 {/* <div className="col-10 h-100 p-0 "></div>有要加sidebar的 用col-10 這段 沒有的用 col-12 */}
 
-              <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/member" element={<Member />} />
-                <Route path="/login" element={<Login setAuth={setAuth} />} />
-                <Route path="/lesson" element={<Lesson />} />
-                <Route path="/products" element={<ProductMain />} />
-                <Route path="/customized" element={<Customized />} />
-                <Route path="/customized/create" element={<Customized_add />} />
-                <Route
-                  path="/customized/create/wheel"
-                  element={<Cus_product_card_wheel />}
-                />
-                <Route
-                  path="/customized/create/carrier"
-                  element={<Cus_product_card_struct />}
-                />
-                <Route
-                  path="/customized/create/front_deck"
-                  element={<Cus_product_card_fcolor />}
-                />
-                <Route
-                  path="/customized/create/back"
-                  element={<Cus_product_card_back />}
-                />
-                <Route
-                  path="/customized/create/detail"
-                  element={<Cus_product_detail />}
-                />
-                <Route
-                  path="/customized/explore"
-                  element={<Customized_explore/>}
-                />
-                <Route
-                  path="/customized/collect"
-                  element={<Customized_collect/>}
-                />
-                <Route path="/carts" element={<Carts />} />
-                <Route path="/orders" element={<Orders />} />
-              </Routes>
+                <Routes>
+                  <Route path="/" element={<Home />} />
+                  <Route path="/member" element={<Member />} />
+                  <Route path="/login" element={<Login setAuth={setAuth} />} />
+                  <Route path="/lesson" element={<Lesson />} />
+                  <Route path="/products" element={<ProductMain />} />
+                  <Route path="/customized" element={<Customized />} />
+                  <Route
+                    path="/customized/create"
+                    element={<Customized_add />}
+                  />
+                  <Route
+                    path="/customized/create/wheel"
+                    element={<Cus_product_card_wheel />}
+                  />
+                  <Route
+                    path="/customized/create/carrier"
+                    element={<Cus_product_card_struct />}
+                  />
+                  <Route
+                    path="/customized/create/front_deck"
+                    element={<Cus_product_card_fcolor />}
+                  />
+                  <Route
+                    path="/customized/create/back"
+                    element={<Cus_product_card_back />}
+                  />
+                  <Route
+                    path="/customized/create/detail"
+                    element={<Cus_product_detail />}
+                  />
+                  <Route
+                    path="/customized/explore"
+                    element={<Customized_explore />}
+                  />
+                  <Route
+                    path="/customized/collect"
+                    element={<Customized_collect />}
+                  />
+                  <Route path="/carts" element={<Carts />} />
+                  <Route path="/orders" element={<Orders />} />
+                </Routes>
+              </div>
             </div>
           </div>
         </div>
-        </div>
-      </Router>
-    </TokenContext.Provider>
+      </TokenContext.Provider>
+    </Router>
   );
 }
 
