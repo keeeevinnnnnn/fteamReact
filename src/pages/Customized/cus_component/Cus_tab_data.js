@@ -4,7 +4,6 @@ import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import Cus_attributes from './Cus_attributes';
-import Cus_bar from './Cus_bar';
 import Cus_heatmap from './Cus_heatmap';
 
 
@@ -66,7 +65,7 @@ export default function DataTabs() {
         </div>
       </TabPanel>
       <TabPanel value={value} index={1}>
-       <Cus_bar/>
+      
       </TabPanel>
       <TabPanel value={value} index={2}>
       <Cus_heatmap className="h-100"/>
