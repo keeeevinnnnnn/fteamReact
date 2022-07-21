@@ -1,11 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import AvatarForm from './AvatarForm';
 import MemberEdit from './MemberEdit';
 import PasswordEdit from './PasswordEdit';
 import Personal from './Personal';
 import '../../styles/Information.scss';
+import { MemberContext } from '../../../../App';
 
 const Information = () => {
+  // 拿到會員個人資料
+  const memberObg = useContext(MemberContext);
+  const { member, setMember } = memberObg;
   // 移動個人資料/編輯個人資料/修改密碼
   const [moveTrain, setmoveTrain] = useState('translateY(0%)');
   const [avatarFromNone, setAvatarFromNone] = useState('');

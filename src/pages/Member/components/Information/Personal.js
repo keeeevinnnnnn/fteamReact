@@ -22,7 +22,9 @@ const Personal = ({ setmoveTrain, setAvatarFromNone, setInformationWrap }) => {
               onClick={(e) => {
                 // 阻擋按鈕預設行為
                 e.preventDefault();
+                // 隱藏大頭貼區塊
                 setAvatarFromNone('d-none');
+                // 資料區塊高度設為90%
                 setInformationWrap('h-90');
                 // 移動到編輯個人資料
                 setmoveTrain('translateY(-100%)');

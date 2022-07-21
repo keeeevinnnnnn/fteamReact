@@ -5,13 +5,14 @@ import MenuSelect from './MenuSelect';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { TokenContext } from '../App';
+import { MemberContext } from '../App';
 
 const Navbar = ({ auth, setAuth }) => {
   const token = useContext(TokenContext);
+  const memberObg = useContext(MemberContext);
+  const { member, setMember } = memberObg;
   // 頁面導向方法
   const navigate = useNavigate();
-  // 接該會員的所有資料
-  const [navMember, setNavMember] = useState([]);
   // 接NavBar要顯示的性命或暱稱
   const [navName, setNavName] = useState('');
   // 判斷有沒有登入存的值
@@ -33,7 +34,7 @@ const Navbar = ({ auth, setAuth }) => {
         })
         .then((res) => {
           // 會員所有資料
-          setNavMember(res.data);
+          setMember(res.data);
           // 先接會員暱稱
           setNavName(res.data.mem_nickname);
           // 如果會員沒有暱稱改接姓名
@@ -66,7 +67,7 @@ const Navbar = ({ auth, setAuth }) => {
                       borderRadius: '50%',
                       aspectRatio: '1/1',
                     }}
-                    src={`http://localhost:3000/avatar/${navMember.mem_avatar}`}
+                    src={`http://localhost:3000/avatar/${member.mem_avatar}`}
                     alt=""
                   />
                   <span className="user-icon-text col-6">{navName}</span>

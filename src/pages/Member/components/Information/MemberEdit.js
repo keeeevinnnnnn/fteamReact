@@ -35,7 +35,9 @@ const MemberEdit = ({
               onClick={(e) => {
                 // 阻擋按鈕預設行為
                 e.preventDefault();
+                // 把隱藏的大頭貼區塊恢復顯示
                 setAvatarFromNone('');
+                // 個人資料區塊從90%設回75%
                 setInformationWrap('h-75');
                 // 移動到顯示個人資料
                 setmoveTrain('translateY(-0%)');
@@ -43,6 +45,7 @@ const MemberEdit = ({
             >
               Back
             </button>
+            <button>Delete</button>
             <button>Confirm</button>
           </div>
         </form>
