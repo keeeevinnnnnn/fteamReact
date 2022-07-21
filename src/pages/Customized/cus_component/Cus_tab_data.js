@@ -5,6 +5,8 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import Cus_attributes from './Cus_attributes';
 import Cus_heatmap from './Cus_heatmap';
+import CustBar from './CustBar';
+
 
 
 function TabPanel(props) {
@@ -65,6 +67,7 @@ export default function DataTabs() {
         </div>
       </TabPanel>
       <TabPanel value={value} index={1}>
+      <CustBar/>
       
       </TabPanel>
       <TabPanel value={value} index={2}>
