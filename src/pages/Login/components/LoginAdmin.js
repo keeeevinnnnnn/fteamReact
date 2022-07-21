@@ -1,9 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import LoginLogo from './LoginLogo';
+import { AuthContext } from '../../../App';
 
-const LoginAdmin = ({ setLoginCard, loginLogoText, setAuth }) => {
+const LoginAdmin = ({ setLoginCard, loginLogoText }) => {
+  // 取得登入狀態
+  const authObj = useContext(AuthContext);
+  const { setAuth } = authObj;
   // 頁面導向
   const navigate = useNavigate();
   // 眼睛查看密碼
