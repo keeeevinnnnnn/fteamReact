@@ -32,7 +32,7 @@ function Cus_product_card_back(props) {
                 <button className="skbtn-prev"></button>
               </Link>
 
-              <Link to={'/customized/create/bk_style'}>
+              <Link to={'/customized/create/detail'}>
                 <button className="skbtn-next"></button>
               </Link>
             </div>

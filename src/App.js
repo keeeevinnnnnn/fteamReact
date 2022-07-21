@@ -18,6 +18,9 @@ import Cus_product_card_struct from './pages/Customized/Cus_product_card_struct'
 import Cus_product_card_fcolor from './pages/Customized/Cus_product_card_fcolor';
 import Cus_product_card_back from './pages/Customized/Cus_product_card_back';
 import ProductMain from './pages/Product/ProductMain';
+import Cus_product_detail from './pages/Customized/Cus_product_detail';
+import Customized_explore from './pages/Customized/Customized_explore';
+import Customized_collect from './pages/Customized/Customized_collect';
 
 function App() {
   // 登入狀態判斷
@@ -59,6 +62,18 @@ function App() {
                 <Route
                   path="/customized/create/back"
                   element={<Cus_product_card_back />}
+                />
+                <Route
+                  path="/customized/create/detail"
+                  element={<Cus_product_detail />}
+                />
+                <Route
+                  path="/customized/explore"
+                  element={<Customized_explore/>}
+                />
+                <Route
+                  path="/customized/collect"
+                  element={<Customized_collect/>}
                 />
                 <Route path="/carts" element={<Carts />} />
                 <Route path="/orders" element={<Orders />} />
