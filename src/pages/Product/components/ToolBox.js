@@ -1,23 +1,26 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 const ToolBox = () => {
+    const menuItems = ['Skateboard', 'Decks', 'Trucks', 'Wheels'];
+    const [menu, setMenu] = useState('Skateboard');
     return (
         <>
             <div className="row toolbox">
                 <div className="col-4">
                     <ul>
-                        <li className="catgory-1">
-                            <a href="#/">Skateboard</a>
-                        </li>
-                        <li className="catgory-2">
-                            <a href="#/">Decks</a>
-                        </li>
-                        <li className="catgory-3">
-                            <a href="#/">Trucks</a>
-                        </li>
-                        <li className="catgory-4">
-                            <a href="#/">Wheels</a>
-                        </li>
+                        {menuItems.map((v, i) => {
+                            return (
+                                <li
+                                    key={i}
+                                    onClick={() => {
+                                        setMenu(v);
+                                    }}
+                                    className={menu === v ? 'catgory' : ''}
+                                >
+                                    <a href="#/">{v}</a>
+                                </li>
+                            );
+                        })}
                     </ul>
                 </div>
             </div>

@@ -1,24 +1,54 @@
-import React from 'react';
+import { display } from '@mui/system';
+import React, { useState } from 'react';
 
 const FilterBox = () => {
+    const [price, setPrice] = useState(false);
+    const [colour, setColour] = useState(false);
+    const [brand, setBrand] = useState(false);
+    const [sortby, setSortby] = useState(false);
+    const [searchInput, setSearchInput] = useState(false);
+
     return (
         <>
             <div className="row filterBox">
                 <div className="col-10 d-flex justify-content-center">
                     <div className="col-3">
-                        <div className="filter">
+                        <div
+                            className="filter"
+                            onClick={() => {
+                                setPrice(!price);
+                            }}
+                        >
                             <h5>Price</h5>
-                            <span style={{ display: 'block' }} id="span1">
+                            <span
+                                style={{
+                                    display: price === false ? 'block' : 'none',
+                                }}
+                                id="span1"
+                                onClick={() => {
+                                    setPrice(!price);
+                                }}
+                            >
                                 <i className="fa-solid fa-angle-down"></i>
                             </span>
-                            <span style={{ display: 'none' }} id="span2">
+                            <span
+                                style={{
+                                    display: price === false ? 'none' : 'block',
+                                }}
+                                id="span2"
+                                onClick={() => {
+                                    setPrice(!price);
+                                }}
+                            >
                                 <i className="fa-solid fa-angle-up"></i>
                             </span>
                         </div>
 
                         <div
                             className="priceFilter w-100"
-                            style={{ display: 'none' }}
+                            style={{
+                                display: price === false ? 'none' : 'block',
+                            }}
                         >
                             <input
                                 className="w-100"
@@ -29,19 +59,42 @@ const FilterBox = () => {
                         </div>
                     </div>
                     <div className="col-3">
-                        <div className="filter">
+                        <div
+                            className="filter"
+                            onClick={() => {
+                                setColour(!colour);
+                            }}
+                        >
                             <h5>Colour</h5>
-                            <span style={{ display: 'block' }}>
+                            <span
+                                style={{
+                                    display:
+                                        colour === false ? 'block' : 'none',
+                                }}
+                                onClick={() => {
+                                    setColour(!colour);
+                                }}
+                            >
                                 <i className="fa-solid fa-angle-down"></i>
                             </span>
-                            <span style={{ display: 'none' }}>
+                            <span
+                                style={{
+                                    display:
+                                        colour === false ? 'none' : 'block',
+                                }}
+                                onClick={() => {
+                                    setColour(!colour);
+                                }}
+                            >
                                 <i className="fa-solid fa-angle-up"></i>
                             </span>
                         </div>
 
                         <div
                             className="colorFilter"
-                            style={{ display: 'block' }}
+                            style={{
+                                display: colour === false ? 'none' : 'block',
+                            }}
                         >
                             <div className="colorBox pt-2">
                                 <div className="colorBoxCheckbox">
@@ -142,19 +195,40 @@ const FilterBox = () => {
                     </div>
 
                     <div className="col-3">
-                        <div className="filter">
+                        <div
+                            className="filter"
+                            onClick={() => {
+                                setBrand(!brand);
+                            }}
+                        >
                             <h5>Brand</h5>
-                            <span style={{ display: 'block' }}>
+                            <span
+                                style={{
+                                    display: brand === false ? 'block' : 'none',
+                                }}
+                                onClick={() => {
+                                    setBrand(!brand);
+                                }}
+                            >
                                 <i className="fa-solid fa-angle-down"></i>
                             </span>
-                            <span style={{ display: 'none' }}>
+                            <span
+                                style={{
+                                    display: brand === false ? 'none' : 'block',
+                                }}
+                                onClick={() => {
+                                    setBrand(!brand);
+                                }}
+                            >
                                 <i className="fa-solid fa-angle-up"></i>
                             </span>
                         </div>
 
                         <div
                             className="brandFilter"
-                            style={{ display: 'block' }}
+                            style={{
+                                display: brand === false ? 'none' : 'block',
+                            }}
                         >
                             <div className="brandBox pt-2">
                                 <input type="checkbox" />
@@ -209,19 +283,42 @@ const FilterBox = () => {
                     </div>
 
                     <div className="col-3">
-                        <div className="filter">
+                        <div
+                            className="filter"
+                            onClick={() => {
+                                setSortby(!sortby);
+                            }}
+                        >
                             <h5>Sort by</h5>
-                            <span style={{ display: 'block' }}>
+                            <span
+                                style={{
+                                    display:
+                                        sortby === false ? 'block' : 'none',
+                                }}
+                                onClick={() => {
+                                    setSortby(!sortby);
+                                }}
+                            >
                                 <i className="fa-solid fa-angle-down"></i>
                             </span>
-                            <span style={{ display: 'none' }}>
+                            <span
+                                style={{
+                                    display:
+                                        sortby === false ? 'none' : 'block',
+                                }}
+                                onClick={() => {
+                                    setSortby(!sortby);
+                                }}
+                            >
                                 <i className="fa-solid fa-angle-up"></i>
                             </span>
                         </div>
 
                         <div
                             className="sortbyFilter"
-                            style={{ display: 'block' }}
+                            style={{
+                                display: sortby === false ? 'none' : 'block',
+                            }}
                         >
                             <div className="sortbyBox pt-2">
                                 <span>Recommended</span>
@@ -260,8 +357,13 @@ const FilterBox = () => {
                         type="search"
                         placeholder=" Search"
                         aria-label="Search"
-                        style={{ width: '70%' }}
-                        onmouseenter="handleSearch()"
+                        style={{ width: searchInput === false ? '40%' : '80%' }}
+                        onMouseOver={() => {
+                            setSearchInput(!searchInput);
+                        }}
+                        onMouseOut={() => {
+                            setSearchInput(!searchInput);
+                        }}
                     />
                     <button className="col-2 search-btn">
                         <svg

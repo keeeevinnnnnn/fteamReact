@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 const ProductList = () => {
+    const [heart, setHeart] = useState(false);
     return (
         <>
             <div className="row product-list">
@@ -14,9 +15,13 @@ const ProductList = () => {
                                 viewBox="0 0 24 24"
                                 stroke="currentColor"
                                 stroke-width="2"
-                                style={{ display: 'block' }}
+                                style={{
+                                    display: heart === false ? 'block' : 'none',
+                                }}
                                 id="heartTrue"
-                                onclick="handleIcon()"
+                                onClick={() => {
+                                    setHeart(!heart);
+                                }}
                             >
                                 <path
                                     stroke-linecap="round"
@@ -30,9 +35,13 @@ const ProductList = () => {
                                 className="h-5 w-5"
                                 viewBox="0 0 20 20"
                                 fill="currentColor"
-                                style={{ display: 'none' }}
+                                style={{
+                                    display: heart === false ? 'none' : 'block',
+                                }}
                                 id="heartFalse"
-                                onclick="handleIcon()"
+                                onClick={() => {
+                                    setHeart(!heart);
+                                }}
                             >
                                 <path
                                     fillRule="evenodd"
