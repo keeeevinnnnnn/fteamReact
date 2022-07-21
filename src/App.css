@@ -6,8 +6,8 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Anton', sans-serif;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Anton', sans-serif !important;
+  font-family: 'Montserrat', sans-serif !important;
   /* outline: thin solid rgb(203, 108, 108); */
 }
 

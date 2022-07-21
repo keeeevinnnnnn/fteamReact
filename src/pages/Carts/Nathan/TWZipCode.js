@@ -3,7 +3,10 @@ import { countries, postcodes, townships } from './data/townships';
 import './TWZipCode.scss';
 
 function TWZipCode(props) {
-  const { countryName, setCountryName, townshipName, setTownshipName } = props;
+  console.log('countries', countries);
+  console.log('postcodes', postcodes);
+  console.log('townships', townships);
+  const { toHomeForm, setToHomeForm } = props;
   // 代表目前被選中的縣市的索引值
   // 注意資料類型都是數字(索引值是數字)
   // -1代表目前沒有選中任何的陣列中的值
@@ -21,7 +24,10 @@ function TWZipCode(props) {
             // 注意e.target.value為字串類型(由網頁上傳入都是字串值)
             // 為了保持countryIndex(state狀態)的資料類型都一致相同，所以要轉為數字
             setCountryIndex(Number(e.target.value));
-            setCountryName(countries[e.target.value]);
+            setToHomeForm({
+              ...toHomeForm,
+              countryName: countries[e.target.value],
+            });
             // setCountryName(Object.keys(countries))
             // 重置townshipIndex的值為-1
             setTownshipIndex(-1);
@@ -47,7 +53,10 @@ function TWZipCode(props) {
             // 注意e.target.value為字串類型(由網頁上傳入都是字串值)
             // 為了保持setTownshipIndex(state狀態)的資料類型都一致相同，所以要轉為數字
             setTownshipIndex(Number(e.target.value));
-            setTownshipName(townships[countryIndex][e.target.value]);
+            setToHomeForm({
+              ...toHomeForm,
+              townshipName: townships[countryIndex][e.target.value],
+            });
           }}
         >
           <option value="-1">請選擇區域</option>

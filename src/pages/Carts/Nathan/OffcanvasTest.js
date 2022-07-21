@@ -3,30 +3,60 @@ import { useState } from 'react';
 import './Offcanvas.scss';
 import TWZipCode from './TWZipCode';
 export default function OffcanvasTest() {
+  // offcanvas setting
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  // 點擊位移單位
   const [displace, setDisplace] = useState(0);
-  const [countryName, setCountryName] = useState('');
-  const [townshipName, setTownshipName] = useState('');
+
+  // 宅配form setting
+  const [toHomeForm, setToHomeForm] = useState({
+    fullName: '',
+    mobile: '',
+    email: '',
+    countryName: '',
+    townshipName: '',
+    fullAddress: '',
+  });
+  const [pickSelfForm, setPickSelfForm] = useState({});
   const [delivery, setDelivery] = useState('');
+  const [paySelected, setPaySelected] = useState('cash');
+  // 宅配表單handler
+  const toHomeFormHandler = (e) => {
+    console.log(e.target.value);
+    setToHomeForm({ ...toHomeForm, [e.target.name]: e.target.value });
+  };
+  // 下一步
   const nextStep = () => {
-    if (displace !== 200) {
+    // 不是最後一頁 && 付款方式是信用卡
+    if (displace !== 200 && paySelected === 'credit') {
       setDisplace(displace + 100);
     } else {
       setDisplace(200);
     }
   };
+  // 上一部
   const prevStep = () => {
-    if (displace !== 0) {
+    // 不是最後一頁 && 付款方式是信用卡
+    if (displace !== 0 && paySelected === 'credit') {
       setDisplace(displace - 100);
     } else {
       setDisplace(0);
     }
   };
+  const payHandleChange = (e) => {
+    setPaySelected(e.target.name, e.target.value);
+  };
   return (
     <div className="App">
-      <Offcanvas placement={'end'} show={show} onHide={handleClose}>
+      <Offcanvas
+        backdrop={'static'}
+        placement={'end'}
+        show={show}
+        onHide={handleClose}
+      >
         <div className="carts-all-step-wrap">
           <div className="w-100 d-flex justify-content-end close-btn-wrap">
             <Offcanvas.Header closeButton></Offcanvas.Header>
@@ -77,30 +107,42 @@ export default function OffcanvasTest() {
                       >
                         <input
                           className=" border-bottom w-100 focus-none text-gray bg-transparent mb-4"
+                          name="fullName"
+                          value={toHomeForm.fullName}
                           type="text"
                           placeholder="Name :"
+                          onChange={toHomeFormHandler}
                         />
                         <input
                           className=" border-bottom w-100 focus-none text-gray bg-transparent mb-4"
+                          name="mobile"
+                          value={toHomeForm.mobile}
                           type="text"
                           placeholder="Mobile :"
+                          onChange={toHomeFormHandler}
                         />
                         <input
                           className=" border-bottom w-100 focus-none text-gray bg-transparent mb-4"
+                          name="email"
+                          value={toHomeForm.email}
                           type="text"
                           placeholder="Email :"
+                          onChange={toHomeFormHandler}
                         />
                         <TWZipCode
-                          countryName={countryName}
-                          setCountryName={setCountryName}
-                          townshipName={townshipName}
-                          setTownshipName={setTownshipName}
+                          toHomeForm={toHomeForm}
+                          setToHomeForm={setToHomeForm}
                         />
                         <input
                           className=" border-bottom w-100 focus-none text-gray bg-transparent mb-4"
+                          name="fullAddress"
+                          value={toHomeForm.fullAddress}
                           type="text"
                           placeholder="Address :"
+                          onChange={toHomeFormHandler}
                         />
+
+                        {/* 付款方式選擇 */}
                         <div className="w-100 radio-wrap d-flex">
                           <div className="w-100 d-flex justify-content-around">
                             <input
@@ -108,8 +150,11 @@ export default function OffcanvasTest() {
                               type="radio"
                               id="r1"
                               name="rr"
+                              value={'cash'}
+                              checked={paySelected === 'cash'}
+                              onChange={payHandleChange}
                             />
-                            <label for="r1">
+                            <label htmlFor="r1">
                               <span></span>貨到付款
                             </label>
                             <input
@@ -117,13 +162,22 @@ export default function OffcanvasTest() {
                               type="radio"
                               id="r2"
                               name="rr"
+                              value={'credit'}
+                              checked={paySelected === 'credit'}
+                              onChange={payHandleChange}
                             />
-                            <label for="r2">
+                            <label htmlFor="r2">
                               <span></span>線上刷卡
                             </label>
                           </div>
                         </div>
                       </div>
+                      {/* 超取表單 */}
+                      <div
+                        style={{
+                          display: delivery === 'toHome' ? 'none' : '',
+                        }}
+                      ></div>
                     </div>
                   </div>
                 </div>
