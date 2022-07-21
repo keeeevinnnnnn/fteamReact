@@ -4,6 +4,9 @@ import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import Cus_attributes from './Cus_attributes';
+import Cus_bar from './Cus_bar';
+import Cus_heatmap from './Cus_heatmap';
+
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -47,13 +50,13 @@ export default function DataTabs() {
           onChange={handleChange}
           aria-label="basic tabs example"
         >
-          <Tab label="DATA 1" {...a11yProps(0)} sx={{ width: '30%' }} />
-          <Tab label="DATA 2" {...a11yProps(1)} sx={{ width: '30%' }} />
-          <Tab label="DATA 3" {...a11yProps(2)} sx={{ width: '30%' }} />
+          <Tab label="ATTRIBUTES" {...a11yProps(0)} sx={{ width: '30%' }} />
+          <Tab label="FEEBACKS" {...a11yProps(1)} sx={{ width: '30%' }} />
+          <Tab label="ACTIVITIES" {...a11yProps(2)} sx={{ width: '30%' }} />
         </Tabs>
       </Box>
       <TabPanel value={value} index={0}>
-        <div className="row ">
+        <div className="row detail_tab">
           <Cus_attributes />
           <Cus_attributes />
           <Cus_attributes />
@@ -63,18 +66,11 @@ export default function DataTabs() {
         </div>
       </TabPanel>
       <TabPanel value={value} index={1}>
-        DATA 2
-        <hr />
-        DATA 2
-        <hr />
-        DATA 2
+       <Cus_bar/>
       </TabPanel>
       <TabPanel value={value} index={2}>
-        DATA 3
-        <hr />
-        DATA 3
-        <hr />
-        DATA 3
+      <Cus_heatmap className="h-100"/>
+        
       </TabPanel>
     </Box>
   );

@@ -20,12 +20,12 @@ function Cus_product_detail() {
                   className="img-fluid"
                 />
               </div>
-              <div className="card">
+              <div className="card cus_data_tab">
                 <DataTabs />
               </div>
               
             </div>
-            <div className="right col-12 col-sm-6 d-flex flex-column justify-content-between">
+            <div className="right col-12 col-sm-6 d-flex flex-column border border-gray">
            
              
               <div className="message mb-5">
@@ -49,10 +49,12 @@ function Cus_product_detail() {
               </select>
                 <textarea className='form-control'></textarea>
               </form> */}
-              <Link to={'/customized/explore'}>
-                <button className="viv-btn">Explore</button>
-              </Link>
-              {/* <button className="viv-btn">錢錢錢給我錢</button> */}
+              <div class="detail_btn">
+                <Link to={'/customized/explore'}>
+                  <button className="viv-btn">Explore</button>
+                </Link>
+                <button className="viv-btn">Add To Cart</button>
+              </div>
             </div>
           </div>
         </div>
