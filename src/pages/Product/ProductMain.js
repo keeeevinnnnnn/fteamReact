@@ -6,10 +6,13 @@ import axios from './commons/axios';
 import ProductList from './components/ProductList';
 import { Link, useLocation } from 'react-router-dom';
 import Pagination from './components/Pagination';
+
 const ProductMain = () => {
+  // 原始資料
   const [data, setData] = useState({});
   const location = useLocation();
   const usp = new URLSearchParams(location.search);
+
   const getPageData = async (event, gotoPage) => {
     if (event) {
       event.preventDefault();
@@ -24,6 +27,7 @@ const ProductMain = () => {
   useEffect(() => {
     getPageData(null, +usp.get('page') || 1);
   }, [location]);
+
   return (
     <div className="w-100 vh-100 d-flex justify-content-end align-items-end">
       <div className="work-area col-10 pb-5 pe-5 text-danger">
