@@ -23,17 +23,13 @@ import Customized_explore from './pages/Customized/Customized_explore';
 import Customized_collect from './pages/Customized/Customized_collect';
 
 export const TokenContext = React.createContext();
-export const AuthContext = React.createContext();
 function App() {
   // 登入狀態判斷
   const [auth, setAuth] = useState(false);
-  const authObj = {
-    value: auth,
-    set: setAuth,
-  };
   // 登入後會存的值user_token JWT
   const token = localStorage.getItem('user_token');
   return (
+    // 所有人都可以直接拿到token
     <TokenContext.Provider value={token}>
       <Router>
         <div className="container-fluid vh-100 fteam-wrap">
