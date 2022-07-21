@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Personal = () => {
+const Personal = ({ setmoveTrain }) => {
   return (
     <>
       <div className="h-100 text-center personal">
@@ -16,8 +16,26 @@ const Personal = () => {
         <h4>Mobile</h4>
         <p>0920913633</p>
         <div className="d-flex justify-content-around">
-          <button>Edit</button>
-          <button>Password</button>
+          <button
+            onClick={(e) => {
+              // 阻擋按鈕預設行為
+              e.preventDefault();
+              // 移動到編輯個人資料
+              setmoveTrain('translateY(-100%)');
+            }}
+          >
+            Edit
+          </button>
+          <button
+            onClick={(e) => {
+              // 阻擋按鈕預設行為
+              e.preventDefault();
+              // 移動到修改密碼
+              setmoveTrain('translateY(-200%)');
+            }}
+          >
+            Password
+          </button>
         </div>
       </div>
     </>

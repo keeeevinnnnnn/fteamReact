@@ -1,7 +1,7 @@
 import React from 'react';
 import '../../styles/MemberEdit.scss';
 
-const MemberEdit = () => {
+const MemberEdit = ({ setmoveTrain }) => {
   return (
     <>
       <div className="h-100 memberEdit">
@@ -27,8 +27,17 @@ const MemberEdit = () => {
           <h5>Address</h5>
           <textarea type="text" />
           <div className="d-flex justify-content-around">
-            <button>Edit</button>
-            <button>Password</button>
+            <button
+              onClick={(e) => {
+                // 阻擋按鈕預設行為
+                e.preventDefault();
+                // 移動到顯示個人資料
+                setmoveTrain('translateY(-0%)');
+              }}
+            >
+              Back
+            </button>
+            <button>Confirm</button>
           </div>
         </form>
       </div>

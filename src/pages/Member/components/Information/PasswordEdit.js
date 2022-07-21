@@ -1,6 +1,6 @@
 import React from 'react';
 
-const PasswordEdit = () => {
+const PasswordEdit = ({ setmoveTrain }) => {
   return (
     <>
       <div className="h-100 d-flex align-items-center">
@@ -16,7 +16,17 @@ const PasswordEdit = () => {
             <h4>Confirm Password</h4>
             <input type="password" />
             <p>錯誤訊息</p>
-            <div className="d-flex justify-content-center">
+            <div className="d-flex justify-content-around">
+              <button
+                onClick={(e) => {
+                  // 阻擋按鈕預設行為
+                  e.preventDefault();
+                  // 移動到顯示個人資料
+                  setmoveTrain('translateY(0%)');
+                }}
+              >
+                Back
+              </button>
               <button>Confirm</button>
             </div>
           </form>
