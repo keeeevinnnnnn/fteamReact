@@ -1,5 +1,5 @@
 import React from 'react';
-import '../style/AvatarForm.scss';
+import '../../styles/AvatarForm.scss';
 
 const AvatarForm = () => {
   return (

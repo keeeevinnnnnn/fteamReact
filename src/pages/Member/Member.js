@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useSpinner } from '../../components/useSpinner';
 import Information from './components/Information';
-import './style/Member.scss';
+import './styles/Member.scss';
 
 const Member = () => {
   const { spinner, setLoading } = useSpinner(4000);
