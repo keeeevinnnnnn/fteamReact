@@ -5,7 +5,7 @@ const ProductList = (props) => {
   const { sid, img, name, brand, price } = props;
   const [heart, setHeart] = useState(false);
   return (
-    <div className="col-4">
+    <div className="col-4 mt-5">
       <div className="product-header">
         <div className="pro-favorites mb-2">
           <svg
