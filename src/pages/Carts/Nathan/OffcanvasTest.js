@@ -2,6 +2,7 @@ import { Offcanvas } from 'react-bootstrap';
 import { useState } from 'react';
 import './Offcanvas.scss';
 import TWZipCode from './TWZipCode';
+import axios from 'axios';
 export default function OffcanvasTest() {
   // offcanvas setting
   const [show, setShow] = useState(false);
@@ -47,7 +48,7 @@ export default function OffcanvasTest() {
     }
   };
   const payHandleChange = (e) => {
-    setPaySelected(e.target.name, e.target.value);
+    setPaySelected(e.target.value);
   };
   return (
     <div className="App">
@@ -94,6 +95,9 @@ export default function OffcanvasTest() {
                         }}
                         className="focus-none bg-transparent border-0 text-gray fs-6"
                       >
+                        <option value="" disabled>
+                          配送方式
+                        </option>
                         <option value="toHome">宅配到府</option>
                         <option value="pickSelf">超商取貨</option>
                       </select>
@@ -134,7 +138,7 @@ export default function OffcanvasTest() {
                           setToHomeForm={setToHomeForm}
                         />
                         <input
-                          className=" border-bottom w-100 focus-none text-gray bg-transparent mb-4"
+                          className=" border-bottom w-100 focus-none text-gray bg-transparent mb-5"
                           name="fullAddress"
                           value={toHomeForm.fullAddress}
                           type="text"
@@ -174,10 +178,13 @@ export default function OffcanvasTest() {
                       </div>
                       {/* 超取表單 */}
                       <div
+                        className=" h-100"
                         style={{
                           display: delivery === 'toHome' ? 'none' : '',
                         }}
-                      ></div>
+                      >
+                        <div className=" w-100 h-100 bg-danger"></div>
+                      </div>
                     </div>
                   </div>
                 </div>

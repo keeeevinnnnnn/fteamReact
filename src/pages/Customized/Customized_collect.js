@@ -13,7 +13,7 @@ function Customized_collect() {
               </Link>
             </div>
             <div className="">
-            <h2 className='m-5'>Privious Creations</h2>
+            <h2 className='m-5'>Previous Creations</h2>
               <div className="row m-5">
                 <div className="card col-12 col-sm-4">
                   <h3>Prject Name</h3>
