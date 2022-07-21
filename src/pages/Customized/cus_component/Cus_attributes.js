@@ -1,11 +1,12 @@
 import React from 'react';
+import './Cus_component.scss'
 
 function Cus_attributes() {
   return (
     <>
-      <div className="attributes border border-gray m-2">
+      <div className="attributes col-4">
         <label>COLOR</label>
-        <h5>BLACK</h5>
+        <h5>black</h5>
       </div>
     </>
   );

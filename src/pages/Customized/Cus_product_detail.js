@@ -25,17 +25,20 @@ function Cus_product_detail() {
               </div>
               
             </div>
-            <div className="right col-12 col-sm-6">
-            <h2 className='mb-3'>Message Board</h2>
+            <div className="right col-12 col-sm-6 d-flex flex-column justify-content-between">
+           
              
               <div className="message mb-5">
+              <h2 className='mb-3'>Message Board</h2>
+              <Cus_message/>
+              <Cus_message/>
               <Cus_message/>
               <Cus_message/>
               <Cus_message/>
               
               </div>
              
-              <form>
+              {/* <form>
               <h2>Leave a Message</h2>
               <select className='form-control mb-3'>
                 <option> 喜歡！</option>
@@ -45,11 +48,11 @@ function Cus_product_detail() {
                 <option> 不好說</option>
               </select>
                 <textarea className='form-control'></textarea>
-              </form>
+              </form> */}
               <Link to={'/customized/explore'}>
                 <button className="viv-btn">Explore</button>
               </Link>
-              <button className="viv-btn">錢錢錢給我錢</button>
+              {/* <button className="viv-btn">錢錢錢給我錢</button> */}
             </div>
           </div>
         </div>

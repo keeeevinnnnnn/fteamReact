@@ -53,20 +53,27 @@ export default function DataTabs() {
         </Tabs>
       </Box>
       <TabPanel value={value} index={0}>
-          <Cus_attributes/><Cus_attributes/>
+        <div className="row ">
+          <Cus_attributes />
+          <Cus_attributes />
+          <Cus_attributes />
+          <Cus_attributes />
+          <Cus_attributes />
+          <Cus_attributes />
+        </div>
       </TabPanel>
       <TabPanel value={value} index={1}>
         DATA 2
-        <hr/>
+        <hr />
         DATA 2
-        <hr/>
+        <hr />
         DATA 2
       </TabPanel>
       <TabPanel value={value} index={2}>
         DATA 3
-        <hr/>
+        <hr />
         DATA 3
-        <hr/>
+        <hr />
         DATA 3
       </TabPanel>
     </Box>
