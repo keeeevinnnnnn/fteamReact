@@ -1,11 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Logo from '../logo_imgs/fteam-logo2.png';
 import MenuSelect from './MenuSelect';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import { TokenContext } from '../App';
 
-const Navbar = ({ auth, setAuth, token }) => {
+const Navbar = ({ auth, setAuth }) => {
+  const token = useContext(TokenContext);
   // 頁面導向方法
   const navigate = useNavigate();
   // 接該會員的所有資料

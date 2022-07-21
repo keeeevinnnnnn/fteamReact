@@ -22,22 +22,29 @@ import Cus_product_detail from './pages/Customized/Cus_product_detail';
 import Customized_explore from './pages/Customized/Customized_explore';
 import Customized_collect from './pages/Customized/Customized_collect';
 
+export const TokenContext = React.createContext();
+export const AuthContext = React.createContext();
 function App() {
   // 登入狀態判斷
   const [auth, setAuth] = useState(false);
+  const authObj = {
+    value: auth,
+    set: setAuth,
+  };
   // 登入後會存的值user_token JWT
   const token = localStorage.getItem('user_token');
   return (
-    <Router>
-      <div className="container-fluid vh-100 fteam-wrap">
-        <div className="row h-100">
-          <div className="p-0 d-flex flex-column w-100 h-100">
-            <Navbar auth={auth} setAuth={setAuth} token={token} />
-            <div className="w-100 bottom-grid d-flex">
-              <SideBar />
+    <TokenContext.Provider value={token}>
+      <Router>
+        <div className="container-fluid vh-100 fteam-wrap">
+          <div className="row h-100">
+            <div className="p-0 d-flex flex-column w-100 h-100">
+              <Navbar auth={auth} setAuth={setAuth} />
+              <div className="w-100 bottom-grid d-flex">
+                <SideBar />
 
-              {/* col-2 的側邊欄 */}
-              {/* <div className="col-10 h-100 p-0 "></div>有要加sidebar的 用col-10 這段 沒有的用 col-12 */}
+                {/* col-2 的側邊欄 */}
+                {/* <div className="col-10 h-100 p-0 "></div>有要加sidebar的 用col-10 這段 沒有的用 col-12 */}
 
               <Routes>
                 <Route path="/" element={<Home />} />
@@ -81,8 +88,9 @@ function App() {
             </div>
           </div>
         </div>
-      </div>
-    </Router>
+        </div>
+      </Router>
+    </TokenContext.Provider>
   );
 }
 
