@@ -7,6 +7,9 @@ import SideBar from './components/SideBar';
 import Home from './pages/Home/Home';
 import Member from './pages/Member';
 import Lesson from './pages/Lesson/Lesson';
+import Lesson_zhongxiao from './pages/Lesson/Lesson_zhongxiao';
+import Lesson_banqiao from './pages/Lesson/Lesson_banqiao';
+
 import Products from './pages/Product/Products';
 import Customized from './pages/Customized/Customized';
 import Orders from './pages/Orders/Orders';
@@ -65,6 +68,15 @@ function App() {
                       <Route path="/member" element={<Member />} />
                       <Route path="/login" element={<Login />} />
                       <Route path="/lesson" element={<Lesson />} />
+                      <Route
+                        path="/lesson/lesson_zhongxiao"
+                        element={<Lesson_zhongxiao />}
+                      />
+                      <Route
+                        path="/lesson/lesson_banqiao"
+                        element={<Lesson_banqiao />}
+                      />
+
                       <Route path="/products" element={<ProductMain />} />
                       <Route path="/customized" element={<Customized />} />
                       <Route

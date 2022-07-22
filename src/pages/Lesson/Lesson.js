@@ -1,5 +1,5 @@
-import './Lesson.css';
-
+import './style/Lesson.css';
+import { Link } from 'react-router-dom';
 const Lesson = () => {
   return (
     <>
@@ -38,17 +38,31 @@ const Lesson = () => {
                 <h6 className="card-title text-center fs-5 fw-bold">
                   【忠孝館】
                 </h6>
-                <a href="#/">
-                  <i className="fa-solid fa-location-dot fs-4 coolermap"></i>
-                </a>
+                <div className="coolermap d-inline-block">
+                  <a href="#/">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="h-5 w-5"
+                      viewBox="0 0 20 20"
+                      fill="none"
+                      stroke="black"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
+                  </a>
+                </div>
                 <span className="fs-6 fw-bold"> 國父紀念館</span>
                 <p className="card-text  pt-4">
                   HRC舞蹈工作室提供最優質的舞蹈教學服務，每月超過三百堂多樣化課程、數十種舞蹈風格，多元的課程選擇、由淺入深的漸進式學習，讓你輕鬆踏出舞蹈的第一步，打穩基礎、深根學習、挑戰自己！
                 </p>
-                <div className=" w-100 d-flex justify-content-end">
-                  <a href="#/" className="cooler-btn ">
+                <div className=" w-100 d-flex  justify-content-end">
+                  <Link to={'/lesson/lesson_zhongxiao'} className="cooler-btn">
                     Go
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -65,15 +79,31 @@ const Lesson = () => {
                 <h6 className="card-title text-center fs-5 fw-bold">
                   【板橋民生旗艦館】
                 </h6>
-                <i className="fa-solid fa-location-dot fs-4 coolermap"></i>
+                <div className="coolermap d-inline-block">
+                  <a href="#/">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="h-5 w-5"
+                      viewBox="0 0 20 20"
+                      fill="none"
+                      stroke="black"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
+                  </a>
+                </div>
                 <span className="fs-6 fw-bold"> 新埔站</span>
                 <p className="card-text  pt-4">
                   HRC舞蹈工作室提供最優質的舞蹈教學服務，每月超過三百堂多樣化課程、數十種舞蹈風格，多元的課程選擇、由淺入深的漸進式學習，讓你輕鬆踏出舞蹈的第一步，打穩基礎、深根學習、挑戰自己！
                 </p>
-                <div className=" w-100 d-flex justify-content-end">
-                  <a href="#/" className="cooler-btn ">
+                <div className=" w-100 d-flex  justify-content-end">
+                  <Link to={'/lesson/lesson_banqiao'} className="cooler-btn">
                     Go
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>
