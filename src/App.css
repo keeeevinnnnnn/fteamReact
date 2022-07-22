@@ -11,6 +11,19 @@
   /* outline: thin solid rgb(203, 108, 108); */
 }
 
+/* mui tabs setting */
+/* 要拿掉click特效 在<Tab/> 加上 disableRipple={true} */
+
+.css-1a0mt41-MuiButtonBase-root-MuiTab-root.Mui-selected {
+  color: black !important;
+}
+
+.css-1aquho2-MuiTabs-indicator {
+  background-color: var(--main) !important;
+}
+
+/* mui tabs setting */
+
 .nav-column {
   flex-direction: column !important;
 }

@@ -90,6 +90,7 @@ const CreditForm = () => {
                 type="text"
                 className="border-bottom w-20 focus-none text-gray bg-transparent"
                 maxLength={4}
+                pattern="^[0-9]*$"
               />
               {/* 5~8 */}
               <input
@@ -178,7 +179,7 @@ const CreditForm = () => {
               style={{ transform: `rotateY(${rotateDeg}deg)` }}
               className="flip-card-inner"
             >
-              <div className="flip-card-front">
+              <div className="w-100 flip-card-front">
                 <div className="card-info-number-wrap">
                   <div className="w-90 d-flex justify-content-between">
                     <input
@@ -221,7 +222,7 @@ const CreditForm = () => {
                   </div>
                 </div>
               </div>
-              <div className="flip-card-back">
+              <div className="w-100 flip-card-back">
                 <div className="w-90 cvv-text text-end text-gray">
                   <input
                     className="text-end w-40 bg-transparent border-0 text-gray"
