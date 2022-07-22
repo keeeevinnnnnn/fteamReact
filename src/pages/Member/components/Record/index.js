@@ -1,0 +1,68 @@
+import React, { useState } from 'react';
+import MuiTabs from './MuiTabs';
+import ReactEcharts from 'echarts-for-react';
+
+const Record = () => {
+  const [selectItem, setSelectItem] = useState('COLLECT');
+  const option = {
+    tooltip: {
+      trigger: 'item',
+    },
+    legend: {
+      top: '5%',
+      left: 'center',
+    },
+    series: [
+      {
+        name: 'Access From',
+        type: 'pie',
+        radius: ['40%', '70%'],
+        avoidLabelOverlap: false,
+        itemStyle: {
+          borderRadius: 10,
+          borderColor: '#fff',
+          borderWidth: 2,
+        },
+        label: {
+          show: false,
+          position: 'center',
+        },
+        emphasis: {
+          label: {
+            show: true,
+            fontSize: '40',
+            fontWeight: 'bold',
+          },
+        },
+        labelLine: {
+          show: false,
+        },
+        data: [
+          { value: 1048, name: 'Search Engine' },
+          { value: 735, name: 'Direct' },
+          { value: 580, name: 'Email' },
+          { value: 484, name: 'Union Ads' },
+          { value: 300, name: 'Video Ads' },
+        ],
+      },
+    ],
+  };
+  return (
+    <>
+      <MuiTabs selectItem={selectItem} setSelectItem={setSelectItem} />
+      <div className="w-100 h-90 d-flex">
+        <div className="col-6">
+          <div className="w-100 h-18 bg-light m-3"></div>
+          <div className="w-100 h-18 bg-light m-3"></div>
+          <div className="w-100 h-18 bg-light m-3"></div>
+          <div className="w-100 h-18 bg-light m-3"></div>
+        </div>
+        <div className="col-6">
+          <ReactEcharts option={option} style={{ top: '20%' }} />
+        </div>
+      </div>
+    </>
+  );
+};
+
+export default Record;

@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useSpinner } from '../../components/useSpinner';
 import Information from './components/Information';
+import Record from './components/Record';
 import './styles/Member.scss';
 
 const Member = () => {
@@ -15,10 +16,12 @@ const Member = () => {
       <div className="member-bg w-100 vh-100 d-flex justify-content-end align-items-end">
         <div className="work-area col-12 col-md-10 p-0 d-flex">
           <div className="col-4 h-100">
-          {/* 左邊 大頭貼 個人資料修改等等 */}
+            {/* 左邊 大頭貼 個人資料修改等等 */}
             <Information />
           </div>
-          <div className="col-8 h-100"></div>
+          <div className="col-8 h-100">
+            <Record />
+          </div>
         </div>
       </div>
     </>
