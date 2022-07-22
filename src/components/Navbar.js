@@ -20,8 +20,8 @@ const Navbar = () => {
   const [navName, setNavName] = useState('');
   // 判斷有沒有登入存的值
   useEffect(() => {
-    // 如果user_token不是空值再執行 否則直接return
-    if (token === '') {
+    // 登入狀態不是false再執行 否則直接return
+    if (!auth) {
       console.log(token);
       return;
     } else {
