@@ -4,6 +4,7 @@ import ReactEcharts from 'echarts-for-react';
 
 const Record = () => {
   const [selectItem, setSelectItem] = useState('COLLECT');
+  const aaa = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   const option = {
     tooltip: {
       trigger: 'item',
@@ -16,6 +17,7 @@ const Record = () => {
       {
         name: 'Access From',
         type: 'pie',
+        color: ['#cc6b66', '#859aa0', '#b69d87', '#d56d00', '#a55d87'],
         radius: ['40%', '70%'],
         avoidLabelOverlap: false,
         itemStyle: {
@@ -38,11 +40,11 @@ const Record = () => {
           show: false,
         },
         data: [
-          { value: 1048, name: 'Search Engine' },
-          { value: 735, name: 'Direct' },
-          { value: 580, name: 'Email' },
-          { value: 484, name: 'Union Ads' },
-          { value: 300, name: 'Video Ads' },
+          { value: `${aaa.length}`, name: 'Search Engine' },
+          { value: 5, name: 'Direct' },
+          { value: 2, name: 'Email' },
+          { value: 4, name: 'Union Ads' },
+          { value: 6, name: 'Video Ads' },
         ],
       },
     ],
