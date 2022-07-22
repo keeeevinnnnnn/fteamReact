@@ -69,6 +69,11 @@
   margin-top: 100px;
 }
 
+.credit-invalid:invalid {
+  border-radius: 2px 2px 0 0;
+  outline: thin solid rgb(142, 0, 0);
+}
+
 @media screen and (max-width: 768px) {
   .credit-wrap-rwd {
     width: 300px;

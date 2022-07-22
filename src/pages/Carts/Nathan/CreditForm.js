@@ -10,9 +10,14 @@ const CreditForm = () => {
     validYear: '',
     CVV: '',
   });
-  //setToHomeForm({ ...toHomeForm, [e.target.name]: e.target.value });
+  // credit form obj useState setting
   const creditFormHandler = (e) => {
     setCreditForm({ ...creditForm, [e.target.name]: e.target.value });
+  };
+  const keyPressHandler = (e) => {
+    if (!/[0-9]/.test(e.key)) {
+      e.preventDefault();
+    }
   };
   // 卡片翻轉設定
   const [rotateDeg, setRotateDeg] = useState(0);
@@ -76,24 +81,25 @@ const CreditForm = () => {
         {/* 信用卡表單 */}
         <div className=" w-100 h-30 d-flex flex-column justify-content-between">
           <div className="w-100 h-40">
-            <div className=" w-100 h-35 text-gray d-flex justify-content-start align-items-center">
+            <div className=" w-100 h-35 text-gray d-flex justify-content-between align-items-center">
               <span>Select Card Type</span>
             </div>
             {/* 卡號 */}
             <div className="w-100 h-65 text-gray d-flex justify-content-between align-items-end">
               {/* 1~4 */}
               <input
+                onKeyPress={keyPressHandler}
                 onChange={creditFormHandler}
                 name="num1to4"
                 onFocus={rotateToZero}
                 value={creditForm.num1to4}
                 type="text"
-                className="border-bottom w-20 focus-none text-gray bg-transparent"
+                className="credit-invalid border-bottom w-20 focus-none text-gray bg-transparent"
                 maxLength={4}
-                pattern="^[0-9]*$"
               />
               {/* 5~8 */}
               <input
+                onKeyPress={keyPressHandler}
                 onChange={creditFormHandler}
                 name="num5to8"
                 onFocus={rotateToZero}
@@ -104,6 +110,7 @@ const CreditForm = () => {
               />
               {/* 9~12 */}
               <input
+                onKeyPress={keyPressHandler}
                 onChange={creditFormHandler}
                 name="num9to12"
                 onFocus={rotateToZero}
@@ -114,6 +121,7 @@ const CreditForm = () => {
               />
               {/* 13~16 */}
               <input
+                onKeyPress={keyPressHandler}
                 onChange={creditFormHandler}
                 name="num13to16"
                 onFocus={rotateToZero}
@@ -133,6 +141,7 @@ const CreditForm = () => {
               <div className="w-100 h-65 d-flex justify-content-between align-items-end text-gray">
                 {/* 到期日 XX月*/}
                 <input
+                  onKeyPress={keyPressHandler}
                   onChange={creditFormHandler}
                   name="validMonth"
                   onFocus={rotateToZero}
@@ -143,6 +152,7 @@ const CreditForm = () => {
                 />
                 /{/* YY年 */}
                 <input
+                  onKeyPress={keyPressHandler}
                   onChange={creditFormHandler}
                   name="validYear"
                   onFocus={rotateToZero}
@@ -160,6 +170,7 @@ const CreditForm = () => {
               <div className="w-100 h-65 d-flex justify-content-start align-items-end text-gray">
                 {/* 驗證碼 */}
                 <input
+                  onKeyPress={keyPressHandler}
                   onChange={creditFormHandler}
                   name="CVV"
                   onFocus={rotateToBack}
