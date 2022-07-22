@@ -21,7 +21,7 @@ const AuthContextProvider = ({ children }) => {
     const logout = () => {
         localStorage.clear();
         setAuth({ ...unAuthState });
-        navigate('/');
+        navigate('/', { replace: true });
     };
     return (
         <AuthContext.Provider value={{ ...auth, setAuth, logout }}>

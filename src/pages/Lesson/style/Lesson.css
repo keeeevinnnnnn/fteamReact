@@ -22,11 +22,13 @@
 }
 
 .coolermap {
-  color: #000000;
+  width: 2rem;
+  height: 2rem;
 }
 
-.coolermap:hover {
-  color: #61dafbd2;
+.coolermap svg:hover {
+  stroke: var(--main);
+  fill: var(--main);
 }
 
 .cooler-btn {
