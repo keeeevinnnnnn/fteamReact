@@ -4,6 +4,7 @@ import './Offcanvas.scss';
 import TWZipCode from './TWZipCode';
 import axios from 'axios';
 import CreditForm from './CreditForm';
+import CheckoutFinish from './CheckoutFinish';
 export default function OffcanvasTest() {
   // offcanvas setting
   const [show, setShow] = useState(false);
@@ -209,7 +210,9 @@ export default function OffcanvasTest() {
               {/* 結帳完成頁面 */}
               <div className="check-compele-page">
                 <div className="w-100 check-compele-wrap">
-                  <div className="w-80 h-90"></div>
+                  <div className="w-80 h-90">
+                    <CheckoutFinish />
+                  </div>
                 </div>
                 <button onClick={nextStep} className="w-100">
                   Continue to Shopping
