@@ -37,7 +37,7 @@ function App() {
     };
     return (
         <Router>
-            {/* ConText檔 */}
+            {/* 裡面包含ConText(會員登入判斷)及登出涵式 */}
             <AuthContextProvider>
                 {/* 會員個人資料 */}
                 <MemberContext.Provider value={memberObj}>
