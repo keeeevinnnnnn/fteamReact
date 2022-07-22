@@ -50,10 +50,11 @@ export default function DataTabs() {
           value={value}
           onChange={handleChange}
           aria-label="basic tabs example"
+          
         >
-          <Tab label="ATTRIBUTES" {...a11yProps(0)} sx={{ width: '30%' }} />
-          <Tab label="FEEBACKS" {...a11yProps(1)} sx={{ width: '30%' }} />
-          <Tab label="ACTIVITIES" {...a11yProps(2)} sx={{ width: '30%' }} />
+          <Tab label="ATTRIBUTES" {...a11yProps(0)} sx={{ width: '30%' }} disableRipple={true} />
+          <Tab label="FEEBACKS" {...a11yProps(1)} sx={{ width: '30%' }} disableRipple={true} />
+          <Tab label="ACTIVITIES" {...a11yProps(2)} sx={{ width: '30%' }} disableRipple={true} />
         </Tabs>
       </Box>
       <TabPanel value={value} index={0}>
