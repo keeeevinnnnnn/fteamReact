@@ -21,7 +21,7 @@ const MemberEdit = ({
     <>
       <div className="h-100 d-flex justify-content-center align-items-center">
         {/* 個人資料修改 */}
-        <form action="" className="w-80 text-center memberEdit pt-3">
+        <form action="" className="w-80 text-center memberEdit pt-2">
           <h5>Account</h5>
           <input type="text" value={fields.account} />
           <p>錯誤訊息</p>
