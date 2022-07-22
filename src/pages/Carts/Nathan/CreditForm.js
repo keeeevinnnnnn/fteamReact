@@ -90,6 +90,7 @@ const CreditForm = () => {
                 type="text"
                 className="border-bottom w-20 focus-none text-gray bg-transparent"
                 maxLength={4}
+                pattern="^[0-9]*$"
               />
               {/* 5~8 */}
               <input
