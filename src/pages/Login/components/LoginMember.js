@@ -2,7 +2,6 @@ import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import LoginLogo from './LoginLogo';
-// import { AuthContext } from '../../../App';
 import AuthContext from '../../../components/AuthContext';
 
 const LoginMember = ({
@@ -11,10 +10,7 @@ const LoginMember = ({
     loginLogoText,
     setLoginLogoText,
 }) => {
-    // 取得登入狀態
-    // const authObj = useContext(AuthContext);
-    // const { setAuth } = authObj;
-    const { auth, token, setAuth, logout } = useContext(AuthContext);
+    const { auth, setAuth } = useContext(AuthContext);
     // 頁面導向
     const navigate = useNavigate();
     // 眼睛查看密碼
@@ -74,7 +70,6 @@ const LoginMember = ({
             localStorage.setItem('user_token', response.data.token);
             alert('登入成功');
             // 整個網站判斷有沒有登入
-            // setAuth(true);
             setAuth({ ...auth, auth: true });
             // 頁面轉向
             navigate('/', { replace: true });

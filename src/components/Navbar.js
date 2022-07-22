@@ -4,13 +4,11 @@ import Logo from '../logo_imgs/fteam-logo2.png';
 import MenuSelect from './MenuSelect';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-// import { TokenContext } from '../App';
 import { MemberContext } from '../App';
 import AuthContext from './AuthContext';
 
 const Navbar = () => {
-    // const token = useContext(TokenContext);
-    const { auth, token, setAuth, logout } = useContext(AuthContext);
+    const { auth, token, logout } = useContext(AuthContext);
     const memberObg = useContext(MemberContext);
     const { member, setMember } = memberObg;
     // 頁面導向方法
@@ -140,9 +138,7 @@ const Navbar = () => {
                             <div
                                 className="text-decoration-none text-black auth-text-wrap"
                                 onClick={() => {
-                                    // setAuth(false);
                                     localStorage.clear();
-                                    // navigate('/', { replace: true });
                                     logout();
                                 }}
                             >
