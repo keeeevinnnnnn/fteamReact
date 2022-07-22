@@ -29,17 +29,12 @@ export const MemberContext = React.createContext();
 function App() {
   // 從Nav接住登入會員的個人資料
   const [member, setMember] = useState([]);
-  // 把上述State包成物件Context下去
-  const memberObj = {
-    member: member,
-    setMember: setMember,
-  };
   return (
     <Router>
       {/* 裡面包含ConText(會員登入判斷)及登出涵式 */}
       <AuthContextProvider>
         {/* 會員個人資料 */}
-        <MemberContext.Provider value={memberObj}>
+        <MemberContext.Provider value={{ member, setMember }}>
           <div className="container-fluid vh-100 fteam-wrap">
             <div className="row h-100">
               <div className="p-0 d-flex flex-column w-100 h-100">

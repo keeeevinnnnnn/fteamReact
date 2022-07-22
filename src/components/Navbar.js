@@ -12,8 +12,7 @@ const Navbar = () => {
   // auth為登入判斷(true,false) token為會員JWT的token logout是登出涵式
   const { auth, token, logout, auths } = useContext(AuthContext);
   // 會員個人資料的State
-  const memberObg = useContext(MemberContext);
-  const { member, setMember } = memberObg;
+  const { member, setMember } = useContext(MemberContext);
   // 頁面導向方法
   const navigate = useNavigate();
   // 接NavBar要顯示的姓名或暱稱
