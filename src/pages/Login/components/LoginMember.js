@@ -70,7 +70,7 @@ const LoginMember = ({
             localStorage.setItem('user_token', response.data.token);
             alert('登入成功');
             // 整個網站判斷有沒有登入
-            setAuth({ ...auth, auth: true });
+            setAuth({ token: response.data.token, auth: true });
             // 頁面轉向
             navigate('/', { replace: true });
         } else if (response.data.bollen === true) {
