@@ -8,8 +8,8 @@ import { MemberContext } from '../App';
 import AuthContext from './AuthContext';
 
 const Navbar = () => {
-    // 從這支Context拿到會員JWT token
-    // auth為登入判斷(true,false)
+    // 從這支Context拿值
+    // auth為登入判斷(true,false) token為會員JWT的token logout是登出涵式
     const { auth, token, logout } = useContext(AuthContext);
     // 會員個人資料的State
     const memberObg = useContext(MemberContext);
