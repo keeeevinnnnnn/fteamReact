@@ -10,7 +10,7 @@ import AuthContext from './AuthContext';
 const Navbar = () => {
   // 從這支Context拿值
   // auth為登入判斷(true,false) token為會員JWT的token logout是登出涵式
-  const { auth, token, logout, change } = useContext(AuthContext);
+  const { auth, token, logout, auths } = useContext(AuthContext);
   // 會員個人資料的State
   const memberObg = useContext(MemberContext);
   const { member, setMember } = memberObg;
@@ -46,7 +46,7 @@ const Navbar = () => {
           }
         });
     }
-  }, [auth, token, change]); // 有變更資料才刷新
+  }, [auths]); // 有變更資料才刷新
   return (
     <>
       <div className="w-100 top-grid d-flex">

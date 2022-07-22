@@ -99,6 +99,7 @@ const MemberEdit = ({
         console.log(res.data);
         setLeaveForm({ ...res.data.body });
         setAuths({ ...auths, change: 'Change Member Edit' });
+        console.log(auths);
       });
   }
   return (
