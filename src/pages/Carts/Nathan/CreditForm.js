@@ -1,6 +1,20 @@
 import React, { useState } from 'react';
 import './CreditForm.scss';
 const CreditForm = () => {
+  const [creditForm, setCreditForm] = useState({
+    num1to4: '',
+    num5to8: '',
+    num9to12: '',
+    num13to16: '',
+    validMonth: '',
+    validYear: '',
+    CVV: '',
+  });
+  //setToHomeForm({ ...toHomeForm, [e.target.name]: e.target.value });
+  const creditFormHandler = (e) => {
+    setCreditForm({ ...creditForm, [e.target.name]: e.target.value });
+  };
+  // 卡片翻轉設定
   const [rotateDeg, setRotateDeg] = useState(0);
   const rotateToZero = () => {
     setRotateDeg(0);
@@ -69,48 +83,72 @@ const CreditForm = () => {
             <div className="w-100 h-65 text-gray d-flex justify-content-between align-items-end">
               {/* 1~4 */}
               <input
+                onChange={creditFormHandler}
+                name="num1to4"
                 onFocus={rotateToZero}
+                value={creditForm.num1to4}
                 type="text"
                 className="border-bottom w-20 focus-none text-gray bg-transparent"
+                maxLength={4}
               />
               {/* 5~8 */}
               <input
+                onChange={creditFormHandler}
+                name="num5to8"
                 onFocus={rotateToZero}
+                value={creditForm.num5to8}
                 type="text"
                 className="border-bottom w-20 focus-none text-gray bg-transparent"
+                maxLength={4}
               />
               {/* 9~12 */}
               <input
+                onChange={creditFormHandler}
+                name="num9to12"
                 onFocus={rotateToZero}
+                value={creditForm.num9to12}
                 type="text"
                 className="border-bottom w-20 focus-none text-gray bg-transparent"
+                maxLength={4}
               />
               {/* 13~16 */}
               <input
+                onChange={creditFormHandler}
+                name="num13to16"
                 onFocus={rotateToZero}
+                value={creditForm.num13to16}
                 type="text"
                 className="border-bottom w-20 focus-none text-gray bg-transparent"
+                maxLength={4}
               />
             </div>
           </div>
           {/* 到期日 驗證碼 */}
           <div className="w-100 h-40 d-flex justify-content-between">
-            <div className="w-30 h-100">
+            <div className="w-35 h-100">
               <div className="w-100 h-35 text-gray">
                 <span>Expiry Date</span>
               </div>
               <div className="w-100 h-65 d-flex justify-content-between align-items-end text-gray">
                 {/* 到期日 XX月*/}
                 <input
+                  onChange={creditFormHandler}
+                  name="validMonth"
                   onFocus={rotateToZero}
+                  value={creditForm.validMonth}
                   className=" w-40 border-bottom  focus-none text-gray bg-transparent"
                   type="text"
+                  maxLength={2}
                 />
                 /{/* YY年 */}
                 <input
+                  onChange={creditFormHandler}
+                  name="validYear"
                   onFocus={rotateToZero}
+                  value={creditForm.validYear}
                   className="  w-40 border-bottom  focus-none text-gray bg-transparent"
                   type="text"
+                  maxLength={2}
                 />
               </div>
             </div>
@@ -121,23 +159,77 @@ const CreditForm = () => {
               <div className="w-100 h-65 d-flex justify-content-start align-items-end text-gray">
                 {/* 驗證碼 */}
                 <input
+                  onChange={creditFormHandler}
+                  name="CVV"
                   onFocus={rotateToBack}
+                  value={creditForm.CVV}
                   className="w-100 border-bottom  focus-none text-gray bg-transparent"
                   type="text"
+                  maxLength={3}
                 />
               </div>
             </div>
           </div>
         </div>
         {/* 信用卡翻轉 */}
-        <div className="w-100 h-30">
+        <div className="credit-wrap-rwd h-30">
           <div className="flip-card">
             <div
               style={{ transform: `rotateY(${rotateDeg}deg)` }}
               className="flip-card-inner"
             >
-              <div className="flip-card-front"></div>
-              <div className="flip-card-back"></div>
+              <div className="flip-card-front">
+                <div className="card-info-number-wrap">
+                  <div className="w-90 d-flex justify-content-between">
+                    <input
+                      className="w-15 bg-transparent border-0 text-gray"
+                      type="text"
+                      value={creditForm.num1to4}
+                    />
+                    <input
+                      className="w-15 bg-transparent border-0 text-gray"
+                      type="text"
+                      value={creditForm.num5to8}
+                    />
+                    <input
+                      className="w-15 bg-transparent border-0 text-gray"
+                      type="text"
+                      value={creditForm.num9to12}
+                    />
+                    <input
+                      className="w-15 bg-transparent border-0 text-gray"
+                      type="text"
+                      value={creditForm.num13to16}
+                    />
+                    <div className="w-30 d-flex justify-content-end text-gray">
+                      <input
+                        className="text-end w-40 bg-transparent border-0 text-gray"
+                        type="text"
+                        value={creditForm.validMonth}
+                      />
+
+                      {creditForm.validMonth !== '' ||
+                        creditForm.validYear !== ''
+                        ? '/'
+                        : ''}
+                      <input
+                        className="text-end w-40 bg-transparent border-0 text-gray"
+                        type="text"
+                        value={creditForm.validYear}
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="flip-card-back">
+                <div className="w-90 cvv-text text-end text-gray">
+                  <input
+                    className="text-end w-40 bg-transparent border-0 text-gray"
+                    type="text"
+                    value={creditForm.CVV}
+                  />
+                </div>
+              </div>
             </div>
           </div>
         </div>
