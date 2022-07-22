@@ -10,25 +10,35 @@ const MemberEdit = ({
   member,
 }) => {
   const { token, auths, setAuths } = useContext(AuthContext);
+  // 取出表單需要顯示的值
+  const {
+    mem_account,
+    mem_name,
+    mem_nickname,
+    mem_birthday,
+    mem_mobile,
+    mem_email,
+    mem_address,
+  } = member;
   // 記錄表單每個欄位輸入值
   const [fields, setFields] = useState({
-    account: member.mem_account,
-    name: member.mem_name,
-    nickname: member.mem_nickname,
-    birthday: member.mem_birthday,
-    mobile: member.mem_mobile,
-    email: member.mem_email,
-    address: member.mem_address,
+    account: mem_account,
+    name: mem_name,
+    nickname: mem_nickname,
+    birthday: mem_birthday,
+    mobile: mem_mobile,
+    email: mem_email,
+    address: mem_address,
   });
   // 離開這個表單時，如沒變更資料把欄位恢復成最初始值
   const [leaveForm, setLeaveForm] = useState({
-    account: member.mem_account,
-    name: member.mem_name,
-    nickname: member.mem_nickname,
-    birthday: member.mem_birthday,
-    mobile: member.mem_mobile,
-    email: member.mem_email,
-    address: member.mem_address,
+    account: mem_account,
+    name: mem_name,
+    nickname: mem_nickname,
+    birthday: mem_birthday,
+    mobile: mem_mobile,
+    email: mem_email,
+    address: mem_address,
   });
   // onChange存值到fields
   const handleFieldsChange = (e) => {
@@ -97,9 +107,21 @@ const MemberEdit = ({
       })
       .then((res) => {
         console.log(res.data);
-        setLeaveForm({ ...res.data.body });
-        setAuths({ ...auths, change: 'Change Member Edit' });
-        console.log(auths);
+        if (res.data.success) {
+          // 把表單改成修改後的樣子
+          setLeaveForm({ ...res.data.body });
+          // 讓NavBar的顯示跟著做即時變動
+          setAuths({ ...auths, change: 'Change Member Edit' });
+          alert('修改成功');
+          // 把隱藏的大頭貼區塊恢復顯示
+          setAvatarFromNone('');
+          // 個人資料區塊從90%設回75%
+          setInformationWrap('h-75');
+          // 移動到顯示個人資料
+          setmoveTrain('translateY(-0%)');
+        } else {
+          alert('修改失敗');
+        }
       });
   }
   return (
@@ -176,6 +198,7 @@ const MemberEdit = ({
               onClick={(e) => {
                 // 阻擋按鈕預設行為
                 e.preventDefault();
+                // 如未更改資料 把表單恢復成原來的值
                 setFields({ ...leaveForm });
                 // 把隱藏的大頭貼區塊恢復顯示
                 setAvatarFromNone('');
