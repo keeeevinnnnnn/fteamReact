@@ -25,8 +25,6 @@ const Navbar = () => {
       return;
     } else {
       console.log(token);
-      // 如果有值就把登入狀態改成true
-      // setAuth(true);
       axios
         .get('http://localhost:3000/member/memberself', {
           // 發JWT一定要加這個headers
