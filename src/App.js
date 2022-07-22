@@ -114,7 +114,7 @@ function App() {
                                             element={<Customized_explore />}
                                         />
                                         <Route
-                                            path="/customized/collect"
+                                            path="/customized/previous_creations"
                                             element={<Customized_collect />}
                                         />
                                         <Route

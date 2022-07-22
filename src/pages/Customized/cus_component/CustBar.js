@@ -67,16 +67,16 @@ function CustBar() {
           <Bar
             dataKey="Arm1.val"
             stackId="1"
-            stroke="#8884d8"
-            fill="#8884d8"
+            stroke="#61dafb"
+            fill="#61dafb"
             id="aarea"
             name="Arm1"
           />
           <Bar
             dataKey="Arm2.val"
             stackId="1"
-            stroke="#82ca9d"
-            fill="#82ca9d"
+            stroke="#000000"
+            fill="#000000"
             id="barea"
             name="Arm2"
             cursor={'pointer'}
@@ -86,8 +86,8 @@ function CustBar() {
             cursor={'pointer'}
             dataKey="Arm3.val"
             stackId="1"
-            stroke="#ffc658"
-            fill="#ffc658"
+            stroke="#c0c0c0"
+            fill="#c0c0c0"
             id="carea"
             name="Arm3"
             onClick={(data, i) => alert('Arm3 clicked ' + i)}

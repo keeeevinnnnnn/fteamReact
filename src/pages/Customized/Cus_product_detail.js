@@ -20,12 +20,12 @@ function Cus_product_detail() {
                   className="img-fluid"
                 />
               </div>
-              <div className="card cus_data_tab">
+              <div className=" cus_data_tab">
                 <DataTabs />
               </div>
               
             </div>
-            <div className="right col-12 col-sm-6 d-flex flex-column border border-gray">
+            <div className="right col-12 col-sm-6 d-flex flex-column ">
            
              
               <div className="message mb-5">
