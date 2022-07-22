@@ -33,9 +33,9 @@ const Navbar = () => {
           },
         })
         .then((res) => {
-          // 會員所有資料
+          // 接會員所有資料
           setMember(res.data);
-          // 先接會員暱稱
+          // 先接會員暱稱 NavBar顯示專用
           setNavName(res.data.mem_nickname);
           // 如果會員沒有暱稱改接姓名
           if (res.data.mem_nickname === '') {
