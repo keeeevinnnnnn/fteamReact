@@ -136,7 +136,7 @@ const Navbar = () => {
               <div
                 className="text-decoration-none text-black auth-text-wrap"
                 onClick={() => {
-                  localStorage.clear();
+                  // 呼叫登出函式
                   logout();
                 }}
               >

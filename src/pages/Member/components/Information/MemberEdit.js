@@ -79,10 +79,6 @@ const MemberEdit = ({
       [e.target.name]: '',
     });
   };
-  // 表單更動時用於讓使用者清空某個正在修改的欄位的錯誤訊息
-  const clickFormError = () => {
-    setFieldErrors({ ...leaveFormError });
-  };
   // 表單點擊送出後
   async function handleSubmit(e) {
     // 先阻擋預設送出行為
@@ -199,7 +195,7 @@ const MemberEdit = ({
                 // 阻擋按鈕預設行為
                 e.preventDefault();
                 // 如未更改資料 把表單恢復成原來的值
-                setFields({ ...leaveForm });
+                setFields(leaveForm);
                 // 把隱藏的大頭貼區塊恢復顯示
                 setAvatarFromNone('');
                 // 個人資料區塊從90%設回75%
@@ -207,7 +203,7 @@ const MemberEdit = ({
                 // 移動到顯示個人資料
                 setmoveTrain('translateY(-0%)');
                 // 離開這個表單時把錯誤訊息清空
-                clickFormError();
+                setFieldErrors(leaveFormError);
               }}
             >
               Back
