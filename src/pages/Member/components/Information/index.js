@@ -9,7 +9,7 @@ import { MemberContext } from '../../../../App';
 const Information = () => {
   // 拿到會員個人資料
   const memberObg = useContext(MemberContext);
-  const { member, setMember } = memberObg;
+  const { member } = memberObg;
   // 移動個人資料/編輯個人資料/修改密碼
   const [moveTrain, setmoveTrain] = useState('translateY(0%)');
   const [avatarFromNone, setAvatarFromNone] = useState('');
