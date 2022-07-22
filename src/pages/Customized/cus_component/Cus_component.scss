@@ -1,18 +1,86 @@
-.attributes{
-    outline: 1px solid rgb(193, 193, 193);
-    outline-offset: -3px;
-    border-radius: 4px;
-    text-align: center;
-    padding: 8px;
-    
-    label{
-        font-size: 12px;
-        font-weight: 600;
-    }
-    h5{
-        font-weight: 300;
-    }
+.attributes {
+  outline: 1px solid rgb(193, 193, 193);
+  outline-offset: -3px;
+  border-radius: 4px;
+  text-align: center;
+  padding: 8px;
+  
+
+  label {
+    font-size: 12px;
+    font-weight: 600;
+  }
+  h5 {
+    font-weight: 300;
+  }
 }
-.cus_data_tab{
-    max-height: 240px;
+.cus_data_tab {
+  max-height: 240px;
+}
+
+.share-card {
+  width: 300px;
+  height: 400px;
+  outline: 1px solid gray;
+  display: flex;
+  padding: 32px;
+  box-shadow: 8px 8px 0 0 black;
+  background-color: white;
+  transition: 1s ease;
+
+  .share-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+
+    text-align: right;
+
+    .share-creator {
+      display: flex;
+
+      align-items: flex-end;
+
+      .share-ava {
+        width: 32px;
+        height: 32px;
+        border-radius: 50px;
+        overflow: hidden;
+        margin-right: 8px;
+
+        img {
+          width: 100%;
+          object-fit: contain;
+        }
+      }
+      p {
+        font-size: 10px;
+      }
+      h6 {
+        line-height: 10px;
+      }
+    }
+  }
+
+  .board {
+    width: 50%;
+    height: 320px;
+    padding: 0px;
+
+    img {
+      height: 100%;
+      object-fit: contain;
+    }
+  }
+}
+
+.share-card:hover{
+    background-color: black;
+    color: white;
+    box-shadow: 12px 12px 0 0 var(--main);
+    .board{
+        transition: 1s ease;
+        padding: 0px;
+        height: 340px;
+    }
+
 }
