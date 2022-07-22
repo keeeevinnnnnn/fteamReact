@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { useNavigate } from 'react-router-dom';
 import Logo from '../logo_imgs/fteam-logo2.png';
 import MenuSelect from './MenuSelect';
 import { Link } from 'react-router-dom';
@@ -13,8 +12,6 @@ const Navbar = () => {
   const { auth, token, logout, auths } = useContext(AuthContext);
   // 會員個人資料的State
   const { member, setMember } = useContext(MemberContext);
-  // 頁面導向方法
-  const navigate = useNavigate();
   // 接NavBar要顯示的姓名或暱稱
   const [navName, setNavName] = useState('');
   // 判斷有沒有登入存的值
