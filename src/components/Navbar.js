@@ -8,7 +8,10 @@ import { MemberContext } from '../App';
 import AuthContext from './AuthContext';
 
 const Navbar = () => {
+    // 從這支Context拿到會員JWT token
+    // auth為登入判斷(true,false)
     const { auth, token, logout } = useContext(AuthContext);
+    // 會員個人資料的State
     const memberObg = useContext(MemberContext);
     const { member, setMember } = memberObg;
     // 頁面導向方法
@@ -43,7 +46,7 @@ const Navbar = () => {
                     }
                 });
         }
-    }, [auth]);
+    }, [auth, token]);
     return (
         <>
             <div className="w-100 top-grid d-flex">
