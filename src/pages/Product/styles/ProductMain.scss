@@ -36,7 +36,7 @@
     align-items: flex-start;
    width: 80%;
    height: 45px;
-   background-color: rgba(128, 128, 128, 0.808);
+   background-color: rgba(0, 0, 0, 0.808);
    cursor: pointer;
    h5{
     text-align: center;
@@ -71,6 +71,9 @@
     }
     .colorBoxCheckbox{
         padding-left: 10px;
+        span{
+            color: black;
+        }
     }
 
 }
@@ -86,13 +89,15 @@
         width: 24px;
         height: 100%;
         border-radius: 50%;
-        background-color:#FCFAF2;
+        outline: 1px solid gray;
+        background-color:#ffffff;
        }
     
        .blackBox{
         width: 24px;
         height: 100%;
         border-radius: 50%;
+        outline: 1px solid  #0B1013;
         background-color: #0B1013;
        }
 
@@ -100,6 +105,7 @@
         width: 24px;
         height: 100%;
         border-radius: 50%;
+        outline: 1px solid  #7DB9DE;
         background-color: #7DB9DE;
        }
        
@@ -107,6 +113,7 @@
         width: 24px;
         height: 100%;
         border-radius: 50%;
+        outline: 1px solid  #66BAB7;
         background-color: #66BAB7;
        }
 
@@ -114,6 +121,7 @@
         width: 24px;
         height: 100%;
         border-radius: 50%;
+        outline: 1px solid  #D9CD90;
         background-color: #D9CD90;
        }
 
@@ -121,6 +129,7 @@
         width: 24px;
         height: 100%;
         border-radius: 50%;
+        outline: 1px solid  #FFB11B;
         background-color: #FFB11B;
        }
 
@@ -128,6 +137,7 @@
         width: 24px;
         height: 100%;
         border-radius: 50%;
+        outline: 1px solid  #ED784A;
         background-color: #ED784A;
        }
 
@@ -135,6 +145,7 @@
         width: 24px;
         height: 100%;
         border-radius: 50%;
+        outline: 1px solid  #FB966E;
         background-color: #FB966E;
        }
 
@@ -142,6 +153,7 @@
         width: 24px;
         height: 100%;
         border-radius: 50%;
+        outline: 1px solid  #DC9FB4;
         background-color: #DC9FB4;
        }
 
@@ -163,6 +175,7 @@
     cursor: pointer;
     span{
         padding-left: 10px;
+        color: black;
     }
 }
 
@@ -182,6 +195,7 @@
     margin-bottom: 10px;
     padding-left: 10px;
     cursor: pointer;
+    color: black;
 }
 
 .sortbyBox:hover{

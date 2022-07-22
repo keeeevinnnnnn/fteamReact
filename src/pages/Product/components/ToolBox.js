@@ -6,23 +6,26 @@ const ToolBox = () => {
   return (
     <>
       <div className="row toolbox">
-        <div className="col-4">
-          <ul>
-            {menuItems.map((v, i) => {
-              return (
-                <li
-                  key={i}
-                  onClick={() => {
-                    setMenu(v);
-                  }}
-                  className={menu === v ? 'catgory' : ''}
-                >
-                  <a href="#/">{v}</a>
-                </li>
-              );
-            })}
-          </ul>
+        <div className="col-10 d-flex justify-content-center align-items-center ">
+          <div className="col-4">
+            <ul>
+              {menuItems.map((v, i) => {
+                return (
+                  <li
+                    key={i}
+                    onClick={() => {
+                      setMenu(v);
+                    }}
+                    className={menu === v ? 'catgory' : ''}
+                  >
+                    <a href="#/">{v}</a>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
         </div>
+        <div className="col-2"></div>
       </div>
     </>
   );
