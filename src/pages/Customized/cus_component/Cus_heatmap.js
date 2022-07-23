@@ -1,6 +1,7 @@
 import React from 'react';
 import CalendarHeatmap from 'react-calendar-heatmap';
-import 'react-calendar-heatmap/dist/styles.css';
+// import 'react-calendar-heatmap/dist/styles.css';
+import './Cus_heatmap.css';
 
 function Cus_heatmap() {
   return (
