@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useSpinner } from '../../components/useSpinner';
+import { useSpinner } from '../../components/useSpinner/useSpinner';
 import Information from './components/Information/Information';
 import AllRecord from './components/AllRecord/AllRecord';
 import './styles/Member.scss';

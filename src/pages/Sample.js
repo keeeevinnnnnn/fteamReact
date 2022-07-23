@@ -3,7 +3,7 @@
 import React, { useEffect } from 'react';
 
 // 引入過場動畫
-// import { useSpinner } from '../../components/useSpinner';
+// import { useSpinner } from '../../components/useSpinner/useSpinner';
 
 const Sample = () => {
   // useSpinner裡面設定過場動畫要多久 以毫秒為單位 此範例為4秒
