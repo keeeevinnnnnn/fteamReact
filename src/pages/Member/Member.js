@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useSpinner } from '../../components/useSpinner';
-import Information from './components/Information';
-import Record from './components/Record';
+import Information from './components/Information/Information';
+import Record from './components/Record/Record';
 import './styles/Member.scss';
 
 const Member = () => {

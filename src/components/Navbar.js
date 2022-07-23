@@ -18,10 +18,8 @@ const Navbar = () => {
   useEffect(() => {
     // 登入狀態不是false再執行 否則直接return
     if (!auth) {
-      console.log(token);
       return;
     } else {
-      console.log(token);
       axios
         .get('http://localhost:3000/member/memberself', {
           // 發JWT一定要加這個headers

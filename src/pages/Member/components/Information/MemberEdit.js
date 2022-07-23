@@ -2,6 +2,7 @@ import React, { useState, useContext } from 'react';
 import '../../styles/MemberEdit.scss';
 import axios from 'axios';
 import AuthContext from '../../../../components/AuthContext';
+import { v4 as uuidv4 } from 'uuid';
 
 const MemberEdit = ({
   setmoveTrain,
@@ -107,7 +108,7 @@ const MemberEdit = ({
           // 把表單改成修改後的樣子
           setLeaveForm({ ...res.data.body });
           // 讓NavBar的顯示跟著做即時變動
-          setAuths({ ...auths, change: 'Change Member Edit' });
+          setAuths({ ...auths, change: uuidv4() });
           alert('修改成功');
           // 把隱藏的大頭貼區塊恢復顯示
           setAvatarFromNone('');
