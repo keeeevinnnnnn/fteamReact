@@ -25,35 +25,16 @@ import Customized_explore from './pages/Customized/Customized_explore';
 import Customized_collect from './pages/Customized/Customized_collect';
 import AuthContextProvider from './components/AuthContextProvider';
 
-// export const TokenContext = React.createContext();
-// export const AuthContext = React.createContext();
 export const MemberContext = React.createContext();
 function App() {
-  // 登入狀態判斷
-  // const [auth, setAuth] = useState(false);
-  // 把上述State包成物件Context下去
-  // const authObj = {
-  //     auth: auth,
-  //     setAuth: setAuth,
-  // };
   // 從Nav接住登入會員的個人資料
   const [member, setMember] = useState([]);
-  // 把上述State包成物件Context下去
-  const memberObj = {
-    member: member,
-    setMember: setMember,
-  };
-  // 登入後會存的值user_token JWT
-  // const token = localStorage.getItem('user_token');
   return (
     <Router>
+      {/* 裡面包含ConText(會員登入判斷)及登出涵式 */}
       <AuthContextProvider>
-        {/* 所有人都可以直接拿到token */}
-        {/* <TokenContext.Provider value={token}> */}
         {/* 會員個人資料 */}
-        <MemberContext.Provider value={memberObj}>
-          {/* 把登入狀態傳下去 */}
-          {/* <AuthContext.Provider value={authObj}> */}
+        <MemberContext.Provider value={{ member, setMember }}>
           <div className="container-fluid vh-100 fteam-wrap">
             <div className="row h-100">
               <div className="p-0 d-flex flex-column w-100 h-100">
@@ -108,7 +89,7 @@ function App() {
                       element={<Customized_explore />}
                     />
                     <Route
-                      path="/customized/collect"
+                      path="/customized/previous_creations"
                       element={<Customized_collect />}
                     />
                     <Route path="/carts" element={<Carts />} />
@@ -118,9 +99,7 @@ function App() {
               </div>
             </div>
           </div>
-          {/* </AuthContext.Provider> */}
         </MemberContext.Provider>
-        {/* </TokenContext.Provider> */}
       </AuthContextProvider>
     </Router>
   );

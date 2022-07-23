@@ -26,7 +26,7 @@ const Customized = () => {
                   客製化您自己專屬的滑板，與朋友們分享，或是發掘喜歡的作品。
                 </p>
 
-                <Link to={'/customized/collect'}>
+                <Link to={'/customized/previous_creations'}>
                   <button className="viv-btn">Create</button>
                 </Link>
 

@@ -29,8 +29,8 @@ const ProductMain = () => {
   }, [location]);
 
   return (
-    <div className="w-100 vh-100 d-flex justify-content-end align-items-end">
-      <div className="work-area col-10 pb-5 pe-5 text-danger">
+    <div className="bg w-100 vh-100 d-flex justify-content-end align-items-end">
+      <div className="work-area col-10 text-danger">
         <ToolBox />
         <FilterBox />
         <div className="row product-list">

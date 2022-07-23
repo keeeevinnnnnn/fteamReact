@@ -15,7 +15,7 @@ const AvatarForm = ({ member }) => {
           />
         </figure>
         <div className="d-flex justify-content-center">
-          <button>Confirm</button>
+          <button className="btn">Confirm</button>
         </div>
       </form>
     </>

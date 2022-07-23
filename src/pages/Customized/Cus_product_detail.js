@@ -10,7 +10,7 @@ function Cus_product_detail() {
     <>
       <div className="w-100 vh-100 d-flex justify-content-end align-items-end">
         <div className="work-area col-12 col-md-10 p-0">
-          <div class="row px-5">
+          <div class="d-flex px-5">
             <div className="left col-12 col-sm-6 ">
               <p>Project Name</p>
               <h2>My Cool Board</h2>
@@ -20,12 +20,12 @@ function Cus_product_detail() {
                   className="img-fluid"
                 />
               </div>
-              <div className="card cus_data_tab">
+              <div className=" cus_data_tab">
                 <DataTabs />
               </div>
               
             </div>
-            <div className="right col-12 col-sm-6 d-flex flex-column border border-gray">
+            <div className="right col-12 col-sm-6 d-flex flex-column ">
            
              
               <div className="message mb-5">
