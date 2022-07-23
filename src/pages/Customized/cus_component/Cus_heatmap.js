@@ -22,10 +22,10 @@ function Cus_heatmap() {
           { date: '2022-04-08', count: 3 }, 
           { date: '2022-04-09', count: 3 },
           { date: '2022-05-20', count: 6 },
-          { date: '2022-07-02', count: 1 },
+          { date: '2022-07-02', count: 5000 },
           { date: '2022-07-03', count: 4 },
           { date: '2022-07-15', count: 3 },
-          { date: '2022-07-20', count: 6 },
+          { date: '2022-07-20', count: 10000},
           // ...and so on
         ]}
       />
