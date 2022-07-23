@@ -1,4 +1,4 @@
-.collectCard {
+.recordCard {
     cursor: pointer;
     background: rgba(255, 255, 255, 0.94);
     border: 1px solid black;
@@ -7,29 +7,19 @@
     img {
         border-right: 1px solid black;
     }
-    .deleteSvg {
-        height: 50%;
-        margin-right: 10%;
-    }
-
-    .deleteSvg:hover {
-        height: 70%;
-    }
-
-    .cartSvg {
-        height: 50%;
-        margin-right: 5%;
-     }
-
-    .cartSvg:hover {
-        height: 70%;
+    h5 {
+        color: red;
+        font-weight: 600;
     }
 }
 
-.collectCard:hover {
+.recordCard:hover {
     background-color: rgba(0, 0, 0, 0.928);
     color: white;
     border: 1px solid white;
     transform: translateY(-4px);
     box-shadow: 6px 10px 0px 1px rgb(54, 53, 53);
+    h5 {
+        color: white;
+    }
   }

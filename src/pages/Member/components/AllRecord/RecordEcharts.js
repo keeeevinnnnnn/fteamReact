@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactEcharts from 'echarts-for-react';
 
-const CollectEcharts = () => {
+const RecordEcharts = () => {
   const aaa = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   const option = {
     tooltip: {
@@ -54,4 +54,4 @@ const CollectEcharts = () => {
   );
 };
 
-export default CollectEcharts;
+export default RecordEcharts;

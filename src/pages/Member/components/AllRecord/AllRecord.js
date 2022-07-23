@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import MuiTabs from './MuiTabs';
 import '../../styles/AllRecord.scss';
 import Collect from './Collect';
+import Record from './Record';
 
 const AllRecord = () => {
   const [selectItem, setSelectItem] = useState('COLLECT');
@@ -31,7 +32,9 @@ const AllRecord = () => {
           <div className="w-25">
             <Collect />
           </div>
-          <div className="w-25 bg-dark"></div>
+          <div className="w-25">
+            <Record />
+          </div>
           <div className="w-25 bg-dark"></div>
           <div className="w-25 bg-dark"></div>
         </div>
