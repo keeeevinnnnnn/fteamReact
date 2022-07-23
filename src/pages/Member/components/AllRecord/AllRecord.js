@@ -36,7 +36,7 @@ const AllRecord = () => {
             <Record />
           </div>
           <div className="w-25 bg-dark"></div>
-          <div className="w-25 bg-dark"></div>
+          <div className="w-25 bg-light"></div>
         </div>
       </div>
     </>
