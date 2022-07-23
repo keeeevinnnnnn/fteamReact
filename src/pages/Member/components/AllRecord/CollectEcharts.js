@@ -1,9 +1,7 @@
-import React, { useState } from 'react';
-import MuiTabs from './MuiTabs';
+import React from 'react';
 import ReactEcharts from 'echarts-for-react';
 
-const Record = () => {
-  const [selectItem, setSelectItem] = useState('COLLECT');
+const CollectEcharts = () => {
   const aaa = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   const option = {
     tooltip: {
@@ -51,20 +49,9 @@ const Record = () => {
   };
   return (
     <>
-      <MuiTabs selectItem={selectItem} setSelectItem={setSelectItem} />
-      <div className="w-100 h-90 d-flex">
-        <div className="col-6">
-          <div className="w-100 h-18 bg-light m-3"></div>
-          <div className="w-100 h-18 bg-light m-3"></div>
-          <div className="w-100 h-18 bg-light m-3"></div>
-          <div className="w-100 h-18 bg-light m-3"></div>
-        </div>
-        <div className="col-6">
-          <ReactEcharts option={option} style={{ top: '20%' }} />
-        </div>
-      </div>
+      <ReactEcharts option={option} style={{ top: '20%' }} />
     </>
   );
 };
 
-export default Record;
+export default CollectEcharts;

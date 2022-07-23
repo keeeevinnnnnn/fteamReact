@@ -1,0 +1,36 @@
+.collectCard {
+    background: rgba(255, 255, 255, 0.94);
+    border: 1px solid black;
+    transition: .3s;
+    box-shadow: 6px 5px 0px 1px #000000;
+    img {
+        border-right: 1px solid black;
+    }
+    .deleteSvg {
+        cursor: pointer;
+        height: 50%;
+        margin-right: 10%;
+    }
+
+    .deleteSvg:hover {
+        height: 70%;
+    }
+
+    .cartSvg {
+        height: 50%;
+        cursor: pointer;
+        margin-right: 5%;
+     }
+
+    .cartSvg:hover {
+        height: 70%;
+    }
+}
+
+.collectCard:hover {
+    background-color: rgba(0, 0, 0, 0.928);
+    color: white;
+    border: 1px solid white;
+    transform: translateY(-4px);
+    box-shadow: 6px 10px 0px 1px rgb(54, 53, 53);
+  }

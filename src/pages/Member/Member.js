@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useSpinner } from '../../components/useSpinner';
 import Information from './components/Information/Information';
-import Record from './components/Record/Record';
+import AllRecord from './components/AllRecord/AllRecord';
 import './styles/Member.scss';
 
 const Member = () => {
@@ -20,7 +20,7 @@ const Member = () => {
             <Information />
           </div>
           <div className="col-8 h-100">
-            <Record />
+            <AllRecord />
           </div>
         </div>
       </div>
