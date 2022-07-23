@@ -75,8 +75,8 @@ function CustBar() {
           <Bar
             dataKey="Arm2.val"
             stackId="1"
-            stroke="#000000"
-            fill="#000000"
+            stroke="#00ced1"
+            fill="#00ced1"
             id="barea"
             name="Arm2"
             cursor={'pointer'}
