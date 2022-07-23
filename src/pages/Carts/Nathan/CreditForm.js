@@ -149,6 +149,7 @@ const CreditForm = () => {
                   className=" w-40 border-bottom  focus-none text-gray bg-transparent"
                   type="text"
                   maxLength={2}
+                  placeholder={'MM'}
                 />
                 /{/* YY年 */}
                 <input
@@ -160,6 +161,7 @@ const CreditForm = () => {
                   className="  w-40 border-bottom  focus-none text-gray bg-transparent"
                   type="text"
                   maxLength={2}
+                  placeholder={'YY'}
                 />
               </div>
             </div>
