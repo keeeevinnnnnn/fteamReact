@@ -21,7 +21,7 @@ function Cus_product_card_fcolor() {
 
           <div className="cus_card_container ">
             <div className="step-control">
-              <Link to={'/customized/carrier'}>
+              <Link to={'/customized/create/carrier'}>
                 <button className="skbtn-prev"></button>
               </Link>
 
