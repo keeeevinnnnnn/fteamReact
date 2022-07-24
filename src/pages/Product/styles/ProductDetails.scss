@@ -100,8 +100,9 @@
 }
 
 .whoSeeImgBox{
+    
     img{
-        width: 60%;
+        width: 70%;
     }
 }
 
@@ -116,3 +117,12 @@
         width: 100%;
     }
 }
+
+// 輪播牆的button css
+.slick-prev {
+   background-color: gray;
+  }
+  .slick-next {
+    background-color: gray;
+ 
+  }
