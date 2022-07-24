@@ -43,7 +43,7 @@ function Cus_product_card_struct() {
                 <button className="skbtn-prev"></button>
               </Link>
 
-              <Link to={'/customized/create/fcolor'}>
+              <Link to={'/customized/create/front_deck'}>
                 <button className="skbtn-next"></button>
               </Link>
             </div>
