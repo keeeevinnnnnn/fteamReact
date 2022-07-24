@@ -53,6 +53,18 @@
    }
 }
 
+.priceFilter{
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(250, 250, 250);
+}
+
+.priceFilterText{
+    display: flex;
+    flex-direction: column;
+}
+
 .colorFilter{
     width: 80%;
     display: flex;

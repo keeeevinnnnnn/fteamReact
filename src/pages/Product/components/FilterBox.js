@@ -1,4 +1,5 @@
-import { display } from '@mui/system';
+import Box from '@mui/material/Box';
+import Slider from '@mui/material/Slider';
 import React, { useState } from 'react';
 
 const FilterBox = () => {
@@ -7,6 +8,17 @@ const FilterBox = () => {
   const [brand, setBrand] = useState(false);
   const [sortby, setSortby] = useState(false);
   const [searchInput, setSearchInput] = useState(false);
+
+  function valuetext(value) {
+    return `${value}°C`;
+  }
+
+  const [value, setValue] = useState([1200, 10000]);
+
+  const handleChange = (event, newValue) => {
+    console.log(newValue);
+    setValue(newValue);
+  };
 
   return (
     <>
@@ -73,12 +85,33 @@ const FilterBox = () => {
             </div>
 
             <div
-              className="priceFilter w-100"
+              className="priceFilter w-80"
               style={{
                 display: price === false ? 'none' : 'block',
               }}
             >
-              <input className="w-100" type="range" name="" id="" />
+              <div className="priceFilterText">
+                <span className="pb-2">
+                  Min Price <h5>{value[0]}</h5>
+                </span>
+                <span className="pb-2">
+                  Max Price <h5>{value[1]}</h5>
+                </span>
+              </div>
+
+              <div className="priceFilterInput">
+                <Box sx={{ width: '100%' }}>
+                  <Slider
+                    getAriaLabel={() => 'Temperature range'}
+                    value={value}
+                    onChange={handleChange}
+                    valueLabelDisplay="auto"
+                    // getAriaValueText={valuetext}
+                    min={1200}
+                    max={10000}
+                  />
+                </Box>
+              </div>
             </div>
           </div>
           <div className="col-3">

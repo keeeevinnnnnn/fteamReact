@@ -31,6 +31,7 @@ const ProductTabsBoxItem1 = (props) => {
     speed: 500,
     slidesToShow: 4,
     slidesToScroll: 1,
+    adaptiveHeight: true,
     nextArrow: <SampleNextArrow />,
     prevArrow: <SamplePrevArrow />,
   };
@@ -43,22 +44,22 @@ const ProductTabsBoxItem1 = (props) => {
         <div className="whoSeeImgBox">
           <Slider {...settings}>
             <div>
-              <img src="/imgs/Products/637894482038170000.jpg" alt="" />
+              <img src="/imgs/Products/phpo5Yfwm.jpg" alt="" />
             </div>
             <div>
-              <img src="/imgs/Products/637894482038170000.jpg" alt="" />
+              <img src="/imgs/Products/phpo5Yfwm.jpg" alt="" />
             </div>
             <div>
-              <img src="/imgs/Products/637894482038170000.jpg" alt="" />
+              <img src="/imgs/Products/phpo5Yfwm.jpg" alt="" />
             </div>
             <div>
-              <img src="/imgs/Products/637894482038170000.jpg" alt="" />
+              <img src="/imgs/Products/phpo5Yfwm.jpg" alt="" />
             </div>
             <div>
-              <img src="/imgs/Products/637894482038170000.jpg" alt="" />
+              <img src="/imgs/Products/phpo5Yfwm.jpg" alt="" />
             </div>
             <div>
-              <img src="/imgs/Products/637894482038170000.jpg" alt="" />
+              <img src="/imgs/Products/phpo5Yfwm.jpg" alt="" />
             </div>
           </Slider>
         </div>

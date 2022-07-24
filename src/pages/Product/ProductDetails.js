@@ -1,14 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ProductTabsBox from './components/ProductTabsBox';
 import './styles/ProductDetails.scss';
 
 const ProductDetails = () => {
+  const [heart, setHeart] = useState(false);
   return (
     <div className="w-100 vh-100 d-flex justify-content-end align-items-end">
       <div className="work-area col-10 pb-5 pe-5 text-danger">
-        <div className="row mb-5 p-0 m-0">
+        <div className="row mb-5 p-0 m-0 vh-50">
           <div className="col-7 productDetailsImg">
-            <img src="/imgs/Products/637894482038170000.jpg" alt="" />
+            <img src="/imgs/Products/phpo5Yfwm.jpg" alt="" />
           </div>
           <div className="col-5 productDetail">
             <div className="productDetailBody mb-3">
@@ -25,7 +26,11 @@ const ProductDetails = () => {
               </button>
             </div>
             <div className="detail-int-heart mb-5">
-              <button>
+              <button
+                onClick={() => {
+                  setHeart(!heart);
+                }}
+              >
                 <span>Favorite</span>
                 <span>
                   <svg
@@ -35,7 +40,9 @@ const ProductDetails = () => {
                     viewBox="0 0 24 24"
                     stroke="currentColor"
                     stroke-width="2"
-                    style={{ display: '' }}
+                    style={{
+                      display: heart === false ? '' : 'none',
+                    }}
                   >
                     <path
                       stroke-linecap="round"
@@ -48,7 +55,9 @@ const ProductDetails = () => {
                     className="h-5 w-5"
                     viewBox="0 0 20 20"
                     fill="currentColor"
-                    style={{ display: 'none' }}
+                    style={{
+                      display: heart === false ? 'none' : '',
+                    }}
                   >
                     <path
                       fillRule="evenodd"
@@ -73,7 +82,7 @@ const ProductDetails = () => {
           </div>
         </div>
 
-        <div className="row p-0 m-0 ProductTabsBox">
+        <div className="row p-0 m-0 ProductTabsBox vh-50">
           <ProductTabsBox />
         </div>
       </div>
