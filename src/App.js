@@ -10,6 +10,8 @@ import Lesson from './pages/Lesson/Lesson';
 import Lesson_zhongxiao from './pages/Lesson/Lesson_zhongxiao';
 import Lesson_banqiao from './pages/Lesson/Lesson_banqiao';
 import Products from './pages/Product/Products';
+import ProductMain from './pages/Product/ProductMain';
+import ProductDetails from './pages/Product/ProductDetails';
 import Customized from './pages/Customized/Customized';
 import Orders from './pages/Orders/Orders';
 import Login from './pages/Login/Login';
@@ -19,7 +21,6 @@ import Cus_product_card_wheel from './pages/Customized/Cus_product_card_wheel';
 import Cus_product_card_struct from './pages/Customized/Cus_product_card_struct';
 import Cus_product_card_fcolor from './pages/Customized/Cus_product_card_fcolor';
 import Cus_product_card_back from './pages/Customized/Cus_product_card_back';
-import ProductMain from './pages/Product/ProductMain';
 import Cus_product_detail from './pages/Customized/Cus_product_detail';
 import Customized_explore from './pages/Customized/Customized_explore';
 import Customized_collect from './pages/Customized/Customized_collect';
@@ -58,7 +59,8 @@ function App() {
                       path="/lesson/lesson_banqiao"
                       element={<Lesson_banqiao />}
                     />
-                    <Route path="/products" element={<ProductMain />} />
+                    <Route path="/products" element={<ProductDetails />} />
+                    <Route path="/products/main" element={<ProductMain />} />
                     <Route path="/customized" element={<Customized />} />
                     <Route
                       path="/customized/create"
