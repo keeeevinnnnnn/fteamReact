@@ -57,7 +57,7 @@ const RecordEcharts = () => {
           className="ehartsBTN"
           onClick={(e) => {
             e.preventDefault();
-            // 頁面轉向
+            // 頁面轉向訂單頁面
             navigate('/oders', { replace: true });
           }}
         >
