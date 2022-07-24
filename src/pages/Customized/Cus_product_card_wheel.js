@@ -6,12 +6,12 @@ const whselect = [
   {
     id: 1,
     wheel: 'NeonGreen',
-    img: 'display_w01.png',
+    img: 'display_NeonGreen.png',
   },
   {
     id: 2,
     wheel: 'PinkWave',
-    img: 'display_w02.png',
+    img: 'display_PinkWave.png',
   },
   {
     id: 3,
@@ -21,7 +21,7 @@ const whselect = [
   {
     id: 4,
     wheel: 'BlackBlue',
-    img: 'display_w04.png',
+    img: 'display_PurpleStart.png',
   },
 ];
 
