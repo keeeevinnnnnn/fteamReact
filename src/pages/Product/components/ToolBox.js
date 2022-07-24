@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 const ToolBox = (props) => {
-  const { toolBoxFilter } = props;
+  const { getPageData, filter, setFilter } = props;
   const menuItems = ['Skateboard', 'Decks', 'Trucks', 'Wheels'];
   const [menu, setMenu] = useState('Skateboard');
 
@@ -17,16 +17,16 @@ const ToolBox = (props) => {
                     key={i}
                     onClick={() => {
                       if (i === 0) {
-                        toolBoxFilter(null, null, 'skateboard');
+                        setFilter({ ...filter, categoryId: '2' });
                         setMenu(v);
                       } else if (i === 1) {
-                        toolBoxFilter(null, null, 'decks');
+                        setFilter({ ...filter, categoryId: '4' });
                         setMenu(v);
                       } else if (i === 2) {
-                        toolBoxFilter(null, null, 'trucks');
+                        setFilter({ ...filter, categoryId: '5' });
                         setMenu(v);
                       } else if (i === 3) {
-                        toolBoxFilter(null, null, 'wheels');
+                        setFilter({ ...filter, categoryId: '6' });
                         setMenu(v);
                       }
                     }}

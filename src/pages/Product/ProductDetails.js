@@ -84,7 +84,7 @@ const ProductDetails = () => {
           </div>
         </div>
         <div className="d-flex w-100">
-          <div className="d-flex p-0 m-0 ProductTabsBox h-100 w-100">
+          <div className="d-flex p-0 m-0 ProductTabsBox vh-50 w-100">
             <ProductTabsBox />
           </div>
         </div>
