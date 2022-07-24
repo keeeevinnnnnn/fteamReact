@@ -1,7 +1,7 @@
 import React from 'react';
-import '../../styles/CollectCard.scss';
+import '../../styles/FavoriteCard.scss';
 
-const CollectCard = () => {
+const FavoriteCard = () => {
   return (
     <>
       <div className="w-95 h-18 m-3 collectCard">
@@ -50,4 +50,4 @@ const CollectCard = () => {
   );
 };
 
-export default CollectCard;
+export default FavoriteCard;
