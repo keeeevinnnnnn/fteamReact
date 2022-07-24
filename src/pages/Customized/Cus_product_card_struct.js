@@ -20,19 +20,20 @@ function Cus_product_card_struct() {
         <div className="cus_container">
           <div className="cus-product-container">
             <div className="carrier-img">
-              <div className="carrier-container">
-                <div className="carriers">
-                  <img src="/imgs/Customized/carrier_black.png" />
-                  <img src="/imgs/Customized/carrier_copper.png" />
-                  <img src="/imgs/Customized/carrier_iron.png" />
+              <div class="carrier-display">
+                <div className="carrier-container">
+                  <div className="carriers">
+                    <img src="/imgs/Customized/carrier_black.png" />
+                    <img src="/imgs/Customized/carrier_iron.png" />
+                    <img src="/imgs/Customized/carrier_copper.png" />
+                  </div>
                 </div>
+                <img
+                  src="/imgs/Customized/carrer_bg.png"
+                  className="carriers-bg"
+                  alt=""
+                />
               </div>
-
-              <img
-                src="/imgs/Customized/carrer_bg.png"
-                className="carriers-bg"
-                alt=""
-              />
             </div>
           </div>
 
