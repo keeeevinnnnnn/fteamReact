@@ -20,8 +20,8 @@ const MuiTabs = ({ selectItem, setSelectItem }) => {
             <Tab
               sx={{ fontSize: '1.1rem' }}
               disableRipple={true}
-              label="COLLECT"
-              value={'COLLECT'}
+              label="FAVORITE"
+              value={'FAVORITE'}
             />
             <Tab
               sx={{ fontSize: '1.1rem' }}

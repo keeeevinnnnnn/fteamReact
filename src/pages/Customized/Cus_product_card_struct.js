@@ -3,12 +3,25 @@ import { Link } from 'react-router-dom';
 import './Cus_product_card_struct.scss';
 
 function Cus_product_card_struct() {
-  const [material, setMaterial] = useState('');
+  const materialData = [
+    { id: 1, materialName: 'black', position: '0' },
+    { id: 2, materialName: 'iron', position: '-320px' },
+    { id: 3, materialName: 'copper', position: '-640px' },
+  ];
+
+  const [material, setMaterial] = useState('2');
+  const [materialId,setMaterialId]=useState(1);
 
   const selectMaterial = (e) => {
-    const newMaterial = e.target.value;
-    //  setMaterial(newMaterial)
-    console.log(newMaterial);
+   
+    console.log(e.target.checked);
+    if(e.target.checked){
+      setMaterial(e.target.value)
+
+    }
+    // if(e.target.value==='1'){
+    //   axiox()
+    // }
   };
   return (
     <div className="w-100 vh-100 d-flex justify-content-end align-items-end">
@@ -22,7 +35,7 @@ function Cus_product_card_struct() {
             <div className="carrier-img">
               <div class="carrier-display">
                 <div className="carrier-container">
-                  <div className="carriers">
+                  <div className="carriers" style={{ left:material==='1'?'0px':material==='2'?'-320px':'-640px'}}>
                     <img src="/imgs/Customized/carrier_black.png" />
                     <img src="/imgs/Customized/carrier_iron.png" />
                     <img src="/imgs/Customized/carrier_copper.png" />
@@ -43,7 +56,7 @@ function Cus_product_card_struct() {
                 <button className="skbtn-prev"></button>
               </Link>
 
-              <Link to={'/customized/create/fcolor'}>
+              <Link to={'/customized/create/front_deck'}>
                 <button className="skbtn-next"></button>
               </Link>
             </div>
@@ -51,12 +64,15 @@ function Cus_product_card_struct() {
             <div className="cus_card flex-column">
               <div className="cus_product_card">
                 <h3 className="text-black">Choose Your Carrier</h3>
+                
+
                 <div className="carrier-select-control">
                   <label className="carrier-select">
                     <input
                       type="radio"
-                      value="black"
+                      value='1'
                       hidden={true}
+                      name='material'
                       onChange={selectMaterial}
                     />
                     <img src="/imgs/Customized/carrier_m_black.png" />
@@ -64,8 +80,9 @@ function Cus_product_card_struct() {
                   <label className="carrier-select">
                     <input
                       type="radio"
-                      value="iron"
+                      value='2'
                       hidden={true}
+                      name='material'
                       onChange={selectMaterial}
                     />
                     <img src="/imgs/Customized/carrier_m_iron.png" />
@@ -73,8 +90,9 @@ function Cus_product_card_struct() {
                   <label className="carrier-select">
                     <input
                       type="radio"
-                      value="copper"
+                      value='3'
                       hidden={true}
+                      name='material'
                       onChange={selectMaterial}
                     />
                     <img src="/imgs/Customized/carrier_m_copper.png" />

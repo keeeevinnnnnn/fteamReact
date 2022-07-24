@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import MuiTabs from './MuiTabs';
 import '../../styles/AllRecord.scss';
-import Collect from './Collect';
+import Favorite from './Favorite';
 import Record from './Record';
 
 const AllRecord = () => {
-  const [selectItem, setSelectItem] = useState('COLLECT');
+  const [selectItem, setSelectItem] = useState('FAVORITE');
   let moveTrain = 'translateX(0%)';
   if (selectItem === 'RECORD') {
     moveTrain = 'translateX(-25%)';
@@ -16,7 +16,6 @@ const AllRecord = () => {
   if (selectItem === 'CHAT') {
     moveTrain = 'translateX(-75%)';
   }
-  console.log(moveTrain);
   return (
     <>
       <MuiTabs selectItem={selectItem} setSelectItem={setSelectItem} />
@@ -30,7 +29,7 @@ const AllRecord = () => {
           }}
         >
           <div className="w-25">
-            <Collect />
+            <Favorite />
           </div>
           <div className="w-25">
             <Record />

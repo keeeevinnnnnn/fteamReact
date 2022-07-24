@@ -103,7 +103,6 @@ const MemberEdit = ({
         },
       })
       .then((res) => {
-        console.log(res.data);
         if (res.data.success) {
           // 把表單改成修改後的樣子
           setLeaveForm({ ...res.data.body });

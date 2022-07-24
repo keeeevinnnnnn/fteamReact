@@ -22,7 +22,7 @@ const RecordCard = () => {
               That dog has three pairs of Inner 0.0 The whole set of skateboards
             </p>
             <div className="h-50 d-flex justify-content-around">
-              <h5>Sat Jul 23 2022 20:58:35</h5>
+              <h6>Sat Jul 23 2022 20:58:35</h6>
               <h5>$ 4990</h5>
             </div>
           </div>

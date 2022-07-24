@@ -1,4 +1,4 @@
-.collectCard {
+.favoriteCard {
     cursor: pointer;
     background: rgba(255, 255, 255, 0.94);
     border: 1px solid black;
@@ -26,10 +26,15 @@
     }
 }
 
-.collectCard:hover {
-    background-color: rgba(0, 0, 0, 0.928);
-    color: white;
-    border: 1px solid white;
+.favoriteCard:hover {
+    // background-color: rgba(0, 0, 0, 0.928);
+    // color: white;
+    // border: 1px solid white;
     transform: translateY(-4px);
     box-shadow: 6px 10px 0px 1px rgb(54, 53, 53);
+    p {
+        font-size: 1.2rem;
+        font-weight: 600;
+        transform: skew(-10deg, 0deg);
+    }
   }

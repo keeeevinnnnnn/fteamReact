@@ -1,10 +1,10 @@
 import React from 'react';
-import '../../styles/CollectCard.scss';
+import '../../styles/FavoriteCard.scss';
 
-const CollectCard = () => {
+const FavoriteCard = () => {
   return (
     <>
-      <div className="w-95 h-18 m-3 collectCard">
+      <div className="w-95 h-18 m-3 favoriteCard">
         <div className="d-flex h-100 w-100">
           <div className="col-3">
             <img
@@ -50,4 +50,4 @@ const CollectCard = () => {
   );
 };
 
-export default CollectCard;
+export default FavoriteCard;
