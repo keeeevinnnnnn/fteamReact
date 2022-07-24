@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 
-const ToolBox = () => {
+const ToolBox = (props) => {
+  const { toolBoxFilter } = props;
   const menuItems = ['Skateboard', 'Decks', 'Trucks', 'Wheels'];
   const [menu, setMenu] = useState('Skateboard');
+
   return (
     <>
-      <div className="row toolbox">
+      <div className="row toolbox p-0 m-0">
         <div className="col-10 d-flex justify-content-center align-items-center ">
           <div className="col-4">
             <ul>
@@ -14,7 +16,19 @@ const ToolBox = () => {
                   <li
                     key={i}
                     onClick={() => {
-                      setMenu(v);
+                      if (i === 0) {
+                        toolBoxFilter(null, null, 'skateboard');
+                        setMenu(v);
+                      } else if (i === 1) {
+                        toolBoxFilter(null, null, 'decks');
+                        setMenu(v);
+                      } else if (i === 2) {
+                        toolBoxFilter(null, null, 'trucks');
+                        setMenu(v);
+                      } else if (i === 3) {
+                        toolBoxFilter(null, null, 'wheels');
+                        setMenu(v);
+                      }
                     }}
                     className={menu === v ? 'catgory' : ''}
                   >

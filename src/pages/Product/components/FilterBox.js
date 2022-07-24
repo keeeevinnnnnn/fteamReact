@@ -10,7 +10,7 @@ const FilterBox = () => {
 
   return (
     <>
-      <div className="row filterBox">
+      <div className="row filterBox p-0 m-0">
         <div className="col-10 d-flex justify-content-center">
           <div className="col-3">
             <div

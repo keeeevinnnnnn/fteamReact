@@ -250,6 +250,7 @@
     width: 24px;
     svg{
         width: 100%;
+        color: #0B1013;
     }
 }
 
@@ -258,6 +259,7 @@
     width: 24px;
     svg{
         width: 100%;
+        color: #0B1013;
     }
 }
 
@@ -268,7 +270,7 @@
     align-items: center;
     margin-bottom: 18px;
     img{
-        width: 80%;
+        width: 100%;
     }
 }
 
@@ -286,6 +288,16 @@
     }
     .card-price{
         font-size: 1.15rem;
+    }
+    h5{
+        color: #0B1013;
+
+    }
+    p{
+        color: #0B1013;
+    }
+    span{
+        color: #0B1013;
     }
 }
 
