@@ -100,12 +100,14 @@
 }
 
 .whoSeeImgBox{
-    display: flex;
+    img{
+        width: 60%;
+    }
 }
 
 .whoSeeImg{
-    width: 25%;
-    height: 400px;
+    // width: 25%;
+    // height: 400px;
     display: flex;
     justify-content: center;
     align-items: center;
