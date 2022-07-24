@@ -76,6 +76,7 @@ function Cus_product_card_wheel() {
                     <input
                       type="radio"
                       value="NeonGreen"
+                      name='cus_wheel'
                       onChange={selectWheel}
                     />
                     <img src="/imgs/Customized/select_w01.png" />
@@ -84,6 +85,7 @@ function Cus_product_card_wheel() {
                     <input
                       type="radio"
                       value="PinkWave"
+                      name='cus_wheel'
                       onChange={selectWheel}
                     />
                     <img src="/imgs/Customized/select_w02.png" />
@@ -92,6 +94,7 @@ function Cus_product_card_wheel() {
                     <input
                       type="radio"
                       value="PurpleStart"
+                      name='cus_wheel'
                       onChange={selectWheel}
                     />
                     <img src="/imgs/Customized/select_w03.png" />
@@ -100,6 +103,7 @@ function Cus_product_card_wheel() {
                     <input
                       type="radio"
                       value="BlackBlue"
+                      name='cus_wheel'
                       onChange={selectWheel}
                     />
                     <img src="/imgs/Customized/select_w04.png" />
