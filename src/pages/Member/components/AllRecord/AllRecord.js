@@ -16,7 +16,6 @@ const AllRecord = () => {
   if (selectItem === 'CHAT') {
     moveTrain = 'translateX(-75%)';
   }
-  console.log(moveTrain);
   return (
     <>
       <MuiTabs selectItem={selectItem} setSelectItem={setSelectItem} />

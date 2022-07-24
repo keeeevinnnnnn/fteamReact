@@ -77,7 +77,6 @@ const PasswordEdit = ({ setmoveTrain }) => {
         }
       )
       .then((res) => {
-        console.log(res.data);
         if (res.data.success) {
           alert('更新成功，請重新登入');
           // 呼叫登出函式
