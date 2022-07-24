@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import SideBar from './components/SideBar';
 import Home from './pages/Home/Home';
-import Member from './pages/Member';
+import Member from './pages/Member/Member';
 import Lesson from './pages/Lesson/Lesson';
 import Lesson_zhongxiao from './pages/Lesson/Lesson_zhongxiao';
 import Lesson_banqiao from './pages/Lesson/Lesson_banqiao';
@@ -14,7 +14,7 @@ import ProductMain from './pages/Product/ProductMain';
 import ProductDetails from './pages/Product/ProductDetails';
 import Customized from './pages/Customized/Customized';
 import Orders from './pages/Orders/Orders';
-import Login from './pages/Login';
+import Login from './pages/Login/Login';
 import Carts from './pages/Carts/Carts';
 import Customized_add from './pages/Customized/Customized_add';
 import Cus_product_card_wheel from './pages/Customized/Cus_product_card_wheel';
@@ -30,17 +30,12 @@ export const MemberContext = React.createContext();
 function App() {
   // 從Nav接住登入會員的個人資料
   const [member, setMember] = useState([]);
-  // 把上述State包成物件Context下去
-  const memberObj = {
-    member: member,
-    setMember: setMember,
-  };
   return (
     <Router>
       {/* 裡面包含ConText(會員登入判斷)及登出涵式 */}
       <AuthContextProvider>
         {/* 會員個人資料 */}
-        <MemberContext.Provider value={memberObj}>
+        <MemberContext.Provider value={{ member, setMember }}>
           <div className="container-fluid vh-100 fteam-wrap">
             <div className="row h-100">
               <div className="p-0 d-flex flex-column w-100 h-100">
@@ -95,7 +90,7 @@ function App() {
                       element={<Customized_explore />}
                     />
                     <Route
-                      path="/customized/collect"
+                      path="/customized/previous_creations"
                       element={<Customized_collect />}
                     />
                     <Route path="/carts" element={<Carts />} />

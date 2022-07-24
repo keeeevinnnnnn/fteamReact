@@ -1,0 +1,25 @@
+.recordCard {
+    cursor: pointer;
+    background: rgba(255, 255, 255, 0.94);
+    border: 1px solid black;
+    transition: .3s;
+    box-shadow: 6px 5px 0px 1px #000000;
+    img {
+        border-right: 1px solid black;
+    }
+    h5 {
+        color: red;
+        font-weight: 600;
+    }
+}
+
+.recordCard:hover {
+    background-color: rgba(0, 0, 0, 0.928);
+    color: white;
+    border: 1px solid white;
+    transform: translateY(-4px);
+    box-shadow: 6px 10px 0px 1px rgb(54, 53, 53);
+    h5 {
+        color: white;
+    }
+  }

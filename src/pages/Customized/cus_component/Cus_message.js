@@ -4,7 +4,7 @@ import Avatar from '@mui/material/Avatar';
 function Cus_message() {
   return (
     <>
-      <div class="row m-2 border-bottom border-gray">
+      <div class="d-flex m-2 border-bottom border-gray">
         <div class="col-2">
           <Avatar sx={{ bgcolor: 'black'[900] }}>OP</Avatar>
         </div>

@@ -321,15 +321,16 @@ const Register = ({
                 />
               </div>
               <div className="col-12 col-xl-8 d-flex justify-content-around pt-3">
-                <div
+                <button
                   className="cursorpointer custom-btn btn-8"
-                  onClick={() => {
+                  onClick={(e) => {
+                    e.preventDefault();
                     setLoginCard('');
                     setLoginLogoText('Login');
                   }}
                 >
                   <span className="text-center">Back To Login</span>
-                </div>
+                </button>
                 <button className="custom-btn btn-8">
                   <span>CONFIRM</span>
                 </button>
