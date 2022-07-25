@@ -1,10 +1,10 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import FilterBox from './components/FilterBox';
 import ToolBox from './components/ToolBox';
 import './styles/ProductMain.scss';
 import axios from './commons/axios';
 import ProductList from './components/ProductList';
-import { Link, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import Pagination from './components/Pagination';
 const ProductMain = () => {
   // 原始資料
@@ -24,25 +24,25 @@ const ProductMain = () => {
   });
 
   const getPageData = async (event, gotoPage) => {
-    // if (event) {
-    //   event.preventDefault();
-    // }
+    if (event) {
+      event.preventDefault();
+    }
     setFilter({ ...filter, page: gotoPage });
-    // console.log('getPageData===', filter);
+
     axios.post('/product', { filter }).then((res) => {
       setData(res.data);
     });
   };
-  // console.log('WORLD===', filter);
+
   useEffect(() => {
     getPageData(null, +usp.get('page') || 1, filter);
-  }, [location, filter]);
+  }, [location]);
 
   return (
     <div className="bg w-100 vh-100 d-flex justify-content-end align-items-end">
       <div className="work-area col-10 text-danger">
         <ToolBox filter={filter} setFilter={setFilter} />
-        <FilterBox />
+        <FilterBox filter={filter} setFilter={setFilter} />
         <div className="row product-list p-0 m-0">
           {data && data.rows
             ? data.rows.map((r) => {
