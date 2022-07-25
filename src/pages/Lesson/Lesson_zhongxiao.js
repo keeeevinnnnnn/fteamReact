@@ -8,8 +8,8 @@ const Lesson_zhongxiao = () => {
         <div className="work-area col-12 col-md-10 p-0">
           <div className="w-100 h-100 d-flex flex-wrap">
             <div className="col-12 col-md-4 h-100">
-              <div class="cooler_card  w-100 h-100 border">
-                <div className="cooler_card_img  h-50   "></div>
+              <div class="cooler_card  w-100 h-85 border d-flex flex-column justify-content-between">
+                <div className="cooler_card_img h-75"></div>
 
                 <div className="cooler_card_body ">
                   <h5 className="cooler_card_title text-center fs-4 fw-bold">
@@ -35,7 +35,7 @@ const Lesson_zhongxiao = () => {
                   </div>
 
                   <span className="fs-6 fw-bold"> 國父紀念館</span>
-                  <p className="card-text  pt-4">
+                  <p className="cooler_text  pt-4">
                     HRC舞蹈工作室提供最優質的舞蹈教學服務，每月超過三百堂多樣化課程、數十種舞蹈風格，多元的課程選擇、由淺入深的漸進式學習，讓你輕鬆踏出舞蹈的第一步，打穩基礎、深根學習、挑戰自己！
                   </p>
                   <p>
