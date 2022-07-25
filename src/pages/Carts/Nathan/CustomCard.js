@@ -1,8 +1,20 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import axios from 'axios';
 import React from 'react';
 
 const CustomCard = (props) => {
-  const { singleItem, singleInd, customCartItems, setCustomCartItems } = props;
+  const {
+    singleItem,
+    singleInd,
+    customCartItems,
+    setCustomCartItems,
+    dep,
+    setDep,
+  } = props;
+  // 拿到單價 & 新數量(更新價錢用)
+  const singlePrice = singleItem.item_price / singleItem.quantity;
+  const newMinusQty = singleItem.quantity - 1;
+  const newPlusQty = singleItem.quantity + 1;
   return (
     <>
       <div className="carts-card">
@@ -27,7 +39,24 @@ const CustomCard = (props) => {
             </div>
             {/* product-price */}
             <div className="w-25 h-100 d-flex align-items-end carts-price-section">
-              <a href={'#/'}>
+              <a
+                style={{ cursor: 'pointer' }}
+                onClick={() => {
+                  if (window.confirm('確定要刪除此商品嗎？')) {
+                    axios
+                      .delete(
+                        `http://localhost:3000/carts?sid=${singleItem.item_id}&type=${singleItem.item_type}`
+                      )
+                      .then((res) => {
+                        console.log(res.data);
+                        if (res.data.success) {
+                          setDep(dep + 1);
+                          alert('刪除成功!');
+                        }
+                      });
+                  }
+                }}
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="h-6 w-6"
@@ -53,9 +82,37 @@ const CustomCard = (props) => {
             <div className="w-50 h-75 d-flex justify-content-center mb-md-3">
               {/* minus */}
               <div
-                // onClick={() => {
-                //   console.log('minus');
-                // }}
+                onClick={() => {
+                  if (singleItem.quantity - 1 !== 0) {
+                    axios
+                      .put('http://localhost:3000/carts', {
+                        sid: singleItem.item_id,
+                        type: singleItem.item_type,
+                        quantity: singleItem.quantity - 1,
+                        price: singlePrice * newMinusQty,
+                      })
+                      .then((res) => {
+                        console.log(res.data.success);
+                        if (res.data.success) {
+                          setDep(dep + 1);
+                        }
+                      });
+                  } else {
+                    if (window.confirm('確定要刪除此商品嗎？')) {
+                      axios
+                        .delete(
+                          `http://localhost:3000/carts?sid=${singleItem.item_id}&type=${singleItem.item_type}`
+                        )
+                        .then((res) => {
+                          console.log(res.data);
+                          if (res.data.success) {
+                            setDep(dep + 1);
+                            alert('刪除成功!');
+                          }
+                        });
+                    }
+                  }
+                }}
                 className="cart-minus-icon cursorpointer mx-3 mx-md-5"
               >
                 <svg
@@ -80,7 +137,19 @@ const CustomCard = (props) => {
               {/* plus */}
               <div
                 onClick={() => {
-                  console.log(customCartItems[singleInd]);
+                  axios
+                    .put('http://localhost:3000/carts', {
+                      sid: singleItem.item_id,
+                      type: singleItem.item_type,
+                      quantity: singleItem.quantity + 1,
+                      price: singlePrice * newPlusQty,
+                    })
+                    .then((res) => {
+                      // console.log(res.data.success);
+                      if (res.data.success) {
+                        setDep(dep + 1);
+                      }
+                    });
                 }}
                 className="cart-plus-icon cursorpointer mx-3 mx-md-5"
               >

@@ -11,7 +11,10 @@ const ProductCard = (props) => {
     dep,
     setDep,
   } = props;
-  // console.log(singleItem);
+  // 拿到單價 & 新數量(更新價錢用)
+  const singlePrice = singleItem.item_price / singleItem.quantity;
+  const newMinusQty = singleItem.quantity - 1;
+  const newPlusQty = singleItem.quantity + 1;
   return (
     <>
       <div className="carts-card">
@@ -38,18 +41,21 @@ const ProductCard = (props) => {
             {/* product-price */}
             <div className="w-25 h-100 d-flex align-items-end carts-price-section">
               <a
+                style={{ cursor: 'pointer' }}
                 onClick={() => {
-                  axios
-                    .delete(
-                      `http://localhost:3000/carts?sid=${singleItem.item_id}&type=${singleItem.item_type}`
-                    )
-                    .then((res) => {
-                      console.log(res.data);
-                      if (res.data.success) {
-                        setDep(dep + 1);
-                        alert('刪除成功!');
-                      }
-                    });
+                  if (window.confirm('確定要刪除此商品嗎？')) {
+                    axios
+                      .delete(
+                        `http://localhost:3000/carts?sid=${singleItem.item_id}&type=${singleItem.item_type}`
+                      )
+                      .then((res) => {
+                        console.log(res.data);
+                        if (res.data.success) {
+                          setDep(dep + 1);
+                          alert('刪除成功!');
+                        }
+                      });
+                  }
                 }}
               >
                 <svg
@@ -84,6 +90,7 @@ const ProductCard = (props) => {
                         sid: singleItem.item_id,
                         type: singleItem.item_type,
                         quantity: singleItem.quantity - 1,
+                        price: singlePrice * newMinusQty,
                       })
                       .then((res) => {
                         console.log(res.data.success);
@@ -92,17 +99,19 @@ const ProductCard = (props) => {
                         }
                       });
                   } else {
-                    axios
-                      .delete(
-                        `http://localhost:3000/carts?sid=${singleItem.item_id}&type=${singleItem.item_type}`
-                      )
-                      .then((res) => {
-                        console.log(res.data);
-                        if (res.data.success) {
-                          setDep(dep + 1);
-                          alert('刪除成功!');
-                        }
-                      });
+                    if (window.confirm('確定要刪除此商品嗎？')) {
+                      axios
+                        .delete(
+                          `http://localhost:3000/carts?sid=${singleItem.item_id}&type=${singleItem.item_type}`
+                        )
+                        .then((res) => {
+                          console.log(res.data);
+                          if (res.data.success) {
+                            setDep(dep + 1);
+                            alert('刪除成功!');
+                          }
+                        });
+                    }
                   }
                 }}
                 className="cart-minus-icon cursorpointer mx-3 mx-md-5"
@@ -134,9 +143,10 @@ const ProductCard = (props) => {
                       sid: singleItem.item_id,
                       type: singleItem.item_type,
                       quantity: singleItem.quantity + 1,
+                      price: singlePrice * newPlusQty,
                     })
                     .then((res) => {
-                      console.log(res.data.success);
+                      // console.log(res.data.success);
                       if (res.data.success) {
                         setDep(dep + 1);
                       }

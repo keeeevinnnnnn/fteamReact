@@ -164,6 +164,8 @@ const Carts = () => {
                             singleInd={i}
                             customCartItems={customCartItems}
                             setCustomCartItems={setCustomCartItems}
+                            dep={dep}
+                            setDep={setDep}
                           />
                         );
                       })}
@@ -176,6 +178,8 @@ const Carts = () => {
                             singleItem={v}
                             customCartItems={customCartItems}
                             setLessonCartItems={setLessonCartItems}
+                            dep={dep}
+                            setDep={setDep}
                           />
                         );
                       })}

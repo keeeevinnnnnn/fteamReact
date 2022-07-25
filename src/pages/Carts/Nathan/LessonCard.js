@@ -1,7 +1,10 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
+import axios from 'axios';
 import './LessonCard.scss';
 const LessonCard = (props) => {
-  const { singleItem, lessonCartItems, setLessonCartItems } = props;
+  const { singleItem, lessonCartItems, setLessonCartItems, dep, setDep } =
+    props;
   // console.log(singleItem);
   return (
     <>
@@ -33,7 +36,24 @@ const LessonCard = (props) => {
 
         <div className="col-2 h-100 d-flex flex-column justify-content-between">
           <div className="w-100 h-30 text-end lesson-close-wrap">
-            <a href="#/">
+            <a
+              style={{ cursor: 'pointer' }}
+              onClick={() => {
+                if (window.confirm('確定要刪除此商品嗎？')) {
+                  axios
+                    .delete(
+                      `http://localhost:3000/carts?sid=${singleItem.item_id}&type=${singleItem.item_type}`
+                    )
+                    .then((res) => {
+                      console.log(res.data);
+                      if (res.data.success) {
+                        setDep(dep + 1);
+                        alert('刪除成功!');
+                      }
+                    });
+                }
+              }}
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-6 w-6"
