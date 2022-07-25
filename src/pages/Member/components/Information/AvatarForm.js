@@ -1,4 +1,4 @@
-import React, { useRef, useState, useContext } from 'react';
+import React, { useRef, useState, useContext, useEffect } from 'react';
 import axios from 'axios';
 import AuthContext from '../../../../components/AuthContext';
 import '../../styles/AvatarForm.scss';
@@ -20,7 +20,10 @@ const AvatarForm = ({ member }) => {
   }
 
   // 記錄頭貼檔案名稱
-  const [field, setField] = useState(member.mem_avatar);
+  const [field, setField] = useState('');
+  useEffect(() => {
+    setField(member.mem_avatar);
+  }, [member]);
 
   // 頭貼input值有變換時
   async function uploadAvatar(e) {
@@ -66,25 +69,31 @@ const AvatarForm = ({ member }) => {
         // 表單點擊
         onSubmit={handleSubmit}
       >
-        <input
-          type="file"
-          name="avatar"
-          ref={registerAvatarRef}
-          onChange={uploadAvatar}
-          hidden
-        />
-        <figure className="d-flex justify-content-center h-70">
-          <img
-            src={`http://localhost:3000/avatar/${field}`}
-            alt=""
-            onClick={clickAvatar}
-            // 大頭貼更換成功動畫效果
-            style={{ animation: `${avatarAnimation}` }}
-          />
-        </figure>
-        <div className="d-flex justify-content-center">
-          <button className="btn">Confirm</button>
-        </div>
+        {member === [] ? (
+          ''
+        ) : (
+          <>
+            <input
+              type="file"
+              name="avatar"
+              ref={registerAvatarRef}
+              onChange={uploadAvatar}
+              hidden
+            />
+            <figure className="d-flex justify-content-center h-70">
+              <img
+                src={`http://localhost:3000/avatar/${field}`}
+                alt=""
+                onClick={clickAvatar}
+                // 大頭貼更換成功動畫效果
+                style={{ animation: `${avatarAnimation}` }}
+              />
+            </figure>
+            <div className="d-flex justify-content-center">
+              <button className="btn">Confirm</button>
+            </div>
+          </>
+        )}
       </form>
     </>
   );

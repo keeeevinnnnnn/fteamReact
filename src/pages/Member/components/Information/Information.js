@@ -25,19 +25,25 @@ const Information = () => {
             transition: '0.5s ease',
           }}
         >
-          <Personal
-            setmoveTrain={setmoveTrain}
-            setAvatarFromNone={setAvatarFromNone}
-            setInformationWrap={setInformationWrap}
-            member={member}
-          />
-          <MemberEdit
-            setmoveTrain={setmoveTrain}
-            setAvatarFromNone={setAvatarFromNone}
-            setInformationWrap={setInformationWrap}
-            member={member}
-          />
-          <PasswordEdit setmoveTrain={setmoveTrain} />
+          {member === [] ? (
+            ''
+          ) : (
+            <>
+              <Personal
+                setmoveTrain={setmoveTrain}
+                setAvatarFromNone={setAvatarFromNone}
+                setInformationWrap={setInformationWrap}
+                member={member}
+              />
+              <MemberEdit
+                setmoveTrain={setmoveTrain}
+                setAvatarFromNone={setAvatarFromNone}
+                setInformationWrap={setInformationWrap}
+                member={member}
+              />
+              <PasswordEdit setmoveTrain={setmoveTrain} />
+            </>
+          )}
         </div>
       </div>
     </>
