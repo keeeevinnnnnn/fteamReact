@@ -1,0 +1,65 @@
+import React from 'react';
+import './LessonCard.scss';
+const LessonCard = (props) => {
+  const { singleItem, lessonCartItems, setLessonCartItems } = props;
+  // console.log(singleItem);
+  return (
+    <>
+      <div className="carts-card d-flex">
+        <div className="col-4 h-100 d-flex flex-column justify-content-around align-items-center">
+          <div className="w-90 h-25 text-center lesson-title">Dance Style</div>
+          <div className="w-90 h-65 d-flex justify-content-center align-items-center">
+            <span title={singleItem.name} className="lesson-name-text">
+              {singleItem.name}
+            </span>
+          </div>
+        </div>
+        <div className="col-3 h-100 d-flex flex-column justify-content-around align-items-center">
+          <div className="w-90 h-25 text-center lesson-title">Begin</div>
+          <div className="w-90 h-65 d-flex justify-content-center align-items-center">
+            <span className="lesson-name-text">
+              {singleItem.duringtime_begin.slice(0, 10)}
+            </span>
+          </div>
+        </div>
+        <div className="col-3 h-100 d-flex flex-column justify-content-around align-items-center">
+          <div className="w-90 h-25 text-center lesson-title">End</div>
+          <div className="w-90 h-65 d-flex justify-content-center align-items-center">
+            <span className="lesson-name-text">
+              {singleItem.duringtime_end.slice(0, 10)}
+            </span>
+          </div>
+        </div>
+
+        <div className="col-2 h-100 d-flex flex-column justify-content-between">
+          <div className="w-100 h-30 text-end lesson-close-wrap">
+            <a href="#/">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="black"
+                strokeWidth={2}
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              </svg>
+            </a>
+          </div>
+          <div className="w-100 h-40 d-flex justify-content-end align-items-end">
+            <span className="lesson-price-text">{singleItem.location}</span>
+          </div>
+          <div className="w-100 h-30 d-flex justify-content-end align-items-center">
+            <span className="lesson-price-text">${singleItem.item_price}</span>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+};
+
+export default LessonCard;

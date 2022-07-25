@@ -1,10 +1,99 @@
-import React, { useState, Fragment } from 'react';
-import CartsCard from './Nathan/CartsCard';
+import React, { useState, Fragment, useEffect } from 'react';
+import ProductCard from './Nathan/ProductCard';
 import Scroll from 'react-scroll';
 import './Carts.scss';
 import OffcanvasTest from './Nathan/OffcanvasTest';
 import MuiTabs from './Nathan/MuiTabs';
+import axios from 'axios';
+import CustomCard from './Nathan/CustomCard';
+import LessonCard from './Nathan/LessonCard';
 const Carts = () => {
+  // render 依賴項
+  const [dep, setDep] = useState(0);
+  // 3台購物車的data
+  const [productCartItems, setProductCartItems] = useState([]);
+  const [customCartItems, setCustomCartItems] = useState([]);
+  const [lessonCartItems, setLessonCartItems] = useState([]);
+
+  // 3台購物車的數量
+  const [productTotalQty, setProductTotalQty] = useState(0);
+  const [lessonTotalQty, setLessonTotalQty] = useState(0);
+  const [customTotalQty, setCustomTotalQty] = useState(0);
+
+  // 3台購物車的價錢
+  const [productTotalPrice, setProductTotalPrice] = useState(0);
+  const [lessonTotalPrice, setLessonTotalPrice] = useState(0);
+  const [customTotalPrice, setCustomTotalPrice] = useState(0);
+
+  // 獲取購物車內的資料
+  useEffect(() => {
+    console.log(123);
+    // product
+    axios.get('http://localhost:3000/carts?type=product').then((response) => {
+      // console.log(response.data.result);
+      setProductCartItems(response.data.result);
+      // get product total price
+      setProductTotalPrice(
+        response.data.result.length !== 0
+          ? response.data.result.reduce((init, obj) => {
+            return init + obj.item_price;
+          }, 0)
+          : 0
+      );
+      // get product qty
+      setProductTotalQty(
+        response.data.result.length !== 0
+          ? response.data.result.reduce((init, obj) => {
+            return init + obj.quantity;
+          }, 0)
+          : 0
+      );
+    });
+    // lesson
+    axios.get('http://localhost:3000/carts?type=lesson').then((response) => {
+      // console.log(response.data.result);
+      setLessonCartItems(response.data.result);
+      // get lesson total price
+      setLessonTotalPrice(
+        response.data.result.length !== 0
+          ? response.data.result.reduce((init, obj) => {
+            return init + obj.item_price;
+          }, 0)
+          : 0
+      );
+      // get lesson qty
+      setLessonTotalQty(
+        response.data.result.length !== 0
+          ? response.data.result.reduce((init, obj) => {
+            return init + obj.quantity;
+          }, 0)
+          : 0
+      );
+    });
+    // custom
+    axios.get('http://localhost:3000/carts?type=custom').then((response) => {
+      // console.log(response.data.result);
+      setCustomCartItems(response.data.result);
+      // get custom total price
+      setCustomTotalPrice(
+        response.data.result.length !== 0
+          ? response.data.result.reduce((init, obj) => {
+            return init + obj.item_price;
+          }, 0)
+          : 0
+      );
+      // get custom qty
+      setCustomTotalQty(
+        response.data.result.length !== 0
+          ? response.data.result.reduce((init, obj) => {
+            return init + obj.quantity;
+          }, 0)
+          : 0
+      );
+    });
+  }, [dep]);
+
+  // Tabs所有選項
   const cartItemArr = ['PRODUCTS', 'CUSTOMIZED', 'LESSONS'];
   const [selectItem, setSelectItem] = useState('PRODUCTS');
   return (
@@ -52,16 +141,44 @@ const Carts = () => {
                     className="card-scroll-list"
                   >
                     <Scroll.Element className="products-card-scroll">
-                      <CartsCard />
-                      <CartsCard />
-                      <CartsCard />
-                      <CartsCard />
+                      {productCartItems.map((v, i) => {
+                        return (
+                          <ProductCard
+                            key={v.sid}
+                            singleItem={v}
+                            singleInd={i}
+                            productCartItems={productCartItems}
+                            setProductCartItems={setProductCartItems}
+                            dep={dep}
+                            setDep={setDep}
+                          />
+                        );
+                      })}
                     </Scroll.Element>
                     <Scroll.Element className="customized-card-scroll">
-                      <CartsCard />
+                      {customCartItems.map((v, i) => {
+                        return (
+                          <CustomCard
+                            key={v.sid}
+                            singleItem={v}
+                            singleInd={i}
+                            customCartItems={customCartItems}
+                            setCustomCartItems={setCustomCartItems}
+                          />
+                        );
+                      })}
                     </Scroll.Element>
                     <Scroll.Element className="lesson-card-scroll">
-                      <CartsCard />
+                      {lessonCartItems.map((v, i) => {
+                        return (
+                          <LessonCard
+                            key={v.sid}
+                            singleItem={v}
+                            customCartItems={customCartItems}
+                            setLessonCartItems={setLessonCartItems}
+                          />
+                        );
+                      })}
                     </Scroll.Element>
                   </div>
                 </div>
@@ -81,11 +198,15 @@ const Carts = () => {
                 <div className="total-bottom-grid w-100 d-flex">
                   <div className="cart-total-text col-4 h-100 d-flex justify-content-center align-items-center">
                     {/* total price */}
-                    <span>$ {'4990'}</span>
+                    <span>
+                      ${productTotalPrice + lessonTotalPrice + customTotalPrice}
+                    </span>
                   </div>
                   <div className="cart-total-text col-4 h-100 d-flex justify-content-center align-items-center">
                     {/* total counts */}
-                    <span>{'4'}</span>
+                    <span>
+                      {productTotalQty + lessonTotalQty + customTotalQty}
+                    </span>
                   </div>
                   <div className="col-4 h-100 d-flex justify-content-start align-items-center btn-check-wrap">
                     <OffcanvasTest />

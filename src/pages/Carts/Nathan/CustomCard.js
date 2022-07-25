@@ -1,6 +1,8 @@
+import axios from 'axios';
 import React from 'react';
-import './CartsCard.scss';
-const CartsCard = () => {
+
+const CustomCard = (props) => {
+  const { singleItem, singleInd, customCartItems, setCustomCartItems } = props;
   return (
     <>
       <div className="carts-card">
@@ -13,20 +15,16 @@ const CartsCard = () => {
                 <div className="cart-img-wrap">
                   <img
                     className=" w-100 h-100"
-                    src={
-                      'https://internetfusion.imgix.net/1618097.jpeg?auto=format,compress&cs=srgb&fit=fill&fill=solid&w=550&h=550'
-                    }
+                    src={`http://localhost:3000/productImages/${singleItem.back_img}`}
                     alt=""
                   />
                 </div>
               </div>
               <div className="w-50 h-100 d-flex flex-column justify-content-center carts-item-text-wrap">
                 {/* info data */}
-                <p className="m-0">Brand Skate</p>
-                <p className="m-0 mb-4">Red</p>
+                <p className="m-0">{singleItem.custom_product_name}</p>
               </div>
             </div>
-
             {/* product-price */}
             <div className="w-25 h-100 d-flex align-items-end carts-price-section">
               <a href={'#/'}>
@@ -46,7 +44,7 @@ const CartsCard = () => {
                 </svg>
               </a>
               <p className="w-100 text-center mb-md-0 carts-price">
-                $ {'4990'}
+                $ {singleItem.item_price}
               </p>
             </div>
           </div>
@@ -55,9 +53,9 @@ const CartsCard = () => {
             <div className="w-50 h-75 d-flex justify-content-center mb-md-3">
               {/* minus */}
               <div
-                onClick={() => {
-                  console.log('minus');
-                }}
+                // onClick={() => {
+                //   console.log('minus');
+                // }}
                 className="cart-minus-icon cursorpointer mx-3 mx-md-5"
               >
                 <svg
@@ -76,13 +74,13 @@ const CartsCard = () => {
                 </svg>
               </div>
               <div className="cart-count-text">
-                <span>1</span>
+                <span>{singleItem.quantity}</span>
               </div>
 
               {/* plus */}
               <div
                 onClick={() => {
-                  console.log('plus');
+                  console.log(customCartItems[singleInd]);
                 }}
                 className="cart-plus-icon cursorpointer mx-3 mx-md-5"
               >
@@ -109,4 +107,4 @@ const CartsCard = () => {
   );
 };
 
-export default CartsCard;
+export default CustomCard;
