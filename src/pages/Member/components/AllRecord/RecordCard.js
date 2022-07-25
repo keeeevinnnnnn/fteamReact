@@ -4,7 +4,7 @@ import '../../styles/RecordCard.scss';
 const RecordCard = () => {
   return (
     <>
-      <div className="w-95 h-18 m-3 recordCard">
+      <div className="w-95 m-3 recordCard">
         <div className="d-flex h-100 w-100">
           <div className="col-xl-3">
             <img
