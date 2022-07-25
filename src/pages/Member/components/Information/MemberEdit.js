@@ -64,9 +64,6 @@ const MemberEdit = ({
     // 先阻擋預設行為-泡泡訊息
     e.preventDefault();
 
-    // 錯誤訊息
-    // console.log(e.target.validationMessage)
-
     // 填入錯誤訊息
     setFieldErrors({
       ...fieldErrors,
