@@ -10,7 +10,7 @@ const MuiTabs = ({ selectItem, setSelectItem }) => {
   };
   return (
     <>
-      <Box sx={{ width: '97%' }}>
+      <Box sx={{ width: '100%' }}>
         <Box sx={{ borderBottom: 1, borderColor: 'black' }}>
           <Tabs
             aria-label="basic tabs example"
@@ -18,25 +18,25 @@ const MuiTabs = ({ selectItem, setSelectItem }) => {
             onChange={handleChange}
           >
             <Tab
-              sx={{ fontSize: '1.1rem' }}
+              sx={{ fontSize: '0.7rem'}}
               disableRipple={true}
               label="FAVORITE"
               value={'FAVORITE'}
             />
             <Tab
-              sx={{ fontSize: '1.1rem' }}
+              sx={{ fontSize: '0.7rem' }}
               disableRipple={true}
               label="RECORD"
               value={'RECORD'}
             />
             <Tab
-              sx={{ fontSize: '1.1rem' }}
+              sx={{ fontSize: '0.7rem' }}
               disableRipple={true}
               label="MY LESSON"
               value={'MY LESSON'}
             />
             <Tab
-              sx={{ fontSize: '1.1rem' }}
+              sx={{ fontSize: '0.7rem' }}
               disableRipple={true}
               label="CHAT"
               value={'CHAT'}

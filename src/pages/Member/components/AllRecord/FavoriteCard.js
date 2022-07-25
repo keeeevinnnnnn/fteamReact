@@ -6,7 +6,7 @@ const FavoriteCard = () => {
     <>
       <div className="w-95 h-18 m-3 favoriteCard">
         <div className="d-flex h-100 w-100">
-          <div className="col-3">
+          <div className="col-xl-3">
             <img
               src="https://image.presslogic.com/holiday.presslogic.com/wp-content/uploads/2022/06/64852c4d.jpg?quality=90"
               alt=""
@@ -17,7 +17,7 @@ const FavoriteCard = () => {
               }}
             />
           </div>
-          <div className="col-9">
+          <div className="col-xl-9">
             <p className="h-50 p-3">
               That dog has three pairs of Inner 0.0 The whole set of skateboards
             </p>

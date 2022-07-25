@@ -22,4 +22,24 @@
         font-weight: 600;
         transform: skew(-10deg, 0deg);
     }
-  }
+}
+
+@media screen and (max-width: 1200px) {
+    .recordCard {
+        P {
+            font-size: 0.8rem;
+            margin-bottom: 5px;
+        }
+        h5,h6 {
+            height: 100%;
+            margin: 0;
+            font-size: 1rem;
+        }
+        h6 {
+            padding-left: 3%;
+        }
+        h5 {
+            padding-right: 3%;
+        }
+    }
+}
