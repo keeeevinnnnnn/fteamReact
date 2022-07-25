@@ -464,7 +464,6 @@ const FilterBox = (props) => {
                 className="sortbyBox pt-2"
                 onClick={() => {
                   setFilter({ ...filter, color: 'pink' });
-                  console.log(filter);
                 }}
               >
                 <span>Recommended</span>

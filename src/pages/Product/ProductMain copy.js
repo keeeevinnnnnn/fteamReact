@@ -1,16 +1,16 @@
-import React, { useState, useEffect, useCallback, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import FilterBox from './components/FilterBox';
 import ToolBox from './components/ToolBox';
 import './styles/ProductMain.scss';
 import axios from './commons/axios';
 import ProductList from './components/ProductList';
-import { useSearchParams } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import Pagination from './components/Pagination';
 const ProductMain = () => {
   // 原始資料
   const [data, setData] = useState({});
-  const [searchParams] = useSearchParams();
-  const page = searchParams.get('page') || 1;
+  const location = useLocation();
+  const usp = new URLSearchParams(location.search);
   // post發給後端，先給預設參數，api要加上判斷如果不等於null才執行我要的sql語法
   // API還有兩個參數預設 : 1. orderField = "sid";  2. sort='asc';
   const [filter, setFilter] = useState({
@@ -23,27 +23,20 @@ const ProductMain = () => {
     page: 1,
   });
 
-  console.log('page', page);
+  const getPageData = async (event, gotoPage) => {
+    if (event) {
+      event.preventDefault();
+    }
+    setFilter({ ...filter, page: gotoPage });
 
-  const getPageData = useCallback(
-    async (event, gotoPage) => {
-      if (!filter.categoryId) return;
-      if (event) {
-        event.preventDefault();
-      }
-      // setFilter({ ...filter, page: gotoPage });
-      axios
-        .post('/product', { filter: { ...filter, page: gotoPage } })
-        .then((res) => {
-          setData(res.data);
-        });
-    },
-    [filter]
-  );
-
+    axios.post('/product', { filter }).then((res) => {
+      setData(res.data);
+    });
+  };
+  console.log('main===filter===', filter);
   useEffect(() => {
-    getPageData(null, page);
-  }, [getPageData, page]);
+    getPageData(null, +usp.get('page') || 1, filter);
+  }, [location]);
 
   return (
     <div className="bg w-100 vh-100 d-flex justify-content-end align-items-end">
