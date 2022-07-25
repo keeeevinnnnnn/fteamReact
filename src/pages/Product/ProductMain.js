@@ -24,19 +24,19 @@ const ProductMain = () => {
   });
 
   const getPageData = async (event, gotoPage) => {
-    if (event) {
-      event.preventDefault();
-    }
+    // if (event) {
+    //   event.preventDefault();
+    // }
     setFilter({ ...filter, page: gotoPage });
-    console.log(filter);
+    // console.log('getPageData===', filter);
     axios.post('/product', { filter }).then((res) => {
       setData(res.data);
     });
   };
-
+  // console.log('WORLD===', filter);
   useEffect(() => {
     getPageData(null, +usp.get('page') || 1, filter);
-  }, [location]);
+  }, [location, filter]);
 
   return (
     <div className="bg w-100 vh-100 d-flex justify-content-end align-items-end">
