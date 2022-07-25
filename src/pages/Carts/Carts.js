@@ -10,6 +10,8 @@ import LessonCard from './Nathan/LessonCard';
 const Carts = () => {
   // render 依賴項
   const [dep, setDep] = useState(0);
+  // checkAll setting
+  const [allChecked, setAllChecked] = useState(false);
   // 3台購物車的data
   const [productCartItems, setProductCartItems] = useState([]);
   const [customCartItems, setCustomCartItems] = useState([]);
@@ -151,6 +153,8 @@ const Carts = () => {
                             setProductCartItems={setProductCartItems}
                             dep={dep}
                             setDep={setDep}
+                            allChecked={allChecked}
+                            setAllChecked={setAllChecked}
                           />
                         );
                       })}
