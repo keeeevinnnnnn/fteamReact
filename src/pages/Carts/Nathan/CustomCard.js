@@ -1,6 +1,20 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
+import axios from 'axios';
 import React from 'react';
-import './CartsCard.scss';
-const CartsCard = () => {
+
+const CustomCard = (props) => {
+  const {
+    singleItem,
+    singleInd,
+    customCartItems,
+    setCustomCartItems,
+    dep,
+    setDep,
+  } = props;
+  // 拿到單價 & 新數量(更新價錢用)
+  const singlePrice = singleItem.item_price / singleItem.quantity;
+  const newMinusQty = singleItem.quantity - 1;
+  const newPlusQty = singleItem.quantity + 1;
   return (
     <>
       <div className="carts-card">
@@ -13,23 +27,36 @@ const CartsCard = () => {
                 <div className="cart-img-wrap">
                   <img
                     className=" w-100 h-100"
-                    src={
-                      'https://internetfusion.imgix.net/1618097.jpeg?auto=format,compress&cs=srgb&fit=fill&fill=solid&w=550&h=550'
-                    }
+                    src={`http://localhost:3000/productImages/${singleItem.back_img}`}
                     alt=""
                   />
                 </div>
               </div>
               <div className="w-50 h-100 d-flex flex-column justify-content-center carts-item-text-wrap">
                 {/* info data */}
-                <p className="m-0">Brand Skate</p>
-                <p className="m-0 mb-4">Red</p>
+                <p className="m-0">{singleItem.custom_product_name}</p>
               </div>
             </div>
-
             {/* product-price */}
             <div className="w-25 h-100 d-flex align-items-end carts-price-section">
-              <a href={'#/'}>
+              <a
+                style={{ cursor: 'pointer' }}
+                onClick={() => {
+                  if (window.confirm('確定要刪除此商品嗎？')) {
+                    axios
+                      .delete(
+                        `http://localhost:3000/carts?sid=${singleItem.item_id}&type=${singleItem.item_type}`
+                      )
+                      .then((res) => {
+                        console.log(res.data);
+                        if (res.data.success) {
+                          setDep(dep + 1);
+                          alert('刪除成功!');
+                        }
+                      });
+                  }
+                }}
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="h-6 w-6"
@@ -46,7 +73,7 @@ const CartsCard = () => {
                 </svg>
               </a>
               <p className="w-100 text-center mb-md-0 carts-price">
-                $ {'4990'}
+                $ {singleItem.item_price}
               </p>
             </div>
           </div>
@@ -56,7 +83,35 @@ const CartsCard = () => {
               {/* minus */}
               <div
                 onClick={() => {
-                  console.log('minus');
+                  if (singleItem.quantity - 1 !== 0) {
+                    axios
+                      .put('http://localhost:3000/carts', {
+                        sid: singleItem.item_id,
+                        type: singleItem.item_type,
+                        quantity: singleItem.quantity - 1,
+                        price: singlePrice * newMinusQty,
+                      })
+                      .then((res) => {
+                        console.log(res.data.success);
+                        if (res.data.success) {
+                          setDep(dep + 1);
+                        }
+                      });
+                  } else {
+                    if (window.confirm('確定要刪除此商品嗎？')) {
+                      axios
+                        .delete(
+                          `http://localhost:3000/carts?sid=${singleItem.item_id}&type=${singleItem.item_type}`
+                        )
+                        .then((res) => {
+                          console.log(res.data);
+                          if (res.data.success) {
+                            setDep(dep + 1);
+                            alert('刪除成功!');
+                          }
+                        });
+                    }
+                  }
                 }}
                 className="cart-minus-icon cursorpointer mx-3 mx-md-5"
               >
@@ -76,13 +131,25 @@ const CartsCard = () => {
                 </svg>
               </div>
               <div className="cart-count-text">
-                <span>1</span>
+                <span>{singleItem.quantity}</span>
               </div>
 
               {/* plus */}
               <div
                 onClick={() => {
-                  console.log('plus');
+                  axios
+                    .put('http://localhost:3000/carts', {
+                      sid: singleItem.item_id,
+                      type: singleItem.item_type,
+                      quantity: singleItem.quantity + 1,
+                      price: singlePrice * newPlusQty,
+                    })
+                    .then((res) => {
+                      // console.log(res.data.success);
+                      if (res.data.success) {
+                        setDep(dep + 1);
+                      }
+                    });
                 }}
                 className="cart-plus-icon cursorpointer mx-3 mx-md-5"
               >
@@ -109,4 +176,4 @@ const CartsCard = () => {
   );
 };
 
-export default CartsCard;
+export default CustomCard;

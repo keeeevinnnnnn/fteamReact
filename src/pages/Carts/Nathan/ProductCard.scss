@@ -39,7 +39,6 @@
   position: absolute;
   top: 10px;
   right: 10px;
-
 }
 
 .carts-price-section svg {
@@ -79,6 +78,16 @@
   font-size: 1.15rem;
   display: inline-block;
   height: 100%;
+}
+
+// 文字斷行
+.product-name-text {
+  word-break: break-all;
+  width: 90%;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
 }
 
 @media screen and (max-width: 768px) {

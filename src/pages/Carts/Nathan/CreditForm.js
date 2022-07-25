@@ -217,7 +217,7 @@ const CreditForm = () => {
                     />
                     <div className="w-30 d-flex justify-content-end text-gray">
                       <input
-                        className="text-end w-40 bg-transparent border-0 text-gray"
+                        className="text-center w-40 bg-transparent border-0 text-gray"
                         type="text"
                         value={creditForm.validMonth}
                       />
@@ -227,7 +227,7 @@ const CreditForm = () => {
                         ? '/'
                         : ''}
                       <input
-                        className="text-end w-40 bg-transparent border-0 text-gray"
+                        className="text-center w-40 bg-transparent border-0 text-gray"
                         type="text"
                         value={creditForm.validYear}
                       />
