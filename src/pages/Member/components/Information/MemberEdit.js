@@ -21,6 +21,7 @@ const MemberEdit = ({
     mem_email,
     mem_address,
   } = member;
+  console.log();
   // 記錄表單每個欄位輸入值
   const [fields, setFields] = useState({
     account: mem_account,
