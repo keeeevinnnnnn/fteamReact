@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import '../../styles/MemberEdit.scss';
 import axios from 'axios';
 import AuthContext from '../../../../components/AuthContext';
@@ -11,36 +11,48 @@ const MemberEdit = ({
   member,
 }) => {
   const { token, auths, setAuths } = useContext(AuthContext);
-  // 取出表單需要顯示的值
-  const {
-    mem_account,
-    mem_name,
-    mem_nickname,
-    mem_birthday,
-    mem_mobile,
-    mem_email,
-    mem_address,
-  } = member;
   // 記錄表單每個欄位輸入值
   const [fields, setFields] = useState({
-    account: mem_account,
-    name: mem_name,
-    nickname: mem_nickname,
-    birthday: mem_birthday,
-    mobile: mem_mobile,
-    email: mem_email,
-    address: mem_address,
+    account: '',
+    name: '',
+    nickname: '',
+    birthday: '',
+    mobile: '',
+    email: '',
+    address: '',
   });
   // 離開這個表單時，如沒變更資料把欄位恢復成最初始值
-  const [leaveForm, setLeaveForm] = useState({
-    account: mem_account,
-    name: mem_name,
-    nickname: mem_nickname,
-    birthday: mem_birthday,
-    mobile: mem_mobile,
-    email: mem_email,
-    address: mem_address,
-  });
+  const [leaveForm, setLeaveForm] = useState([]);
+  useEffect(() => {
+    // 取出表單需要顯示的值
+    const {
+      mem_account,
+      mem_name,
+      mem_nickname,
+      mem_birthday,
+      mem_mobile,
+      mem_email,
+      mem_address,
+    } = member;
+    setFields({
+      account: mem_account,
+      name: mem_name,
+      nickname: mem_nickname,
+      birthday: mem_birthday,
+      mobile: mem_mobile,
+      email: mem_email,
+      address: mem_address,
+    });
+    setLeaveForm({
+      account: mem_account,
+      name: mem_name,
+      nickname: mem_nickname,
+      birthday: mem_birthday,
+      mobile: mem_mobile,
+      email: mem_email,
+      address: mem_address,
+    });
+  }, [member]);
   // onChange存值到fields
   const handleFieldsChange = (e) => {
     setFields({ ...fields, [e.target.name]: e.target.value });
