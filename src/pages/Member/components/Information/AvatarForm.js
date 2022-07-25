@@ -4,6 +4,9 @@ import AuthContext from '../../../../components/AuthContext';
 import '../../styles/AvatarForm.scss';
 import { v4 as uuidv4 } from 'uuid';
 
+// 大頭貼更換成功動畫效果
+let avatarAnimation = '';
+
 const AvatarForm = ({ member }) => {
   // token 發fetch用 setAuths更改狀態重新撈取會員資料
   const { token, auths, setAuths } = useContext(AuthContext);
@@ -34,7 +37,6 @@ const AvatarForm = ({ member }) => {
   async function handleSubmit(e) {
     // 先阻擋預設送出行為
     e.preventDefault();
-    console.log(field);
     const response = await axios.post(
       'http://localhost:3000/member/avatar',
       { avatar: field },
@@ -47,7 +49,12 @@ const AvatarForm = ({ member }) => {
 
     if (response.data.success === true) {
       setAuths({ ...auths, change: uuidv4() });
-      alert('頭貼修改成功');
+      // 大頭貼執行動畫
+      avatarAnimation = 'avatar 0.5s linear';
+      // 再把動畫CSS清空
+      setTimeout(() => {
+        avatarAnimation = '';
+      }, 1000);
     } else {
       alert('頭貼修改失敗');
     }
@@ -70,8 +77,9 @@ const AvatarForm = ({ member }) => {
           <img
             src={`http://localhost:3000/avatar/${field}`}
             alt=""
-            className="h-100"
             onClick={clickAvatar}
+            // 大頭貼更換成功動畫效果
+            style={{ animation: `${avatarAnimation}` }}
           />
         </figure>
         <div className="d-flex justify-content-center">

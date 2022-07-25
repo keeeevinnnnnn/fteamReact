@@ -11,40 +11,46 @@ const ProductMain = () => {
   const [data, setData] = useState({});
   const location = useLocation();
   const usp = new URLSearchParams(location.search);
-  const [filter, setFilter] = useState({
-    categoryId: null,
-    brand: null,
-    color: null,
-    price: null,
-    orderfield: null,
-    sort: null,
-    page: 1,
-  });
 
   const getPageData = async (event, gotoPage) => {
     if (event) {
       event.preventDefault();
     }
-    setFilter({ ...filter, page: gotoPage });
-    console.log(filter);
-    axios.post('/product', { filter }).then((res) => {
+    axios.get(`/product?page=${gotoPage}`).then((res) => {
       setData(res.data);
     });
   };
 
+  // 全域變數，去接子層 toolBoxFilter的第三個參數
+  const [type, setType] = useState(null);
+
+  const toolBoxFilter = async (event, gotoPage, type) => {
+    if (event) {
+      event.preventDefault();
+    }
+    setType(type);
+    axios.get(`/product/${type}?page=${gotoPage}`).then((res) => {
+      setData(res.data);
+    });
+  };
+
+  // 第一次更新不執行
+  const firstUpdate = useRef(true);
   useEffect(() => {
-    getPageData(null, +usp.get('page') || 1, filter);
+    getPageData(null, +usp.get('page') || 1);
+    // 原始資料
+    if (firstUpdate.current) {
+      firstUpdate.current = false;
+      return;
+    } else {
+      toolBoxFilter(null, +usp.get('page') || 1, type);
+    }
   }, [location]);
 
   return (
     <div className="bg w-100 vh-100 d-flex justify-content-end align-items-end">
       <div className="work-area col-10 text-danger">
-        <ToolBox
-          setData={setData}
-          getPageData={getPageData}
-          filter={filter}
-          setFilter={setFilter}
-        />
+        <ToolBox setData={setData} toolBoxFilter={toolBoxFilter} />
         <FilterBox />
         <div className="row product-list p-0 m-0">
           {data && data.rows
