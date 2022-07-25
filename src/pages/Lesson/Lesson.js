@@ -5,11 +5,11 @@ const Lesson = () => {
     <>
       <div className="w-100 vh-100 d-flex justify-content-end align-items-end">
         <div className="work-area col-12 col-md-10 p-0">
-          <div className="d-flex flex-wrap">
+          <div className="d-flex flex-wrap ">
             {/* <div className="d-flex "> */}
             {/* <div className="row"> */}
 
-            <div className="col-12 col-md-1 d-none d-sm-block  cooler_arrowcenter  m-4">
+            <div className="col-12 col-md-1 d-none d-lg-block  cooler_arrowcenter  m-3">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-6 w-6 cooler_icon_wrap "
@@ -56,7 +56,7 @@ const Lesson = () => {
                   </a>
                 </div>
                 <span className="fs-6 fw-bold"> 國父紀念館</span>
-                <p className="card-text  pt-4">
+                <p className=" card-text  pt-4">
                   HRC舞蹈工作室提供最優質的舞蹈教學服務，每月超過三百堂多樣化課程、數十種舞蹈風格，多元的課程選擇、由淺入深的漸進式學習，讓你輕鬆踏出舞蹈的第一步，打穩基礎、深根學習、挑戰自己！
                 </p>
                 <div className=" w-100 d-flex  justify-content-end">
@@ -107,7 +107,7 @@ const Lesson = () => {
                 </div>
               </div>
             </div>
-            <div className="col-12 col-md-1 d-none d-sm-block cooler_arrowcenter m-4 ">
+            <div className="col-12 col-md-1 d-none d-lg-block cooler_arrowcenter m-3 ">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-6 w-6 cooler_icon_wrap"

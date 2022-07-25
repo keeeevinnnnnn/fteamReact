@@ -1,9 +1,9 @@
 .memberEdit {
-    background-color: rgba(0, 0, 0, 0.770);
+    height: 100%;
+    background: rgba(0, 0, 0, 0.770);
     color: white;
     border: 1px solid #2ce6ff;
     border-radius: 0 30px 0 0;
-    box-shadow: 5px 5px 15px 5px #000000;
     h5 {
         margin-top: 1%;
     }
@@ -26,9 +26,9 @@
     }
 
     button {
-        margin-top: 5%;
+        margin-top: 2%;
         margin-bottom: 5%;
-        padding: .5em 2em .5em 2em;
+        padding: .5em;
         background-color: var(--main);
         box-shadow: 3px 3px 0 0 #61dafb82;
         border: none;
@@ -41,5 +41,54 @@
         background-color: black;
         color: var(--main);
         border: 1px solid var(--main);
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    .memberEdit {
+        height: 75%;
+        background: rgba(0, 0, 0, 0.770);
+        color: white;
+        border: 1px solid #2ce6ff;
+        border-radius: 0 30px 0 0;
+        box-shadow: 5px 5px 15px 5px #000000;
+        h5 {
+            margin-top: 1%;
+        }
+
+        input,textarea {
+            width: 60%;
+            text-align: center;
+            color: white;
+            background-color: transparent;
+            border: none; /* Removes the default border */
+            border-bottom: 1px solid gray;
+        }
+        input:focus {
+            outline: none /* Removes the border when the input is clicked */
+        }
+
+        p {
+            margin-bottom: 0;
+            color: red;
+        }
+
+        button {
+            margin-top: 5%;
+            margin-bottom: 5%;
+            padding: .5em 2em .5em 2em;
+            background-color: var(--main);
+            box-shadow: 3px 3px 0 0 #61dafb82;
+            border: none;
+            transition: 1s ease;
+            text-decoration: none;
+        }
+
+        button:hover {
+            box-shadow: 8px 8px 0 0 #61dafbd2;
+            background-color: black;
+            color: var(--main);
+            border: 1px solid var(--main);
+        }
     }
 }

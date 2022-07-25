@@ -47,7 +47,7 @@ export default function BasicTabs() {
           aria-label="basic tabs example"
         >
           <Tab label="Style" {...a11yProps(0)} sx={{width:'20%'}} disableRipple={true}/>
-          <Tab label="Upload" {...a11yProps(1)} sx={{width:'20%'}} disableRipple={true}/>
+          <Tab label="Text" {...a11yProps(1)} sx={{width:'20%'}} disableRipple={true}/>
           <Tab label="Stickers" {...a11yProps(2)} sx={{width:'20%'}} disableRipple={true}/>
           <Tab label="Filter" {...a11yProps(3)} sx={{width:'20%'}} disableRipple={true}/>
         </Tabs>

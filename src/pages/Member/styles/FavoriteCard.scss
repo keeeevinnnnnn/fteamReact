@@ -1,9 +1,11 @@
 .favoriteCard {
     cursor: pointer;
-    background: rgba(255, 255, 255, 0.94);
-    border: 1px solid black;
+    height: 17.5%;
+    background: rgba(0, 0, 0, 0.770);
+    color: white;
+    border: 1px solid var(--main);
     transition: .3s;
-    box-shadow: 6px 5px 0px 1px #000000;
+    box-shadow: 5px 5px 15px 5px #000000;
     img {
         border-right: 1px solid black;
     }
@@ -27,14 +29,55 @@
 }
 
 .favoriteCard:hover {
-    // background-color: rgba(0, 0, 0, 0.928);
-    // color: white;
-    // border: 1px solid white;
     transform: translateY(-4px);
-    box-shadow: 6px 10px 0px 1px rgb(54, 53, 53);
+    box-shadow: 2px 2px 12px 2px white;
     p {
         font-size: 1.2rem;
         font-weight: 600;
         transform: skew(-10deg, 0deg);
     }
-  }
+}
+
+@media screen and (max-width: 1200px) {
+    .favoriteCard {
+        cursor: pointer;
+        background: rgba(0, 0, 0, 0.770);
+        color: white;
+        border: 1px solid var(--main);
+        transition: .3s;
+        box-shadow: 5px 5px 15px 5px #000000;
+        img {
+            border-right: 1px solid black;
+        }
+        p {
+            font-size: 14px;
+        }
+        .deleteSvg {
+            height: 50%;
+            margin-right: 10%;
+        }
+
+        .deleteSvg:hover {
+            height: 70%;
+        }
+
+        .cartSvg {
+            height: 50%;
+            margin-right: 5%;
+         }
+
+        .cartSvg:hover {
+            height: 70%;
+        }
+    }
+
+    .favoriteCard:hover {
+        transform: translateY(-4px);
+        box-shadow: 2px 2px 12px 2px white;
+        p {
+            font-size: 1.2rem;
+            font-weight: 600;
+            transform: skew(-10deg, 0deg);
+        }
+    }
+}

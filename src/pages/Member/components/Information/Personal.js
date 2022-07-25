@@ -23,7 +23,7 @@ const Personal = ({
   return (
     <>
       <div className="h-100 d-flex justify-content-center text-center pt-3">
-        <div className="w-80 h-80 pt-5 personal">
+        <div className="w-80 personal">
           {/* 簡易個人資料 */}
           <h5>USER NAME</h5>
           <p>{member.mem_name}</p>
