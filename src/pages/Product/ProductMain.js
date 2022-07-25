@@ -11,6 +11,8 @@ const ProductMain = () => {
   const [data, setData] = useState({});
   const location = useLocation();
   const usp = new URLSearchParams(location.search);
+  // post發給後端，先給預設參數，api要加上判斷如果不等於null才執行我要的sql語法
+  // API還有兩個參數預設 : 1. orderField = "sid";  2. sort='asc';
   const [filter, setFilter] = useState({
     categoryId: null,
     brand: null,
@@ -39,12 +41,7 @@ const ProductMain = () => {
   return (
     <div className="bg w-100 vh-100 d-flex justify-content-end align-items-end">
       <div className="work-area col-10 text-danger">
-        <ToolBox
-          setData={setData}
-          getPageData={getPageData}
-          filter={filter}
-          setFilter={setFilter}
-        />
+        <ToolBox filter={filter} setFilter={setFilter} />
         <FilterBox />
         <div className="row product-list p-0 m-0">
           {data && data.rows

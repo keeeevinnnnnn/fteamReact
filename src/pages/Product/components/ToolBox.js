@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 const ToolBox = (props) => {
-  const { getPageData, filter, setFilter } = props;
+  const { filter, setFilter } = props;
   const menuItems = ['Skateboard', 'Decks', 'Trucks', 'Wheels'];
   const [menu, setMenu] = useState('Skateboard');
 
