@@ -5,11 +5,11 @@ const Lesson = () => {
     <>
       <div className="w-100 vh-100 d-flex justify-content-end align-items-end">
         <div className="work-area col-12 col-md-10 p-0">
-          <div className="d-flex flex-wrap">
+          <div className="d-flex flex-wrap ">
             {/* <div className="d-flex "> */}
             {/* <div className="row"> */}
 
-            <div className="col-12 col-md-1 d-none d-sm-block  cooler_arrowcenter  m-4">
+            <div className="col-12 col-md-1 d-none d-lg-block  cooler_arrowcenter  m-3">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-6 w-6 cooler_icon_wrap "
@@ -107,7 +107,7 @@ const Lesson = () => {
                 </div>
               </div>
             </div>
-            <div className="col-12 col-md-1 d-none d-sm-block cooler_arrowcenter m-4 ">
+            <div className="col-12 col-md-1 d-none d-lg-block cooler_arrowcenter m-3 ">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-6 w-6 cooler_icon_wrap"
