@@ -467,11 +467,21 @@ const FilterBox = (props) => {
                 <span>Categories</span>
               </div>
 
-              <div className="sortbyBox">
+              <div
+                className="sortbyBox"
+                onClick={() => {
+                  setFilter({ ...filter, orderfield: 'name' });
+                }}
+              >
                 <span>Name asc (A-Z)</span>
               </div>
 
-              <div className="sortbyBox">
+              <div
+                className="sortbyBox"
+                onClick={() => {
+                  setFilter({ ...filter, orderfield: 'name', sort: 'DESC ' });
+                }}
+              >
                 <span>Name desc (Z-A)</span>
               </div>
 
