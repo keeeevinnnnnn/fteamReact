@@ -9,6 +9,7 @@ const MemberEdit = ({
   setAvatarFromNone,
   setInformationWrap,
   member,
+  editFromNone,
 }) => {
   const { token, auths, setAuths } = useContext(AuthContext);
   // 記錄表單每個欄位輸入值
@@ -131,7 +132,9 @@ const MemberEdit = ({
   }
   return (
     <>
-      <div className="h-100 d-flex justify-content-center align-items-center">
+      <div
+        className={`h-100 d-flex justify-content-center align-items-center ${editFromNone}`}
+      >
         {/* 個人資料修改 */}
         <form
           className="w-80 text-center memberEdit pt-2"
