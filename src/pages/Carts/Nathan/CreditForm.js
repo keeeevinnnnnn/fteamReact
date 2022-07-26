@@ -92,7 +92,7 @@ const CreditForm = () => {
                 onChange={creditFormHandler}
                 name="num1to4"
                 onFocus={rotateToZero}
-                value={creditForm.num1to4}
+                defaultValue={creditForm.num1to4}
                 type="text"
                 className="credit-invalid border-bottom w-20 focus-none text-gray bg-transparent"
                 maxLength={4}
@@ -103,7 +103,7 @@ const CreditForm = () => {
                 onChange={creditFormHandler}
                 name="num5to8"
                 onFocus={rotateToZero}
-                value={creditForm.num5to8}
+                defaultValue={creditForm.num5to8}
                 type="text"
                 className="border-bottom w-20 focus-none text-gray bg-transparent"
                 maxLength={4}
@@ -114,7 +114,7 @@ const CreditForm = () => {
                 onChange={creditFormHandler}
                 name="num9to12"
                 onFocus={rotateToZero}
-                value={creditForm.num9to12}
+                defaultValue={creditForm.num9to12}
                 type="text"
                 className="border-bottom w-20 focus-none text-gray bg-transparent"
                 maxLength={4}
@@ -125,7 +125,7 @@ const CreditForm = () => {
                 onChange={creditFormHandler}
                 name="num13to16"
                 onFocus={rotateToZero}
-                value={creditForm.num13to16}
+                defaultValue={creditForm.num13to16}
                 type="text"
                 className="border-bottom w-20 focus-none text-gray bg-transparent"
                 maxLength={4}
@@ -145,7 +145,7 @@ const CreditForm = () => {
                   onChange={creditFormHandler}
                   name="validMonth"
                   onFocus={rotateToZero}
-                  value={creditForm.validMonth}
+                  defaultValue={creditForm.validMonth}
                   className=" w-40 border-bottom  focus-none text-gray bg-transparent"
                   type="text"
                   maxLength={2}
@@ -157,7 +157,7 @@ const CreditForm = () => {
                   onChange={creditFormHandler}
                   name="validYear"
                   onFocus={rotateToZero}
-                  value={creditForm.validYear}
+                  defaultValue={creditForm.validYear}
                   className="  w-40 border-bottom  focus-none text-gray bg-transparent"
                   type="text"
                   maxLength={2}
@@ -176,7 +176,7 @@ const CreditForm = () => {
                   onChange={creditFormHandler}
                   name="CVV"
                   onFocus={rotateToBack}
-                  value={creditForm.CVV}
+                  defaultValue={creditForm.CVV}
                   className="w-100 border-bottom  focus-none text-gray bg-transparent"
                   type="text"
                   maxLength={3}
@@ -198,28 +198,28 @@ const CreditForm = () => {
                     <input
                       className="w-15 bg-transparent border-0 text-gray"
                       type="text"
-                      value={creditForm.num1to4}
+                      defaultValue={creditForm.num1to4}
                     />
                     <input
                       className="w-15 bg-transparent border-0 text-gray"
                       type="text"
-                      value={creditForm.num5to8}
+                      defaultValue={creditForm.num5to8}
                     />
                     <input
                       className="w-15 bg-transparent border-0 text-gray"
                       type="text"
-                      value={creditForm.num9to12}
+                      defaultValue={creditForm.num9to12}
                     />
                     <input
                       className="w-15 bg-transparent border-0 text-gray"
                       type="text"
-                      value={creditForm.num13to16}
+                      defaultValue={creditForm.num13to16}
                     />
                     <div className="w-30 d-flex justify-content-end text-gray">
                       <input
                         className="text-center w-40 bg-transparent border-0 text-gray"
                         type="text"
-                        value={creditForm.validMonth}
+                        defaultValue={creditForm.validMonth}
                       />
 
                       {creditForm.validMonth !== '' ||
@@ -229,7 +229,7 @@ const CreditForm = () => {
                       <input
                         className="text-center w-40 bg-transparent border-0 text-gray"
                         type="text"
-                        value={creditForm.validYear}
+                        defaultValue={creditForm.validYear}
                       />
                     </div>
                   </div>
@@ -240,7 +240,7 @@ const CreditForm = () => {
                   <input
                     className="text-end w-40 bg-transparent border-0 text-gray"
                     type="text"
-                    value={creditForm.CVV}
+                    defaultValue={creditForm.CVV}
                   />
                 </div>
               </div>
