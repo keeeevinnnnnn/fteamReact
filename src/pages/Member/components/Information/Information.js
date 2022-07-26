@@ -11,6 +11,12 @@ const Information = () => {
   const { member } = useContext(MemberContext);
   const [moveTrain, setmoveTrain] = useState('translateY(0%)');
   const [avatarFromNone, setAvatarFromNone] = useState('');
+  let editFromNone = '';
+  if (moveTrain === 'translateY(-200%)') {
+    editFromNone = 'opacity';
+  } else {
+    editFromNone = '';
+  }
   const [informationWrap, setInformationWrap] = useState('h-75');
   return (
     <>
@@ -40,6 +46,7 @@ const Information = () => {
                 setAvatarFromNone={setAvatarFromNone}
                 setInformationWrap={setInformationWrap}
                 member={member}
+                editFromNone={editFromNone}
               />
               <PasswordEdit setmoveTrain={setmoveTrain} />
             </>

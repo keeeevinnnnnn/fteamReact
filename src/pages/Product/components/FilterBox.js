@@ -1,17 +1,21 @@
 import Box from '@mui/material/Box';
+import { pink } from '@mui/material/colors';
 import Slider from '@mui/material/Slider';
 import React, { useState } from 'react';
 
-const FilterBox = () => {
+const FilterBox = (props) => {
+  // 按鈕 SVG 開關
   const [price, setPrice] = useState(false);
   const [colour, setColour] = useState(false);
   const [brand, setBrand] = useState(false);
   const [sortby, setSortby] = useState(false);
   const [searchInput, setSearchInput] = useState(false);
+  const { filter, setFilter } = props;
 
-  function valuetext(value) {
-    return `${value}°C`;
-  }
+  console.log(filter);
+  // function valuetext(value) {
+  //   return `${value}°C`;
+  // }
 
   const [value, setValue] = useState([1200, 10000]);
 
@@ -456,7 +460,12 @@ const FilterBox = () => {
                 display: sortby === false ? 'none' : 'block',
               }}
             >
-              <div className="sortbyBox pt-2">
+              <div
+                className="sortbyBox pt-2"
+                onClick={() => {
+                  setFilter({ ...filter, color: 'pink' });
+                }}
+              >
                 <span>Recommended</span>
               </div>
 
