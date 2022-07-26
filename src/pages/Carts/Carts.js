@@ -1,4 +1,4 @@
-import React, { useState, Fragment, useEffect } from 'react';
+import React, { useState, Fragment, useEffect, useContext } from 'react';
 import ProductCard from './Nathan/ProductCard';
 import Scroll from 'react-scroll';
 import './Carts.scss';
@@ -7,11 +7,16 @@ import MuiTabs from './Nathan/MuiTabs';
 import axios from 'axios';
 import CustomCard from './Nathan/CustomCard';
 import LessonCard from './Nathan/LessonCard';
+import AuthContext from '../../components/AuthContext';
 const Carts = () => {
+  const { auth, token } = useContext(AuthContext);
+  console.log('auth', auth);
+  console.log('token', token);
   // render 依賴項
-  const [dep, setDep] = useState(0);
-  // checkAll setting
-  const [allChecked, setAllChecked] = useState(false);
+  const [productDep, setProductDep] = useState(0);
+  const [customDep, setCustomDep] = useState(0);
+  const [lessonDep, setLessonDep] = useState(0);
+
   // 3台購物車的data
   const [productCartItems, setProductCartItems] = useState([]);
   const [customCartItems, setCustomCartItems] = useState([]);
@@ -26,11 +31,8 @@ const Carts = () => {
   const [productTotalPrice, setProductTotalPrice] = useState(0);
   const [lessonTotalPrice, setLessonTotalPrice] = useState(0);
   const [customTotalPrice, setCustomTotalPrice] = useState(0);
-
-  // 獲取購物車內的資料
+  // 獲取購物車內product的資料
   useEffect(() => {
-    console.log(123);
-    // product
     axios.get('http://localhost:3000/carts?type=product').then((response) => {
       // console.log(response.data.result);
       setProductCartItems(response.data.result);
@@ -51,28 +53,9 @@ const Carts = () => {
           : 0
       );
     });
-    // lesson
-    axios.get('http://localhost:3000/carts?type=lesson').then((response) => {
-      // console.log(response.data.result);
-      setLessonCartItems(response.data.result);
-      // get lesson total price
-      setLessonTotalPrice(
-        response.data.result.length !== 0
-          ? response.data.result.reduce((init, obj) => {
-            return init + obj.item_price;
-          }, 0)
-          : 0
-      );
-      // get lesson qty
-      setLessonTotalQty(
-        response.data.result.length !== 0
-          ? response.data.result.reduce((init, obj) => {
-            return init + obj.quantity;
-          }, 0)
-          : 0
-      );
-    });
-    // custom
+  }, [productDep]);
+  // 獲取購物車內custom的資料
+  useEffect(() => {
     axios.get('http://localhost:3000/carts?type=custom').then((response) => {
       // console.log(response.data.result);
       setCustomCartItems(response.data.result);
@@ -93,7 +76,30 @@ const Carts = () => {
           : 0
       );
     });
-  }, [dep]);
+  }, [customDep]);
+  // 獲取購物車內lesson的資料
+  useEffect(() => {
+    axios.get('http://localhost:3000/carts?type=lesson').then((response) => {
+      // console.log(response.data.result);
+      setLessonCartItems(response.data.result);
+      // get lesson total price
+      setLessonTotalPrice(
+        response.data.result.length !== 0
+          ? response.data.result.reduce((init, obj) => {
+            return init + obj.item_price;
+          }, 0)
+          : 0
+      );
+      // get lesson qty
+      setLessonTotalQty(
+        response.data.result.length !== 0
+          ? response.data.result.reduce((init, obj) => {
+            return init + obj.quantity;
+          }, 0)
+          : 0
+      );
+    });
+  }, [lessonDep]);
 
   // Tabs所有選項
   const cartItemArr = ['PRODUCTS', 'CUSTOMIZED', 'LESSONS'];
@@ -151,10 +157,8 @@ const Carts = () => {
                             singleInd={i}
                             productCartItems={productCartItems}
                             setProductCartItems={setProductCartItems}
-                            dep={dep}
-                            setDep={setDep}
-                            allChecked={allChecked}
-                            setAllChecked={setAllChecked}
+                            productDep={productDep}
+                            setProductDep={setProductDep}
                           />
                         );
                       })}
@@ -168,8 +172,8 @@ const Carts = () => {
                             singleInd={i}
                             customCartItems={customCartItems}
                             setCustomCartItems={setCustomCartItems}
-                            dep={dep}
-                            setDep={setDep}
+                            customDep={customDep}
+                            setCustomDep={setCustomDep}
                           />
                         );
                       })}
@@ -182,8 +186,8 @@ const Carts = () => {
                             singleItem={v}
                             customCartItems={customCartItems}
                             setLessonCartItems={setLessonCartItems}
-                            dep={dep}
-                            setDep={setDep}
+                            lessonDep={lessonDep}
+                            setLessonDep={setLessonDep}
                           />
                         );
                       })}
