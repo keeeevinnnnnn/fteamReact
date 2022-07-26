@@ -17,6 +17,7 @@ const Navbar = () => {
   // 判斷有沒有登入存的值
   useEffect(() => {
     // 登入狀態不是false再執行 否則直接return
+    console.log(token);
     if (!auth) {
       return;
     } else {
@@ -38,7 +39,7 @@ const Navbar = () => {
           }
         });
     }
-  }, [auths]); // 有變更資料才刷新
+  }, [auths, auth, token, setMember]); // 有變更資料才刷新
   return (
     <>
       <div className="w-100 top-grid d-flex">
