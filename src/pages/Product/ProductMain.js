@@ -26,7 +26,7 @@ const ProductMain = () => {
     sort: '',
     page: 1,
   });
-
+  // 如果不使用 useCallback 不影響功能但會有以下黃字建議 : The 'getPageData' function makes the dependencies of useEffect Hook (at line 43) change on every render. Move it inside the useEffect callback. Alternatively, wrap the definition of 'getPageData' in its own useCallback() Hook.
   const getPageData = useCallback(
     async (event) => {
       if (event) {
