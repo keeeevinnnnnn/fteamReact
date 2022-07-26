@@ -5,8 +5,10 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { MemberContext } from '../App';
 import AuthContext from './AuthContext';
+import { useNavigate } from 'react-router-dom';
 
 const Navbar = () => {
+  const navigate = useNavigate();
   // 從這支Context拿值
   // auth為登入判斷(true,false) token為會員JWT的token logout是登出涵式
   const { auth, token, logout, auths } = useContext(AuthContext);
@@ -44,7 +46,12 @@ const Navbar = () => {
     <>
       <div className="w-100 top-grid d-flex">
         <div className="col-4 h-100 d-flex align-items-center">
-          <div className="logo-wrap">
+          <div
+            className="logo-wrap"
+            onClick={() => {
+              navigate('/');
+            }}
+          >
             <img src={Logo} alt="" />
           </div>
         </div>
@@ -106,7 +113,19 @@ const Navbar = () => {
                 />
               </svg>
             </div>
-            <Link to={'/carts'}>
+            <div
+              onClick={() => {
+                if (!auth) {
+                  if (window.confirm('是否前往登入會員?')) {
+                    navigate('/login');
+                  } else {
+                    return;
+                  }
+                } else {
+                  navigate('/carts');
+                }
+              }}
+            >
               <div className="cart-icon-wrap">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -123,7 +142,7 @@ const Navbar = () => {
                   />
                 </svg>
               </div>
-            </Link>
+            </div>
             {auth ? (
               // 登入狀態顯示SIGNOUT
               <div
