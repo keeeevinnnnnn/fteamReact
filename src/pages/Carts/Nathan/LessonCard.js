@@ -3,8 +3,13 @@ import React from 'react';
 import axios from 'axios';
 import './LessonCard.scss';
 const LessonCard = (props) => {
-  const { singleItem, lessonCartItems, setLessonCartItems, dep, setDep } =
-    props;
+  const {
+    singleItem,
+    lessonCartItems,
+    setLessonCartItems,
+    lessonDep,
+    setLessonDep,
+  } = props;
   // console.log(singleItem);
   return (
     <>
@@ -47,7 +52,7 @@ const LessonCard = (props) => {
                     .then((res) => {
                       console.log(res.data);
                       if (res.data.success) {
-                        setDep(dep + 1);
+                        setLessonDep(lessonDep + 1);
                         alert('刪除成功!');
                       }
                     });

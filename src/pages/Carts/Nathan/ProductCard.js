@@ -8,8 +8,8 @@ const ProductCard = (props) => {
     singleInd,
     productCartItems,
     setProductCartItems,
-    dep,
-    setDep,
+    productDep,
+    setProductDep,
   } = props;
   // 拿到單價 & 新數量(更新價錢用)
   const singlePrice = singleItem.item_price / singleItem.quantity;
@@ -51,7 +51,7 @@ const ProductCard = (props) => {
                       .then((res) => {
                         console.log(res.data);
                         if (res.data.success) {
-                          setDep(dep + 1);
+                          setProductDep(productDep + 1);
                           alert('刪除成功!');
                         }
                       });
@@ -95,7 +95,7 @@ const ProductCard = (props) => {
                       .then((res) => {
                         console.log(res.data.success);
                         if (res.data.success) {
-                          setDep(dep + 1);
+                          setProductDep(productDep + 1);
                         }
                       });
                   } else {
@@ -107,7 +107,7 @@ const ProductCard = (props) => {
                         .then((res) => {
                           console.log(res.data);
                           if (res.data.success) {
-                            setDep(dep + 1);
+                            setProductDep(productDep + 1);
                             alert('刪除成功!');
                           }
                         });
@@ -148,7 +148,7 @@ const ProductCard = (props) => {
                     .then((res) => {
                       // console.log(res.data.success);
                       if (res.data.success) {
-                        setDep(dep + 1);
+                        setProductDep(productDep + 1);
                       }
                     });
                 }}
