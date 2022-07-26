@@ -1,5 +1,4 @@
 import Box from '@mui/material/Box';
-import { pink } from '@mui/material/colors';
 import Slider from '@mui/material/Slider';
 import React, { useState } from 'react';
 
@@ -11,11 +10,6 @@ const FilterBox = (props) => {
   const [sortby, setSortby] = useState(false);
   const [searchInput, setSearchInput] = useState(false);
   const { filter, setFilter } = props;
-
-  console.log(filter);
-  // function valuetext(value) {
-  //   return `${value}°C`;
-  // }
 
   const [value, setValue] = useState([1200, 10000]);
 

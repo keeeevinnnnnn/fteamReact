@@ -16,18 +16,25 @@ const ToolBox = (props) => {
                   <li
                     key={i}
                     onClick={() => {
-                      if (i === 0) {
-                        setFilter({ ...filter, categoryId: '2' });
-                        setMenu(v);
-                      } else if (i === 1) {
-                        setFilter({ ...filter, categoryId: '4' });
-                        setMenu(v);
-                      } else if (i === 2) {
-                        setFilter({ ...filter, categoryId: '5' });
-                        setMenu(v);
-                      } else if (i === 3) {
-                        setFilter({ ...filter, categoryId: '6' });
-                        setMenu(v);
+                      switch (i) {
+                        case 0:
+                          setFilter({ ...filter, categoryId: '2' });
+                          setMenu(v);
+                          break;
+                        case 1:
+                          setFilter({ ...filter, categoryId: '4' });
+                          setMenu(v);
+                          break;
+                        case 2:
+                          setFilter({ ...filter, categoryId: '5' });
+                          setMenu(v);
+                          break;
+                        case 3:
+                          setFilter({ ...filter, categoryId: '6' });
+                          setMenu(v);
+                          break;
+                        default:
+                          i = 0;
                       }
                     }}
                     className={menu === v ? 'catgory' : ''}

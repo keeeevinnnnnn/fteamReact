@@ -1,49 +1,49 @@
-import React, { useState, useEffect, useCallback, useRef } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import FilterBox from './components/FilterBox';
 import ToolBox from './components/ToolBox';
 import './styles/ProductMain.scss';
 import axios from './commons/axios';
 import ProductList from './components/ProductList';
-import { useSearchParams } from 'react-router-dom';
 import Pagination from './components/Pagination';
 const ProductMain = () => {
   // 原始資料
+  //  {
+  //     sid:0,
+  //     img:'',
+  //     name:'',
+  //     brand:'',
+  //     price:0,
+  //  }
   const [data, setData] = useState({});
-  const [searchParams] = useSearchParams();
-  const page = searchParams.get('page') || 1;
   // post發給後端，先給預設參數，api要加上判斷如果不等於null才執行我要的sql語法
   // API還有兩個參數預設 : 1. orderField = "sid";  2. sort='asc';
   const [filter, setFilter] = useState({
-    categoryId: null,
-    brand: null,
-    color: null,
-    price: null,
-    orderfield: null,
-    sort: null,
+    categoryId: 0,
+    brand: '',
+    color: '',
+    price: 0,
+    orderfield: '',
+    sort: '',
     page: 1,
   });
 
-  console.log('page', page);
-
   const getPageData = useCallback(
-    async (event, gotoPage) => {
-      if (!filter.categoryId) return;
+    async (event) => {
       if (event) {
         event.preventDefault();
       }
-      // setFilter({ ...filter, page: gotoPage });
-      axios
-        .post('/product', { filter: { ...filter, page: gotoPage } })
-        .then((res) => {
-          setData(res.data);
-        });
+
+      axios.post('/product', { filter }).then((res) => {
+        setData(res.data);
+      });
+      console.log('filter=', filter);
     },
     [filter]
   );
 
   useEffect(() => {
-    getPageData(null, page);
-  }, [getPageData, page]);
+    getPageData(null);
+  }, [getPageData]);
 
   return (
     <div className="bg w-100 vh-100 d-flex justify-content-end align-items-end">
@@ -69,7 +69,12 @@ const ProductMain = () => {
         <div className="row paginationBox p-0 m-0">
           <div className="col-4">
             {data && data.totalPages ? (
-              <Pagination page={data.page} totalPages={data.totalPages} />
+              <Pagination
+                page={data.page}
+                totalPages={data.totalPages}
+                setFilter={setFilter}
+                filter={filter}
+              />
             ) : null}
           </div>
         </div>

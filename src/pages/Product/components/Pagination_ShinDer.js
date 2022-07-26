@@ -1,13 +1,14 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 export default function Pagination(props) {
-  const { page, totalPages, setFilter, filter } = props;
+  const { page, totalPages } = props;
 
   return (
     <nav aria-label="Page navigation example">
       <ul className="pagination">
         <li className="page-item">
-          <a className="page-link" href="#/" aria-label="Previous">
+          <a className="page-link" href="#" aria-label="Previous">
             <span aria-hidden="true">&laquo;</span>
           </a>
         </li>
@@ -22,21 +23,15 @@ export default function Pagination(props) {
                 className={`page-item ${isActive}`}
                 key={'pagi' + (+page + i - 5)}
               >
-                <a
-                  className="page-link"
-                  onClick={() => {
-                    setFilter({ ...filter, page: page + i - 5 });
-                  }}
-                  href="#/"
-                >
+                <Link className="page-link" to={`?page=${page + i - 5}`}>
                   {page + i - 5}
-                </a>
+                </Link>
               </li>
             ) : null;
           })}
 
         <li className="page-item">
-          <a className="page-link" href="#/" aria-label="Next">
+          <a className="page-link" href="#" aria-label="Next">
             <span aria-hidden="true">&raquo;</span>
           </a>
         </li>
