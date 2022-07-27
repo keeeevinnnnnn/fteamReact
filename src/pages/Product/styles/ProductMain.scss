@@ -249,7 +249,14 @@
     background-color: rgba(211, 211, 211, 0.495);
     outline: none;
     padding: 10px;
-    
+}
+
+.messagesBox{
+    width: 8%;
+    display: flex;
+    button{
+        width: 100%;
+    }
     
 }
 
