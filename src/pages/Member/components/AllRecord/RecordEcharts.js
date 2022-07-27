@@ -28,11 +28,14 @@ const RecordEcharts = () => {
         });
     }
   }, []);
-  console.log(
-    Object.values(productsColor).filter((v, i) => {
-      return v.color === 'green';
-    }).length
-  );
+
+  // 取得顏色數量的方式
+  // console.log(
+  //   Object.values(productsColor).filter((v, i) => {
+  //     return v.color === 'green';
+  //   }).length
+  // );
+  
   // 白色商品在陣列中的長度(數量)
   const whiteLength = Object.values(productsColor).filter((v, i) => {
     return v.color === 'withe';
