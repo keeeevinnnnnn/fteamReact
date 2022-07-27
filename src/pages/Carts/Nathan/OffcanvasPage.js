@@ -5,7 +5,7 @@ import TWZipCode from './TWZipCode';
 import axios from 'axios';
 import CreditForm from './CreditForm';
 import CheckoutFinish from './CheckoutFinish';
-export default function OffcanvasTest() {
+export default function OffcanvasPage() {
   // offcanvas setting
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -28,11 +28,11 @@ export default function OffcanvasTest() {
   const [paySelected, setPaySelected] = useState('cash');
   // 宅配表單handler
   const toHomeFormHandler = (e) => {
-    console.log(e.target.value);
     setToHomeForm({ ...toHomeForm, [e.target.name]: e.target.value });
   };
   // 下一步
-  const nextStep = () => {
+  const nextStep = (e) => {
+    e.preventDefault();
     // 不是最後一頁 && 付款方式是信用卡
     if (displace !== 200 && paySelected === 'credit') {
       setDisplace(displace + 100);
@@ -84,7 +84,7 @@ export default function OffcanvasTest() {
           <div className="check-body-list-wrap w-100">
             <div style={{ left: `-${displace}%` }} className="check-body-list">
               {/* 配送方式頁面 */}
-              <div className="distribution-page">
+              <form className="distribution-page">
                 <div className="w-100 distribution-form-wrap">
                   <div className="w-75 h-90 d-flex flex-column justify-content-between">
                     <div className="w-100 h-10 step-page-title-wrap d-flex justify-content-center align-items-center">
@@ -192,10 +192,14 @@ export default function OffcanvasTest() {
                     </div>
                   </div>
                 </div>
-                <button onClick={nextStep} className="w-100">
+                <button
+                  onClick={nextStep}
+                  className="w-100"
+                // 必填欄位沒填 無法進行下一步
+                >
                   <span>Next Step</span>
                 </button>
-              </div>
+              </form>
               {/* 信用卡表單頁面 */}
               <div className="credit-detail-page">
                 <div className="w-100 credit-form-wrap">

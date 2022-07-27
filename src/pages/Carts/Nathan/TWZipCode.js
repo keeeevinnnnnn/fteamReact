@@ -3,9 +3,9 @@ import { countries, postcodes, townships } from './data/townships';
 import './TWZipCode.scss';
 
 function TWZipCode(props) {
-  console.log('countries', countries);
-  console.log('postcodes', postcodes);
-  console.log('townships', townships);
+  // console.log('countries', countries);
+  // console.log('postcodes', postcodes);
+  // console.log('townships', townships);
   const { toHomeForm, setToHomeForm } = props;
   // 代表目前被選中的縣市的索引值
   // 注意資料類型都是數字(索引值是數字)

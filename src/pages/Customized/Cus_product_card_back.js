@@ -5,8 +5,6 @@ import { productData } from './ProductData';
 import BasicTabs from './cus_component/Cus_tab';
 import './Cus_product_card_back.scss';
 
-
-
 function Cus_product_card_back(props) {
   const [inputvalue, setInputvalue] = useState('');
 
@@ -44,7 +42,6 @@ function Cus_product_card_back(props) {
       img.onload = () => {
         resolve(img);
         setCache({ ...cache, [path]: img });
-       
       };
       img.src = path;
     });
@@ -70,14 +67,12 @@ function Cus_product_card_back(props) {
       shadowCtx.drawImage(img, 0, 0);
     }
     realCtx.drawImage(shadowRef.current, 0, 0);
-    
-    
   };
- 
+
   //載載看
   function handleDataUrl() {
     let link = document.createElement('a');
-    console.log(link)
+    console.log(link);
     link.download = 'yourboard.png';
     link.href = realRef.current.toDataURL('image/png');
     link.click();
@@ -166,7 +161,9 @@ function Cus_product_card_back(props) {
                 <br />
 
                 {/* <BasicTabs /> */}
-                <button className='btn btn-black' onClick={handleDataUrl}>download</button>
+                <button className="btn btn-black" onClick={handleDataUrl}>
+                  download
+                </button>
               </div>
             </div>
           </div>

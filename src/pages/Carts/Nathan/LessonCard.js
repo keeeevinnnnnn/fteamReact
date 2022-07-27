@@ -10,7 +10,6 @@ const LessonCard = (props) => {
     lessonDep,
     setLessonDep,
   } = props;
-  // console.log(singleItem);
   return (
     <>
       <div className="carts-card d-flex">
@@ -47,7 +46,7 @@ const LessonCard = (props) => {
                 if (window.confirm('確定要刪除此商品嗎？')) {
                   axios
                     .delete(
-                      `http://localhost:3000/carts?sid=${singleItem.item_id}&type=${singleItem.item_type}`
+                      `http://localhost:3000/carts?sid=${singleItem.item_id}&type=${singleItem.item_type}&memID=${singleItem.member_id}`
                     )
                     .then((res) => {
                       console.log(res.data);

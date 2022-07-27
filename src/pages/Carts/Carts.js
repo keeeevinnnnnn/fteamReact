@@ -1,18 +1,23 @@
 import React, { useState, Fragment, useEffect, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 import ProductCard from './Nathan/ProductCard';
 import Scroll from 'react-scroll';
 import './Carts.scss';
-import OffcanvasTest from './Nathan/OffcanvasTest';
+import OffcanvasPage from './Nathan/OffcanvasPage';
 import MuiTabs from './Nathan/MuiTabs';
 import axios from 'axios';
 import CustomCard from './Nathan/CustomCard';
 import LessonCard from './Nathan/LessonCard';
 import AuthContext from '../../components/AuthContext';
+
 const Carts = () => {
+  // set nevigate hook
+  const navigate = useNavigate();
+  // 取得判斷會員的state
   const { auth, token } = useContext(AuthContext);
-  console.log('auth', auth);
-  console.log('token', token);
-  // render 依賴項
+  const [loginMemberID, setLoginMemberID] = useState(0);
+
+  // re-render 各種商品的依賴項
   const [productDep, setProductDep] = useState(0);
   const [customDep, setCustomDep] = useState(0);
   const [lessonDep, setLessonDep] = useState(0);
@@ -33,72 +38,114 @@ const Carts = () => {
   const [customTotalPrice, setCustomTotalPrice] = useState(0);
   // 獲取購物車內product的資料
   useEffect(() => {
-    axios.get('http://localhost:3000/carts?type=product').then((response) => {
-      // console.log(response.data.result);
-      setProductCartItems(response.data.result);
-      // get product total price
-      setProductTotalPrice(
-        response.data.result.length !== 0
-          ? response.data.result.reduce((init, obj) => {
-            return init + obj.item_price;
-          }, 0)
-          : 0
-      );
-      // get product qty
-      setProductTotalQty(
-        response.data.result.length !== 0
-          ? response.data.result.reduce((init, obj) => {
-            return init + obj.quantity;
-          }, 0)
-          : 0
-      );
-    });
+    // 未登入會員 導向login
+    if (!auth) {
+      alert('請先登入會員');
+      navigate('/login');
+    }
+    axios
+      .get('http://localhost:3000/member/memberself', {
+        // 發JWT一定要加這個headers
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((res) => {
+        // 確認拿到會員資料再拿購物車商品
+        setLoginMemberID(res.data.sid);
+        axios
+          .get(`http://localhost:3000/carts?type=product&memID=${res.data.sid}`)
+          .then((response) => {
+            // console.log(response.data.result);
+            setProductCartItems(response.data.result);
+            // get product total price
+            setProductTotalPrice(
+              response.data.result.length !== 0
+                ? response.data.result.reduce((init, obj) => {
+                  return init + obj.item_price;
+                }, 0)
+                : 0
+            );
+            // get product qty
+            setProductTotalQty(
+              response.data.result.length !== 0
+                ? response.data.result.reduce((init, obj) => {
+                  return init + obj.quantity;
+                }, 0)
+                : 0
+            );
+          });
+      });
   }, [productDep]);
   // 獲取購物車內custom的資料
   useEffect(() => {
-    axios.get('http://localhost:3000/carts?type=custom').then((response) => {
-      // console.log(response.data.result);
-      setCustomCartItems(response.data.result);
-      // get custom total price
-      setCustomTotalPrice(
-        response.data.result.length !== 0
-          ? response.data.result.reduce((init, obj) => {
-            return init + obj.item_price;
-          }, 0)
-          : 0
-      );
-      // get custom qty
-      setCustomTotalQty(
-        response.data.result.length !== 0
-          ? response.data.result.reduce((init, obj) => {
-            return init + obj.quantity;
-          }, 0)
-          : 0
-      );
-    });
+    axios
+      .get('http://localhost:3000/member/memberself', {
+        // 發JWT一定要加這個headers
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((res) => {
+        // 確認拿到會員資料再拿購物車商品
+        axios
+          .get(`http://localhost:3000/carts?type=custom&memID=${res.data.sid}`)
+          .then((response) => {
+            // console.log(response.data.result);
+            setCustomCartItems(response.data.result);
+            // get custom total price
+            setCustomTotalPrice(
+              response.data.result.length !== 0
+                ? response.data.result.reduce((init, obj) => {
+                  return init + obj.item_price;
+                }, 0)
+                : 0
+            );
+            // get custom qty
+            setCustomTotalQty(
+              response.data.result.length !== 0
+                ? response.data.result.reduce((init, obj) => {
+                  return init + obj.quantity;
+                }, 0)
+                : 0
+            );
+          });
+      });
   }, [customDep]);
   // 獲取購物車內lesson的資料
   useEffect(() => {
-    axios.get('http://localhost:3000/carts?type=lesson').then((response) => {
-      // console.log(response.data.result);
-      setLessonCartItems(response.data.result);
-      // get lesson total price
-      setLessonTotalPrice(
-        response.data.result.length !== 0
-          ? response.data.result.reduce((init, obj) => {
-            return init + obj.item_price;
-          }, 0)
-          : 0
-      );
-      // get lesson qty
-      setLessonTotalQty(
-        response.data.result.length !== 0
-          ? response.data.result.reduce((init, obj) => {
-            return init + obj.quantity;
-          }, 0)
-          : 0
-      );
-    });
+    axios
+      .get('http://localhost:3000/member/memberself', {
+        // 發JWT一定要加這個headers
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((res) => {
+        // 確認拿到會員資料再拿購物車商品
+        axios
+          .get(`http://localhost:3000/carts?type=lesson&memID=${res.data.sid}`)
+          .then((response) => {
+            // console.log(response.data.result);
+            setLessonCartItems(response.data.result);
+            // get lesson total price
+            setLessonTotalPrice(
+              response.data.result.length !== 0
+                ? response.data.result.reduce((init, obj) => {
+                  return init + obj.item_price;
+                }, 0)
+                : 0
+            );
+            // get lesson qty
+            setLessonTotalQty(
+              response.data.result.length !== 0
+                ? response.data.result.reduce((init, obj) => {
+                  return init + obj.quantity;
+                }, 0)
+                : 0
+            );
+          });
+      });
   }, [lessonDep]);
 
   // Tabs所有選項
@@ -221,7 +268,7 @@ const Carts = () => {
                     </span>
                   </div>
                   <div className="col-4 h-100 d-flex justify-content-start align-items-center btn-check-wrap">
-                    <OffcanvasTest />
+                    <OffcanvasPage />
                   </div>
                 </div>
               </div>
