@@ -4,6 +4,9 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
+import '../style/Lesson_tab.scss';
+import Lesson_card from './Lesson_card';
+import Lesson_filter from './Lesson_filter';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -17,7 +20,7 @@ function TabPanel(props) {
       {...other}
     >
       {value === index && (
-        <Box sx={{ p: 3 }}>
+        <Box sx={{ p: 2 }}>
           <Typography>{children}</Typography>
         </Box>
       )}
@@ -53,19 +56,16 @@ export default function BasicTabs() {
           onChange={handleChange}
           aria-label="basic tabs example"
         >
-          <Tab label="Item One" {...a11yProps(0)} />
-          <Tab label="Item Two" {...a11yProps(1)} />
-          <Tab label="Item Three" {...a11yProps(2)} />
+          <Tab label="LESSON" {...a11yProps(0)} disableRipple={true} />
+          <Tab label="TEACHER" {...a11yProps(1)} disableRipple={true} />
         </Tabs>
       </Box>
       <TabPanel value={value} index={0}>
-        Item One
+        <Lesson_filter />
+        <Lesson_card />
       </TabPanel>
       <TabPanel value={value} index={1}>
-        Item Two
-      </TabPanel>
-      <TabPanel value={value} index={2}>
-        Item Three
+        teacher
       </TabPanel>
     </Box>
   );
