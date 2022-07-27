@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 import './Cus_product_card_wheel.scss';
 
 const whselect = [
@@ -25,7 +26,8 @@ const whselect = [
   },
 ];
 
-function Cus_product_card_wheel() {
+function Cus_product_card_wheel(props) {
+  const {lastInsertID,setLastInsertID} = props
   const [wheel, setWheel] = useState('NeonGreen');
 
   const selectWheel = (e) => {
@@ -33,6 +35,14 @@ function Cus_product_card_wheel() {
     setWheel(newWheel);
     console.log(newWheel);
   };
+
+  const addwheel = ()=>{
+    axios.post('http://localhost:3000/custom/wheel',{
+          sid:lastInsertID,
+          wheel_style:wheel,
+
+    })
+  }
   return (
     <div className="w-100 vh-100 d-flex justify-content-end align-items-end">
       <div className="cus_matte w-100 h-100 ovweflow-hidden  ">
@@ -64,12 +74,13 @@ function Cus_product_card_wheel() {
               </Link>
 
               <Link to={'/customized/create/carrier'}>
-                <button className="skbtn-next"></button>
+                <button className="skbtn-next" onClick={addwheel}></button>
               </Link>
             </div>
 
             <div className="cus_card flex-column">
               <div className="cus_product_card">
+              <p>{wheel}</p>
                 <h3 className="text-black">Choose Your Wheel</h3>
                 <div className="wheel-selectors">
                   <div className="wheel-select">
