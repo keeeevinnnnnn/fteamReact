@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import ProductCard from './Nathan/ProductCard';
 import Scroll from 'react-scroll';
 import './Carts.scss';
-import OffcanvasTest from './Nathan/OffcanvasTest';
+import OffcanvasPage from './Nathan/OffcanvasPage';
 import MuiTabs from './Nathan/MuiTabs';
 import axios from 'axios';
 import CustomCard from './Nathan/CustomCard';
@@ -15,6 +15,7 @@ const Carts = () => {
   const navigate = useNavigate();
   // 取得判斷會員的state
   const { auth, token } = useContext(AuthContext);
+  const [loginMemberID, setLoginMemberID] = useState(0);
 
   // re-render 各種商品的依賴項
   const [productDep, setProductDep] = useState(0);
@@ -51,6 +52,7 @@ const Carts = () => {
       })
       .then((res) => {
         // 確認拿到會員資料再拿購物車商品
+        setLoginMemberID(res.data.sid);
         axios
           .get(`http://localhost:3000/carts?type=product&memID=${res.data.sid}`)
           .then((response) => {
@@ -266,7 +268,7 @@ const Carts = () => {
                     </span>
                   </div>
                   <div className="col-4 h-100 d-flex justify-content-start align-items-center btn-check-wrap">
-                    <OffcanvasTest />
+                    <OffcanvasPage />
                   </div>
                 </div>
               </div>

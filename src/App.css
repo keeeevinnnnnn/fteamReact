@@ -15,10 +15,12 @@
 /* 要拿掉click特效 在<Tab/> 加上 disableRipple={true} */
 
 .css-1a0mt41-MuiButtonBase-root-MuiTab-root.Mui-selected {
-  color: black !important;
+  color: rgb(255, 255, 255) !important;
+  z-index: 2 !important;
 }
 
 .css-1aquho2-MuiTabs-indicator {
+  height: 100% !important;
   background-color: var(--main) !important;
 }
 

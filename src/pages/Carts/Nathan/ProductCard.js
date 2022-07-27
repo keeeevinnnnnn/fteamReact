@@ -38,15 +38,16 @@ const ProductCard = (props) => {
               </div>
             </div>
 
-            {/* product-price */}
+            {/* product-price-section */}
             <div className="w-25 h-100 d-flex align-items-end carts-price-section">
+              {/* close icon delete ajax */}
               <a
                 style={{ cursor: 'pointer' }}
                 onClick={() => {
                   if (window.confirm('確定要刪除此商品嗎？')) {
                     axios
                       .delete(
-                        `http://localhost:3000/carts?sid=${singleItem.item_id}&type=${singleItem.item_type}`
+                        `http://localhost:3000/carts?sid=${singleItem.item_id}&type=${singleItem.item_type}&memID=${singleItem.member_id}`
                       )
                       .then((res) => {
                         console.log(res.data);
@@ -91,9 +92,9 @@ const ProductCard = (props) => {
                         type: singleItem.item_type,
                         quantity: singleItem.quantity - 1,
                         price: singlePrice * newMinusQty,
+                        memID: singleItem.member_id,
                       })
                       .then((res) => {
-                        console.log(res.data.success);
                         if (res.data.success) {
                           setProductDep(productDep + 1);
                         }
@@ -102,7 +103,7 @@ const ProductCard = (props) => {
                     if (window.confirm('確定要刪除此商品嗎？')) {
                       axios
                         .delete(
-                          `http://localhost:3000/carts?sid=${singleItem.item_id}&type=${singleItem.item_type}`
+                          `http://localhost:3000/carts?sid=${singleItem.item_id}&type=${singleItem.item_type}&memID=${singleItem.member_id}`
                         )
                         .then((res) => {
                           console.log(res.data);
@@ -144,9 +145,9 @@ const ProductCard = (props) => {
                       type: singleItem.item_type,
                       quantity: singleItem.quantity + 1,
                       price: singlePrice * newPlusQty,
+                      memID: singleItem.member_id,
                     })
                     .then((res) => {
-                      // console.log(res.data.success);
                       if (res.data.success) {
                         setProductDep(productDep + 1);
                       }

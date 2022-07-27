@@ -5,7 +5,7 @@ import TWZipCode from './TWZipCode';
 import axios from 'axios';
 import CreditForm from './CreditForm';
 import CheckoutFinish from './CheckoutFinish';
-export default function OffcanvasTest() {
+export default function OffcanvasPage() {
   // offcanvas setting
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -28,7 +28,6 @@ export default function OffcanvasTest() {
   const [paySelected, setPaySelected] = useState('cash');
   // 宅配表單handler
   const toHomeFormHandler = (e) => {
-    console.log(e.target.value);
     setToHomeForm({ ...toHomeForm, [e.target.name]: e.target.value });
   };
   // 下一步
