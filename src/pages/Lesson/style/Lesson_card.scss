@@ -1,3 +1,40 @@
 * {
   // outline: 1px solid green;
 }
+
+.cooler_lesson_card_btn {
+  background-color: var(--main);
+  box-shadow: 8px 8px 0 0 #61dafb82;
+}
+
+.cooler_lesson_card_name {
+  color: aliceblue;
+  background-color: black;
+  width: 20%;
+  font-weight: 600;
+}
+
+.cooler_lesson_card:hover {
+  background-color: #373737;
+  transform: scale(1.05, 1.3);
+  h5,
+  .cooler_lesson_card_quota {
+    color: white;
+  }
+
+  .cooler_lesson_card_name {
+    color: black;
+    background-color: white;
+  }
+}
+
+.cooler_lesson_card_collect svg {
+  color: rgb(250, 1, 1);
+  cursor: pointer;
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.cooler_lesson_card {
+  padding: 0.5rem;
+}
