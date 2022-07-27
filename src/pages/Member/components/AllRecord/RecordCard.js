@@ -5,7 +5,7 @@ import { v4 as uuidv4 } from 'uuid';
 import '../../styles/RecordCard.scss';
 
 const RecordCard = ({ products, customized }) => {
-  const { auth, token, logout, auths } = useContext(AuthContext);
+  const { auth, token } = useContext(AuthContext);
   const [recordProducts, setRecordProducts] = useState([]);
   const [recordCustomized, setRecordCustomized] = useState([]);
 

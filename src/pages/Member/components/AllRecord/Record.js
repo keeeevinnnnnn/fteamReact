@@ -9,6 +9,8 @@ const Record = () => {
   // 下拉選單
   const [select, setSelect] = useState('All');
   const option = ['All', 'Products', 'Customized'];
+
+  // 篩選CSS
   let products = '';
   let customized = '';
 
@@ -27,7 +29,6 @@ const Record = () => {
     customized = '';
   }
 
-  console.log(select);
   return (
     <>
       <div className="w-100 h-100  d-flex flex-warp">
