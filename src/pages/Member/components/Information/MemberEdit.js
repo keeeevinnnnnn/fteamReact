@@ -130,6 +130,11 @@ const MemberEdit = ({
         }
       });
   }
+
+  async function deleteSelf(e) {
+    // 先阻擋預設送出行為
+    e.preventDefault();
+  }
   return (
     <>
       <div
@@ -220,7 +225,7 @@ const MemberEdit = ({
             >
               Back
             </button>
-            <button>Delete</button>
+            <button onClick={deleteSelf}>Delete</button>
             <button>Confirm</button>
           </div>
         </form>
