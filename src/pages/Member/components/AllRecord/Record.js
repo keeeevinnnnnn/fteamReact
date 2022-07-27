@@ -33,7 +33,7 @@ const Record = () => {
       <div className="w-100 h-100  d-flex flex-warp">
         <div className="col-12 col-xl-6 h-100">
           <div className="d-flex justify-content-around">
-            <section id="select">
+            <section className="recordFilter mt-2">
               <select
                 value={select}
                 onChange={(e) => {
@@ -42,7 +42,11 @@ const Record = () => {
               >
                 {option.map((v, i) => {
                   return (
-                    <option key={uuidv4()} value={v}>
+                    <option
+                      key={uuidv4()}
+                      value={v}
+                      className="recordFilterOption"
+                    >
                       {v}
                     </option>
                   );

@@ -16,7 +16,7 @@ const ProductMain = () => {
   //  }
   const [data, setData] = useState({});
   // post發給後端，先給預設參數，api要加上判斷如果不等於null才執行我要的sql語法
-  // API還有兩個參數預設 : 1. orderField = "sid";  2. sort='asc';
+  // API還有兩個參數預設 : 1. orderField = "sid";  2. sort='ASC';
   const [filter, setFilter] = useState({
     categoryId: 0,
     brand: '',
@@ -25,7 +25,11 @@ const ProductMain = () => {
     orderfield: '',
     sort: '',
     page: 1,
+    where: '',
+    priceRange: [],
   });
+
+  const [messages, setMessages] = useState([]);
   // 如果不使用 useCallback 不影響功能但會有以下黃字建議 : The 'getPageData' function makes the dependencies of useEffect Hook (at line 43) change on every render. Move it inside the useEffect callback. Alternatively, wrap the definition of 'getPageData' in its own useCallback() Hook.
   const getPageData = useCallback(
     async (event) => {
@@ -49,7 +53,21 @@ const ProductMain = () => {
     <div className="bg w-100 vh-100 d-flex justify-content-end align-items-end">
       <div className="work-area col-10 text-danger">
         <ToolBox filter={filter} setFilter={setFilter} />
-        <FilterBox filter={filter} setFilter={setFilter} />
+        <FilterBox
+          filter={filter}
+          setFilter={setFilter}
+          messages={messages}
+          setMessages={setMessages}
+        />
+        <div className="row productText p-0 m-0">
+          {messages.map((msg) => {
+            return (
+              <div className="messagesBox">
+                <button>{msg}</button>
+              </div>
+            );
+          })}
+        </div>
         <div className="row product-list p-0 m-0">
           {data && data.rows
             ? data.rows.map((r) => {

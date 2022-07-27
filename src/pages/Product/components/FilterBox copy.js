@@ -9,20 +9,13 @@ const FilterBox = (props) => {
   const [brand, setBrand] = useState(false);
   const [sortby, setSortby] = useState(false);
   const [searchInput, setSearchInput] = useState(false);
-  const { filter, setFilter, messages, setMessages } = props;
+  const { filter, setFilter } = props;
 
   // double range input
   const [value, setValue] = useState([1200, 10000]);
   const handleChange = (event, newValue) => {
-    // console.log('newValue=', newValue);
-    // console.log('newValue[0]=', newValue[0]);
-    // console.log('newValue[1]=', newValue[1]);
+    console.log(newValue);
     setValue(newValue);
-    setFilter({
-      ...filter,
-      priceRange: [newValue[0], newValue[1]],
-      where: 'price',
-    });
   };
 
   const [sortbyItems, setSortbyItems] = useState([
@@ -32,6 +25,7 @@ const FilterBox = (props) => {
     'Name desc (Z-A)',
     'Price Lowest',
     'Price Highest',
+    'Sales',
   ]);
 
   const [brandItems, setBrandItems] = useState([
@@ -44,30 +38,6 @@ const FilterBox = (props) => {
     'SOUR',
     'ALLTIMERS',
     'Paris',
-  ]);
-
-  const [colorItems, setColorItems] = useState([
-    'White',
-    'Black',
-    'Blue',
-    'Green',
-    'Yellow',
-    'Orange',
-    'Red',
-    'Pink',
-    'Purple',
-  ]);
-
-  const [colorBoxItems, setColorBoxItems] = useState([
-    'whiteBox',
-    'blackBox',
-    'blueBox',
-    'greenBox',
-    'yellowBox',
-    'orangeBox',
-    'redBox',
-    'pinkBox',
-    'purpleBox',
   ]);
 
   return (
@@ -228,27 +198,101 @@ const FilterBox = (props) => {
                 display: colour === false ? 'none' : 'block',
               }}
             >
-              {colorItems.map((v, i) => {
-                return (
-                  <div className="colorBox pt-2">
-                    <div className="colorBoxCheckbox">
-                      <input
-                        type="checkbox"
-                        key={i}
-                        onClick={() => {
-                          setFilter({ ...filter, color: v });
-                          setMessages([...messages, v]);
-                        }}
-                      />
-                      <span>{v}</span>
-                    </div>
+              <div className="colorBox pt-2">
+                <div className="colorBoxCheckbox">
+                  <input type="checkbox" />
+                  <span>White</span>
+                </div>
+                <div className="color">
+                  <div className="whiteBox"></div>
+                </div>
+              </div>
 
-                    <div className="color">
-                      <div className={colorBoxItems[i]}></div>
-                    </div>
-                  </div>
-                );
-              })}
+              <div className="colorBox">
+                <div className="colorBoxCheckbox">
+                  <input type="checkbox" />
+                  <span>Black</span>
+                </div>
+                <div className="color">
+                  <div className="blackBox"></div>
+                </div>
+              </div>
+
+              <div className="colorBox">
+                <div className="colorBoxCheckbox">
+                  <input type="checkbox" />
+                  <span>Blue</span>
+                </div>
+                <div className="color">
+                  <div className="blueBox"></div>
+                </div>
+              </div>
+
+              <div className="colorBox">
+                <div className="colorBoxCheckbox">
+                  <input type="checkbox" />
+                  <span>Green</span>
+                </div>
+
+                <div className="color">
+                  <div className="greenBox"></div>
+                </div>
+              </div>
+
+              <div className="colorBox">
+                <div className="colorBoxCheckbox">
+                  <input type="checkbox" />
+                  <span>Yellow</span>
+                </div>
+
+                <div className="color">
+                  <div className="yellowBox"></div>
+                </div>
+              </div>
+
+              <div className="colorBox">
+                <div className="colorBoxCheckbox">
+                  <input type="checkbox" />
+                  <span>Orange</span>
+                </div>
+
+                <div className="color">
+                  <div className="orangeBox"></div>
+                </div>
+              </div>
+
+              <div className="colorBox">
+                <div className="colorBoxCheckbox">
+                  <input type="checkbox" />
+                  <span>Red</span>
+                </div>
+
+                <div className="color">
+                  <div className="redBox"></div>
+                </div>
+              </div>
+
+              <div className="colorBox">
+                <div className="colorBoxCheckbox">
+                  <input type="checkbox" />
+                  <span>Pink</span>
+                </div>
+
+                <div className="color">
+                  <div className="pinkBox"></div>
+                </div>
+              </div>
+
+              <div className="colorBox">
+                <div className="colorBoxCheckbox">
+                  <input type="checkbox" />
+                  <span>Purple</span>
+                </div>
+
+                <div className="color">
+                  <div className="purpleBox"></div>
+                </div>
+              </div>
             </div>
           </div>
 
@@ -316,21 +360,55 @@ const FilterBox = (props) => {
                 display: brand === false ? 'none' : 'block',
               }}
             >
-              {brandItems.map((v, i) => {
-                return (
-                  <div className="brandBox pt-2" key={i}>
-                    <input
-                      type="checkbox"
-                      value={v}
-                      onClick={() => {
-                        setFilter({ ...filter, brand: v });
-                        setMessages([...messages, v]);
-                      }}
-                    />
-                    <span>{v}</span>
-                  </div>
-                );
-              })}
+              <div className="brandBox pt-2">
+                <input type="checkbox" />
+                <span>POLAR</span>
+              </div>
+
+              <div className="brandBox">
+                <input type="checkbox" />
+                <span>PALACE</span>
+              </div>
+
+              <div className="brandBox">
+                <input type="checkbox" />
+                <span>FUCKING AWESOME</span>
+              </div>
+
+              <div className="brandBox">
+                <input type="checkbox" />
+                <span>HOCKEY</span>
+              </div>
+
+              <div className="brandBox">
+                <input type="checkbox" />
+                <span>GX1000</span>
+              </div>
+
+              <div className="brandBox">
+                <input type="checkbox" />
+                <span>SANTA CRUZ</span>
+              </div>
+
+              <div className="brandBox">
+                <input type="checkbox" />
+                <span>CREATURE</span>
+              </div>
+
+              <div className="brandBox">
+                <input type="checkbox" />
+                <span>SOUR</span>
+              </div>
+
+              <div className="brandBox">
+                <input type="checkbox" />
+                <span>ALLTIMERS</span>
+              </div>
+
+              <div className="brandBox">
+                <input type="checkbox" />
+                <span>Paris</span>
+              </div>
             </div>
           </div>
 
@@ -399,57 +477,7 @@ const FilterBox = (props) => {
             >
               {sortbyItems.map((v, i) => {
                 return (
-                  <div
-                    className="sortbyBox"
-                    key={i}
-                    onClick={() => {
-                      switch (i) {
-                        case 0:
-                          setFilter({ ...filter, color: 'black' });
-                          setMessages([...messages, v]);
-                          break;
-                        case 1:
-                          setFilter({ ...filter, color: 'white' });
-                          setMessages([...messages, v]);
-                          break;
-                        case 2:
-                          setFilter({
-                            ...filter,
-                            orderfield: 'name',
-                            sort: 'ASC',
-                          });
-                          setMessages([...messages, v]);
-                          break;
-                        case 3:
-                          setFilter({
-                            ...filter,
-                            orderfield: 'name',
-                            sort: 'DESC',
-                          });
-                          setMessages([...messages, v]);
-                          break;
-                        case 4:
-                          setFilter({
-                            ...filter,
-                            orderfield: 'price',
-                            sort: 'ASC',
-                          });
-                          setMessages([...messages, v]);
-                          break;
-                        case 5:
-                          setFilter({
-                            ...filter,
-                            orderfield: 'price',
-                            sort: 'DESC',
-                          });
-                          setMessages([...messages, v]);
-                          break;
-
-                        default:
-                          i = 0;
-                      }
-                    }}
-                  >
+                  <div className="sortbyBox" key={i}>
                     <span>{v}</span>
                   </div>
                 );
