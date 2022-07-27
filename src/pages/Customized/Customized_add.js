@@ -20,7 +20,7 @@ import axios from 'axios';
 // `created_date`
 
 function Customized_add(props) {
-  const {lastInsertID,setLastInsertID} =props
+  const { lastInsertID, setLastInsertID } = props;
   const [member_id, setMember_id] = useState('');
   const [custom_product_name, setCustom_product_name] = useState('');
   const [wheel_style, setWheel_style] = useState('');
@@ -34,31 +34,41 @@ function Customized_add(props) {
   const [price, setPrice] = useState('');
   const [created_date, setCreated_date] = useState('');
 
+  const addCustome = () => {
+    console.log(
+      member_id +
+        custom_product_name +
+        wheel_style +
+        carrier +
+        front_color +
+        back_style +
+        back_text +
+        back_sticker +
+        back_filter +
+        back_img +
+        price
+    );
 
-  const addCustome=()=>{
-
-    console.log(member_id+custom_product_name+wheel_style+carrier+front_color+back_style+back_text+back_sticker+back_filter+back_img+price)
-
-    axios.post('http://localhost:3000/custom',{
-      member_id:member_id,
-      custom_product_name:custom_product_name,
-      wheel_style:wheel_style,
-      carrier:carrier,
-      front_color:front_color,
-      back_style:back_style,
-      back_text:back_text,
-      back_sticker:back_sticker,
-      back_filter:back_filter,
-      back_img:back_img,
-      price:price,
-      // created_date:created_date
-
-
-     }).then((res)=>{
-      console.log(res.data.insertId)
-      setLastInsertID(res.data.insertId)
-     });
-  }
+    axios
+      .post('http://localhost:3000/custom', {
+        member_id: member_id,
+        custom_product_name: custom_product_name,
+        wheel_style: wheel_style,
+        carrier: carrier,
+        front_color: front_color,
+        back_style: back_style,
+        back_text: back_text,
+        back_sticker: back_sticker,
+        back_filter: back_filter,
+        back_img: back_img,
+        price: price,
+        // created_date:created_date
+      })
+      .then((res) => {
+        console.log(res.data.insertId);
+        setLastInsertID(res.data.insertId);
+      });
+  };
 
   return (
     <div className="w-100 vh-100 d-flex justify-content-end align-items-end">
@@ -80,13 +90,23 @@ function Customized_add(props) {
           </div>
 
           <div className="cus_card_container">
-          <p>member_id:{member_id} |custom_product_name:{custom_product_name} | wheel_style:{wheel_style} </p>
-          <p>carrier:{carrier} | front_color:{front_color} | back_text:{back_text} | back_text:{back_text}</p><br/>
-          <p>back_sticker:{back_sticker} | back_filter:{back_filter} | back_img:{back_img} | price:{price}</p>
-          
+            <p>
+              member_id:{member_id} |custom_product_name:{custom_product_name} |
+              wheel_style:{wheel_style}{' '}
+            </p>
+            <p>
+              carrier:{carrier} | front_color:{front_color} | back_text:
+              {back_text} | back_text:{back_text}
+            </p>
+            <br />
+            <p>
+              back_sticker:{back_sticker} | back_filter:{back_filter} |
+              back_img:{back_img} | price:{price}
+            </p>
+
             <div className="step-control">
-              <Link to={'/customized/create'} >
-                <button className="skbtn-prev" ></button>
+              <Link to={'/customized/create'}>
+                <button className="skbtn-prev"></button>
               </Link>
 
               <Link to={'/customized/create/wheel'} onClick={addCustome}>
@@ -101,21 +121,21 @@ function Customized_add(props) {
                   type="text"
                   placeholder="memberid(暫時)"
                   className="viv-input"
-                  onChange={(event)=>{setMember_id(event.target.value)}}
+                  onChange={(event) => {
+                    setMember_id(event.target.value);
+                  }}
                 />
 
                 <input
                   type="text"
                   placeholder="Give your board a name"
                   className="viv-input"
-                  onChange={(event)=>{setCustom_product_name(event.target.value)}}
+                  onChange={(event) => {
+                    setCustom_product_name(event.target.value);
+                  }}
                 />
-               
               </div>
             </div>
-
-            
-            
           </div>
         </div>
       </div>
