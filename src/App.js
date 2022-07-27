@@ -30,6 +30,8 @@ export const MemberContext = React.createContext();
 function App() {
   // 從Nav接住登入會員的個人資料
   const [member, setMember] = useState([]);
+  const [lastInsertID,setLastInsertID] = useState(0);
+
   return (
     <Router>
       {/* 裡面包含ConText(會員登入判斷)及登出涵式 */}
@@ -64,27 +66,27 @@ function App() {
                     <Route path="/customized" element={<Customized />} />
                     <Route
                       path="/customized/create"
-                      element={<Customized_add />}
+                      element={<Customized_add lastInsertID={lastInsertID} setLastInsertID={setLastInsertID} />}
                     />
                     <Route
                       path="/customized/create/wheel"
-                      element={<Cus_product_card_wheel />}
+                      element={<Cus_product_card_wheel lastInsertID={lastInsertID} setLastInsertID={setLastInsertID}/>}
                     />
                     <Route
                       path="/customized/create/carrier"
-                      element={<Cus_product_card_struct />}
+                      element={<Cus_product_card_struct lastInsertID={lastInsertID} setLastInsertID={setLastInsertID} />}
                     />
                     <Route
                       path="/customized/create/front_deck"
-                      element={<Cus_product_card_fcolor />}
+                      element={<Cus_product_card_fcolor lastInsertID={lastInsertID} setLastInsertID={setLastInsertID} />}
                     />
                     <Route
                       path="/customized/create/back"
-                      element={<Cus_product_card_back />}
+                      element={<Cus_product_card_back lastInsertID={lastInsertID} setLastInsertID={setLastInsertID} />}
                     />
                     <Route
                       path="/customized/create/detail"
-                      element={<Cus_product_detail />}
+                      element={<Cus_product_detail lastInsertID={lastInsertID} setLastInsertID={setLastInsertID} />}
                     />
                     <Route
                       path="/customized/explore"
