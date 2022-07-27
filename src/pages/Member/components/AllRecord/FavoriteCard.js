@@ -37,7 +37,7 @@ const FavoriteCard = () => {
                 className="cartSvg"
                 fill="none"
                 viewBox="0 0 24 24"
-                stroke="rgb(254, 154, 3)"
+                stroke="rgb(207, 207, 207)"
                 strokeWidth={2}
               >
                 <path
