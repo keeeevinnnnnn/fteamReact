@@ -56,10 +56,10 @@ const RecordCard = ({ products, customized }) => {
                 />
               </div>
               <div className="col-xl-9">
-                <p className="h-50 p-3">{v.name}</p>
-                <div className="h-50 d-flex justify-content-around">
-                  <h6>{v.order_date}</h6>
-                  <h5>$ {v.price}</h5>
+                <p className="h-50 p-3 recordName">{v.name}</p>
+                <div className="h-50 d-flex justify-content-between p-3">
+                  <h5 className="text-gray">{v.order_date}</h5>
+                  <h5 className="text-gray">$ {v.price}</h5>
                 </div>
               </div>
             </div>
@@ -85,9 +85,9 @@ const RecordCard = ({ products, customized }) => {
               </div>
               <div className="col-xl-9">
                 <p className="h-50 p-3">{v.custom_product_name}</p>
-                <div className="h-50 d-flex justify-content-around">
-                  <h6>{v.order_date}</h6>
-                  <h5>$ {v.price}</h5>
+                <div className="h-50 d-flex justify-content-between p-3">
+                  <h6 className="text-gray">{v.order_date}</h6>
+                  <h5 className="text-gray">$ {v.price}</h5>
                 </div>
               </div>
             </div>

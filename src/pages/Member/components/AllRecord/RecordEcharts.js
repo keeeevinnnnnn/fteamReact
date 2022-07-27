@@ -83,7 +83,6 @@ const RecordEcharts = () => {
       {
         name: 'Products Proportion',
         type: 'pie',
-        // top: '10%',
         color: [
           'white',
           'black',
@@ -132,6 +131,9 @@ const RecordEcharts = () => {
   };
   return (
     <>
+      <div className="h-65">
+        <ReactEcharts option={option} style={{ height: '100%', top: '10%' }} />
+      </div>
       <div className="h-20 d-flex justify-content-center align-items-center">
         <button
           className="ehartsBTN"
@@ -143,9 +145,6 @@ const RecordEcharts = () => {
         >
           More detail
         </button>
-      </div>
-      <div className="h-80">
-        <ReactEcharts option={option} style={{ height: '100%' }} />
       </div>
     </>
   );

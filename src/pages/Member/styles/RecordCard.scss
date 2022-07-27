@@ -9,8 +9,12 @@
     img {
         border-right: 1px solid black;
     }
+    .recordName {
+        text-align: justify; // 文字左右切齊設定
+        text-justify: inter-ideograph;
+        word-wrap: break-word;
+    }
     h5,h6 {
-        color: red;
         font-weight: 600;
     }
 }
