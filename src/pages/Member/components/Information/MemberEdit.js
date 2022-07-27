@@ -107,7 +107,7 @@ const MemberEdit = ({
     }
 
     await axios
-      .post('http://localhost:3000/member/edit', fields, {
+      .put('http://localhost:3000/member/edit', fields, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
