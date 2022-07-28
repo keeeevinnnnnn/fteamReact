@@ -24,6 +24,62 @@ const FavoriteCard = () => {
     }
   }, [auth, token, auths]);
   console.log(favoriteCard);
+  // 取消收藏
+  function deleteFavorite(v) {
+    if (window.confirm('確定要取消收藏該商品?')) {
+      axios
+        .post('http://localhost:3000/member/delfavorite', {
+          sid: v.sid,
+        })
+        .then((res) => {
+          if (res.data.success) {
+            setAuths({ ...auths, change: uuidv4() });
+            alert('已取消收藏');
+          } else {
+            alert('取消收藏失敗');
+          }
+        });
+    } else {
+      return;
+    }
+  }
+  // 加入購物車
+  function goToCarts(v) {
+    if (window.confirm('確定要將該商品放入購物車?')) {
+      axios
+        .post(
+          'http://localhost:3000/carts',
+          {
+            type: 'product',
+            quantity: 1,
+            sid: v.favoriteId,
+            memID: v.memId,
+          },
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        )
+        .then((res) => {
+          // 從收藏刪除
+          if (res.data.success) {
+            axios
+              .post('http://localhost:3000/member/delfavorite', {
+                sid: v.sid,
+              })
+              .then((res) => {
+                if (res.data.success) {
+                  setAuths({ ...auths, change: uuidv4() });
+                  alert('商品成功加入購物車');
+                }
+              });
+          } else {
+            alert('商品加入失敗');
+          }
+        });
+    }
+  }
   return (
     <>
       {Object.values(favoriteCard).map((v, i) => {
@@ -51,23 +107,7 @@ const FavoriteCard = () => {
                       viewBox="0 0 448 512"
                       className="deleteSvg"
                       onClick={() => {
-                        // 取消收藏
-                        if (window.confirm('確定要取消收藏該商品?')) {
-                          axios
-                            .post('http://localhost:3000/member/delfavorite', {
-                              sid: v.sid,
-                            })
-                            .then((res) => {
-                              if (res.data.success) {
-                                setAuths({ ...auths, change: uuidv4() });
-                                alert('已取消收藏');
-                              } else {
-                                alert('取消收藏失敗');
-                              }
-                            });
-                        } else {
-                          return;
-                        }
+                        deleteFavorite(v);
                       }}
                     >
                       <path
@@ -83,42 +123,7 @@ const FavoriteCard = () => {
                       stroke="rgb(207, 207, 207)"
                       strokeWidth={2}
                       onClick={() => {
-                        // 加入購物車
-                        axios
-                          .post(
-                            'http://localhost:3000/carts',
-                            {
-                              type: 'product',
-                              quantity: 1,
-                              sid: v.favoriteId,
-                              memID: v.memId,
-                            },
-                            {
-                              headers: {
-                                Authorization: `Bearer ${token}`,
-                              },
-                            }
-                          )
-                          .then((res) => {
-                            // 從收藏刪除
-                            if (res.data.success) {
-                              axios
-                                .post(
-                                  'http://localhost:3000/member/delfavorite',
-                                  {
-                                    sid: v.sid,
-                                  }
-                                )
-                                .then((res) => {
-                                  if (res.data.success) {
-                                    setAuths({ ...auths, change: uuidv4() });
-                                    alert('商品成功加入購物車');
-                                  }
-                                });
-                            } else {
-                              alert('商品加入失敗');
-                            }
-                          });
+                        goToCarts(v);
                       }}
                     >
                       <path
