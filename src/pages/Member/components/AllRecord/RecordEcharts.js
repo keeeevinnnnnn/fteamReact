@@ -77,13 +77,15 @@ const RecordEcharts = () => {
     tooltip: {
       trigger: 'item',
     },
-    // 圓頂圖大小
+    // 圓餅圖大小
     height: '450px',
     legend: {
       left: 'center',
     },
     series: [
       {
+        // 圓餅圖距離上方文字的間隔
+        top:'5%',
         name: 'Products Proportion',
         type: 'pie',
         color: [

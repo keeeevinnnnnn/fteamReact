@@ -11,8 +11,7 @@ const MemberEdit = ({
   member,
   editFromNone,
 }) => {
-  // console.log(member);
-  const { token, auths, setAuths } = useContext(AuthContext);
+  const { token, auths, setAuths, logout } = useContext(AuthContext);
   // 記錄表單每個欄位輸入值
   const [fields, setFields] = useState({
     account: '',
@@ -138,6 +137,24 @@ const MemberEdit = ({
   async function deleteSelf(e) {
     // 先阻擋預設送出行為
     e.preventDefault();
+    if (window.confirm('確認刪除帳號?')) {
+      await axios
+        .delete('http://localhost:3000/member/', {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
+        .then((res) => {
+          if (res.data.success) {
+            alert('刪除成功');
+            logout();
+          } else {
+            alert('刪除失敗');
+          }
+        });
+    } else {
+      return;
+    }
   }
   return (
     <>
