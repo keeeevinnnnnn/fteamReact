@@ -14,7 +14,12 @@
         text-justify: inter-ideograph;
         word-wrap: break-word;
     }
-    h5,h6 {
+    .recordProductsColor {
+        height: 80%;
+        border-radius: 50%;
+        aspect-ratio: 1/1;
+    }
+    h5 {
         font-weight: 600;
     }
 }

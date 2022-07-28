@@ -33,8 +33,8 @@ const Record = () => {
     <>
       <div className="w-100 h-100  d-flex flex-warp">
         <div className="col-12 col-xl-6 h-100">
-          <div className="d-flex justify-content-end px-3">
-            <section className="recordFilter mt-2">
+          <div className="d-flex justify-content-end px-3 h-5">
+            <section className="recordFilter pt-2">
               <select
                 value={select}
                 onChange={(e) => {
@@ -55,9 +55,11 @@ const Record = () => {
               </select>
             </section>
           </div>
-          <ScrollBox>
-            <RecordCard products={products} customized={customized} />
-          </ScrollBox>
+          <div className="h-95">
+            <ScrollBox>
+              <RecordCard products={products} customized={customized} />
+            </ScrollBox>
+          </div>
         </div>
 
         <div className="col-xl-6 h-100 recordEchartsBox">
