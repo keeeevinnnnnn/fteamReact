@@ -1,10 +1,11 @@
 * {
-  // outline: 1px solid green;
+  outline: 1px solid rgb(81, 82, 81);
 }
 
 .cooler_lesson_card_btn {
   background-color: var(--main);
-  box-shadow: 8px 8px 0 0 #61dafb82;
+  box-shadow: 6px 6px 0 0 #61dafb82;
+  cursor: pointer;
 }
 
 .cooler_lesson_card_name {
@@ -12,6 +13,17 @@
   background-color: black;
   width: 20%;
   font-weight: 600;
+}
+
+.cooler_lesson_card {
+  transition: 0.6s;
+}
+
+.cooler_lesson_card_collect svg {
+  color: red;
+  cursor: pointer;
+  width: 1.5rem;
+  height: 1.5rem;
 }
 
 .cooler_lesson_card:hover {
@@ -28,13 +40,72 @@
   }
 }
 
-.cooler_lesson_card_collect svg {
-  color: rgb(250, 1, 1);
-  cursor: pointer;
-  width: 1.5rem;
-  height: 1.5rem;
-}
-
 .cooler_lesson_card {
   padding: 0.5rem;
+}
+
+.cooler_lesson_card_book {
+  // text-decoration: none;
+  border: none;
+  background-color: var(--main);
+}
+
+.cooler_lesson_card_title_collect > .cooler_lesson_card_collect {
+  display: none !important;
+}
+
+//-------------------RWD--------------------
+@media (max-width: 1930px) {
+  .cooler_lesson_card {
+    p,
+    span,
+    button {
+      font-size: xx-small !important;
+    }
+  }
+}
+
+@media (max-width: 1500px) {
+  .cooler_lesson_card_quota {
+    font-size: small;
+  }
+
+  .cooler_lesson_card h5 {
+    font-size: small;
+  }
+}
+
+@media (max-width: 1225px) {
+  .cooler_lesson_card_quota {
+    font-size: x-small;
+  }
+}
+
+@media (max-width: 500px) {
+  .cooler_lesson_card {
+    p,
+    span,
+    button {
+      font-size: xx-small;
+    }
+  }
+
+  .cooler_lesson_card_quota_number {
+    width: 20%;
+    line-height: 2rem;
+    justify-content: space-between !important;
+  }
+
+  .cooler_lesson_card_category_price {
+    flex-direction: row !important;
+    padding-top: 5%;
+  }
+
+  .cooler_lesson_card_collect {
+    display: none;
+  }
+
+  .cooler_lesson_card_title_collect > .cooler_lesson_card_collect {
+    display: block !important;
+  }
 }
