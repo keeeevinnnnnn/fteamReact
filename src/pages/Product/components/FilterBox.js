@@ -13,10 +13,8 @@ const FilterBox = (props) => {
 
   // double range input
   const [value, setValue] = useState([1200, 10000]);
-  const handleChange = (event, newValue) => {
-    // console.log('newValue=', newValue);
-    // console.log('newValue[0]=', newValue[0]);
-    // console.log('newValue[1]=', newValue[1]);
+  const handleChange = (e, newValue) => {
+    console.log('e.target.value===', newValue);
     setValue(newValue);
     setFilter({
       ...filter,
@@ -254,8 +252,6 @@ const FilterBox = (props) => {
 
                             setMessages([...messages, e.target.value]);
                           }
-
-                          // setMessages([...messages, v]);
                         }}
                       />
                       <span>{v}</span>
