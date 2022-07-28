@@ -44,6 +44,7 @@ const LessonCard = () => {
               </p>
               <p className="col-3 m-0">
                 <span className="leftoverDaysNumber">
+                {/* 毫秒換算成剩下天數 */}
                   {parseInt(
                     (new Date(v.duringtime_end) - new Date()) /
                       1000 /
