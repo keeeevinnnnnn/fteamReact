@@ -43,6 +43,7 @@ const LessonCard = () => {
                 <thead>
                   <tr>
                     <th scope="col">Teacher</th>
+                    <th scope="col">Category</th>
                     <th scope="col">Location</th>
                     <th scope="col">Quota</th>
                     <th scope="col">Price</th>
@@ -51,6 +52,7 @@ const LessonCard = () => {
                 <tbody>
                   <tr>
                     <td>{v.teacherName}</td>
+                    <td>{v.type}</td>
                     <td>{v.location}</td>
                     <td>{v.quota}</td>
                     <td>$ {v.truePrice}</td>
