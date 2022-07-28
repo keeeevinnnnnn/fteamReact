@@ -7,14 +7,6 @@ const Lesson = () => {
     <>
       <ScrollBox>
         <LessonCard />
-        <LessonCard />
-        <LessonCard />
-        <LessonCard />
-        <LessonCard />
-        <LessonCard />
-        <LessonCard />
-        <LessonCard />
-        <LessonCard />
       </ScrollBox>
     </>
   );
