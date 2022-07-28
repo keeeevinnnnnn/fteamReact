@@ -104,6 +104,7 @@ const PasswordEdit = ({ setmoveTrain }) => {
             <input
               type="password"
               name="password"
+              autoComplete="off"
               required
               value={fields.password}
               onChange={handleFieldsChange}
@@ -113,6 +114,7 @@ const PasswordEdit = ({ setmoveTrain }) => {
             <input
               type="password"
               name="newPassword"
+              autoComplete="off"
               required
               value={fields.newPassword}
               onChange={handleFieldsChange}
@@ -122,6 +124,7 @@ const PasswordEdit = ({ setmoveTrain }) => {
             <input
               type="password"
               name="confirmPassword"
+              autoComplete="off"
               required
               value={fields.confirmPassword}
               onChange={handleFieldsChange}

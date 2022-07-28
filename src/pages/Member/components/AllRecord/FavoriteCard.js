@@ -23,7 +23,6 @@ const FavoriteCard = () => {
         });
     }
   }, [auth, token, auths]);
-  console.log(favoriteCard);
   // 取消收藏
   function deleteFavorite(v) {
     if (window.confirm('確定要取消收藏該商品?')) {
