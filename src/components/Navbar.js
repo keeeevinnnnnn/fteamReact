@@ -11,7 +11,7 @@ const Navbar = () => {
   const navigate = useNavigate();
   // 從這支Context拿值
   // auth為登入判斷(true,false) token為會員JWT的token logout是登出涵式
-  const { auth, token, logout, auths } = useContext(AuthContext);
+  const { auth, token, logout, auths, grade } = useContext(AuthContext);
   // 會員個人資料的State
   const { member, setMember } = useContext(MemberContext);
   // 接NavBar要顯示的姓名或暱稱
@@ -61,7 +61,10 @@ const Navbar = () => {
           <div className="nav-icon-wrap w-100 h-100 d-md-flex d-none justify-content-end align-items-center">
             {auth ? (
               // 登入狀態顯示頭貼跟姓名(暱稱)
-              <Link className="text-decoration-none d-flex" to={'/member'}>
+              <Link
+                className="text-decoration-none d-flex"
+                to={grade === 'low' ? '/member' : '/admin'}
+              >
                 <div className="userLogin-icon-box">
                   <img
                     className="col-2 userLogin-icon-wrap"

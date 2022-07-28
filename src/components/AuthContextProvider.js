@@ -9,6 +9,7 @@ const AuthContextProvider = ({ children }) => {
     change: '',
   };
   const token = localStorage.getItem('user_token');
+  const info = JSON.parse(localStorage.getItem('user_info'));
   let localAuth = { ...unAuthState };
   if (token) {
     try {
@@ -25,7 +26,9 @@ const AuthContextProvider = ({ children }) => {
     navigate('/', { replace: true });
   };
   return (
-    <AuthContext.Provider value={{ ...auths, auths, setAuths, logout }}>
+    <AuthContext.Provider
+      value={{ ...auths, ...info, auths, setAuths, logout }}
+    >
       {children}
     </AuthContext.Provider>
   );
