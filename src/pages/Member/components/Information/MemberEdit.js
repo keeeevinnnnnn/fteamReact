@@ -11,6 +11,7 @@ const MemberEdit = ({
   member,
   editFromNone,
 }) => {
+  // console.log(member);
   const { token, auths, setAuths } = useContext(AuthContext);
   // 記錄表單每個欄位輸入值
   const [fields, setFields] = useState({
@@ -35,6 +36,9 @@ const MemberEdit = ({
       mem_email,
       mem_address,
     } = member;
+    if (member.length === 0) {
+      return;
+    }
     setFields({
       account: mem_account,
       name: mem_name,
