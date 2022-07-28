@@ -10,12 +10,6 @@ const Favorite = () => {
         <div className="favoriteWarp">
           <ScrollBox>
             <FavoriteCard />
-            <FavoriteCard />
-            <FavoriteCard />
-            <FavoriteCard />
-            <FavoriteCard />
-            <FavoriteCard />
-            <FavoriteCard />
           </ScrollBox>
         </div>
       </div>

@@ -9,25 +9,28 @@ const FilterBox = (props) => {
   const [brand, setBrand] = useState(false);
   const [sortby, setSortby] = useState(false);
   const [searchInput, setSearchInput] = useState(false);
-  const { filter, setFilter } = props;
+  const { filter, setFilter, messages, setMessages } = props;
 
   // double range input
   const [value, setValue] = useState([1200, 10000]);
   const handleChange = (event, newValue) => {
-    console.log(newValue);
+    // console.log('newValue=', newValue);
+    // console.log('newValue[0]=', newValue[0]);
+    // console.log('newValue[1]=', newValue[1]);
     setValue(newValue);
+    setFilter({
+      ...filter,
+      priceRange: [newValue[0], newValue[1]],
+      where: 'price',
+      orderfield: 'price',
+    });
   };
-
   const [sortbyItems, setSortbyItems] = useState([
-    'Recommended',
-    'Categories',
     'Name asc (A-Z)',
     'Name desc (Z-A)',
     'Price Lowest',
     'Price Highest',
-    'Sales',
   ]);
-
   const [brandItems, setBrandItems] = useState([
     'POLAR',
     'PALACE',
@@ -39,6 +42,34 @@ const FilterBox = (props) => {
     'ALLTIMERS',
     'Paris',
   ]);
+  const [colorItems, setColorItems] = useState([
+    'White',
+    'Black',
+    'Blue',
+    'Green',
+    'Yellow',
+    'Orange',
+    'Red',
+    'Pink',
+    'Purple',
+  ]);
+  const [colorBoxItems, setColorBoxItems] = useState([
+    'whiteBox',
+    'blackBox',
+    'blueBox',
+    'greenBox',
+    'yellowBox',
+    'orangeBox',
+    'redBox',
+    'pinkBox',
+    'purpleBox',
+  ]);
+
+  // sortBy filter box messages 開關
+  const [msgNameASC, setMsgNameASC] = useState(false);
+  const [msgNameDESC, setMsgNameDESC] = useState(false);
+  const [msgPriceASC, setMsgPriceASC] = useState(false);
+  const [msgPriceDESC, setMsgPriceDESC] = useState(false);
 
   return (
     <>
@@ -198,101 +229,44 @@ const FilterBox = (props) => {
                 display: colour === false ? 'none' : 'block',
               }}
             >
-              <div className="colorBox pt-2">
-                <div className="colorBoxCheckbox">
-                  <input type="checkbox" />
-                  <span>White</span>
-                </div>
-                <div className="color">
-                  <div className="whiteBox"></div>
-                </div>
-              </div>
+              {colorItems.map((v, i) => {
+                return (
+                  <div className="colorBox pt-2">
+                    <div className="colorBoxCheckbox">
+                      <input
+                        type="checkbox"
+                        key={i}
+                        value={v}
+                        checked={filter.color.includes(v)}
+                        onChange={(e) => {
+                          //先判斷是否有在color狀態陣列中
+                          if (filter.color.includes(e.target.value)) {
+                            // if有 -> 移出陣列
+                            const newLikeList = filter.color.filter((v, i) => {
+                              return v !== e.target.value;
+                            });
+                            setFilter({ ...filter, color: newLikeList });
+                          } else {
+                            // else -> 加入陣列
+                            const newLikeList = [
+                              ...filter.color,
+                              e.target.value,
+                            ];
+                            setFilter({ ...filter, color: newLikeList });
+                          }
 
-              <div className="colorBox">
-                <div className="colorBoxCheckbox">
-                  <input type="checkbox" />
-                  <span>Black</span>
-                </div>
-                <div className="color">
-                  <div className="blackBox"></div>
-                </div>
-              </div>
+                          setMessages([...messages, v]);
+                        }}
+                      />
+                      <span>{v}</span>
+                    </div>
 
-              <div className="colorBox">
-                <div className="colorBoxCheckbox">
-                  <input type="checkbox" />
-                  <span>Blue</span>
-                </div>
-                <div className="color">
-                  <div className="blueBox"></div>
-                </div>
-              </div>
-
-              <div className="colorBox">
-                <div className="colorBoxCheckbox">
-                  <input type="checkbox" />
-                  <span>Green</span>
-                </div>
-
-                <div className="color">
-                  <div className="greenBox"></div>
-                </div>
-              </div>
-
-              <div className="colorBox">
-                <div className="colorBoxCheckbox">
-                  <input type="checkbox" />
-                  <span>Yellow</span>
-                </div>
-
-                <div className="color">
-                  <div className="yellowBox"></div>
-                </div>
-              </div>
-
-              <div className="colorBox">
-                <div className="colorBoxCheckbox">
-                  <input type="checkbox" />
-                  <span>Orange</span>
-                </div>
-
-                <div className="color">
-                  <div className="orangeBox"></div>
-                </div>
-              </div>
-
-              <div className="colorBox">
-                <div className="colorBoxCheckbox">
-                  <input type="checkbox" />
-                  <span>Red</span>
-                </div>
-
-                <div className="color">
-                  <div className="redBox"></div>
-                </div>
-              </div>
-
-              <div className="colorBox">
-                <div className="colorBoxCheckbox">
-                  <input type="checkbox" />
-                  <span>Pink</span>
-                </div>
-
-                <div className="color">
-                  <div className="pinkBox"></div>
-                </div>
-              </div>
-
-              <div className="colorBox">
-                <div className="colorBoxCheckbox">
-                  <input type="checkbox" />
-                  <span>Purple</span>
-                </div>
-
-                <div className="color">
-                  <div className="purpleBox"></div>
-                </div>
-              </div>
+                    <div className="color">
+                      <div className={colorBoxItems[i]}></div>
+                    </div>
+                  </div>
+                );
+              })}
             </div>
           </div>
 
@@ -360,55 +334,41 @@ const FilterBox = (props) => {
                 display: brand === false ? 'none' : 'block',
               }}
             >
-              <div className="brandBox pt-2">
-                <input type="checkbox" />
-                <span>POLAR</span>
-              </div>
+              {brandItems.map((v, i) => {
+                return (
+                  <div className="brandBox pt-2" key={i}>
+                    <input
+                      type="checkbox"
+                      value={v}
+                      onChange={(e) => {
+                        //先判斷是否有在brand狀態陣列中
+                        if (filter.brand.includes(e.target.value)) {
+                          // if有 -> 移出陣列
 
-              <div className="brandBox">
-                <input type="checkbox" />
-                <span>PALACE</span>
-              </div>
+                          const newLikeList = filter.brand.filter((v, i) => {
+                            return v !== e.target.value;
+                          });
 
-              <div className="brandBox">
-                <input type="checkbox" />
-                <span>FUCKING AWESOME</span>
-              </div>
+                          const msgLikeList = messages.filter((v, i) => {
+                            return v !== e.target.value;
+                          });
+                          setFilter({ ...filter, brand: newLikeList });
+                          setMessages(msgLikeList);
+                        } else {
+                          // else -> 加入陣列
+                          const newLikeList = [...filter.brand, e.target.value];
+                          setFilter({ ...filter, brand: newLikeList });
 
-              <div className="brandBox">
-                <input type="checkbox" />
-                <span>HOCKEY</span>
-              </div>
+                          setMessages([...messages, e.target.value]);
+                        }
 
-              <div className="brandBox">
-                <input type="checkbox" />
-                <span>GX1000</span>
-              </div>
-
-              <div className="brandBox">
-                <input type="checkbox" />
-                <span>SANTA CRUZ</span>
-              </div>
-
-              <div className="brandBox">
-                <input type="checkbox" />
-                <span>CREATURE</span>
-              </div>
-
-              <div className="brandBox">
-                <input type="checkbox" />
-                <span>SOUR</span>
-              </div>
-
-              <div className="brandBox">
-                <input type="checkbox" />
-                <span>ALLTIMERS</span>
-              </div>
-
-              <div className="brandBox">
-                <input type="checkbox" />
-                <span>Paris</span>
-              </div>
+                        // setMessages([...messages, v]);
+                      }}
+                    />
+                    <span>{v}</span>
+                  </div>
+                );
+              })}
             </div>
           </div>
 
@@ -477,7 +437,80 @@ const FilterBox = (props) => {
             >
               {sortbyItems.map((v, i) => {
                 return (
-                  <div className="sortbyBox" key={i}>
+                  <div
+                    className="sortbyBox"
+                    key={i}
+                    onClick={(e) => {
+                      switch (i) {
+                        case 0:
+                          if (msgNameASC === false) {
+                            setFilter({
+                              ...filter,
+                              orderfield: 'name',
+                              sort: 'ASC',
+                            });
+                            setMessages([...messages, v]);
+                            setMsgNameASC(!msgNameASC);
+                          } else {
+                            const msgNameASCList = messages.filter((v2) => {
+                              return v2 !== e.target.innerText;
+                            });
+                            setFilter({
+                              ...filter,
+                              orderfield: '',
+                              sort: '',
+                            });
+                            setMessages(msgNameASCList);
+                            setMsgNameASC(!msgNameASC);
+                          }
+
+                          break;
+                        case 1:
+                          const msgNameDESCList = messages.filter((v3) => {
+                            return v3 !== e.target.innerText;
+                          });
+
+                          if (msgNameDESC === false) {
+                            setFilter({
+                              ...filter,
+                              orderfield: 'name',
+                              sort: 'DESC',
+                            });
+                            setMessages([...messages, v]);
+                            setMsgNameDESC(!msgNameDESC);
+                          } else {
+                            setFilter({
+                              ...filter,
+                              orderfield: '',
+                              sort: '',
+                            });
+                            setMessages(msgNameDESCList);
+                            setMsgNameASC(!msgNameDESC);
+                          }
+
+                          break;
+                        case 2:
+                          setFilter({
+                            ...filter,
+                            orderfield: 'price',
+                            sort: 'ASC',
+                          });
+                          setMessages([...messages, v]);
+                          break;
+                        case 3:
+                          setFilter({
+                            ...filter,
+                            orderfield: 'price',
+                            sort: 'DESC',
+                          });
+                          setMessages([...messages, v]);
+                          break;
+
+                        default:
+                          i = 0;
+                      }
+                    }}
+                  >
                     <span>{v}</span>
                   </div>
                 );

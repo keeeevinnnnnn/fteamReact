@@ -67,7 +67,7 @@ const PasswordEdit = ({ setmoveTrain }) => {
     }
 
     await axios
-      .post(
+      .put(
         'http://localhost:3000/member/password',
         { password: fields.password, newPassword: fields.newPassword },
         {

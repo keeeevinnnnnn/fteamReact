@@ -36,7 +36,7 @@ const RecordCard = ({ products, customized }) => {
         });
     }
   }, []);
-
+  // console.log(recordProducts);
   return (
     <>
       {/* 商品 */}
@@ -59,6 +59,16 @@ const RecordCard = ({ products, customized }) => {
                 <p className="h-50 p-3 recordName">{v.name}</p>
                 <div className="h-50 d-flex justify-content-between p-3">
                   <h5 className="text-gray">{v.order_date}</h5>
+                  <div
+                    className="recordProductsColor"
+                    style={{
+                      background: `${v.color}`,
+                      // 如果顏色是黑色的話boxShadow顏色改用白色(因為背景是黑色)
+                      boxShadow: `0px 0px 20px 5px ${
+                        v.color !== 'black' ? v.color : 'white'
+                      }`,
+                    }}
+                  ></div>
                   <h5 className="text-gray">$ {v.price}</h5>
                 </div>
               </div>
@@ -86,7 +96,7 @@ const RecordCard = ({ products, customized }) => {
               <div className="col-xl-9">
                 <p className="h-50 p-3">{v.custom_product_name}</p>
                 <div className="h-50 d-flex justify-content-between p-3">
-                  <h6 className="text-gray">{v.order_date}</h6>
+                  <h5 className="text-gray">{v.order_date}</h5>
                   <h5 className="text-gray">$ {v.price}</h5>
                 </div>
               </div>

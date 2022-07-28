@@ -27,12 +27,15 @@ const RecordEcharts = () => {
           setProductsColor(res.data);
         });
     }
-  }, []);
-  console.log(
-    Object.values(productsColor).filter((v, i) => {
-      return v.color === 'green';
-    }).length
-  );
+  }, [auth, token]);
+
+  // 取得顏色數量的方式
+  // console.log(
+  //   Object.values(productsColor).filter((v, i) => {
+  //     return v.color === 'green';
+  //   }).length
+  // );
+
   // 白色商品在陣列中的長度(數量)
   const whiteLength = Object.values(productsColor).filter((v, i) => {
     return v.color === 'withe';
@@ -74,13 +77,15 @@ const RecordEcharts = () => {
     tooltip: {
       trigger: 'item',
     },
-    // 圓頂圖大小
+    // 圓餅圖大小
     height: '450px',
     legend: {
       left: 'center',
     },
     series: [
       {
+        // 圓餅圖距離上方文字的間隔
+        top:'5%',
         name: 'Products Proportion',
         type: 'pie',
         color: [
@@ -116,15 +121,16 @@ const RecordEcharts = () => {
           show: false,
         },
         data: [
-          { value: whiteLength, name: 'White' },
-          { value: blackLength, name: 'Black' },
-          { value: blueLength, name: 'Blue' },
-          { value: greenLength, name: 'Green' },
-          { value: yellowLength, name: 'Yellow' },
-          { value: orangeLength, name: 'Orange' },
-          { value: redLength, name: 'Red' },
-          { value: pinkLength, name: 'Pink' },
-          { value: purpleLength, name: 'Purple' },
+          // 數量不是0再顯示
+          whiteLength !== 0 ? { value: whiteLength, name: 'White' } : '',
+          blackLength !== 0 ? { value: blackLength, name: 'Black' } : '',
+          blueLength !== 0 ? { value: blueLength, name: 'Blue' } : '',
+          greenLength !== 0 ? { value: greenLength, name: 'Green' } : '',
+          yellowLength !== 0 ? { value: yellowLength, name: 'Yellow' } : '',
+          orangeLength !== 0 ? { value: orangeLength, name: 'Orange' } : '',
+          redLength !== 0 ? { value: redLength, name: 'Red' } : '',
+          pinkLength !== 0 ? { value: pinkLength, name: 'Pink' } : '',
+          purpleLength !== 0 ? { value: purpleLength, name: 'Purple' } : '',
         ],
       },
     ],
