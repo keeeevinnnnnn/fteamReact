@@ -54,7 +54,7 @@ const FavoriteCard = () => {
                         // 取消收藏
                         if (window.confirm('確定要取消收藏該商品?')) {
                           axios
-                            .post('http://localhost:3000/member/favorite', {
+                            .post('http://localhost:3000/member/delfavorite', {
                               sid: v.sid,
                             })
                             .then((res) => {
@@ -102,11 +102,19 @@ const FavoriteCard = () => {
                           .then((res) => {
                             // 從收藏刪除
                             if (res.data.success) {
-                              axios.delete(
-                                'http://localhost:3000/member/favorite',
-                                { sid: v.sid }
-                              );
-                              alert('商品成功加入購物車');
+                              axios
+                                .post(
+                                  'http://localhost:3000/member/delfavorite',
+                                  {
+                                    sid: v.sid,
+                                  }
+                                )
+                                .then((res) => {
+                                  if (res.data.success) {
+                                    setAuths({ ...auths, change: uuidv4() });
+                                    alert('商品成功加入購物車');
+                                  }
+                                });
                             } else {
                               alert('商品加入失敗');
                             }
