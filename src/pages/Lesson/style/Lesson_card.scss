@@ -2,6 +2,10 @@
   // outline: 1px solid rgb(81, 82, 81);
 }
 
+.cooler_lesson_card_category_price {
+  align-items: flex-end;
+}
+
 .cooler_lesson_card_btn {
   background-color: var(--main);
   box-shadow: 6px 6px 0 0 #61dafb82;
@@ -19,6 +23,10 @@
   transition: 0.6s;
 }
 
+.cooler_lesson_card_title {
+  font-weight: 600;
+}
+
 .cooler_lesson_card_collect svg {
   color: red;
   cursor: pointer;
@@ -27,6 +35,8 @@
 }
 
 .cooler_lesson_card:hover {
+  -webkit-box-shadow: 0px 0px 8px 7px rgba(0, 0, 0, 0.29);
+  box-shadow: 0px 0px 8px 7px rgba(0, 0, 0, 0.29);
   background-color: #373737;
   transform: scale(1.05, 1.3);
   h5,
@@ -42,6 +52,7 @@
 
 .cooler_lesson_card {
   padding: 0.5rem;
+  margin-top: 5%;
 }
 
 .cooler_lesson_card_book {
@@ -52,6 +63,15 @@
 
 .cooler_lesson_card_title_collect > .cooler_lesson_card_collect {
   display: none !important;
+}
+
+.cooler_lesson_card {
+  div,
+  p,
+  span,
+  button {
+    line-height: 1.5rem;
+  }
 }
 
 //-------------------RWD--------------------
@@ -82,6 +102,10 @@
 }
 
 @media (max-width: 500px) {
+  .cooler_lesson_card_price {
+    padding-bottom: 14%;
+  }
+
   .cooler_lesson_card {
     p,
     span,
@@ -92,7 +116,7 @@
 
   .cooler_lesson_card_quota_number {
     width: 20%;
-    line-height: 2rem;
+
     justify-content: space-between !important;
   }
 

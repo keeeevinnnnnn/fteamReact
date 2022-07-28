@@ -11,7 +11,7 @@ const Navbar = () => {
   const navigate = useNavigate();
   // 從這支Context拿值
   // auth為登入判斷(true,false) token為會員JWT的token logout是登出涵式
-  const { auth, token, logout, auths } = useContext(AuthContext);
+  const { auth, token, logout, auths, grade } = useContext(AuthContext);
   // 會員個人資料的State
   const { member, setMember } = useContext(MemberContext);
   // 接NavBar要顯示的姓名或暱稱
@@ -60,22 +60,43 @@ const Navbar = () => {
           <MenuSelect />
           <div className="nav-icon-wrap w-100 h-100 d-md-flex d-none justify-content-end align-items-center">
             {auth ? (
-              // 登入狀態顯示頭貼跟姓名(暱稱)
-              <Link className="text-decoration-none d-flex" to={'/member'}>
-                <div className="userLogin-icon-box">
-                  <img
-                    className="col-2 userLogin-icon-wrap"
-                    style={{
-                      objectFit: 'cover',
-                      borderRadius: '50%',
-                      aspectRatio: '1/1',
-                    }}
-                    src={`http://localhost:3000/avatar/${member.mem_avatar}`}
-                    alt=""
-                  />
-                  <span className="user-icon-text col-6">{navName}</span>
+              // 登入
+              grade === 'low' ? (
+                <Link
+                  className="text-decoration-none d-flex"
+                  to={grade === 'low' ? '/member' : '/admin'}
+                >
+                  <div className="userLogin-icon-box">
+                    <img
+                      className="col-2 userLogin-icon-wrap"
+                      style={{
+                        objectFit: 'cover',
+                        borderRadius: '50%',
+                        aspectRatio: '1/1',
+                      }}
+                      src={`http://localhost:3000/avatar/${member.mem_avatar}`}
+                      alt=""
+                    />
+                    <span className="user-icon-text col-6">{navName}</span>
+                  </div>
+                </Link>
+              ) : (
+                <div className="user-icon-wrap">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-6 w-6"
+                    viewBox="0 0 24 24"
+                    stroke="black"
+                    strokeWidth={2}
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+                    />
+                  </svg>
                 </div>
-              </Link>
+              )
             ) : (
               // 未登入狀態顯示會員icon
               <Link to={'/login'}>

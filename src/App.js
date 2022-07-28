@@ -6,6 +6,7 @@ import Navbar from './components/Navbar';
 import SideBar from './components/SideBar';
 import Home from './pages/Home/Home';
 import Member from './pages/Member/Member';
+import Admin from './pages/Admin/Admin';
 import Lesson from './pages/Lesson/Lesson';
 import Lesson_zhongxiao from './pages/Lesson/Lesson_zhongxiao';
 import Lesson_banqiao from './pages/Lesson/Lesson_banqiao';
@@ -52,6 +53,7 @@ function App() {
                   <Routes>
                     <Route path="/" element={<Home />} />
                     <Route path="/member" element={<Member />} />
+                    <Route path="/admin" element={<Admin />} />
                     <Route path="/login" element={<Login />} />
                     <Route path="/lesson" element={<Lesson />} />
                     <Route
