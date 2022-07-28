@@ -11,7 +11,7 @@ export function useSpinner(timeout = 2000) {
       setTimeout(() => {
         setLoading(false);
       }, timeout);
-  }, [loading]);
+  }, [loading, timeout]);
 
   return {
     spinner: <Loader loading={loading} />,

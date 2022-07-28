@@ -3,7 +3,7 @@ import MuiTabs from './MuiTabs';
 import '../../styles/AllRecord.scss';
 import Favorite from './Favorite';
 import Record from './Record';
-import LessonCard from './LessonCard';
+import Lesson from './Lesson';
 
 const AllRecord = () => {
   const [selectItem, setSelectItem] = useState('FAVORITE');
@@ -37,7 +37,7 @@ const AllRecord = () => {
               <Record />
             </div>
             <div className="w-25">
-              <LessonCard />
+              <Lesson />
             </div>
             <div className="w-25 bg-light"></div>
           </div>

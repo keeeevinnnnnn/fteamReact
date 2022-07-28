@@ -1,9 +1,29 @@
 import React,{useState} from 'react';
 import { Link } from 'react-router-dom';
 import './Cus_product_card_fcolor.scss';
+import axios from 'axios';
 
-function Cus_product_card_fcolor() {
+function Cus_product_card_fcolor(props) {
+
+  const {lastInsertID,setLastInsertID} = props
   const [frontcolor,setFrontcolor]=useState('#E9573F')
+
+  const addfcolor = ()=>{
+    console.log(frontcolor)
+     axios.post('http://localhost:3000/custom/frontcolor',{
+          sid:lastInsertID,
+          front_color:frontcolor,
+     })
+
+
+
+  }
+ 
+
+  
+
+
+
   return (
     <div className="w-100 vh-100 d-flex justify-content-end align-items-end">
       <div className="cus_matte w-100 h-100 ovweflow-hidden">
@@ -25,13 +45,14 @@ function Cus_product_card_fcolor() {
                 <button className="skbtn-prev"></button>
               </Link>
 
-              <Link to={'/customized/create/back'}>
+              <Link to={'/customized/create/back'} onClick={addfcolor}>
                 <button className="skbtn-next"></button>
               </Link>
             </div>
 
             <div className="cus_card flex-column">
               <div className="cus_product_card">
+              <p>{frontcolor}</p>
              
                 <h3 className="text-black">Choose the Color of Front Deck</h3>
                 <input type="color" className='front-deck-input' onChange={(e)=>{

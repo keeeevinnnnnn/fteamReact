@@ -11,7 +11,7 @@ const Customized = () => {
         </div>
 
         <div className="work-area col-12 col-md-10 p-0 overflow-hidden">
-          <div class="cus_container h-100  ">
+          <div className="cus_container h-100  ">
             <div className="main_img_container">
               <img
                 src="/imgs/Customized/main_board.png"
@@ -33,8 +33,6 @@ const Customized = () => {
                 <Link to={'/customized/explore'}>
                   <button className="viv-btn">Explore</button>
                 </Link>
-
-               
               </div>
             </div>
           </div>

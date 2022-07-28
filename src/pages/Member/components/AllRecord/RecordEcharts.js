@@ -1,30 +1,110 @@
-import React from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import ReactEcharts from 'echarts-for-react';
 import { useNavigate } from 'react-router-dom';
+import AuthContext from '../../../../components/AuthContext';
+import axios from 'axios';
 import '../../styles/RecordEcharts.scss';
 
 const RecordEcharts = () => {
+  // 判斷有吳登入 要fetch的token
+  const { auth, token } = useContext(AuthContext);
   // 頁面導向
   const navigate = useNavigate();
-  const aaa = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+  // 接住所有會員買過的商品紀錄
+  const [productsColor, setProductsColor] = useState([]);
+  useEffect(() => {
+    if (!auth) {
+      return;
+    } else {
+      axios
+        .get('http://localhost:3000/member/recordproducts', {
+          // 發JWT一定要加這個headers
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
+        .then((res) => {
+          setProductsColor(res.data);
+        });
+    }
+  }, [auth, token]);
+
+  // 取得顏色數量的方式
+  // console.log(
+  //   Object.values(productsColor).filter((v, i) => {
+  //     return v.color === 'green';
+  //   }).length
+  // );
+
+  // 白色商品在陣列中的長度(數量)
+  const whiteLength = Object.values(productsColor).filter((v, i) => {
+    return v.color === 'withe';
+  }).length;
+  // 黑色商品在陣列中的長度(數量)
+  const blackLength = Object.values(productsColor).filter((v, i) => {
+    return v.color === 'black';
+  }).length;
+  // 藍色商品在陣列中的長度(數量)
+  const blueLength = Object.values(productsColor).filter((v, i) => {
+    return v.color === 'blue';
+  }).length;
+  // 綠色商品在陣列中的長度(數量)
+  const greenLength = Object.values(productsColor).filter((v, i) => {
+    return v.color === 'green';
+  }).length;
+  // 黃色商品在陣列中的長度(數量)
+  const yellowLength = Object.values(productsColor).filter((v, i) => {
+    return v.color === 'yellow';
+  }).length;
+  // 橘色商品在陣列中的長度(數量)
+  const orangeLength = Object.values(productsColor).filter((v, i) => {
+    return v.color === 'orange';
+  }).length;
+  // 紅色商品在陣列中的長度(數量)
+  const redLength = Object.values(productsColor).filter((v, i) => {
+    return v.color === 'red';
+  }).length;
+  // 粉紅色商品在陣列中的長度(數量)
+  const pinkLength = Object.values(productsColor).filter((v, i) => {
+    return v.color === 'pink';
+  }).length;
+  // 紫色商品在陣列中的長度(數量)
+  const purpleLength = Object.values(productsColor).filter((v, i) => {
+    return v.color === 'purple';
+  }).length;
+
   const option = {
     tooltip: {
       trigger: 'item',
     },
+    // 圓餅圖大小
+    height: '450px',
     legend: {
       left: 'center',
     },
     series: [
       {
-        name: 'Access From',
+        // 圓餅圖距離上方文字的間隔
+        top:'5%',
+        name: 'Products Proportion',
         type: 'pie',
-        color: ['#cc6b66', '#859aa0', '#b69d87', '#d56d00', '#a55d87'],
+        color: [
+          'white',
+          'black',
+          'blue',
+          'green',
+          'yellow',
+          'orange',
+          'red',
+          'pink',
+          'purple',
+        ],
         radius: ['40%', '70%'],
         avoidLabelOverlap: false,
         itemStyle: {
           borderRadius: 10,
-          borderColor: '#fff',
-          borderWidth: 2,
+          borderColor: '#61dafb',
+          borderWidth: 3,
         },
         label: {
           show: false,
@@ -41,17 +121,25 @@ const RecordEcharts = () => {
           show: false,
         },
         data: [
-          { value: `${aaa.length}`, name: 'Search Engine' },
-          { value: 5, name: 'Direct' },
-          { value: 2, name: 'Email' },
-          { value: 4, name: 'Union Ads' },
-          { value: 6, name: 'Video Ads' },
+          // 數量不是0再顯示
+          whiteLength !== 0 ? { value: whiteLength, name: 'White' } : '',
+          blackLength !== 0 ? { value: blackLength, name: 'Black' } : '',
+          blueLength !== 0 ? { value: blueLength, name: 'Blue' } : '',
+          greenLength !== 0 ? { value: greenLength, name: 'Green' } : '',
+          yellowLength !== 0 ? { value: yellowLength, name: 'Yellow' } : '',
+          orangeLength !== 0 ? { value: orangeLength, name: 'Orange' } : '',
+          redLength !== 0 ? { value: redLength, name: 'Red' } : '',
+          pinkLength !== 0 ? { value: pinkLength, name: 'Pink' } : '',
+          purpleLength !== 0 ? { value: purpleLength, name: 'Purple' } : '',
         ],
       },
     ],
   };
   return (
     <>
+      <div className="h-65">
+        <ReactEcharts option={option} style={{ height: '100%', top: '10%' }} />
+      </div>
       <div className="h-20 d-flex justify-content-center align-items-center">
         <button
           className="ehartsBTN"
@@ -64,7 +152,6 @@ const RecordEcharts = () => {
           More detail
         </button>
       </div>
-      <ReactEcharts option={option} />
     </>
   );
 };

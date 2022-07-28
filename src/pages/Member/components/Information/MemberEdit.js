@@ -11,7 +11,7 @@ const MemberEdit = ({
   member,
   editFromNone,
 }) => {
-  const { token, auths, setAuths } = useContext(AuthContext);
+  const { token, auths, setAuths, logout } = useContext(AuthContext);
   // 記錄表單每個欄位輸入值
   const [fields, setFields] = useState({
     account: '',
@@ -35,6 +35,9 @@ const MemberEdit = ({
       mem_email,
       mem_address,
     } = member;
+    if (member.length === 0) {
+      return;
+    }
     setFields({
       account: mem_account,
       name: mem_name,
@@ -107,7 +110,7 @@ const MemberEdit = ({
     }
 
     await axios
-      .post('http://localhost:3000/member/edit', fields, {
+      .put('http://localhost:3000/member/edit', fields, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -129,6 +132,29 @@ const MemberEdit = ({
           alert('修改失敗');
         }
       });
+  }
+
+  async function deleteSelf(e) {
+    // 先阻擋預設送出行為
+    e.preventDefault();
+    if (window.confirm('確認刪除帳號?')) {
+      await axios
+        .delete('http://localhost:3000/member/', {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
+        .then((res) => {
+          if (res.data.success) {
+            alert('刪除成功');
+            logout();
+          } else {
+            alert('刪除失敗');
+          }
+        });
+    } else {
+      return;
+    }
   }
   return (
     <>
@@ -220,7 +246,7 @@ const MemberEdit = ({
             >
               Back
             </button>
-            <button>Delete</button>
+            <button onClick={deleteSelf}>Delete</button>
             <button>Confirm</button>
           </div>
         </form>
