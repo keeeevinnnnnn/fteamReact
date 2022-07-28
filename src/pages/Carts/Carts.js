@@ -268,7 +268,12 @@ const Carts = () => {
                     </span>
                   </div>
                   <div className="col-4 h-100 d-flex justify-content-start align-items-center btn-check-wrap">
-                    <OffcanvasPage />
+                    <OffcanvasPage
+                      loginMemberID={loginMemberID}
+                      setProductDep={setProductDep}
+                      setCustomDep={setCustomDep}
+                      setLessonDep={setLessonDep}
+                    />
                   </div>
                 </div>
               </div>

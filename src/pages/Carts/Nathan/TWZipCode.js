@@ -34,7 +34,7 @@ function TWZipCode(props) {
           }}
         >
           <option value="-1" disabled>
-            請選擇縣市
+            *請選擇縣市
           </option>
           {countries.map((v, i) => {
             return (
@@ -59,7 +59,7 @@ function TWZipCode(props) {
             });
           }}
         >
-          <option value="-1">請選擇區域</option>
+          <option value="-1">*請選擇區域</option>
           {/* 當有選擇縣市(countryIndex >)時才要作map，呈現其它的區域選項 */}
           {countryIndex > -1 &&
             townships[countryIndex].map((v, i) => {

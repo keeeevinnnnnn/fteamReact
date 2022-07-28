@@ -5,7 +5,10 @@ import TWZipCode from './TWZipCode';
 import axios from 'axios';
 import CreditForm from './CreditForm';
 import CheckoutFinish from './CheckoutFinish';
-export default function OffcanvasPage() {
+import { useNavigate } from 'react-router-dom';
+export default function OffcanvasPage(props) {
+  const { loginMemberID, setProductDep, setCustomDep, setLessonDep } = props;
+  const navigate = useNavigate();
   // offcanvas setting
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -13,6 +16,9 @@ export default function OffcanvasPage() {
 
   // 點擊位移單位
   const [displace, setDisplace] = useState(0);
+
+  // 新訂單編號
+  const [newOrderNumber, setNewOrderNumber] = useState(0);
 
   // 宅配form setting
   const [toHomeForm, setToHomeForm] = useState({
@@ -23,24 +29,67 @@ export default function OffcanvasPage() {
     townshipName: '',
     fullAddress: '',
   });
+  const [creditForm, setCreditForm] = useState({
+    num1to4: '',
+    num5to8: '',
+    num9to12: '',
+    num13to16: '',
+    validMonth: '',
+    validYear: '',
+    CVV: '',
+  });
   const [pickSelfForm, setPickSelfForm] = useState({});
   const [delivery, setDelivery] = useState('toHome');
   const [paySelected, setPaySelected] = useState('cash');
-  // 宅配表單handler
+  // 宅配欄位handler
   const toHomeFormHandler = (e) => {
     setToHomeForm({ ...toHomeForm, [e.target.name]: e.target.value });
   };
-  // 下一步
+  // 填完基本資料下一步
   const nextStep = (e) => {
-    e.preventDefault();
-    // 不是最後一頁 && 付款方式是信用卡
-    if (displace !== 200 && paySelected === 'credit') {
-      setDisplace(displace + 100);
+    // 判斷 必填欄位 有無輸入值 配送方式為宅配
+    if (
+      delivery === 'toHome' &&
+      toHomeForm.fullName !== '' &&
+      toHomeForm.mobile !== '' &&
+      toHomeForm.countryName !== '' &&
+      toHomeForm.townshipName !== ''
+    ) {
+      // 付款方式如果是貨到付款直接進行結帳
+      if (paySelected === 'cash') {
+        // 貨到付款 直接發axios
+        axios
+          .post('http://localhost:3000/orders', {
+            memID: loginMemberID,
+            recipient: toHomeForm.fullName,
+            address:
+              toHomeForm.countryName +
+              toHomeForm.townshipName +
+              toHomeForm.fullAddress,
+            shipping: delivery,
+          })
+          .then((res) => {
+            if (res.data.success) {
+              alert('恭喜您，訂購成功!');
+              setNewOrderNumber(res.data.orderNumber);
+              setDisplace(displace + 200);
+              setProductDep((prev) => prev + 1);
+              setCustomDep((prev) => prev + 1);
+              setLessonDep((prev) => prev + 1);
+            }
+          });
+        setDisplace(displace + 200);
+      } else {
+        // 選線上刷卡 導向信用卡資訊填寫頁面
+        setDisplace(displace + 100);
+      }
     } else {
-      setDisplace(200);
+      alert('請填寫完整資訊');
     }
   };
-  // 上一部
+  // 填完信用卡下一步
+  const creditNextStep = (e) => { };
+  // 上一步
   const prevStep = () => {
     // 不是最後一頁 && 付款方式是信用卡
     if (displace !== 0 && paySelected === 'credit') {
@@ -49,6 +98,7 @@ export default function OffcanvasPage() {
       setDisplace(0);
     }
   };
+
   const payHandleChange = (e) => {
     setPaySelected(e.target.value);
   };
@@ -84,7 +134,7 @@ export default function OffcanvasPage() {
           <div className="check-body-list-wrap w-100">
             <div style={{ left: `-${displace}%` }} className="check-body-list">
               {/* 配送方式頁面 */}
-              <form className="distribution-page">
+              <div className="distribution-page">
                 <div className="w-100 distribution-form-wrap">
                   <div className="w-75 h-90 d-flex flex-column justify-content-between">
                     <div className="w-100 h-10 step-page-title-wrap d-flex justify-content-center align-items-center">
@@ -102,7 +152,9 @@ export default function OffcanvasPage() {
                           配送方式
                         </option>
                         <option value="toHome">宅配到府</option>
-                        <option value="pickSelf">超商取貨</option>
+                        <option disabled value="pickSelf">
+                          超商取貨
+                        </option>
                       </select>
                     </div>
                     <div className="w-100 h-75">
@@ -114,40 +166,45 @@ export default function OffcanvasPage() {
                         }}
                       >
                         <input
-                          className=" border-bottom w-100 focus-none text-gray bg-transparent"
+                          className="border-bottom w-100 text-gray bg-transparent checkout-input"
                           name="fullName"
                           value={toHomeForm.fullName}
                           type="text"
-                          placeholder="Name :"
+                          placeholder="* Name :"
                           onChange={toHomeFormHandler}
+                          autocomplete="off"
                         />
                         <input
-                          className=" border-bottom w-100 focus-none text-gray bg-transparent"
+                          className="border-bottom w-100 focus-none text-gray bg-transparent checkout-input"
                           name="mobile"
+                          pattern="09\d{2}(\d{6}|-\d{3}-\d{3})"
                           value={toHomeForm.mobile}
                           type="text"
-                          placeholder="Mobile :"
+                          placeholder="* Mobile :"
                           onChange={toHomeFormHandler}
+                          autocomplete="off"
                         />
                         <input
-                          className=" border-bottom w-100 focus-none text-gray bg-transparent"
+                          className=" border-bottom w-100 focus-none text-gray bg-transparent checkout-input"
                           name="email"
                           value={toHomeForm.email}
                           type="text"
                           placeholder="Email :"
                           onChange={toHomeFormHandler}
+                          autocomplete="off"
                         />
                         <TWZipCode
                           toHomeForm={toHomeForm}
                           setToHomeForm={setToHomeForm}
                         />
                         <input
-                          className=" border-bottom w-100 focus-none text-gray bg-transparent"
+                          className=" border-bottom w-100 focus-none text-gray bg-transparent checkout-input"
                           name="fullAddress"
                           value={toHomeForm.fullAddress}
                           type="text"
-                          placeholder="Address :"
+                          placeholder="* Address :"
                           onChange={toHomeFormHandler}
+                          autocomplete="off"
                         />
 
                         {/* 付款方式選擇 */}
@@ -192,22 +249,21 @@ export default function OffcanvasPage() {
                     </div>
                   </div>
                 </div>
-                <button
-                  onClick={nextStep}
-                  className="w-100"
-                // 必填欄位沒填 無法進行下一步
-                >
+                <button onClick={nextStep} className="w-100">
                   <span>Next Step</span>
                 </button>
-              </form>
+              </div>
               {/* 信用卡表單頁面 */}
               <div className="credit-detail-page">
                 <div className="w-100 credit-form-wrap">
                   <div className="w-80 h-90">
-                    <CreditForm />
+                    <CreditForm
+                      creditForm={creditForm}
+                      setCreditForm={setCreditForm}
+                    />
                   </div>
                 </div>
-                <button onClick={nextStep} className="w-100">
+                <button onClick={creditNextStep} className="w-100">
                   <span>Next Step</span>
                 </button>
               </div>
@@ -215,10 +271,15 @@ export default function OffcanvasPage() {
               <div className="check-compele-page">
                 <div className="w-100 check-compele-wrap">
                   <div className="w-80 h-90">
-                    <CheckoutFinish />
+                    <CheckoutFinish newOrderNumber={newOrderNumber} />
                   </div>
                 </div>
-                <button onClick={nextStep} className="w-100">
+                <button
+                  onClick={() => {
+                    navigate('/products');
+                  }}
+                  className="w-100"
+                >
                   Continue to Shopping
                 </button>
               </div>

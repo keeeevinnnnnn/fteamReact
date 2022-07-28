@@ -2,7 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './CheckoutFinish.scss';
 
-const CheckoutFinish = () => {
+const CheckoutFinish = (props) => {
+  const { newOrderNumber } = props;
   return (
     <div className="w-100 h-100 d-flex flex-column">
       <div className=" w-100 h-30 d-flex justify-content-center align-items-end">
@@ -32,7 +33,7 @@ const CheckoutFinish = () => {
         <div className="w-100 h-60">
           <div className="w-100 h-30 d-flex justify-content-center align-items-center">
             {/* 帶入資料庫訂單編號 */}
-            <span className="text-gray">訂單編號 : {'2022100004'}</span>
+            <span className="text-gray">訂單編號 : {newOrderNumber}</span>
           </div>
           <div className="w-100 h-70  text-gray text-setting">
             商品之實際配貨日期、退換貨日期，依我們向您另行通知之內容為準。

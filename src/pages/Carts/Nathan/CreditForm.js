@@ -1,15 +1,7 @@
 import React, { useState } from 'react';
 import './CreditForm.scss';
-const CreditForm = () => {
-  const [creditForm, setCreditForm] = useState({
-    num1to4: '',
-    num5to8: '',
-    num9to12: '',
-    num13to16: '',
-    validMonth: '',
-    validYear: '',
-    CVV: '',
-  });
+const CreditForm = (props) => {
+  const { creditForm, setCreditForm } = props;
   // credit form obj useState setting
   const creditFormHandler = (e) => {
     setCreditForm({ ...creditForm, [e.target.name]: e.target.value });
@@ -94,8 +86,9 @@ const CreditForm = () => {
                 onFocus={rotateToZero}
                 defaultValue={creditForm.num1to4}
                 type="text"
-                className="credit-invalid border-bottom w-20 focus-none text-gray bg-transparent"
+                className="checkout-input credit-invalid border-bottom w-20 focus-none text-gray bg-transparent"
                 maxLength={4}
+                autocomplete="off"
               />
               {/* 5~8 */}
               <input
@@ -105,8 +98,9 @@ const CreditForm = () => {
                 onFocus={rotateToZero}
                 defaultValue={creditForm.num5to8}
                 type="text"
-                className="border-bottom w-20 focus-none text-gray bg-transparent"
+                className="checkout-input border-bottom w-20 focus-none text-gray bg-transparent"
                 maxLength={4}
+                autocomplete="off"
               />
               {/* 9~12 */}
               <input
@@ -116,8 +110,9 @@ const CreditForm = () => {
                 onFocus={rotateToZero}
                 defaultValue={creditForm.num9to12}
                 type="text"
-                className="border-bottom w-20 focus-none text-gray bg-transparent"
+                className="checkout-input border-bottom w-20 focus-none text-gray bg-transparent"
                 maxLength={4}
+                autocomplete="off"
               />
               {/* 13~16 */}
               <input
@@ -127,8 +122,9 @@ const CreditForm = () => {
                 onFocus={rotateToZero}
                 defaultValue={creditForm.num13to16}
                 type="text"
-                className="border-bottom w-20 focus-none text-gray bg-transparent"
+                className="checkout-input border-bottom w-20 focus-none text-gray bg-transparent"
                 maxLength={4}
+                autocomplete="off"
               />
             </div>
           </div>
@@ -146,10 +142,11 @@ const CreditForm = () => {
                   name="validMonth"
                   onFocus={rotateToZero}
                   defaultValue={creditForm.validMonth}
-                  className=" w-40 border-bottom  focus-none text-gray bg-transparent"
+                  className="checkout-input w-40 border-bottom  focus-none text-gray bg-transparent"
                   type="text"
                   maxLength={2}
                   placeholder={'MM'}
+                  autocomplete="off"
                 />
                 /{/* YY年 */}
                 <input
@@ -158,10 +155,11 @@ const CreditForm = () => {
                   name="validYear"
                   onFocus={rotateToZero}
                   defaultValue={creditForm.validYear}
-                  className="  w-40 border-bottom  focus-none text-gray bg-transparent"
+                  className="checkout-input w-40 border-bottom  focus-none text-gray bg-transparent"
                   type="text"
                   maxLength={2}
                   placeholder={'YY'}
+                  autocomplete="off"
                 />
               </div>
             </div>
@@ -177,9 +175,10 @@ const CreditForm = () => {
                   name="CVV"
                   onFocus={rotateToBack}
                   defaultValue={creditForm.CVV}
-                  className="w-100 border-bottom  focus-none text-gray bg-transparent"
+                  className="checkout-input w-100 border-bottom  focus-none text-gray bg-transparent"
                   type="text"
                   maxLength={3}
+                  autocomplete="off"
                 />
               </div>
             </div>
