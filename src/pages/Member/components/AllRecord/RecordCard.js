@@ -36,7 +36,7 @@ const RecordCard = ({ products, customized }) => {
         });
     }
   }, []);
-  console.log(recordProducts);
+  // console.log(recordProducts);
   return (
     <>
       {/* 商品 */}
