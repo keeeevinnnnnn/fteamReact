@@ -19,8 +19,8 @@ const ProductMain = () => {
   // API還有兩個參數預設 : 1. orderField = "sid";  2. sort='ASC';
   const [filter, setFilter] = useState({
     categoryId: 0,
-    brand: '',
-    color: '',
+    brand: [],
+    color: [],
     price: 0,
     orderfield: '',
     sort: '',
@@ -48,6 +48,8 @@ const ProductMain = () => {
   useEffect(() => {
     getPageData(null);
   }, [getPageData]);
+
+  console.log('messages==', messages);
 
   return (
     <div className="bg w-100 vh-100 d-flex justify-content-end align-items-end">

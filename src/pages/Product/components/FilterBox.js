@@ -22,18 +22,15 @@ const FilterBox = (props) => {
       ...filter,
       priceRange: [newValue[0], newValue[1]],
       where: 'price',
+      orderfield: 'price',
     });
   };
-
   const [sortbyItems, setSortbyItems] = useState([
-    'Recommended',
-    'Categories',
     'Name asc (A-Z)',
     'Name desc (Z-A)',
     'Price Lowest',
     'Price Highest',
   ]);
-
   const [brandItems, setBrandItems] = useState([
     'POLAR',
     'PALACE',
@@ -45,7 +42,6 @@ const FilterBox = (props) => {
     'ALLTIMERS',
     'Paris',
   ]);
-
   const [colorItems, setColorItems] = useState([
     'White',
     'Black',
@@ -57,7 +53,6 @@ const FilterBox = (props) => {
     'Pink',
     'Purple',
   ]);
-
   const [colorBoxItems, setColorBoxItems] = useState([
     'whiteBox',
     'blackBox',
@@ -235,9 +230,32 @@ const FilterBox = (props) => {
                       <input
                         type="checkbox"
                         key={i}
-                        onClick={() => {
-                          setFilter({ ...filter, color: v });
-                          setMessages([...messages, v]);
+                        value={v}
+                        onChange={(e) => {
+                          //先判斷是否有在brand狀態陣列中
+                          if (filter.color.includes(e.target.value)) {
+                            // if有 -> 移出陣列
+                            const newLikeList = filter.color.filter((v, i) => {
+                              return v !== e.target.value;
+                            });
+
+                            const msgLikeList = messages.filter((v, i) => {
+                              return v !== e.target.value;
+                            });
+                            setFilter({ ...filter, color: newLikeList });
+                            setMessages(msgLikeList);
+                          } else {
+                            // else -> 加入陣列
+                            const newLikeList = [
+                              ...filter.color,
+                              e.target.value,
+                            ];
+                            setFilter({ ...filter, color: newLikeList });
+
+                            setMessages([...messages, e.target.value]);
+                          }
+
+                          // setMessages([...messages, v]);
                         }}
                       />
                       <span>{v}</span>
@@ -322,9 +340,29 @@ const FilterBox = (props) => {
                     <input
                       type="checkbox"
                       value={v}
-                      onClick={() => {
-                        setFilter({ ...filter, brand: v });
-                        setMessages([...messages, v]);
+                      onChange={(e) => {
+                        //先判斷是否有在brand狀態陣列中
+                        if (filter.brand.includes(e.target.value)) {
+                          // if有 -> 移出陣列
+
+                          const newLikeList = filter.brand.filter((v, i) => {
+                            return v !== e.target.value;
+                          });
+
+                          const msgLikeList = messages.filter((v, i) => {
+                            return v !== e.target.value;
+                          });
+                          setFilter({ ...filter, brand: newLikeList });
+                          setMessages(msgLikeList);
+                        } else {
+                          // else -> 加入陣列
+                          const newLikeList = [...filter.brand, e.target.value];
+                          setFilter({ ...filter, brand: newLikeList });
+
+                          setMessages([...messages, e.target.value]);
+                        }
+
+                        // setMessages([...messages, v]);
                       }}
                     />
                     <span>{v}</span>
@@ -402,49 +440,91 @@ const FilterBox = (props) => {
                   <div
                     className="sortbyBox"
                     key={i}
-                    onClick={() => {
+                    onClick={(e) => {
                       switch (i) {
                         case 0:
-                          setFilter({ ...filter, color: 'black' });
-                          setMessages([...messages, v]);
+                          if (messages.includes(e.target.innerText)) {
+                            const msgNameASCList = messages.filter((v2) => {
+                              return v2 !== e.target.innerText;
+                            });
+                            setFilter({
+                              ...filter,
+                              orderfield: '',
+                              sort: '',
+                            });
+                            setMessages(msgNameASCList);
+                          } else {
+                            setFilter({
+                              ...filter,
+                              orderfield: 'name',
+                              sort: 'ASC',
+                            });
+                            setMessages([...messages, v]);
+                          }
+
                           break;
                         case 1:
-                          setFilter({ ...filter, color: 'white' });
-                          setMessages([...messages, v]);
+                          if (messages.includes(e.target.innerText)) {
+                            const msgNameDESCList = messages.filter((v3) => {
+                              return v3 !== e.target.innerText;
+                            });
+                            setFilter({
+                              ...filter,
+                              orderfield: '',
+                              sort: '',
+                            });
+                            setMessages(msgNameDESCList);
+                          } else {
+                            setFilter({
+                              ...filter,
+                              orderfield: 'name',
+                              sort: 'DESC',
+                            });
+                            setMessages([...messages, v]);
+                          }
+
                           break;
                         case 2:
-                          setFilter({
-                            ...filter,
-                            orderfield: 'name',
-                            sort: 'ASC',
-                          });
-                          setMessages([...messages, v]);
+                          if (messages.includes(e.target.innerText)) {
+                            const msgPriceASCList = messages.filter((v4) => {
+                              return v4 !== e.target.innerText;
+                            });
+                            setFilter({
+                              ...filter,
+                              orderfield: '',
+                              sort: '',
+                            });
+                            setMessages(msgPriceASCList);
+                          } else {
+                            setFilter({
+                              ...filter,
+                              orderfield: 'price',
+                              sort: 'ASC',
+                            });
+                            setMessages([...messages, v]);
+                          }
+
                           break;
                         case 3:
-                          setFilter({
-                            ...filter,
-                            orderfield: 'name',
-                            sort: 'DESC',
-                          });
-                          setMessages([...messages, v]);
+                          if (messages.includes(e.target.innerText)) {
+                            const msgPriceDESCList = messages.filter((v5) => {
+                              return v5 !== e.target.innerText;
+                            });
+                            setFilter({
+                              ...filter,
+                              orderfield: '',
+                              sort: '',
+                            });
+                            setMessages(msgPriceDESCList);
+                          } else {
+                            setFilter({
+                              ...filter,
+                              orderfield: 'price',
+                              sort: 'DESC',
+                            });
+                            setMessages([...messages, v]);
+                          }
                           break;
-                        case 4:
-                          setFilter({
-                            ...filter,
-                            orderfield: 'price',
-                            sort: 'ASC',
-                          });
-                          setMessages([...messages, v]);
-                          break;
-                        case 5:
-                          setFilter({
-                            ...filter,
-                            orderfield: 'price',
-                            sort: 'DESC',
-                          });
-                          setMessages([...messages, v]);
-                          break;
-
                         default:
                           i = 0;
                       }

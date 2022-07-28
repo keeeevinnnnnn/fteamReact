@@ -10,6 +10,7 @@ import Lesson from './pages/Lesson/Lesson';
 import Lesson_zhongxiao from './pages/Lesson/Lesson_zhongxiao';
 import Lesson_banqiao from './pages/Lesson/Lesson_banqiao';
 import Products from './pages/Product/Products';
+import ProductTest from './pages/Product/ProductTest';
 import ProductMain from './pages/Product/ProductMain';
 import ProductDetails from './pages/Product/ProductDetails';
 import Customized from './pages/Customized/Customized';
@@ -30,7 +31,7 @@ export const MemberContext = React.createContext();
 function App() {
   // 從Nav接住登入會員的個人資料
   const [member, setMember] = useState([]);
-  const [lastInsertID,setLastInsertID] = useState(0);
+  const [lastInsertID, setLastInsertID] = useState(0);
 
   return (
     <Router>
@@ -66,27 +67,57 @@ function App() {
                     <Route path="/customized" element={<Customized />} />
                     <Route
                       path="/customized/create"
-                      element={<Customized_add lastInsertID={lastInsertID} setLastInsertID={setLastInsertID} />}
+                      element={
+                        <Customized_add
+                          lastInsertID={lastInsertID}
+                          setLastInsertID={setLastInsertID}
+                        />
+                      }
                     />
                     <Route
                       path="/customized/create/wheel"
-                      element={<Cus_product_card_wheel lastInsertID={lastInsertID} setLastInsertID={setLastInsertID}/>}
+                      element={
+                        <Cus_product_card_wheel
+                          lastInsertID={lastInsertID}
+                          setLastInsertID={setLastInsertID}
+                        />
+                      }
                     />
                     <Route
                       path="/customized/create/carrier"
-                      element={<Cus_product_card_struct lastInsertID={lastInsertID} setLastInsertID={setLastInsertID} />}
+                      element={
+                        <Cus_product_card_struct
+                          lastInsertID={lastInsertID}
+                          setLastInsertID={setLastInsertID}
+                        />
+                      }
                     />
                     <Route
                       path="/customized/create/front_deck"
-                      element={<Cus_product_card_fcolor lastInsertID={lastInsertID} setLastInsertID={setLastInsertID} />}
+                      element={
+                        <Cus_product_card_fcolor
+                          lastInsertID={lastInsertID}
+                          setLastInsertID={setLastInsertID}
+                        />
+                      }
                     />
                     <Route
                       path="/customized/create/back"
-                      element={<Cus_product_card_back lastInsertID={lastInsertID} setLastInsertID={setLastInsertID} />}
+                      element={
+                        <Cus_product_card_back
+                          lastInsertID={lastInsertID}
+                          setLastInsertID={setLastInsertID}
+                        />
+                      }
                     />
                     <Route
                       path="/customized/create/detail"
-                      element={<Cus_product_detail lastInsertID={lastInsertID} setLastInsertID={setLastInsertID} />}
+                      element={
+                        <Cus_product_detail
+                          lastInsertID={lastInsertID}
+                          setLastInsertID={setLastInsertID}
+                        />
+                      }
                     />
                     <Route
                       path="/customized/explore"
