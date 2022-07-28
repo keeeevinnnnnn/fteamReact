@@ -9,6 +9,9 @@
     img {
         border-right: 1px solid black;
     }
+    .svgBox {
+        width: 25%;
+    }
     .deleteSvg {
         width: 50%;
         height: 50%;
@@ -53,6 +56,13 @@
         }
         p {
             font-size: 14px;
+        }
+        h5 {
+            font-size: 15px;
+        }
+        .svgBox {
+            width: 50%;
+            padding-top: 5%;
         }
         .deleteSvg {
             height: 50%;

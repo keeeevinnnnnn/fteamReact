@@ -44,8 +44,8 @@ const FavoriteCard = () => {
               <div className="col-xl-9">
                 <p className="h-50 p-3 m-0">{v.favoriteName}</p>
                 <div className="h-50 d-flex justify-content-between align-items-center">
-                  <h5 className="text-gray w-15 p-3">$ {v.favoritePrice}</h5>
-                  <div className="d-flex h-100 w-25">
+                  <h5 className="text-gray p-3">$ {v.favoritePrice}</h5>
+                  <div className="d-flex h-100 svgBox">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 448 512"
