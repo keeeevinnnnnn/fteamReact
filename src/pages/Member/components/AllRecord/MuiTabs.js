@@ -5,7 +5,6 @@ import Box from '@mui/material/Box';
 
 const MuiTabs = ({ selectItem, setSelectItem }) => {
   const handleChange = (event, newValue) => {
-    console.log(newValue);
     setSelectItem(newValue);
   };
   return (
