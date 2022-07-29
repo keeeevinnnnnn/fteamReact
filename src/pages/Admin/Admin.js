@@ -26,18 +26,7 @@ const Admin = () => {
       }
     });
   }, [change, searchWord]);
-  // 搜尋
-  function search() {
-    if (searchWord) {
-      const newUsersDisplay = allMember.filter((v, i) =>
-        v.mem_name.includes(searchWord)
-      );
 
-      setUsersDisplay(newUsersDisplay);
-    } else {
-      setUsersDisplay(allMember);
-    }
-  }
   // 更新狀態 (停用/啟用)
   function changeState(v) {
     if (v.mem_bollen === 1) {
@@ -88,13 +77,6 @@ const Admin = () => {
               setSearchWord(e.target.value);
             }}
           />
-          <button
-            onClick={() => {
-              search();
-            }}
-          >
-            搜尋!!!
-          </button>
           <div className="w-90 h-90">
             <table className="h-100">
               <thead>
