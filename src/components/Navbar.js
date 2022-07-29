@@ -172,8 +172,8 @@ const Navbar = (props) => {
                     style={{
                       width:
                         productTotalQty + lessonTotalQty + customTotalQty > 10
-                          ? '80%'
-                          : '50%',
+                          ? '70%'
+                          : '40%',
                     }}
                   >
                     {productTotalQty + lessonTotalQty + customTotalQty}
