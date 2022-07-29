@@ -27,7 +27,7 @@ const Navbar = (props) => {
   // 判斷有沒有登入存的值
   useEffect(() => {
     // 登入狀態不是false再執行 否則直接return
-    console.log(token);
+    // console.log(token);
     if (!auth) {
       setProductTotalQty(0);
       setLessonTotalQty(0);
