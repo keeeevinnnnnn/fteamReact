@@ -8,12 +8,36 @@ const Admin = () => {
   const [change, setChange] = useState('');
   // 接收會員的狀態
   const [allMember, setallMember] = useState([]);
+  // 呈現資料用
+  const [usersDisplay, setUsersDisplay] = useState([]);
+  // 搜尋用
+  const [searchWord, setSearchWord] = useState('');
   // 拿到所有會員資料
   useEffect(() => {
     axios.get('http://localhost:3000/member/all').then((res) => {
       setallMember(res.data);
+      // 回傳的新資料配合搜尋欄位的文字
+      let newUsers = res.data.filter((v, i) => v.mem_name.includes(searchWord));
+      if (searchWord) {
+        // 為了讓資料欄位維持在搜尋狀態下
+        setUsersDisplay(newUsers);
+      } else {
+        setUsersDisplay(res.data);
+      }
     });
   }, [change]);
+  // 搜尋
+  function search() {
+    if (searchWord) {
+      const newUsersDisplay = allMember.filter((v, i) =>
+        v.mem_name.includes(searchWord)
+      );
+
+      setUsersDisplay(newUsersDisplay);
+    } else {
+      setUsersDisplay(allMember);
+    }
+  }
   // 更新狀態 (停用/啟用)
   function changeState(v) {
     if (v.mem_bollen === 1) {
@@ -56,6 +80,21 @@ const Admin = () => {
     <>
       <div className="member-bg w-100 vh-100 d-flex justify-content-end align-items-end">
         <div className="work-area col-12 col-md-10 p-0 adminTable">
+          <input
+            type="text"
+            placeholder="輸入姓名"
+            value={searchWord}
+            onChange={(e) => {
+              setSearchWord(e.target.value);
+            }}
+          />
+          <button
+            onClick={() => {
+              search();
+            }}
+          >
+            搜尋!!!
+          </button>
           <div className="w-90 h-90">
             <table className="h-100">
               <thead>
@@ -71,7 +110,7 @@ const Admin = () => {
                 </tr>
               </thead>
               <tbody>
-                {allMember.map((v, i) => {
+                {usersDisplay.map((v, i) => {
                   return (
                     <tr className="trHover" key={uuidv4()}>
                       <td>
