@@ -29,8 +29,8 @@ const ProductMain = () => {
     where: '',
     priceRange: [],
   });
-
   const [messages, setMessages] = useState([]);
+
   // 如果不使用 useCallback 不影響功能但會有以下黃字建議 : The 'getPageData' function makes the dependencies of useEffect Hook (at line 43) change on every render. Move it inside the useEffect callback. Alternatively, wrap the definition of 'getPageData' in its own useCallback() Hook.
   const getPageData = useCallback(
     async (event) => {
@@ -65,7 +65,48 @@ const ProductMain = () => {
 
         <div className="d-flex productText p-0 m-0">
           {messages.map((msg) => {
-            return <button className="button-38">{msg}</button>;
+            return (
+              <button
+                className="button-38"
+                onClick={() => {
+                  setMessages(
+                    messages.filter((v) => {
+                      return v !== msg;
+                    })
+                  );
+
+                  // setFilter(
+                  //   filter.filter((v) => {
+                  //     return v !== msg;
+                  //   })
+                  // );
+
+                  if (filter.brand.includes(msg)) {
+                    const brandLikeList = filter.brand.filter((v, i) => {
+                      return v !== msg;
+                    });
+                    setFilter({ ...filter, brand: brandLikeList });
+                  }
+
+                  if (filter.color.includes(msg)) {
+                    const colorLikeList = filter.color.filter((v, i) => {
+                      return v !== msg;
+                    });
+                    setFilter({ ...filter, color: colorLikeList });
+                  }
+
+                  if (filter.orderfield.includes('name') || 'price') {
+                    setFilter({
+                      ...filter,
+                      orderfield: '',
+                      sort: '',
+                    });
+                  }
+                }}
+              >
+                {msg}
+              </button>
+            );
           })}
         </div>
 
