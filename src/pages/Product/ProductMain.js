@@ -5,6 +5,7 @@ import './styles/ProductMain.scss';
 import axios from './commons/axios';
 import ProductList from './components/ProductList';
 import Pagination from './components/Pagination';
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
 const ProductMain = () => {
   // 原始資料
   //  {
@@ -62,24 +63,34 @@ const ProductMain = () => {
           setMessages={setMessages}
         />
         <div className="d-flex productText p-0 m-0">
-          {messages.map((msg) => {
-            return <button className="button-38">{msg}</button>;
-          })}
+          <TransitionGroup component={null}>
+            {messages.map((msg) => {
+              return (
+                <CSSTransition classNames="button-38-fade" timeout={300}>
+                  <button className="button-38">{msg}</button>;
+                </CSSTransition>
+              );
+            })}
+          </TransitionGroup>
         </div>
         <div className="row product-list p-0 m-0">
-          {data && data.rows
-            ? data.rows.map((r) => {
-                return (
-                  <ProductList
-                    sid={r.sid}
-                    img={r.img}
-                    name={r.name}
-                    brand={r.brand}
-                    price={r.price}
-                  />
-                );
-              })
-            : null}
+          <TransitionGroup component={null}>
+            {data && data.rows
+              ? data.rows.map((r) => {
+                  return (
+                    <CSSTransition classNames="product-fade" timeout={300}>
+                      <ProductList
+                        sid={r.sid}
+                        img={r.img}
+                        name={r.name}
+                        brand={r.brand}
+                        price={r.price}
+                      />
+                    </CSSTransition>
+                  );
+                })
+              : null}
+          </TransitionGroup>
         </div>
 
         <div className="row paginationBox p-0 m-0">

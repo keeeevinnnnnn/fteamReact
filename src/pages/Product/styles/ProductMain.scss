@@ -255,6 +255,29 @@
     padding: 10px;
 }
 
+// 入場動畫效果顯示
+.product-fade-enter {
+    opacity: 0.1;
+  }
+
+	// 動畫激活的效果顯示
+  .product-fade-enter-active {
+    opacity: 1;
+    transition: all 0.3s ease-in;
+  }
+  
+	// 離場動畫效果顯示
+  .product-fade-exit {
+    opacity: 1;
+  }
+
+	
+  .product-fade-exit-active {
+    opacity: 0.1;
+    transition: all 0.3s ease-in;
+  }
+
+
 .product-header{
     cursor: pointer;
     display: flex;
@@ -327,7 +350,6 @@
     
 }
 
-
 /* CSS */
 .button-38 {
   background-color: #FFFFFF;
@@ -372,5 +394,24 @@ font-size: 1.1rem;
   box-shadow: none;
 }
 
+// 入場動畫效果顯示
+.button-38-fade-enter {
+    opacity: 0.1;
+  }
 
+	// 動畫激活的效果顯示
+  .button-38-fade-enter-active {
+    opacity: 1;
+    transition: all 0.3s ease-in;
+  }
+  
+	// 離場動畫效果顯示
+  .button-38-fade-exit {
+    opacity: 1;
+  }
+	
+  .button-38-fade-exit-active {
+    opacity: 0.1;
+    transition: all 0.3s ease-in;
+  }
 
