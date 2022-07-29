@@ -51,6 +51,9 @@ function App() {
                   productTotalQty={productTotalQty}
                   lessonTotalQty={lessonTotalQty}
                   customTotalQty={customTotalQty}
+                  setProductTotalQty={setProductTotalQty}
+                  setLessonTotalQty={setLessonTotalQty}
+                  setCustomTotalQty={setCustomTotalQty}
                 />
                 <div className="w-100 bottom-grid d-flex">
                   <SideBar />

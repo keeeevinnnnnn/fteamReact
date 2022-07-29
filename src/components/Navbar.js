@@ -8,7 +8,14 @@ import AuthContext from './AuthContext';
 import { useNavigate } from 'react-router-dom';
 
 const Navbar = (props) => {
-  const { productTotalQty, lessonTotalQty, customTotalQty } = props;
+  const {
+    productTotalQty,
+    lessonTotalQty,
+    customTotalQty,
+    setProductTotalQty,
+    setLessonTotalQty,
+    setCustomTotalQty,
+  } = props;
   const navigate = useNavigate();
   // 從這支Context拿值
   // auth為登入判斷(true,false) token為會員JWT的token logout是登出涵式
@@ -22,6 +29,9 @@ const Navbar = (props) => {
     // 登入狀態不是false再執行 否則直接return
     console.log(token);
     if (!auth) {
+      setProductTotalQty(0);
+      setLessonTotalQty(0);
+      setCustomTotalQty(0);
       return;
     } else {
       axios
@@ -149,7 +159,15 @@ const Navbar = (props) => {
               }}
             >
               <div className="cart-icon-wrap">
-                <div className="cart-icon-count">
+                <div
+                  style={{
+                    display:
+                      productTotalQty + lessonTotalQty + customTotalQty === 0
+                        ? 'none'
+                        : 'flex',
+                  }}
+                  className="cart-icon-count"
+                >
                   <span>
                     {productTotalQty + lessonTotalQty + customTotalQty}
                   </span>
