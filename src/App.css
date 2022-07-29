@@ -106,8 +106,8 @@
   align-items: center;
   top: -4px;
   right: -8px;
-  width: 16px;
-  height: 16px;
+  width: 18px;
+  height: 18px;
   border-radius: 50%;
   background-color: rgba(0, 0, 0, 0.5);
   transition: .3s ease;
@@ -118,7 +118,7 @@
   width: 50%;
   height: 50%;
   color: var(--main);
-  transform: translateY(-60%);
+  transform: translateY(-50%) translateX(0%);
 }
 
 .auth-text-wrap {

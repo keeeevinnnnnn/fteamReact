@@ -168,7 +168,14 @@ const Navbar = (props) => {
                   }}
                   className="cart-icon-count"
                 >
-                  <span>
+                  <span
+                    style={{
+                      width:
+                        productTotalQty + lessonTotalQty + customTotalQty > 10
+                          ? '80%'
+                          : '50%',
+                    }}
+                  >
                     {productTotalQty + lessonTotalQty + customTotalQty}
                   </span>
                 </div>
