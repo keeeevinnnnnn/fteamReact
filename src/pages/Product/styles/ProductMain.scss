@@ -396,13 +396,13 @@ font-size: 1.1rem;
 
 // 入場動畫效果顯示
 .button-38-fade-enter {
-    opacity: 0.1;
+    opacity: 0.5;
   }
 
 	// 動畫激活的效果顯示
   .button-38-fade-enter-active {
     opacity: 1;
-    transition: all 0.3s ease-in;
+    transition: all 0.5s ease-in;
   }
   
 	// 離場動畫效果顯示
@@ -411,7 +411,7 @@ font-size: 1.1rem;
   }
 	
   .button-38-fade-exit-active {
-    opacity: 0.1;
-    transition: all 0.3s ease-in;
+    opacity: 0.5;
+    transition: all 0.5s ease-in;
   }
 
