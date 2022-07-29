@@ -75,12 +75,6 @@ const ProductMain = () => {
                     })
                   );
 
-                  // setFilter(
-                  //   filter.filter((v) => {
-                  //     return v !== msg;
-                  //   })
-                  // );
-
                   if (filter.brand.includes(msg)) {
                     const brandLikeList = filter.brand.filter((v, i) => {
                       return v !== msg;
@@ -95,7 +89,14 @@ const ProductMain = () => {
                     setFilter({ ...filter, color: colorLikeList });
                   }
 
-                  if (filter.orderfield.includes('name') || 'price') {
+                  if (filter.orderfield.includes('name')) {
+                    setFilter({
+                      ...filter,
+                      orderfield: '',
+                      sort: '',
+                    });
+                  }
+                  if (filter.orderfield.includes('price')) {
                     setFilter({
                       ...filter,
                       orderfield: '',
