@@ -15,8 +15,8 @@
 /* 要拿掉click特效 在<Tab/> 加上 disableRipple={true} */
 
 .css-1a0mt41-MuiButtonBase-root-MuiTab-root.Mui-selected {
+  font-weight: 700;
   color: rgb(58, 58, 58) !important;
-  z-index: 2 !important;
 }
 
 /* border color */
@@ -83,10 +83,42 @@
 }
 
 .cart-icon-wrap {
+  position: relative;
   width: 20px;
   height: 20px;
   margin-right: 32px;
   cursor: pointer;
+  transition: .3s ease;
+}
+
+.cart-icon-wrap:hover {
+  transform: scale(1.3);
+}
+
+.cart-icon-wrap:hover .cart-icon-count {
+  background-color: #000;
+}
+
+.cart-icon-count {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: -4px;
+  right: -8px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.5);
+  transition: .3s ease;
+}
+
+.cart-icon-count span {
+  font-size: 5px;
+  width: 50%;
+  height: 50%;
+  color: var(--main);
+  transform: translateY(-60%);
 }
 
 .auth-text-wrap {

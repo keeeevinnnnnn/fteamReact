@@ -7,7 +7,8 @@ import { MemberContext } from '../App';
 import AuthContext from './AuthContext';
 import { useNavigate } from 'react-router-dom';
 
-const Navbar = () => {
+const Navbar = (props) => {
+  const { productTotalQty, lessonTotalQty, customTotalQty } = props;
   const navigate = useNavigate();
   // 從這支Context拿值
   // auth為登入判斷(true,false) token為會員JWT的token logout是登出涵式
@@ -148,6 +149,12 @@ const Navbar = () => {
               }}
             >
               <div className="cart-icon-wrap">
+                <div className="cart-icon-count">
+                  <span>
+                    {productTotalQty + lessonTotalQty + customTotalQty}
+                  </span>
+                </div>
+
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="h-6 w-6"

@@ -33,6 +33,10 @@ function App() {
   // 從Nav接住登入會員的個人資料
   const [member, setMember] = useState([]);
   const [lastInsertID, setLastInsertID] = useState(0);
+  // 購物車total count
+  const [productTotalQty, setProductTotalQty] = useState(0);
+  const [lessonTotalQty, setLessonTotalQty] = useState(0);
+  const [customTotalQty, setCustomTotalQty] = useState(0);
 
   return (
     <Router>
@@ -43,7 +47,11 @@ function App() {
           <div className="container-fluid vh-100 fteam-wrap">
             <div className="row h-100">
               <div className="p-0 d-flex flex-column w-100 h-100">
-                <Navbar />
+                <Navbar
+                  productTotalQty={productTotalQty}
+                  lessonTotalQty={lessonTotalQty}
+                  customTotalQty={customTotalQty}
+                />
                 <div className="w-100 bottom-grid d-flex">
                   <SideBar />
 
@@ -129,7 +137,19 @@ function App() {
                       path="/customized/previous_creations"
                       element={<Customized_collect />}
                     />
-                    <Route path="/carts" element={<Carts />} />
+                    <Route
+                      path="/carts"
+                      element={
+                        <Carts
+                          productTotalQty={productTotalQty}
+                          lessonTotalQty={lessonTotalQty}
+                          customTotalQty={customTotalQty}
+                          setProductTotalQty={setProductTotalQty}
+                          setCustomTotalQty={setCustomTotalQty}
+                          setLessonTotalQty={setLessonTotalQty}
+                        />
+                      }
+                    />
                     <Route path="/orders" element={<Orders />} />
                   </Routes>
                 </div>

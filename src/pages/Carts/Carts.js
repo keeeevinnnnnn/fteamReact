@@ -10,7 +10,15 @@ import CustomCard from './Nathan/CustomCard';
 import LessonCard from './Nathan/LessonCard';
 import AuthContext from '../../components/AuthContext';
 
-const Carts = () => {
+const Carts = (props) => {
+  const {
+    productTotalQty,
+    lessonTotalQty,
+    customTotalQty,
+    setProductTotalQty,
+    setLessonTotalQty,
+    setCustomTotalQty,
+  } = props;
   // set nevigate hook
   const navigate = useNavigate();
   // 取得判斷會員的state
@@ -26,11 +34,6 @@ const Carts = () => {
   const [productCartItems, setProductCartItems] = useState([]);
   const [customCartItems, setCustomCartItems] = useState([]);
   const [lessonCartItems, setLessonCartItems] = useState([]);
-
-  // 3台購物車的數量
-  const [productTotalQty, setProductTotalQty] = useState(0);
-  const [lessonTotalQty, setLessonTotalQty] = useState(0);
-  const [customTotalQty, setCustomTotalQty] = useState(0);
 
   // 3台購物車的價錢
   const [productTotalPrice, setProductTotalPrice] = useState(0);
