@@ -31,7 +31,7 @@ const LessonCard = () => {
   // );
   return (
     <>
-      {Object.values(lessonCard).map((v, i) => {
+      {lessonCard.map((v, i) => {
         return (
           <div className="m-2 lessonCard m-3" key={uuidv4()}>
             <div className="d-flex align-items-center text-center lessonhead">
