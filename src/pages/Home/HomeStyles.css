@@ -40,9 +40,16 @@
   background:url(../../Images/Home/HomeBg/HomeBg2.jpeg);
   filter: brightness(1);
   background-size: cover;
+  opacity: .8;
   }
   .HomeBg3 {
     background:url(../../Images/Home/HomeBg/HomeBg3.jpeg);
     filter: brightness(1);
     background-size: cover;
     }
+    .HomeBg4 {
+      background:url(../../Images/Home/HomeBg/HomeBg4.png);
+      filter: brightness(1);
+      background-size: cover;
+      
+      }
