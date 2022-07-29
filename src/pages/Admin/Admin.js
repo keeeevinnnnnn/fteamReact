@@ -6,7 +6,7 @@ import './styles/Admin.scss';
 const Admin = () => {
   // 更新畫面用
   const [change, setChange] = useState('');
-  // 接收會員的狀態
+  // 接收會員的狀態 雖然沒用到但先放著
   const [allMember, setallMember] = useState([]);
   // 呈現資料用
   const [usersDisplay, setUsersDisplay] = useState([]);
@@ -16,7 +16,7 @@ const Admin = () => {
   useEffect(() => {
     axios.get('http://localhost:3000/member/all').then((res) => {
       setallMember(res.data);
-      // 回傳的新資料配合搜尋欄位的文字
+      // 回傳的新資料配合搜尋欄位的文字+即時搜尋
       let newUsers = res.data.filter((v, i) => v.mem_name.includes(searchWord));
       if (searchWord) {
         // 為了讓資料欄位維持在搜尋狀態下
