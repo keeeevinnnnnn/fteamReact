@@ -1,0 +1,28 @@
+* {
+  // outline: 1px solid green;
+}
+
+.cooler_teacher_card {
+  height: 20rem;
+}
+
+.cooler_teacher_log {
+  background: url(../../../Images/Lesson/teacher_logo/TEACHER.svg) no-repeat;
+  width: 100%;
+  
+}
+
+.cooler_teacher_card_head {
+  -webkit-box-shadow: 12px 15px 0px -3px #d9d9d9;
+  box-shadow: 12px 15px 0px -3px #d9d9d9;
+  clip-path: circle(50% at 50% 50%);
+  background: url(../../../Images/Lesson/l01.jpg);
+  // width: 50%;
+  // height:  50%;
+}
+
+.cooler_teacher_card_teachername {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

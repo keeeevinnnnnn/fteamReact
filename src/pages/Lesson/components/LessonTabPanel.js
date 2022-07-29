@@ -7,6 +7,7 @@ import Box from '@mui/material/Box';
 import '../style/Lesson_tab.scss';
 import Lesson_card from './Lesson_card';
 import Lesson_filter from './Lesson_filter';
+import Lesson_teacher from './Lesson_teacher';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -65,7 +66,7 @@ export default function BasicTabs() {
         <Lesson_card />
       </TabPanel>
       <TabPanel value={value} index={1}>
-        teacher
+        <Lesson_teacher />
       </TabPanel>
     </Box>
   );
