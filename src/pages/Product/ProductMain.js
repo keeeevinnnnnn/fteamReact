@@ -62,17 +62,23 @@ const ProductMain = () => {
           messages={messages}
           setMessages={setMessages}
         />
+
         <div className="d-flex productText p-0 m-0">
           {messages.map((msg) => {
             return <button className="button-38">{msg}</button>;
           })}
         </div>
+
         <div className="row product-list p-0 m-0">
           <TransitionGroup component={null}>
             {data && data.rows
               ? data.rows.map((r) => {
                   return (
-                    <CSSTransition classNames="product-fade" timeout={300}>
+                    <CSSTransition
+                      classNames="product-item"
+                      timeout={300}
+                      key={r.id}
+                    >
                       <ProductList
                         sid={r.sid}
                         img={r.img}
