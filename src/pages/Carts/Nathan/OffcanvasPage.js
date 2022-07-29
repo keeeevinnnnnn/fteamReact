@@ -72,6 +72,14 @@ export default function OffcanvasPage(props) {
             if (res.data.success) {
               alert('恭喜您，訂購成功!');
               setNewOrderNumber(res.data.orderNumber);
+              setToHomeForm({
+                fullName: '',
+                mobile: '',
+                email: '',
+                countryName: '',
+                townshipName: '',
+                fullAddress: '',
+              });
               setDisplace(displace + 200);
               setProductDep((prev) => prev + 1);
               setCustomDep((prev) => prev + 1);

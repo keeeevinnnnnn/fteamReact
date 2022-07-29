@@ -4,7 +4,7 @@ import ProductCard from './Nathan/ProductCard';
 import Scroll from 'react-scroll';
 import './Carts.scss';
 import OffcanvasPage from './Nathan/OffcanvasPage';
-import MuiTabs from './Nathan/MuiTabs';
+import CartMuiTabs from './Nathan/CartMuiTabs';
 import axios from 'axios';
 import CustomCard from './Nathan/CustomCard';
 import LessonCard from './Nathan/LessonCard';
@@ -161,7 +161,7 @@ const Carts = (props) => {
           <div className="col-12 col-md-10 h-100">
             <div className="tabs-section w-100">
               <div className="w-100 h-100 d-none d-md-block">
-                <MuiTabs
+                <CartMuiTabs
                   selectItem={selectItem}
                   setSelectItem={setSelectItem}
                 />

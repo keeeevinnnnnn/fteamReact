@@ -3,10 +3,9 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
 
-function MuiTabs(props) {
+function CartMuiTabs(props) {
   const { selectItem, setSelectItem } = props;
   const handleChange = (event, newValue) => {
-    // console.log(newValue);
     setSelectItem(newValue);
   };
 
@@ -41,4 +40,4 @@ function MuiTabs(props) {
     </Box>
   );
 }
-export default MuiTabs;
+export default CartMuiTabs;

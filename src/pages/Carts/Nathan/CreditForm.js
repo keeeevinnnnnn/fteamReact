@@ -195,28 +195,28 @@ const CreditForm = (props) => {
                 <div className="card-info-number-wrap">
                   <div className="w-90 d-flex justify-content-between">
                     <input
-                      className="w-15 bg-transparent border-0 text-gray"
+                      className="w-15 bg-transparent border-0 credit-card-text"
                       type="text"
                       defaultValue={creditForm.num1to4}
                     />
                     <input
-                      className="w-15 bg-transparent border-0 text-gray"
+                      className="w-15 bg-transparent border-0 credit-card-text"
                       type="text"
                       defaultValue={creditForm.num5to8}
                     />
                     <input
-                      className="w-15 bg-transparent border-0 text-gray"
+                      className="w-15 bg-transparent border-0 credit-card-text"
                       type="text"
                       defaultValue={creditForm.num9to12}
                     />
                     <input
-                      className="w-15 bg-transparent border-0 text-gray"
+                      className="w-15 bg-transparent border-0 credit-card-text"
                       type="text"
                       defaultValue={creditForm.num13to16}
                     />
                     <div className="w-30 d-flex justify-content-end text-gray">
                       <input
-                        className="text-center w-40 bg-transparent border-0 text-gray"
+                        className="text-center w-40 bg-transparent border-0 credit-card-text"
                         type="text"
                         defaultValue={creditForm.validMonth}
                       />
@@ -226,7 +226,7 @@ const CreditForm = (props) => {
                         ? '/'
                         : ''}
                       <input
-                        className="text-center w-40 bg-transparent border-0 text-gray"
+                        className="text-center w-40 bg-transparent border-0 credit-card-text"
                         type="text"
                         defaultValue={creditForm.validYear}
                       />
@@ -237,7 +237,7 @@ const CreditForm = (props) => {
               <div className="w-100 flip-card-back">
                 <div className="w-90 cvv-text text-end text-gray">
                   <input
-                    className="text-end w-40 bg-transparent border-0 text-gray"
+                    className="text-end w-40 bg-transparent border-0 credit-card-text"
                     type="text"
                     defaultValue={creditForm.CVV}
                   />
