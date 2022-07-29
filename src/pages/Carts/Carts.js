@@ -1,13 +1,13 @@
 import React, { useState, Fragment, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-import ProductCard from './Nathan/ProductCard';
+import ProductCard from './Nathan_components/ProductCard';
 import Scroll from 'react-scroll';
 import './Carts.scss';
-import OffcanvasPage from './Nathan/OffcanvasPage';
-import CartMuiTabs from './Nathan/CartMuiTabs';
+import OffcanvasPage from './Nathan_components/OffcanvasPage';
+import CartMuiTabs from './Nathan_components/CartMuiTabs';
 import axios from 'axios';
-import CustomCard from './Nathan/CustomCard';
-import LessonCard from './Nathan/LessonCard';
+import CustomCard from './Nathan_components/CustomCard';
+import LessonCard from './Nathan_components/LessonCard';
 import AuthContext from '../../components/AuthContext';
 
 const Carts = (props) => {
