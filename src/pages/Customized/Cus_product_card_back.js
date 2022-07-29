@@ -1,87 +1,65 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { productData } from './ProductData';
 
-import BasicTabs from './cus_component/Cus_tab';
+import Cus_tab from './cus_component/Cus_tab';
 import './Cus_product_card_back.scss';
+import { Scale } from 'chart.js';
 
 function Cus_product_card_back(props) {
-  const [inputvalue, setInputvalue] = useState('');
+  const cuscanvas = useRef(null);
+  const [bgimg, setBgimg] = useState('');
+  const [bgimgName, setBgimgName] = useState('style_01');
+  const [bgcolor, setBgcolor] = useState('#123456');
+  const [pattern, setPattern] = useState('');
+  const [patternName, setPatternName] = useState('Parallel');
+  const [sticker,setSticker]=useState('');
+  const [stickerName,setStickerName]=useState('Waves')
 
-  const [value, setValue] = React.useState('1');
-
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
-  };
-
-  const realRef = useRef();
-  const shadowRef = useRef();
-  const [cart, setCart] = useState([]);
-  const [cache, setCache] = useState({}); // 快取 image 物件
-
-  const addItem = (id) => {
-    const item = productData.find((v) => v.id === id); // 找到第一個符合的項目
-    if (item) {
-      const newItem = { ...item, tid: Date.now() };
-      setCart([...cart, newItem]);
-    }
-  };
-  //點擊移除單個物件//
-  const removeItem = (tid) => {
-    const newCart = cart.filter((v) => v.tid !== tid);
-    setCart(newCart);
-  };
-
-  const getImageFromPath = (path) => {
-    return new Promise((resolve, reject) => {
-      if (cache[path]) {
-        return resolve(cache[path]); // 回傳已存在的資料
-      }
-
-      const img = new Image();
-      img.onload = () => {
-        resolve(img);
-        setCache({ ...cache, [path]: img });
-      };
-      img.src = path;
-    });
-  };
-
-  //召喚你的背景！//
-  const renderCanvas = async () => {
-    const realCtx = realRef.current.getContext('2d');
-    const shadowCtx = shadowRef.current.getContext('2d');
-    const bg = await getImageFromPath('/imgs/Customized/sk_canvas_bg.png');
-
-    shadowCtx.clearRect(
-      0,
-      0,
-      shadowRef.current.width,
-      shadowRef.current.height
-    );
-    shadowCtx.drawImage(bg, 0, 0);
-
-    const tmpCart = cart.slice(0, 5);
-    for (let i = 0; i < tmpCart.length; i++) {
-      const img = await getImageFromPath(`/imgs/Customized/${tmpCart[i].img}`);
-      shadowCtx.drawImage(img, 0, 0);
-    }
-    realCtx.drawImage(shadowRef.current, 0, 0);
-  };
-
-  //載載看
-  function handleDataUrl() {
-    let link = document.createElement('a');
-    console.log(link);
-    link.download = 'yourboard.png';
-    link.href = realRef.current.toDataURL('image/png');
-    link.click();
-  }
-
-  //出來！畫面給我出來！//
   useEffect(() => {
-    renderCanvas();
-  }, [cart]);
+    const backimg = new Image();
+    backimg.src = `/imgs/Customized/${bgimgName}.png`;
+    // backimg.src = '/imgs/Customized/style_01.png';
+
+    const patternimg = new Image();
+    patternimg.src = `/imgs/Customized/pattern/${patternName}.png`;
+    // patternimg.src = '/imgs/Customized/pattern/Parallel.png';
+
+    const stickerimg = new Image();
+    stickerimg.src = `/imgs/Customized/sticker/${stickerName}.png`;
+    // stickerimg.src = "/imgs/Customized/sticker/Waves.png";
+
+    backimg.onload = () => {
+      setBgimg(backimg);
+      setPattern(patternimg);
+      setSticker(stickerimg)
+              
+    };
+  }, [bgimgName,patternName,stickerName]);
+
+  useEffect(() => {
+    // const ctx = cuscanvas.current.getContext("2d");
+    // ctx.fillStyle = '#123456';
+    // ctx.fillRect(0, 0, 500, 500);
+
+    if (bgimg && cuscanvas) {
+      const ctx = cuscanvas.current.getContext('2d');
+      //剪裁滑板遮罩//
+      ctx.beginPath();
+      ctx.roundRect(200, 0, 120, 500, 60);
+      ctx.clip();
+
+      //背景圖//
+      ctx.fillStyle = bgcolor;
+      ctx.fillRect(0, 0, 600, 600);
+
+      //圖樣選擇//
+
+      ctx.drawImage(pattern, 135, 240, 250, 250);
+      ctx.drawImage(bgimg, 180, 0, 250, 250);
+      ctx.drawImage(sticker, 80, 50, 400, 400);
+    }
+  }, [bgimg, cuscanvas, bgcolor, pattern]);
 
   return (
     <div className="w-100 vh-100 d-flex justify-content-end align-items-end">
@@ -92,23 +70,9 @@ function Cus_product_card_back(props) {
       <div className="work-area col-12 col-md-10 p-0 overflow-hidden">
         <div className="cus_container">
           <div className="cus-product-container">
-            <canvas
-              ref={shadowRef}
-              width="170"
-              height="510"
-              style={{ marginLeft: '200px' }}
-              hidden
-            ></canvas>
-            <canvas
-              ref={realRef}
-              width="170"
-              height="510"
-              style={{ marginLeft: '200px' }}
-            ></canvas>
-
-            {/* <div className="cus_clip">
-              <img src="/imgs/Customized/texture.png" alt="" />
-            </div> */}
+            <div className="scale">
+              <canvas ref={cuscanvas} width={500} height={500} />
+            </div>
           </div>
 
           <div className="cus_card_container ">
@@ -123,47 +87,24 @@ function Cus_product_card_back(props) {
             </div>
 
             <div className="cus_card flex-column">
-              <div className="cus-add">
-                {cart.map((item) => {
-                  return (
-                    <div
-                      key={item.tid}
-                      style={{ display: 'inline-block' }}
-                      onClick={() => removeItem(item.tid)}
-                    >
-                      <img
-                        src={`/imgs/Customized/${item.img}`}
-                        width="50px"
-                        className="cus-add-img"
-                        alt={item.name}
-                      />
-                    </div>
-                  );
-                })}
-              </div>
+
+
               <div className="cus_product_card">
-                {productData.map((item) => {
-                  return (
-                    <div
-                      key={item.id}
-                      style={{ display: 'inline-block' }}
-                      onClick={() => addItem(item.id)}
-                    >
-                      <img
-                        src={`/imgs/Customized/${item.img}`}
-                        width="48px"
-                        alt={item.name}
-                      />
-                    </div>
-                  );
-                })}
+                <div className="d-flex">
+                  <p>{bgcolor}_</p>
+                  <p>{bgimgName}_</p>
+                  <p>{patternName}</p>
+                </div>
 
-                <br />
-
-                {/* <BasicTabs /> */}
-                <button className="btn btn-black" onClick={handleDataUrl}>
-                  download
-                </button>
+                <Cus_tab
+                  bgcolor={bgcolor}
+                  setBgcolor={setBgcolor}
+                  bgimgName={bgimgName}
+                  setBgimgName={setBgimgName}
+                  patternName={patternName}
+                  setPatternName={setPatternName}
+                  setStickerName={setStickerName}
+                />
               </div>
             </div>
           </div>
