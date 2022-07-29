@@ -25,7 +25,7 @@ const Admin = () => {
         setUsersDisplay(res.data);
       }
     });
-  }, [change]);
+  }, [change, searchWord]);
   // 搜尋
   function search() {
     if (searchWord) {
