@@ -2,17 +2,56 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { v4 as uuidv4 } from 'uuid';
 import './styles/Admin.scss';
-import ScrollBox from '../../components/ScrollBox/ScrollBox';
 
 const Admin = () => {
+  // 更新畫面用
+  const [change, setChange] = useState('');
+  // 接收會員的狀態
   const [allMember, setallMember] = useState([]);
-  // get delete
+  // 拿到所有會員資料
   useEffect(() => {
     axios.get('http://localhost:3000/member/all').then((res) => {
-      console.log(res.data);
       setallMember(res.data);
     });
-  }, []);
+  }, [change]);
+  // 更新狀態 (停用/啟用)
+  function changeState(v) {
+    if (v.mem_bollen === 1) {
+      if (window.confirm(`確定要停用會原${v.mem_name}嗎?`)) {
+        // 停用
+        axios
+          .put('http://localhost:3000/admin/stop', { sid: v.sid })
+          .then((res) => {
+            console.log(res.data);
+            if (res.data.success) {
+              setChange(uuidv4());
+            }
+          });
+      }
+    } else {
+      if (window.confirm(`確定要重啟會原${v.mem_name}嗎?`)) {
+        // 啟用
+        axios
+          .put('http://localhost:3000/admin/reboot', { sid: v.sid })
+          .then((res) => {
+            console.log(res.data);
+            if (res.data.success) {
+              setChange(uuidv4());
+            }
+          });
+      }
+    }
+  }
+  // 刪除會原帳號
+  function deleteMember(v) {
+    if (window.confirm(`確定要刪除會原${v.mem_name}嗎?`)) {
+      axios.delete(`http://localhost:3000/admin/?sid=${v.sid}`).then((res) => {
+        if (res.data.success) {
+          setChange(uuidv4());
+        }
+      });
+    }
+  }
   return (
     <>
       <div className="member-bg w-100 vh-100 d-flex justify-content-end align-items-end">
@@ -55,6 +94,9 @@ const Admin = () => {
                           viewBox="0 0 512 512"
                           className="cursorpointer w-15"
                           fill="white"
+                          onClick={() => {
+                            changeState(v);
+                          }}
                         >
                           <path d="M464 16c-17.67 0-32 14.31-32 32v74.09C392.1 66.52 327.4 32 256 32C161.5 32 78.59 92.34 49.58 182.2c-5.438 16.81 3.797 34.88 20.61 40.28c16.89 5.5 34.88-3.812 40.3-20.59C130.9 138.5 189.4 96 256 96c50.5 0 96.26 24.55 124.4 64H336c-17.67 0-32 14.31-32 32s14.33 32 32 32h128c17.67 0 32-14.31 32-32V48C496 30.31 481.7 16 464 16zM441.8 289.6c-16.92-5.438-34.88 3.812-40.3 20.59C381.1 373.5 322.6 416 256 416c-50.5 0-96.25-24.55-124.4-64H176c17.67 0 32-14.31 32-32s-14.33-32-32-32h-128c-17.67 0-32 14.31-32 32v144c0 17.69 14.33 32 32 32s32-14.31 32-32v-74.09C119.9 445.5 184.6 480 255.1 480c94.45 0 177.4-60.34 206.4-150.2C467.9 313 458.6 294.1 441.8 289.6z" />
                         </svg>
@@ -69,6 +111,9 @@ const Admin = () => {
                           xmlns="http://www.w3.org/2000/svg"
                           viewBox="0 0 448 512"
                           className="cursorpointer w-15"
+                          onClick={() => {
+                            deleteMember(v);
+                          }}
                         >
                           <path
                             fill="red"
