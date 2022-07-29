@@ -81,7 +81,7 @@ const FavoriteCard = () => {
   }
   return (
     <>
-      {Object.values(favoriteCard).map((v, i) => {
+      {favoriteCard.map((v, i) => {
         return (
           <div className="w-95 m-3 favoriteCard" key={uuidv4()}>
             <div className="d-flex h-100 w-100">

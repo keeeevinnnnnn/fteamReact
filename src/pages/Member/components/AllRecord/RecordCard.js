@@ -40,7 +40,7 @@ const RecordCard = ({ products, customized }) => {
   return (
     <>
       {/* 商品 */}
-      {Object.values(recordProducts).map((v, i) => {
+      {recordProducts.map((v, i) => {
         return (
           <div className={`w-95 m-3 recordCard ${products}`} key={uuidv4()}>
             <div className="d-flex h-100 w-100">
@@ -78,7 +78,7 @@ const RecordCard = ({ products, customized }) => {
       })}
 
       {/* 客製化商品 */}
-      {Object.values(recordCustomized).map((v, i) => {
+      {recordCustomized.map((v, i) => {
         return (
           <div className={`w-95 m-3 recordCard ${customized}`} key={uuidv4()}>
             <div className="d-flex h-100 w-100">
