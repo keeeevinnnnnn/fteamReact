@@ -1,36 +1,49 @@
 .adminTable {
-    thead {
-      // width: 100%;
-      // position: fixed;
-    }
-
     table {
-      font-family: Arial, Helvetica, sans-serif;
-      border-collapse: collapse;
+      // border-collapse: collapse;
+      border-radius: 20px 20px 0 0;
+      // border: 1px solid var(--main);
       width: 100%;
-      tbody {
-        display: block;
-        height: 100%;
-        overflow-y: scroll;
-      }
-      tbody::-webkit-scrollbar {
-        width: 5px;
-        height: 0px;
-      }
-
-      tbody::-webkit-scrollbar-thumb {
-        background-color: #0000006f;
-      }
+      background: linear-gradient(to top, #a3bded 0%, #6991c7 100%);
     }
 
-    td,th {
-      border: 1px solid #ddd;
-      padding: 8px;
-    }
-
-      /* tr:nth-child(even){background-color: #f2f2f2;} */
     th {
+      text-align: center;
+      padding-top: 12px;
+      padding-bottom: 12px;
       color: white;
+      background: black;
+    }
+
+    .thLeft {
+      border-radius: 20px 0px 0 0;
+    }
+
+    .thRight {
+      border-radius: 0px 20px 0 0;
+    }
+
+    tbody {
+      display: block;
+      height: 100%;
+      overflow-y: scroll;
+      background: rgba(0, 0, 0, 0.774);
+      font-weight: 600;
+      color: var(--main);
+    }
+    tbody::-webkit-scrollbar {
+      width: 5px;
+      height: 0px;
+    }
+
+    tbody::-webkit-scrollbar-thumb {
+      background-color: white;
+    }
+
+    td {
+      text-align: center;
+      border-bottom: 1px solid var(--main);
+      padding: 8px;
     }
 
     tr {
@@ -39,15 +52,8 @@
       table-layout: fixed;
     }
 
-    tr:hover {
-      background-color: #ddd;
+    .trHover:hover {
+      background-color: rgb(250, 167, 167);
       color: black;
-    }
-
-    th {
-      padding-top: 12px;
-      padding-bottom: 12px;
-      text-align: left;
-      background-color: gray;
     }
 }
