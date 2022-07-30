@@ -20,27 +20,30 @@ const Admin = () => {
     axios.get('http://localhost:3000/member/all').then((res) => {
       // 用該狀態先取得所有會員資料
       setallMember(res.data);
-      // 回傳的新資料配合搜尋欄位的文字+即時搜尋
-      let newUsers = res.data.filter((v, i) => v.mem_name.includes(searchWord));
       // 如果有搜尋的情況下
       if (searchWord) {
+        // 回傳的新資料配合搜尋欄位的文字+即時搜尋
+        const newUsers = res.data.filter((v, i) =>
+          v.mem_name.includes(searchWord)
+        );
         // 為了讓資料欄位維持在搜尋狀態下
         setUsersDisplay(newUsers);
-        // 如果沒有在搜尋中
-      } else {
-        // 如果正在查看啟用會員的話只顯示啟用會員的資料
-        if (searchTrueFalse === 'true') {
-          const trueMember = res.data.filter((v, i) => v.mem_bollen === 1);
-          setUsersDisplay(trueMember);
-          // 如果正在查看停用會員的話只顯示停用會員的資料
-        } else if (searchTrueFalse === 'false') {
-          const falseMember = res.data.filter((v, i) => v.mem_bollen === 0);
-          setUsersDisplay(falseMember);
-        } else {
-          // 如果沒有在搜尋狀態下也沒有在查看停用/啟用會員，就顯示所有資料
-          setUsersDisplay(res.data);
-        }
+        return;
       }
+      // 如果正在查看啟用會員的話只顯示啟用會員的資料
+      if (searchTrueFalse === 'true') {
+        const trueMember = res.data.filter((v, i) => v.mem_bollen === 1);
+        setUsersDisplay(trueMember);
+        return;
+      }
+      // 如果正在查看停用會員的話只顯示停用會員的資料
+      if (searchTrueFalse === 'false') {
+        const falseMember = res.data.filter((v, i) => v.mem_bollen === 0);
+        setUsersDisplay(falseMember);
+        return;
+      }
+      // 如果沒有在搜尋狀態下也沒有在查看停用/啟用會員，就顯示所有資料
+      setUsersDisplay(res.data);
     });
   }, [change, searchWord]);
 
@@ -83,7 +86,7 @@ const Admin = () => {
       });
     }
   }
-  
+
   // 顯示全部會員的按鈕
   function searchAllMember() {
     // 把搜尋欄清空
