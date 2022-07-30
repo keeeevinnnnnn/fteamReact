@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import axios from 'axios';
 import { v4 as uuidv4 } from 'uuid';
 import './styles/Admin.scss';
 
 const Admin = () => {
-  // 更新畫面用
+  // 發fetch更新畫面用
   const [change, setChange] = useState('');
   // 接收會員的狀態 雖然沒用到但先放著
   const [allMember, setallMember] = useState([]);
@@ -45,7 +45,48 @@ const Admin = () => {
       // 如果沒有在搜尋狀態下也沒有在查看停用/啟用會員，就顯示所有資料
       setUsersDisplay(res.data);
     });
-  }, [change, searchWord]);
+  }, [change]);
+
+  // 即時搜尋顯示資料用 搜尋欄有變動的話才執行該涵式
+  useMemo(() => {
+    // 如果有在搜尋 把搜尋資料塞進顯示資料的狀態裡
+    if (searchWord) {
+      const newUsers = allMember.filter((v, i) =>
+        v.mem_name.includes(searchWord)
+      );
+      setUsersDisplay(newUsers);
+      return;
+    }
+    // 如果沒在搜尋 顯示全部資料
+    if (!searchWord) {
+      setUsersDisplay(allMember);
+      return;
+    }
+  }, [searchWord]);
+
+  // 顯示啟用會員
+  function searchTrue() {
+    // 把搜尋欄清空
+    setSearchWord('');
+    // 查看停用/啟用會員的狀態設成在查看啟用會員
+    setSearchTrueFalse('true');
+    // 從所有資料回傳啟用狀態的會員
+    const enableMember = allMember.filter((v, i) => v.mem_bollen === 1);
+    // 把上述資料塞進顯示資料的狀態中
+    setUsersDisplay(enableMember);
+  }
+
+  // 顯示停用會員
+  function searchFalse() {
+    // 把搜尋欄清空
+    setSearchWord('');
+    // 查看停用/啟用會員的狀態設成在查看停用會員
+    setSearchTrueFalse('false');
+    // 從所有資料回傳停用狀態的會員
+    const disableMember = allMember.filter((v, i) => v.mem_bollen === 0);
+    // 把上述資料塞進顯示資料的狀態中
+    setUsersDisplay(disableMember);
+  }
 
   // 管理員變動會員狀態 (停用/啟用)
   function changeState(v) {
@@ -55,19 +96,19 @@ const Admin = () => {
         axios
           .put('http://localhost:3000/admin/stop', { sid: v.sid })
           .then((res) => {
-            console.log(res.data);
             if (res.data.success) {
               setChange(uuidv4());
             }
           });
       }
-    } else {
+      return;
+    }
+    if (v.mem_bollen === 0) {
       if (window.confirm(`確定要重啟會原${v.mem_name}嗎?`)) {
         // 啟用
         axios
           .put('http://localhost:3000/admin/reboot', { sid: v.sid })
           .then((res) => {
-            console.log(res.data);
             if (res.data.success) {
               setChange(uuidv4());
             }
@@ -97,29 +138,6 @@ const Admin = () => {
     setUsersDisplay(allMember);
   }
 
-  // 顯示啟用會員
-  function searchTrue() {
-    // 把搜尋欄清空
-    setSearchWord('');
-    // 查看停用/啟用會員的狀態設成在查看啟用會員
-    setSearchTrueFalse('true');
-    // 從所有資料回傳啟用狀態的會員
-    const enableMember = allMember.filter((v, i) => v.mem_bollen === 1);
-    // 把上述資料塞進顯示資料的狀態中
-    setUsersDisplay(enableMember);
-  }
-
-  // 顯示停用會員
-  function searchFalse() {
-    // 把搜尋欄清空
-    setSearchWord('');
-    // 查看停用/啟用會員的狀態設成在查看停用會員
-    setSearchTrueFalse('false');
-    // 從所有資料回傳停用狀態的會員
-    const disableMember = allMember.filter((v, i) => v.mem_bollen === 0);
-    // 把上述資料塞進顯示資料的狀態中
-    setUsersDisplay(disableMember);
-  }
   return (
     <>
       <div className="member-bg w-100 vh-100 d-flex justify-content-end align-items-end">
