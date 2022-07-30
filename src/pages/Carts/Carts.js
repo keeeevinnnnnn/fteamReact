@@ -65,16 +65,16 @@ const Carts = (props) => {
             setProductTotalPrice(
               response.data.result.length !== 0
                 ? response.data.result.reduce((init, obj) => {
-                  return init + obj.item_price;
-                }, 0)
+                    return init + obj.item_price;
+                  }, 0)
                 : 0
             );
             // get product qty
             setProductTotalQty(
               response.data.result.length !== 0
                 ? response.data.result.reduce((init, obj) => {
-                  return init + obj.quantity;
-                }, 0)
+                    return init + obj.quantity;
+                  }, 0)
                 : 0
             );
           });
@@ -100,16 +100,16 @@ const Carts = (props) => {
             setCustomTotalPrice(
               response.data.result.length !== 0
                 ? response.data.result.reduce((init, obj) => {
-                  return init + obj.item_price;
-                }, 0)
+                    return init + obj.item_price;
+                  }, 0)
                 : 0
             );
             // get custom qty
             setCustomTotalQty(
               response.data.result.length !== 0
                 ? response.data.result.reduce((init, obj) => {
-                  return init + obj.quantity;
-                }, 0)
+                    return init + obj.quantity;
+                  }, 0)
                 : 0
             );
           });
@@ -135,16 +135,16 @@ const Carts = (props) => {
             setLessonTotalPrice(
               response.data.result.length !== 0
                 ? response.data.result.reduce((init, obj) => {
-                  return init + obj.item_price;
-                }, 0)
+                    return init + obj.item_price;
+                  }, 0)
                 : 0
             );
             // get lesson qty
             setLessonTotalQty(
               response.data.result.length !== 0
                 ? response.data.result.reduce((init, obj) => {
-                  return init + obj.quantity;
-                }, 0)
+                    return init + obj.quantity;
+                  }, 0)
                 : 0
             );
           });
@@ -193,8 +193,8 @@ const Carts = (props) => {
                         selectItem === 'PRODUCTS'
                           ? '-0%'
                           : selectItem === 'CUSTOMIZED'
-                            ? '-100%'
-                            : '-200%',
+                          ? '-100%'
+                          : '-200%',
                     }}
                     className="card-scroll-list"
                   >
