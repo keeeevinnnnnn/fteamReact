@@ -12,22 +12,39 @@ const Admin = () => {
   const [usersDisplay, setUsersDisplay] = useState([]);
   // 搜尋用
   const [searchWord, setSearchWord] = useState('');
-  // 拿到所有會員資料
+  // 顯示停用/啟用會員用 預設是沒有查看停用或啟用會員
+  const [searchTrueFalse, setSearchTrueFalse] = useState('');
+
   useEffect(() => {
+    // 拿到所有會員資料
     axios.get('http://localhost:3000/member/all').then((res) => {
+      // 用該狀態先取得所有會員資料
       setallMember(res.data);
       // 回傳的新資料配合搜尋欄位的文字+即時搜尋
       let newUsers = res.data.filter((v, i) => v.mem_name.includes(searchWord));
+      // 如果有搜尋的情況下
       if (searchWord) {
         // 為了讓資料欄位維持在搜尋狀態下
         setUsersDisplay(newUsers);
+        // 如果沒有在搜尋中
       } else {
-        setUsersDisplay(res.data);
+        // 如果正在查看啟用會員的話只顯示啟用會員的資料
+        if (searchTrueFalse === 'true') {
+          const trueMember = res.data.filter((v, i) => v.mem_bollen === 1);
+          setUsersDisplay(trueMember);
+          // 如果正在查看停用會員的話只顯示停用會員的資料
+        } else if (searchTrueFalse === 'false') {
+          const falseMember = res.data.filter((v, i) => v.mem_bollen === 0);
+          setUsersDisplay(falseMember);
+        } else {
+          // 如果沒有在搜尋狀態下也沒有在查看停用/啟用會員，就顯示所有資料
+          setUsersDisplay(res.data);
+        }
       }
     });
   }, [change, searchWord]);
 
-  // 更新狀態 (停用/啟用)
+  // 管理員變動會員狀態 (停用/啟用)
   function changeState(v) {
     if (v.mem_bollen === 1) {
       if (window.confirm(`確定要停用會原${v.mem_name}嗎?`)) {
@@ -55,7 +72,8 @@ const Admin = () => {
       }
     }
   }
-  // 刪除會原帳號
+
+  // 刪除會員帳號
   function deleteMember(v) {
     if (window.confirm(`確定要刪除會原${v.mem_name}嗎?`)) {
       axios.delete(`http://localhost:3000/admin/?sid=${v.sid}`).then((res) => {
@@ -64,6 +82,40 @@ const Admin = () => {
         }
       });
     }
+  }
+  
+  // 顯示全部會員的按鈕
+  function searchAllMember() {
+    // 把搜尋欄清空
+    setSearchWord('');
+    // 把查看停用/啟用會員的狀態設回沒有在查看
+    setSearchTrueFalse('');
+    // 塞所有會員資料到顯示資料用的狀態
+    setUsersDisplay(allMember);
+  }
+
+  // 顯示啟用會員
+  function searchTrue() {
+    // 把搜尋欄清空
+    setSearchWord('');
+    // 查看停用/啟用會員的狀態設成在查看啟用會員
+    setSearchTrueFalse('true');
+    // 從所有資料回傳啟用狀態的會員
+    const enableMember = allMember.filter((v, i) => v.mem_bollen === 1);
+    // 把上述資料塞進顯示資料的狀態中
+    setUsersDisplay(enableMember);
+  }
+
+  // 顯示停用會員
+  function searchFalse() {
+    // 把搜尋欄清空
+    setSearchWord('');
+    // 查看停用/啟用會員的狀態設成在查看停用會員
+    setSearchTrueFalse('false');
+    // 從所有資料回傳停用狀態的會員
+    const disableMember = allMember.filter((v, i) => v.mem_bollen === 0);
+    // 把上述資料塞進顯示資料的狀態中
+    setUsersDisplay(disableMember);
   }
   return (
     <>
@@ -77,20 +129,9 @@ const Admin = () => {
               setSearchWord(e.target.value);
             }}
           />
-          <button
-            onClick={() => {
-              setSearchWord('');
-            }}
-          >
-            全部會員
-          </button>
-          <button
-            onClick={() => {
-              setSearchWord('');
-            }}
-          >
-            停用會員
-          </button>
+          <button onClick={searchAllMember}>全部會員</button>
+          <button onClick={searchTrue}>啟用會員</button>
+          <button onClick={searchFalse}>停用會員</button>
           <div className="w-90 h-90">
             <table className="h-100">
               <thead>
