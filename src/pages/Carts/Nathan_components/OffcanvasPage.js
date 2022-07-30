@@ -80,10 +80,10 @@ export default function OffcanvasPage(props) {
                 townshipName: '',
                 fullAddress: '',
               });
-              setDisplace(displace + 200);
               setProductDep((prev) => prev + 1);
               setCustomDep((prev) => prev + 1);
               setLessonDep((prev) => prev + 1);
+              setDisplace(displace + 200);
             }
           });
         setDisplace(displace + 200);

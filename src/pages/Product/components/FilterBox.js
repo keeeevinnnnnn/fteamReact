@@ -228,6 +228,7 @@ const FilterBox = (props) => {
                       <input
                         type="checkbox"
                         key={i}
+                        checked={filter.color.includes(v)}
                         value={v}
                         onChange={(e) => {
                           //先判斷是否有在brand狀態陣列中
@@ -335,6 +336,7 @@ const FilterBox = (props) => {
                   <div className="brandBox pt-2" key={i}>
                     <input
                       type="checkbox"
+                      checked={filter.brand.includes(v)}
                       value={v}
                       onChange={(e) => {
                         //先判斷是否有在brand狀態陣列中
