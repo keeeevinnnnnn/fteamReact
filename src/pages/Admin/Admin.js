@@ -15,7 +15,7 @@ const Admin = () => {
   // 顯示停用/啟用會員用 預設是沒有查看停用或啟用會員
   const [searchTrueFalse, setSearchTrueFalse] = useState('');
 
-  useMemo(() => {
+  useEffect(() => {
     // 拿到所有會員資料
     axios.get('http://localhost:3000/member/all').then((res) => {
       // 用該狀態先取得所有會員資料
