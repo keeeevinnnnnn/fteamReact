@@ -104,7 +104,7 @@ const ProductMain = () => {
           })}
 
           <button
-            className="button-38"
+            className="button-38 resetBtn"
             style={{ display: messages.length === 0 ? 'none' : '' }}
             onClick={() => {
               setFilter({
