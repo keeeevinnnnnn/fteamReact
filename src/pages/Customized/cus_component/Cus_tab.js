@@ -32,7 +32,7 @@ function a11yProps(index) {
 }
 
 export default function Cus_tab(props) {
-  const { setBgcolor, bgcolor, bgimgName, setBgimgName,setPatternName,setStickerName } = props;
+  const { setBgcolor, bgcolor, bgimgName, setBgimgName,setPatternName,setStickerName,setText } = props;
   const [value, setValue] = useState(0);
 
   const handleChange = (event, newValue) => {
@@ -54,6 +54,7 @@ export default function Cus_tab(props) {
     const newSelectSticker = e.target.value;
     setStickerName(newSelectSticker);
   };
+  
 
   return (
     <Box sx={{ width: '100%' }}>
@@ -262,6 +263,13 @@ export default function Cus_tab(props) {
         </div>
       </TabPanel>
       <TabPanel value={value} index={3}>
+      <div className='cus-select-box'>
+        <label>
+           <input type="text" placeholder='your text' onChange={(e)=>(setText(e.target.value))}/>
+          
+        </label>
+
+      </div>
        
       </TabPanel>
     </Box>

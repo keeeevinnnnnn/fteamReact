@@ -15,6 +15,7 @@ function Cus_product_card_back(props) {
   const [patternName, setPatternName] = useState('Parallel');
   const [sticker,setSticker]=useState('');
   const [stickerName,setStickerName]=useState('Waves')
+  const [text, setText]=useState('SAMPLE')
 
   useEffect(() => {
     const backimg = new Image();
@@ -58,8 +59,23 @@ function Cus_product_card_back(props) {
       ctx.drawImage(pattern, 135, 240, 250, 250);
       ctx.drawImage(bgimg, 180, 0, 250, 250);
       ctx.drawImage(sticker, 80, 50, 400, 400);
+
+      //字型顏色//
+      ctx.font = "bold 24px Montserrat";
+      ctx.fillStyle = 'white';
+      ctx.textAlign = "left";
+      ctx.strokeStyle = 'white';
+      ctx.fillText(text, 200, 100); 
+      ctx.fillText(text, 200, 115); 
+      ctx.fillText(text, 200, 130); 
+      ctx.font = "bold 48px Montserrat";
+     
+      ctx.strokeText(text, 200, 90);
+      ctx.strokeText(text, 200, 130);
+      ctx.strokeText(text, 200, 170);
+      
     }
-  }, [bgimg, cuscanvas, bgcolor, pattern]);
+  }, [bgimg, cuscanvas, bgcolor, pattern,text]);
 
   return (
     <div className="w-100 vh-100 d-flex justify-content-end align-items-end">
@@ -104,6 +120,7 @@ function Cus_product_card_back(props) {
                   patternName={patternName}
                   setPatternName={setPatternName}
                   setStickerName={setStickerName}
+                  setText={setText}
                 />
               </div>
             </div>
