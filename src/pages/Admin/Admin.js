@@ -48,7 +48,7 @@ const Admin = () => {
   }, [change]);
 
   // 即時搜尋顯示資料用 搜尋欄有變動的話才執行該涵式
-  useMemo(() => {
+  useEffect(() => {
     // 如果有在搜尋 把搜尋資料塞進顯示資料的狀態裡
     if (searchWord) {
       const newUsers = allMember.filter((v, i) =>
@@ -63,6 +63,16 @@ const Admin = () => {
       return;
     }
   }, [searchWord]);
+
+  // 顯示全部會員
+  function searchAllMember() {
+    // 把搜尋欄清空
+    setSearchWord('');
+    // 把查看停用/啟用會員的狀態設回沒有在查看
+    setSearchTrueFalse('');
+    // 塞所有會員資料到顯示資料用的狀態
+    setUsersDisplay(allMember);
+  }
 
   // 顯示啟用會員
   function searchTrue() {
@@ -129,16 +139,6 @@ const Admin = () => {
         }
       });
     }
-  }
-
-  // 顯示全部會員的按鈕
-  function searchAllMember() {
-    // 把搜尋欄清空
-    setSearchWord('');
-    // 把查看停用/啟用會員的狀態設回沒有在查看
-    setSearchTrueFalse('');
-    // 塞所有會員資料到顯示資料用的狀態
-    setUsersDisplay(allMember);
   }
 
   return (
