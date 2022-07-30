@@ -387,3 +387,18 @@ font-size: 1.1rem;
   box-shadow: none;
 }
 
+.resetBtn{
+    background-color: #0B1013;
+    color: white;
+}
+
+.resetBtn::after{
+    content: '';
+    color: white;
+}
+
+.resetBtn:hover {
+    background-color: rgb(40, 39, 39);
+  }
+
+
