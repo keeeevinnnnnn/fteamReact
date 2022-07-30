@@ -8,11 +8,9 @@ const Admin = () => {
   const [change, setChange] = useState('');
   // 接收會員的狀態 雖然沒用到但先放著
   const [allMember, setallMember] = useState([]);
-  // 呈現資料用
-  const [usersDisplay, setUsersDisplay] = useState([]);
   // 搜尋用
   const [searchWord, setSearchWord] = useState('');
-  // 顯示停用/啟用會員用 預設是沒有查看停用或啟用會員
+  // 有無查看停用/啟用會員
   const [searchTrueFalse, setSearchTrueFalse] = useState('');
 
   useEffect(() => {
@@ -20,49 +18,26 @@ const Admin = () => {
     axios.get('http://localhost:3000/member/all').then((res) => {
       // 用該狀態先取得所有會員資料
       setallMember(res.data);
-      // 如果有搜尋的情況下
-      if (searchWord) {
-        // 回傳的新資料配合搜尋欄位的文字+即時搜尋
-        const newUsers = res.data.filter((v, i) =>
-          v.mem_name.includes(searchWord)
-        );
-        // 為了讓資料欄位維持在搜尋狀態下
-        setUsersDisplay(newUsers);
-        return;
-      }
-      // 如果正在查看啟用會員的話只顯示啟用會員的資料
-      if (searchTrueFalse === 'true') {
-        const trueMember = res.data.filter((v, i) => v.mem_bollen === 1);
-        setUsersDisplay(trueMember);
-        return;
-      }
-      // 如果正在查看停用會員的話只顯示停用會員的資料
-      if (searchTrueFalse === 'false') {
-        const falseMember = res.data.filter((v, i) => v.mem_bollen === 0);
-        setUsersDisplay(falseMember);
-        return;
-      }
-      // 如果沒有在搜尋狀態下也沒有在查看停用/啟用會員，就顯示所有資料
-      setUsersDisplay(res.data);
     });
   }, [change]);
 
-  // 即時搜尋顯示資料用 搜尋欄有變動的話才執行該涵式
-  useEffect(() => {
+  // 要呈現的資料 觸發方式:會員資料、文字搜尋、查看停用/啟用
+  const display = useMemo(() => {
     // 如果有在搜尋 把搜尋資料塞進顯示資料的狀態裡
     if (searchWord) {
-      const newUsers = allMember.filter((v, i) =>
-        v.mem_name.includes(searchWord)
-      );
-      setUsersDisplay(newUsers);
-      return;
+      return allMember.filter((v, i) => v.mem_name.includes(searchWord));
     }
-    // 如果沒在搜尋 顯示全部資料
-    if (!searchWord) {
-      setUsersDisplay(allMember);
-      return;
+    // 如果正在查看啟用會員的話只顯示啟用會員的資料
+    if (searchTrueFalse === 'true') {
+      return allMember.filter((v, i) => v.mem_bollen === 1);
     }
-  }, [searchWord]);
+    // 如果正在查看停用會員的話只顯示停用會員的資料
+    if (searchTrueFalse === 'false') {
+      return allMember.filter((v, i) => v.mem_bollen === 0);
+    }
+    // 如果沒在搜尋也沒在查看停用/啟用會員 顯示全部資料
+    return allMember;
+  }, [allMember, searchWord, searchTrueFalse]);
 
   // 顯示全部會員
   function searchAllMember() {
@@ -70,8 +45,6 @@ const Admin = () => {
     setSearchWord('');
     // 把查看停用/啟用會員的狀態設回沒有在查看
     setSearchTrueFalse('');
-    // 塞所有會員資料到顯示資料用的狀態
-    setUsersDisplay(allMember);
   }
 
   // 顯示啟用會員
@@ -80,10 +53,6 @@ const Admin = () => {
     setSearchWord('');
     // 查看停用/啟用會員的狀態設成在查看啟用會員
     setSearchTrueFalse('true');
-    // 從所有資料回傳啟用狀態的會員
-    const enableMember = allMember.filter((v, i) => v.mem_bollen === 1);
-    // 把上述資料塞進顯示資料的狀態中
-    setUsersDisplay(enableMember);
   }
 
   // 顯示停用會員
@@ -92,10 +61,6 @@ const Admin = () => {
     setSearchWord('');
     // 查看停用/啟用會員的狀態設成在查看停用會員
     setSearchTrueFalse('false');
-    // 從所有資料回傳停用狀態的會員
-    const disableMember = allMember.filter((v, i) => v.mem_bollen === 0);
-    // 把上述資料塞進顯示資料的狀態中
-    setUsersDisplay(disableMember);
   }
 
   // 管理員變動會員狀態 (停用/啟用)
@@ -171,7 +136,7 @@ const Admin = () => {
                 </tr>
               </thead>
               <tbody>
-                {usersDisplay.map((v, i) => {
+                {display.map((v, i) => {
                   return (
                     <tr className="trHover" key={uuidv4()}>
                       <td>
