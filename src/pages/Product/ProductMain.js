@@ -64,55 +64,51 @@ const ProductMain = () => {
         />
 
         <div className="d-flex productText p-0 m-0">
-          {messages.length >= 1
-            ? messages.map((msg) => {
-                return (
-                  <React.Fragment>
-                    <button
-                      className="button-38"
-                      onClick={() => {
-                        setMessages(
-                          messages.filter((v) => {
-                            return v !== msg;
-                          })
-                        );
+          {messages.map((msg) => {
+            return (
+              <button
+                className="button-38"
+                onClick={() => {
+                  setMessages(
+                    messages.filter((v) => {
+                      return v !== msg;
+                    })
+                  );
 
-                        if (filter.brand.includes(msg)) {
-                          const brandLikeList = filter.brand.filter((v, i) => {
-                            return v !== msg;
-                          });
-                          setFilter({ ...filter, brand: brandLikeList });
-                        }
+                  if (filter.brand.includes(msg)) {
+                    const brandLikeList = filter.brand.filter((v, i) => {
+                      return v !== msg;
+                    });
+                    setFilter({ ...filter, brand: brandLikeList });
+                  }
 
-                        if (filter.color.includes(msg)) {
-                          const colorLikeList = filter.color.filter((v, i) => {
-                            return v !== msg;
-                          });
-                          setFilter({ ...filter, color: colorLikeList });
-                        }
+                  if (filter.color.includes(msg)) {
+                    const colorLikeList = filter.color.filter((v, i) => {
+                      return v !== msg;
+                    });
+                    setFilter({ ...filter, color: colorLikeList });
+                  }
 
-                        if (filter.orderfield.includes('name')) {
-                          setFilter({
-                            ...filter,
-                            orderfield: '',
-                            sort: '',
-                          });
-                        }
-                        if (filter.orderfield.includes('price')) {
-                          setFilter({
-                            ...filter,
-                            orderfield: '',
-                            sort: '',
-                          });
-                        }
-                      }}
-                    >
-                      {msg}
-                    </button>
-                  </React.Fragment>
-                );
-              })
-            : null}
+                  if (filter.orderfield.includes('name')) {
+                    setFilter({
+                      ...filter,
+                      orderfield: '',
+                      sort: '',
+                    });
+                  }
+                  if (filter.orderfield.includes('price')) {
+                    setFilter({
+                      ...filter,
+                      orderfield: '',
+                      sort: '',
+                    });
+                  }
+                }}
+              >
+                {msg}
+              </button>
+            );
+          })}
 
           <button
             className="button-38"
