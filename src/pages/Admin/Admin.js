@@ -71,12 +71,26 @@ const Admin = () => {
         <div className="work-area col-12 col-md-10 p-0 adminTable">
           <input
             type="text"
-            placeholder="輸入姓名"
+            placeholder="User Name"
             value={searchWord}
             onChange={(e) => {
               setSearchWord(e.target.value);
             }}
           />
+          <button
+            onClick={() => {
+              setSearchWord('');
+            }}
+          >
+            全部會員
+          </button>
+          <button
+            onClick={() => {
+              setSearchWord('');
+            }}
+          >
+            停用會員
+          </button>
           <div className="w-90 h-90">
             <table className="h-100">
               <thead>
