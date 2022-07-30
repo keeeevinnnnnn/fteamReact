@@ -97,6 +97,7 @@ const Admin = () => {
           .put('http://localhost:3000/admin/stop', { sid: v.sid })
           .then((res) => {
             if (res.data.success) {
+              // 讓useEffect資料重新取得
               setChange(uuidv4());
             }
           });
@@ -110,6 +111,7 @@ const Admin = () => {
           .put('http://localhost:3000/admin/reboot', { sid: v.sid })
           .then((res) => {
             if (res.data.success) {
+              // 讓useEffect資料重新取得
               setChange(uuidv4());
             }
           });
@@ -122,6 +124,7 @@ const Admin = () => {
     if (window.confirm(`確定要刪除會原${v.mem_name}嗎?`)) {
       axios.delete(`http://localhost:3000/admin/?sid=${v.sid}`).then((res) => {
         if (res.data.success) {
+          // 讓useEffect資料重新取得
           setChange(uuidv4());
         }
       });
