@@ -1,9 +1,25 @@
 import React, { useState } from 'react';
 import '../styles/ProductMain.scss';
+import axios from '../commons/axios';
 
 const ProductList = (props) => {
   const { sid, img, name, brand, price } = props;
+  // 收藏按鈕開關
   const [heart, setHeart] = useState(false);
+
+  // 收藏商品
+  const getFavorites = () => {
+    const addFavorites = {
+      sid: sid,
+      favoriteImg: img,
+      favoriteName: name,
+      favoriteBrand: brand,
+      favoritePrice: price,
+    };
+    axios.post('/product/favorites', addFavorites).then((res) => {
+      console.log('resss==', res.data);
+    });
+  };
   return (
     <div className="col-4 mt-5">
       <div className="product-header">
@@ -20,6 +36,7 @@ const ProductList = (props) => {
             }}
             id="heartTrue"
             onClick={() => {
+              getFavorites();
               setHeart(!heart);
             }}
           >
