@@ -28,7 +28,7 @@ const Login = () => {
                 loginLogoText={loginLogoText}
                 setLoginLogoText={setLoginLogoText}
               />
-              <LoginAdmin
+              {/* <LoginAdmin
                 setLoginCard={setLoginCard}
                 loginLogoText={loginLogoText}
               />
@@ -38,7 +38,7 @@ const Login = () => {
                 setLoginCard={setLoginCard}
                 loginLogoText={loginLogoText}
                 setLoginLogoText={setLoginLogoText}
-              />
+              /> */}
             </div>
           </div>
         </div>
