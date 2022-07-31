@@ -1,4 +1,10 @@
-import React, { useEffect, useRef, useState, useContext } from 'react';
+import React, {
+  useEffect,
+  useRef,
+  useState,
+  useContext,
+  Fragment,
+} from 'react';
 import io from 'socket.io-client';
 import axios from 'axios';
 import { v4 as uuidv4 } from 'uuid';
@@ -7,23 +13,33 @@ import { MemberContext } from '../../../../App';
 import '../../styles/Chat.scss';
 
 const Chat = () => {
-  const { auth, token } = useContext(AuthContext);
+  // 拿到token 存資料用
+  const { token } = useContext(AuthContext);
+  // 拿到使用者資訊
   const { member } = useContext(MemberContext);
+  // 有暱稱顯示暱稱 沒暱稱顯示姓名
   let chatName = member.mem_nickname;
   if (member.mem_nickname === '') {
     chatName = member.mem_name;
   }
-  //   console.log(member);
-  // 設置message跟name
-  const [memberState, setMemberState] = useState({
+  // 設置message
+  const [messageState, setMessageState] = useState({
     message: '',
-    name: chatName,
   });
+  // socket.io即時聊天用的
   const [chat, setChat] = useState([]);
+  // 從資料庫拿出過往聊天紀錄渲染用的
   const [chatall, setChatall] = useState([]);
 
-  const socketRef = useRef();
+  const socketRef = useRef(null);
 
+//   const scrollDown = useRef(null);
+
+//   const scrollToBottom = () => {
+//     scrollDown.current.scrollIntoView(false);
+//   };
+
+  // 拿到所有過去聊天紀錄
   useEffect(() => {
     axios.get('http://localhost:3000/member/chat').then((res) => {
       setChatall(res.data);
@@ -31,23 +47,26 @@ const Chat = () => {
   }, []);
 
   useEffect(() => {
-    // console.log(123);
-    // 與後端的連接
+    // scrollToBottom();
+    // 與聊天室Sever的連接
     socketRef.current = io.connect('http://localhost:4000');
-    socketRef.current.on('message', ({ name, message, sid }) => {
-      setChat([...chat, { name, message, sid }]);
+    socketRef.current.on('message', ({ name, message, sid, img }) => {
+      setChat([...chat, { name, message, sid, img }]);
     });
     return () => socketRef.current.disconnect();
   }, [chat]);
 
+  // 紀錄訊息欄位的值
   const onTextChange = (e) => {
-    setMemberState({ ...memberState, [e.target.name]: e.target.value });
+    setMessageState({ ...messageState, [e.target.name]: e.target.value });
   };
 
   //點擊表單提交時
   const onMessageSubmit = (e) => {
+    // 阻擋表單送出預設行為
     e.preventDefault();
-    const { name, message } = memberState;
+    const { message } = messageState;
+    // 把訊息存進資料庫
     axios
       .post(
         'http://localhost:3000/member/chat',
@@ -64,59 +83,87 @@ const Chat = () => {
       .then((res) => {
         console.log(res.data);
       });
-    // 要在後端(message 自己設置的)那邊傳入{ name, message }
+    // 要在後端(message 自己設置的)那邊傳入{ name, message, sid, img }
     socketRef.current.emit('message', {
       name: chatName,
       message,
       sid: member.sid,
+      img: member.mem_avatar,
     });
     // 把原有默認提交功能停止
-    setMemberState({ message: '', name: chatName });
+    setMessageState({ message: '' });
   };
 
-  // 渲染聊天室
+  // socket.io渲染聊天室
   const renderChat = () => {
-    return chat.map(({ name, message, sid }) => (
-      <div
-        key={uuidv4()}
-        className={sid === member.sid ? 'd-flex justify-content-end' : ''}
-      >
-        <h3>
-          {name}: <span>{message}</span>
-        </h3>
-      </div>
+    return chat.map(({ name, message, sid, img }) => (
+      <Fragment key={uuidv4()}>
+        {/* 判斷對話是不是使用者本人 */}
+        {sid !== member.sid ? (
+          <div className="d-flex align-items-center pt-2">
+            <img src={`http://localhost:3000/avatar/${img}`} alt="" />
+            <h3 style={{ marginLeft: '1%' }}>
+              {name} :<span style={{ marginLeft: '5px' }}>{message}</span>
+            </h3>
+          </div>
+        ) : (
+          <div className="d-flex justify-content-end align-items-center pt-2">
+            <h3 style={{ marginRight: '1%' }}>
+              <span style={{ marginRight: '5px' }}>{message}</span>:
+            </h3>
+            <img src={`http://localhost:3000/avatar/${img}`} alt="" />
+          </div>
+        )}
+      </Fragment>
     ));
   };
 
-  console.log(123, chat);
-
   return (
-    <div className="h-100 d-flex justify-content-center pt-4 memberChat">
-      <div className="h-90 w-70 bg-light">
-        <div className="h-80">
+    <div className="h-100 d-flex justify-content-center pt-4">
+      <div className="h-90 w-70 memberChat">
+        <div className="h-90 chatScroll">
+          {/* 過往聊天紀錄 */}
           {chatall.map((v, i) => {
             return (
-              <div
-                key={uuidv4()}
-                className={
-                  v.mem_sid === member.sid ? 'd-flex justify-content-end' : ''
-                }
-              >
-                <h3>
-                  {v.mem_nickname ? v.mem_nickname : v.mem_name}:
-                  <span>{v.message}</span>
-                </h3>
-              </div>
+              <Fragment key={uuidv4()}>
+                {/* 判斷對話是不是使用者本人 */}
+                {v.mem_sid !== member.sid ? (
+                  <div className="d-flex align-items-center pt-2">
+                    <img
+                      src={`http://localhost:3000/avatar/${v.mem_avatar}`}
+                      alt=""
+                    />
+                    <h3 style={{ marginLeft: '1%' }}>
+                      {v.mem_nickname ? v.mem_nickname : v.mem_name} :
+                      <span style={{ marginLeft: '5px' }}>{v.message}</span>
+                    </h3>
+                  </div>
+                ) : (
+                  <div className="d-flex justify-content-end align-items-center pt-2">
+                    <h3 style={{ marginRight: '1%' }}>
+                      <span style={{ marginRight: '5px' }}>{v.message}</span>:
+                    </h3>
+                    <img
+                      src={`http://localhost:3000/avatar/${v.mem_avatar}`}
+                      alt=""
+                    />
+                  </div>
+                )}
+              </Fragment>
             );
           })}
+          {/* socket.io的即時渲染 */}
           {renderChat()}
         </div>
-        <form onSubmit={onMessageSubmit}>
+        <form
+          onSubmit={onMessageSubmit}
+          className="w-100 d-flex justify-content-center align-items-center"
+        >
           <input
             name="message"
             onChange={(e) => onTextChange(e)}
-            value={memberState.message}
-            label="Message"
+            value={messageState.message}
+            placeholder="Say something"
           />
           <button>Send</button>
         </form>
