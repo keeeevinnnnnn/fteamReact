@@ -29,7 +29,6 @@ const Orders = () => {
           .then((res) => {
             if (res.data.success) {
               setAllOrders(res.data.result);
-              console.log(res.data.result);
             }
           });
       });
