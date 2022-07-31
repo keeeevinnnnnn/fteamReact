@@ -1,10 +1,18 @@
+import axios from 'axios';
 import React, { useState } from 'react';
 import '../Orders.scss';
 import OrderDetailCard from './OrderDetailCard';
 const OrderCard = (props) => {
   const { singleOrder } = props;
+  const [allDetailItems, setAllDetailItems] = useState([]);
   const [showDetail, setShowDetail] = useState(false);
   const isShowDetailHandler = () => {
+    console.log(singleOrder);
+    axios
+      .get(`http://localhost:3000/orders/detail?orderID=${singleOrder.sid}`)
+      .then((res) => {
+        setAllDetailItems(res.data);
+      });
     setShowDetail(!showDetail);
   };
   return (
@@ -31,7 +39,7 @@ const OrderCard = (props) => {
             }}
             className="order-card-detail w-100"
           >
-            <OrderDetailCard />
+            <OrderDetailCard allDetailItems={allDetailItems} />
           </div>
         </div>
         <div className="w-100 h-45 d-flex">

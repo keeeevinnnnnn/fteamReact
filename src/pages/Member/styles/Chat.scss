@@ -1,3 +1,59 @@
 .memberChat {
-    
+    color: white;
+    border: 1px solid var(--main);
+    background: rgba(0, 0, 0, 0.871);
+    box-shadow: 5px 5px 15px 5px #000000;
+    position: relative;
+    .chatScroll {
+        overflow: auto;
+    }
+    .chatScroll::-webkit-scrollbar {
+        width: 5px;
+        height: 0px;
+    }
+
+    .chatScroll::-webkit-scrollbar-thumb {
+    background-color: white;
+    }
+    img {
+        width: 7%;
+        object-fit: cover;
+        border-radius: 50%;
+        aspect-ratio: 1/1;
+    }
+    h3 {
+        color: var(--main);
+        margin-bottom: 0;
+    }
+    span {
+        color: white;
+        font-size: 80%;
+    }
+    form {
+        position: absolute;
+        height: 10%;
+        bottom: 0%;
+        border-top: 3px solid gray;
+        input {
+            height: 80%;
+            font-size: 1.2rem;
+            color: white;
+            background-color: transparent;
+            border: none;
+            border-bottom: 1px solid gray;
+        }
+        input:focus {
+            outline: none;
+        }
+        button {
+            height: 80%;
+            width: 10%;
+            font-size: .8rem;
+            font-weight: 700;
+            background-color: white;
+            color: black;
+            transition: .3s ease;
+            padding: 5px;
+        }
+    }
 }
