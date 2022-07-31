@@ -100,14 +100,14 @@ const Chat = () => {
       <Fragment key={uuidv4()}>
         {/* 判斷對話是不是使用者本人 */}
         {sid !== member.sid ? (
-          <div className="d-flex align-items-center pt-2">
+          <div className="d-flex align-items-center pb-2">
             <img src={`http://localhost:3000/avatar/${img}`} alt="" />
             <h3 style={{ marginLeft: '1%' }}>
               {name} :<span style={{ marginLeft: '5px' }}>{message}</span>
             </h3>
           </div>
         ) : (
-          <div className="d-flex justify-content-end align-items-center pt-2">
+          <div className="d-flex justify-content-end align-items-center pb-2">
             <h3 style={{ marginRight: '1%' }}>
               <span style={{ marginRight: '5px' }}>{message}</span>:
             </h3>
@@ -128,7 +128,7 @@ const Chat = () => {
               <Fragment key={uuidv4()}>
                 {/* 判斷對話是不是使用者本人 */}
                 {v.mem_sid !== member.sid ? (
-                  <div className="d-flex align-items-center pt-2">
+                  <div className="d-flex align-items-center pb-2">
                     <img
                       src={`http://localhost:3000/avatar/${v.mem_avatar}`}
                       alt=""
@@ -139,7 +139,7 @@ const Chat = () => {
                     </h3>
                   </div>
                 ) : (
-                  <div className="d-flex justify-content-end align-items-center pt-2">
+                  <div className="d-flex justify-content-end align-items-center pb-2">
                     <h3 style={{ marginRight: '1%' }}>
                       <span style={{ marginRight: '5px' }}>{v.message}</span>:
                     </h3>
