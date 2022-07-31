@@ -3,32 +3,35 @@
 }
 
 .cooler_teacher_card {
+  width: 49%;
   height: 20rem;
   -webkit-box-shadow: 5px 10px 0px -2px #000000;
   box-shadow: 5px 10px 0px -2px #000000;
-  // width: 42%;
+  transition: 0.6s;
 }
 
 .cooler_teacher_log {
-  background: url(../../../Images/Lesson/teacher_logo/TEACHER.svg) no-repeat;
-  width: 100%;
+  background-image: url(../../../Images/Lesson/teacher_logo/TEACHER.svg);
+  background-size: contain;
+  background-repeat: no-repeat;
+  // width: 100%;
 }
 
 .cooler_teacher_card_head {
   clip-path: circle(50% at 50% 50%);
-  background-image: url(../../../Images/Lesson/l01.jpg);
-  background-position: 50% 60%;
-  width: 100%;
-  height: 100%;
+  background-image: url(../../../Images/Lesson/teacher_head/hiphop/Nike.jpg);
+  background-size: contain;
+
+  width: 8rem;
+  height: 8rem;
   position: absolute;
   z-index: 0;
   right: 10%;
-  bottom: 5%;
 }
 
 .cooler_teacher_card_circle {
-  width: 7rem;
-  height: 7rem;
+  width: 8rem;
+  height: 8rem;
   border-radius: 50%;
   position: relative;
   // left: 10%;
@@ -36,7 +39,6 @@
   background-color: #dfdfdf;
   // -webkit-box-shadow: 14px 13px 0px -2px #dfdfdf;
   // box-shadow: 14px 13px 0px -2px #dfdfdf;
-  
 }
 
 .cooler_teacher_card_teachername,
@@ -44,4 +46,54 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.cooler_teacher_card__info {
+  text-align: justify;
+}
+
+.cooler_teacher_card:hover {
+  -webkit-box-shadow: 13px 14px 0px -2px #2ce6ff;
+  box-shadow: 13px 14px 0px -2px #2ce6ff;
+  transform: scale(1.04, 1.03);
+
+  .cooler_teacher_card_teachername {
+    color: white;
+  }
+
+  .cooler_teacher_card__info,
+  .cooler_teacher_card_bottom {
+    color: white;
+    background-color: #000000;
+  }
+
+  .cooler_teacher_card_right {
+    width: 100%;
+  }
+
+  .cooler_teacher_card_teachername {
+    justify-content: end;
+    padding-top: 3rem;
+    padding-right: 0.5rem;
+  }
+
+  .cooler_teacher_log {
+    flex-direction: column;
+  }
+
+  .cooler_teacher_card__info {
+    padding-top: 2rem;
+  }
+
+  // .cooler_teacher_card_bottom {
+  // }
+}
+
+// ----------------RWD------------------
+
+@media (max-width: 500px) {
+  .cooler_teacher_card {
+    width: 100%;
+    // margin-bottom: 2rem;
+  }
 }
