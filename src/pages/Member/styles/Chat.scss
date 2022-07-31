@@ -1,6 +1,6 @@
 .memberChat {
     color: white;
-    border: 1px solid #2ce6ff;
+    border: 1px solid var(--main);
     background: rgba(0, 0, 0, 0.871);
     box-shadow: 5px 5px 15px 5px #000000;
     position: relative;
@@ -25,7 +25,7 @@
         position: absolute;
         height: 10%;
         bottom: 0%;
-        border-top: 1px solid white;
+        border-top: 3px solid gray;
         input {
             height: 80%;
             font-size: 1.2rem;
