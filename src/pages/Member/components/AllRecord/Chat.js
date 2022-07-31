@@ -4,6 +4,7 @@ import React, {
   useState,
   useContext,
   Fragment,
+  useMemo,
 } from 'react';
 import io from 'socket.io-client';
 import axios from 'axios';
@@ -13,6 +14,7 @@ import { MemberContext } from '../../../../App';
 import '../../styles/Chat.scss';
 
 const Chat = ({ selectItem }) => {
+  console.log(15987);
   // 拿到token 存資料用
   const { token } = useContext(AuthContext);
   // 拿到使用者資訊
@@ -29,7 +31,7 @@ const Chat = ({ selectItem }) => {
   // socket.io即時聊天用的
   const [chat, setChat] = useState([]);
   // 從資料庫拿出過往聊天紀錄渲染用的
-  const [chatall, setChatall] = useState([]);
+  const [chatAll, setChatAll] = useState([]);
 
   const socketRef = useRef(null);
 
@@ -39,7 +41,6 @@ const Chat = ({ selectItem }) => {
     if (!scrollDown.current) {
       return;
     }
-    console.log(456);
     scrollDown.current.scrollIntoView({
       behavior: 'smooth',
       block: 'end',
@@ -60,7 +61,7 @@ const Chat = ({ selectItem }) => {
   // 拿到所有過去聊天紀錄
   useEffect(() => {
     axios.get('http://localhost:3000/member/chat').then((res) => {
-      setChatall(res.data);
+      setChatAll(res.data);
     });
   }, []);
 
@@ -77,7 +78,7 @@ const Chat = ({ selectItem }) => {
 
   // 紀錄訊息欄位的值
   const onTextChange = (e) => {
-    setMessageState({ ...messageState, [e.target.name]: e.target.value });
+    setMessageState({ [e.target.name]: e.target.value });
   };
 
   //點擊表單提交時
@@ -150,7 +151,7 @@ const Chat = ({ selectItem }) => {
       <div className="h-90 w-70 memberChat">
         <div className="h-90 chatScroll">
           {/* 過往聊天紀錄 */}
-          {chatall.map((v, i) => {
+          {chatAll.map((v, i) => {
             return (
               <Fragment key={uuidv4()}>
                 {/* 判斷對話是不是使用者本人 */}
