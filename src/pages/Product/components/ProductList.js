@@ -42,6 +42,7 @@ const ProductList = (props) => {
       favoriteName: name,
       favoriteBrand: brand,
       favoritePrice: price,
+      memId: 5,
     };
     axios.post('/product/favorites', addFavorites).then((res) => {
       console.log('resss==', res.data);

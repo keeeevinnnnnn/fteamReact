@@ -9,7 +9,7 @@ const FilterBox = (props) => {
   const [brand, setBrand] = useState(false);
   const [sortby, setSortby] = useState(false);
   const [searchInput, setSearchInput] = useState(false);
-  const { filter, setFilter, messages, setMessages } = props;
+  const { filter, setFilter, messages, setMessages, searchProducts } = props;
 
   // double range input
   const [value, setValue] = useState([1200, 10000]);
@@ -23,6 +23,14 @@ const FilterBox = (props) => {
       orderfield: 'price',
     });
   };
+
+  const [searchText, setSearchtext] = useState('');
+  const handleSearchText = (e) => {
+    const value = e.target.value;
+    setSearchtext(value);
+    searchProducts(value);
+  };
+
   const [sortbyItems, setSortbyItems] = useState([
     'Name asc (A-Z)',
     'Name desc (Z-A)',
@@ -542,10 +550,9 @@ const FilterBox = (props) => {
             type="search"
             placeholder=" Search"
             aria-label="Search"
+            value={searchText}
             style={{ width: searchInput === false ? '40%' : '80%' }}
-            onMouseOver={() => {
-              setSearchInput(!searchInput);
-            }}
+            onChange={handleSearchText}
             onMouseOut={() => {
               setSearchInput(!searchInput);
             }}
