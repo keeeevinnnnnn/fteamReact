@@ -41,7 +41,7 @@ const AllRecord = () => {
               <Lesson />
             </div>
             <div className="w-25">
-              <Chat />
+              <Chat selectItem={selectItem} />
             </div>
           </div>
         </div>

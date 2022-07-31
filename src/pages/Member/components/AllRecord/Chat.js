@@ -4,6 +4,7 @@ import React, {
   useState,
   useContext,
   Fragment,
+  useMemo,
 } from 'react';
 import io from 'socket.io-client';
 import axios from 'axios';
@@ -12,7 +13,7 @@ import AuthContext from '../../../../components/AuthContext';
 import { MemberContext } from '../../../../App';
 import '../../styles/Chat.scss';
 
-const Chat = () => {
+const Chat = ({ selectItem }) => {
   // 拿到token 存資料用
   const { token } = useContext(AuthContext);
   // 拿到使用者資訊
@@ -29,25 +30,48 @@ const Chat = () => {
   // socket.io即時聊天用的
   const [chat, setChat] = useState([]);
   // 從資料庫拿出過往聊天紀錄渲染用的
-  const [chatall, setChatall] = useState([]);
+  const [chatAll, setChatAll] = useState([]);
 
   const socketRef = useRef(null);
 
-  //   const scrollDown = useRef(null);
+  // 讓聊天室置底
+  const scrollDown = useRef(null);
+  const scrollToBottom = () => {
+    if (!scrollDown.current) {
+      return;
+    }
+    scrollDown.current.scrollIntoView({
+      behavior: 'smooth',
+      block: 'end',
+      inline: 'nearest',
+    });
+  };
 
-  //   const scrollToBottom = () => {
-  //     scrollDown.current.scrollIntoView(false);
-  //   };
+  // 為了停止的setTimeout
+  const scrollStop = useRef(null);
+  // 因為有新訊息時才呼叫置底涵式，若沒新訊息，當使用者點擊CHAT頁面就先呼叫一次
+  useEffect(() => {
+    if (selectItem !== 'CHAT') {
+      // 避免按了CHAT又馬上跳換頁面
+      clearTimeout(scrollStop.current);
+      return () => clearTimeout(scrollStop.current);
+    }
+    scrollStop.current = setTimeout(() => {
+      scrollToBottom();
+    }, 500);
+    return () => clearTimeout(scrollStop.current);
+  }, [selectItem]);
 
   // 拿到所有過去聊天紀錄
   useEffect(() => {
     axios.get('http://localhost:3000/member/chat').then((res) => {
-      setChatall(res.data);
+      setChatAll(res.data);
     });
   }, []);
 
   useEffect(() => {
-    // scrollToBottom();
+    // 呼叫聊天室置底的涵式
+    scrollToBottom();
     // 與聊天室Sever的連接
     socketRef.current = io.connect('http://localhost:4000');
     socketRef.current.on('message', ({ name, message, sid, img }) => {
@@ -58,7 +82,7 @@ const Chat = () => {
 
   // 紀錄訊息欄位的值
   const onTextChange = (e) => {
-    setMessageState({ ...messageState, [e.target.name]: e.target.value });
+    setMessageState({ [e.target.name]: e.target.value });
   };
 
   //點擊表單提交時
@@ -104,7 +128,7 @@ const Chat = () => {
       <Fragment key={uuidv4()}>
         {/* 判斷對話是不是使用者本人 */}
         {sid !== member.sid ? (
-          <div className="d-flex align-items-center pt-2 pb-2">
+          <div className="d-flex align-items-center pt-2 pb-2" ref={scrollDown}>
             <img src={`http://localhost:3000/avatar/${img}`} alt="" />
             <h3 style={{ marginLeft: '1%' }}>
               {name}
@@ -112,7 +136,10 @@ const Chat = () => {
             </h3>
           </div>
         ) : (
-          <div className="d-flex justify-content-end align-items-center pt-2 pb-2">
+          <div
+            className="d-flex justify-content-end align-items-center pt-2 pb-2"
+            ref={scrollDown}
+          >
             <h3 style={{ marginRight: '1%' }}>
               <span style={{ marginRight: '5px' }}>{message} :</span>
             </h3>
@@ -128,12 +155,15 @@ const Chat = () => {
       <div className="h-90 w-70 memberChat">
         <div className="h-90 chatScroll">
           {/* 過往聊天紀錄 */}
-          {chatall.map((v, i) => {
+          {chatAll.map((v, i) => {
             return (
               <Fragment key={uuidv4()}>
                 {/* 判斷對話是不是使用者本人 */}
                 {v.mem_sid !== member.sid ? (
-                  <div className="d-flex align-items-center pt-2 pb-2">
+                  <div
+                    className="d-flex align-items-center pt-2 pb-2"
+                    ref={scrollDown}
+                  >
                     <img
                       src={`http://localhost:3000/avatar/${v.mem_avatar}`}
                       alt=""
@@ -144,7 +174,10 @@ const Chat = () => {
                     </h3>
                   </div>
                 ) : (
-                  <div className="d-flex justify-content-end align-items-center pt-2 pb-2">
+                  <div
+                    className="d-flex justify-content-end align-items-center pt-2 pb-2"
+                    ref={scrollDown}
+                  >
                     <h3 style={{ marginRight: '1%' }}>
                       <span style={{ marginRight: '5px' }}>{v.message} : </span>
                     </h3>
@@ -166,7 +199,7 @@ const Chat = () => {
         >
           <input
             name="message"
-            onChange={(e) => onTextChange(e)}
+            onChange={onTextChange}
             value={messageState.message}
             placeholder="Say something"
           />

@@ -114,6 +114,7 @@ const LoginAdmin = ({ setLoginCard, loginLogoText }) => {
                   value={fields.password}
                   onChange={handleFieldsChange}
                   onClick={clickErrorText}
+                  autoComplete="on"
                 />
                 <span className="loginErrorText">{fieldErrors.password}</span>
                 <img

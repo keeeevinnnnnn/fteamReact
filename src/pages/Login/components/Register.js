@@ -275,6 +275,7 @@ const Register = ({
                     onChange={handleFieldsChange}
                     onClick={clickErrorText}
                     className="text-center w-100 mb-3 errorInputPassword"
+                    autoComplete="on"
                   />
                   <span className="errorTextPassword">
                     {fieldErrors.password}
@@ -287,6 +288,7 @@ const Register = ({
                     onChange={handleFieldsChange}
                     onClick={clickErrorText}
                     className="text-center w-100 errorInputPassword"
+                    autoComplete="on"
                   />
                   <span className="errorTextPassword">
                     {fieldErrors.confirmPassword}
