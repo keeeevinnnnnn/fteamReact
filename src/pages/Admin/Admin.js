@@ -110,18 +110,20 @@ const Admin = () => {
     <>
       <div className="member-bg w-100 vh-100 d-flex justify-content-end align-items-end">
         <div className="work-area col-12 col-md-10 p-0 adminTable">
-          <input
-            type="text"
-            placeholder="User Name"
-            value={searchWord}
-            onChange={(e) => {
-              setSearchWord(e.target.value);
-            }}
-          />
-          <button onClick={searchAllMember}>全部會員</button>
-          <button onClick={searchTrue}>啟用會員</button>
-          <button onClick={searchFalse}>停用會員</button>
-          <div className="w-90 h-90">
+          <div className="adminFilter">
+            <input
+              type="text"
+              placeholder="User Name"
+              value={searchWord}
+              onChange={(e) => {
+                setSearchWord(e.target.value);
+              }}
+            />
+            <button onClick={searchAllMember}>All Member</button>
+            <button onClick={searchTrue}>Enable Member</button>
+            <button onClick={searchFalse}>Disable Member</button>
+          </div>
+          <div className="w-90 h-80">
             <table className="h-100">
               <thead>
                 <tr>

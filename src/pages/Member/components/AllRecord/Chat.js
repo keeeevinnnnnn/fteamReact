@@ -55,11 +55,12 @@ const Chat = ({ selectItem }) => {
     if (selectItem !== 'CHAT') {
       // 避免按了CHAT又馬上跳換頁面
       clearTimeout(scrollStop.current);
-      return;
+      return () => clearTimeout(scrollStop.current);
     }
     scrollStop.current = setTimeout(() => {
       scrollToBottom();
     }, 500);
+    return () => clearTimeout(scrollStop.current);
   }, [selectItem]);
 
   // 拿到所有過去聊天紀錄
