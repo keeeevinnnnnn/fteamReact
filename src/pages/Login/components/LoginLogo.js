@@ -2,11 +2,12 @@ import React from 'react';
 // 文字動畫
 import Texty from 'rc-texty';
 import 'rc-texty/assets/index.css';
+import '../styles/LoginLogo.scss'
 
 const LoginLogo = ({ loginLogoText }) => {
   return (
     <>
-      <div className="LoginLogoBox pt-3">
+      <div className="LoginLogoBox">
         <Texty
           className="text-center LoginLogoBoxText"
           interval={50}

@@ -2,6 +2,8 @@ import React, { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import LoginLogo from './LoginLogo';
+import '../styles/Btn8.scss';
+import '../styles/Register.scss';
 
 const Register = ({
   setLoginCard,
@@ -38,28 +40,20 @@ const Register = ({
   const [fields, setFields] = useState({
     avatar: '',
     name: '',
-    nickname: '',
-    mobile: '',
-    birthday: '',
     account: '',
     password: '',
     confirmPassword: '',
     email: '',
-    address: '',
   });
 
   // 結束時清空欄位用
   const endRegister = {
     avatar: '',
     name: '',
-    nickname: '',
-    mobile: '',
-    birthday: '',
     account: '',
     password: '',
     confirmPassword: '',
     email: '',
-    address: '',
   };
 
   // onChange存值到fields
@@ -153,193 +147,112 @@ const Register = ({
   };
   return (
     <>
-      <div
-        className={`h-100 w-100 d-flex justify-content-center LoginBack ${registerNone}`}
-      >
-        <div className="LoginInputsBox col-12">
-          <LoginLogo loginLogoText={loginLogoText} />
-          <form
-            className="LoginForm"
-            // 表單點擊
-            onSubmit={handleSubmit}
-            // 表單檢查
-            onInvalid={handleInvalid}
-            // 表單有更動時
-            onChange={handleFormChange}
-          >
-            <div className="LoginFormBox d-flex justify-content-around flex-wrap">
-              <div className="col-12 d-flex justify-content-center align-items-center mb-3">
-                <label className="text-center LoginFormAccountPassword rwdNoneBlock">
-                  Avatar
-                </label>
-                {/* 頭貼input隱藏 */}
-                <input
-                  type="file"
-                  name="avatar"
-                  ref={registerAvatarRef}
-                  onChange={uploadAvatar}
-                  hidden
-                />
-                <div className="w-25 d-flex justify-content-center">
-                  <img
-                    // 有選頭貼就給頭貼照片 否則給預設照片
-                    src={
-                      memberAvatar === ''
-                        ? '../../imgs/GaryComponents/images.png'
-                        : `http://localhost:3000/avatar/${memberAvatar}`
-                    }
-                    // src="../../imgs/GaryComponents/images.png"
-                    alt=""
-                    className="w-50 cursorpointer loginAvatar rwdNoneBlock"
-                    // 點擊頭貼input
-                    onClick={clickAvatar}
-                  />
-                </div>
-              </div>
-              <div className="col-9 col-xl-5 d-flex justify-content-around mb-3">
-                <label className="text-center LoginFormAccountPassword">
-                  Name
-                </label>
-                <input
-                  type="text"
-                  name="name"
-                  required // 必填欄位
-                  value={fields.name}
-                  onChange={handleFieldsChange}
-                  onClick={clickErrorText}
-                  className="text-center w-50 errorInputName"
-                />
-                <span className="errorTextName">{fieldErrors.name}</span>
-              </div>
-              <div className="col-9 col-xl-5 d-flex justify-content-around mb-3">
-                <label className="text-center LoginFormAccountPassword rwdNoneBlock">
-                  Nickname
-                </label>
-                <input
-                  type="text"
-                  name="nickname"
-                  value={fields.nickname}
-                  onChange={handleFieldsChange}
-                  className="text-center w-50 rwdNoneBlock"
-                />
-              </div>
-              <div className="col-9 col-xl-5 d-flex justify-content-around mb-3">
-                <label className="text-center LoginFormAccountPassword rwdNoneBlock">
-                  Mobile
-                </label>
-                <input
-                  type="nameber"
-                  name="mobile"
-                  value={fields.mobile}
-                  onChange={handleFieldsChange}
-                  className="text-center w-50 rwdNoneBlock"
-                />
-              </div>
-              <div className="col-9 col-xl-5 d-flex justify-content-around mb-3">
-                <label className="text-center LoginFormAccountPassword rwdNoneBlock">
-                  Birthday
-                </label>
-                <input
-                  type="date"
-                  name="birthday"
-                  value={fields.birthday}
-                  onChange={handleFieldsChange}
-                  className="text-center w-50 rwdNoneBlock"
-                />
-              </div>
-              <div className="col-9 col-xl-8 mb-3 d-flex justify-content-around">
-                <label className="text-center LoginFormAccountPassword col-xl-3">
-                  Account
-                </label>
-                <input
-                  type="text"
-                  name="account"
-                  required
-                  value={fields.account}
-                  onChange={handleFieldsChange}
-                  onClick={clickErrorText}
-                  className="text-center w-50 errorInputAccount"
-                />
-                <span className="errorTextAccount">{fieldErrors.account}</span>
-              </div>
-              <div className="col-9 col-xl-8 d-flex mb-3 d-flex justify-content-around">
-                <label className="text-center LoginFormAccountPassword col-xl-3">
-                  Password
-                </label>
-                <div className="w-50">
-                  <input
-                    type="password"
-                    name="password"
-                    required
-                    value={fields.password}
-                    onChange={handleFieldsChange}
-                    onClick={clickErrorText}
-                    className="text-center w-100 mb-3 errorInputPassword"
-                    autoComplete="on"
-                  />
-                  <span className="errorTextPassword">
-                    {fieldErrors.password}
-                  </span>
-                  <input
-                    type="password"
-                    name="confirmPassword"
-                    required
-                    value={fields.confirmPassword}
-                    onChange={handleFieldsChange}
-                    onClick={clickErrorText}
-                    className="text-center w-100 errorInputPassword"
-                    autoComplete="on"
-                  />
-                  <span className="errorTextPassword">
-                    {fieldErrors.confirmPassword}
-                  </span>
-                </div>
-              </div>
-              <div className="col-9 col-xl-8 mb-3 d-flex justify-content-around">
-                <label className="text-center LoginFormAccountPassword col-xl-3">
-                  Email
-                </label>
-                <input
-                  type="email"
-                  name="email"
-                  required
-                  value={fields.email}
-                  onChange={handleFieldsChange}
-                  onClick={clickErrorText}
-                  className="text-center w-100 errorInputEmail"
-                />
-                <span className="errorTextEmail">{fieldErrors.email}</span>
-              </div>
-              <div className="col-8 mb-3 d-flex justify-content-around">
-                <label className="text-center LoginFormAccountPassword col-6 col-xl-3 rwdNoneBlock">
-                  Address
-                </label>
-                <textarea
-                  type="text"
-                  name="address"
-                  value={fields.address}
-                  onChange={handleFieldsChange}
-                  className="text-center w-100 rwdNoneBlock"
-                />
-              </div>
-              <div className="col-12 col-xl-8 d-flex justify-content-around pt-3">
-                <button
-                  className="cursorpointer custom-btn btn-8"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    setLoginCard('');
-                    setLoginLogoText('Login');
-                  }}
-                >
-                  <span className="text-center">Back To Login</span>
-                </button>
-                <button className="custom-btn btn-8">
-                  <span>CONFIRM</span>
-                </button>
-              </div>
-            </div>
-          </form>
+      <div className={`h-100 w-100 Register LoginBack ${registerNone}`}>
+        <div className="h-20 w-100">
+          <LoginLogo />
         </div>
+        <form
+          className="h-80 w-100 text-white text-center"
+          // 表單點擊
+          onSubmit={handleSubmit}
+          // 表單檢查
+          onInvalid={handleInvalid}
+          // 表單有更動時
+          onChange={handleFormChange}
+        >
+          <div className="w-100 d-flex justify-content-center mb-2">
+            <img
+              // 有選頭貼就給頭貼照片 否則給預設照片
+              src={
+                memberAvatar === ''
+                  ? '../../imgs/GaryComponents/images.png'
+                  : `http://localhost:3000/avatar/${memberAvatar}`
+              }
+              alt=""
+              className="cursorpointer w-12"
+              // 點擊頭貼input
+              onClick={clickAvatar}
+            />
+          </div>
+          <input
+            type="file"
+            name="avatar"
+            ref={registerAvatarRef}
+            onChange={uploadAvatar}
+            hidden
+          />
+          <div className="w-100 d-flex">
+            <div className="col-6">
+              <h3>Name</h3>
+              <input
+                type="text"
+                name="name"
+                required // 必填欄位
+                value={fields.name}
+                onChange={handleFieldsChange}
+                onClick={clickErrorText}
+              />
+              <p>{fieldErrors.name}</p>
+              <h3>Account</h3>
+              <input
+                type="text"
+                name="account"
+                required
+                value={fields.account}
+                onChange={handleFieldsChange}
+                onClick={clickErrorText}
+              />
+              <p>{fieldErrors.account}</p>
+            </div>
+            <div className="col-6">
+              <h3>Password</h3>
+              <input
+                type="password"
+                name="password"
+                required
+                value={fields.password}
+                onChange={handleFieldsChange}
+                onClick={clickErrorText}
+                autoComplete="on"
+              />
+              <p>{fieldErrors.password}</p>
+              <h3>Again</h3>
+              <input
+                type="password"
+                name="confirmPassword"
+                required
+                value={fields.confirmPassword}
+                onChange={handleFieldsChange}
+                onClick={clickErrorText}
+                autoComplete="on"
+              />
+              <p>{fieldErrors.confirmPassword}</p>
+            </div>
+          </div>
+          <h3>Email</h3>
+          <input
+            type="email"
+            name="email"
+            required
+            value={fields.email}
+            onChange={handleFieldsChange}
+            onClick={clickErrorText}
+          />
+          <p>{fieldErrors.email}</p>
+          <div className="h-20 w-100 d-flex justify-content-around">
+            <button
+              className="buttonChangePage h-25"
+              onClick={(e) => {
+                e.preventDefault();
+                setLoginCard('');
+                setLoginLogoText('Login');
+              }}
+            >
+              Back to Login
+            </button>
+            <button className="buttonChangePage h-25">CONFIRM</button>
+          </div>
+        </form>
       </div>
     </>
   );

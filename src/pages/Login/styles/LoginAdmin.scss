@@ -1,8 +1,4 @@
-* {
-    // outline: 1px solid red;
-}
-
-.LoginMember {
+.LoginAdmin {
     background: linear-gradient(to right, #2D2D2D 0%, #2D2D2D 50%, #555555 100%);
     h3 {
         font-size: 2rem;
@@ -22,11 +18,6 @@
 
     input:focus {
         outline: none;
-    }
-
-    svg {
-        width: 5%;
-        margin: 5%;
     }
 
     .buttonChangePage {

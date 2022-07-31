@@ -1,11 +1,13 @@
-* {
-    // outline: 1px solid red;
-}
-
-.LoginMember {
+.Register {
     background: linear-gradient(to right, #2D2D2D 0%, #2D2D2D 50%, #555555 100%);
+    img {
+        object-fit: cover;
+        border-radius: 50%;
+        aspect-ratio: 1/1;
+    }
+
     h3 {
-        font-size: 2rem;
+        font-size: 1.5rem;
         font-weight: 600;
     }
 
@@ -22,11 +24,6 @@
 
     input:focus {
         outline: none;
-    }
-
-    svg {
-        width: 5%;
-        margin: 5%;
     }
 
     .buttonChangePage {

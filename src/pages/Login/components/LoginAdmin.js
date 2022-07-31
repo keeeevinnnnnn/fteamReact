@@ -1,6 +1,8 @@
 import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import '../styles/Btn8.scss';
+import '../styles/LoginAdmin.scss';
 import LoginLogo from './LoginLogo';
 import AuthContext from '../../../components/AuthContext';
 
@@ -72,81 +74,55 @@ const LoginAdmin = ({ setLoginCard, loginLogoText }) => {
   }
   return (
     <>
-      <div className="h-100 w-100 d-flex justify-content-center LoginBack">
-        <div className="LoginInputsBox col-12">
+      <div className="h-100 w-100 LoginAdmin LoginBack">
+        <div className="h-20 w-100">
           <LoginLogo loginLogoText={loginLogoText} />
-          <form
-            // 表單點擊
-            onSubmit={handleSubmit}
-            // 表單檢查
-            onInvalid={handleInvalid}
-            // 表單有更動時
-            onChange={handleFormChange}
-            className="LoginForm"
+        </div>
+        <form
+          className="h-40 w-100 text-white text-center"
+          // 表單點擊
+          onSubmit={handleSubmit}
+          // 表單檢查
+          onInvalid={handleInvalid}
+          // 表單有更動時
+          onChange={handleFormChange}
+        >
+          <h3>Admin Account</h3>
+          <input
+            type="text"
+            placeholder="Admin Account"
+            name="account"
+            required
+            value={fields.account}
+            onChange={handleFieldsChange}
+            onClick={clickErrorText}
+          />
+          <p>{fieldErrors.account}</p>
+          <h3>Admin Password</h3>
+          <input
+            type={adminSeePassword ? 'text' : 'password'}
+            placeholder="Admin Password"
+            name="password"
+            required
+            value={fields.password}
+            onChange={handleFieldsChange}
+            onClick={clickErrorText}
+            autoComplete="on"
+          />
+          <p>{fieldErrors.password}</p>
+          <button className="custom-btn btn-8">
+            <span>LOGIN</span>
+          </button>
+        </form>
+        <div className="h-20 w-100 d-flex justify-content-center">
+          <button
+            className="buttonChangePage h-25"
+            onClick={() => {
+              setLoginCard('');
+            }}
           >
-            <div className="LoginFormBox">
-              <label className="w-100 text-center mt-3 LoginFormAccountPassword">
-                Admin Account
-              </label>
-              <div className="d-flex justify-content-center mt-3">
-                <input
-                  type="text"
-                  placeholder="Admin Account"
-                  className="text-center"
-                  name="account"
-                  required
-                  value={fields.account}
-                  onChange={handleFieldsChange}
-                  onClick={clickErrorText}
-                />
-                <span className="loginErrorText">{fieldErrors.account}</span>
-              </div>
-              <label className="w-100 text-center mt-5 LoginFormAccountPassword">
-                Admin Password
-              </label>
-              <div className="d-flex justify-content-center mt-3 d-flex align-items-center">
-                <input
-                  type={adminSeePassword ? 'text' : 'password'}
-                  placeholder="Admin Password"
-                  className="text-center passwordInput"
-                  name="password"
-                  required
-                  value={fields.password}
-                  onChange={handleFieldsChange}
-                  onClick={clickErrorText}
-                  autoComplete="on"
-                />
-                <span className="loginErrorText">{fieldErrors.password}</span>
-                <img
-                  src={
-                    adminSeePassword
-                      ? '../../imgs/GaryComponents/eyes_on.png'
-                      : '../../imgs/GaryComponents/eyes_off.png'
-                  }
-                  alt=""
-                  className="cursorpointer passwordEyes"
-                  onClick={() => {
-                    setAdminSeePassword(!adminSeePassword);
-                  }}
-                />
-              </div>
-            </div>
-            <div className="mt-5 d-flex justify-content-center">
-              <button className="custom-btn btn-8">
-                <span>LOGIN</span>
-              </button>
-            </div>
-            <div className="col-12 d-flex justify-content-center ForgotAdmin">
-              <p
-                className="cursorpointer mt-5"
-                onClick={() => {
-                  setLoginCard('');
-                }}
-              >
-                Member
-              </p>
-            </div>
-          </form>
+            Admin
+          </button>
         </div>
       </div>
     </>
