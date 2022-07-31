@@ -7,7 +7,7 @@ const OrderCard = (props) => {
   const [allDetailItems, setAllDetailItems] = useState([]);
   const [showDetail, setShowDetail] = useState(false);
   const isShowDetailHandler = () => {
-    console.log(singleOrder);
+    // console.log(singleOrder);
     axios
       .get(`http://localhost:3000/orders/detail?orderID=${singleOrder.sid}`)
       .then((res) => {

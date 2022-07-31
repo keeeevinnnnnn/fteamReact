@@ -27,7 +27,7 @@ const OrderDetailCard = (props) => {
                 </div>
                 {/* item_type */}
                 <div className="w-100 h-33 fw-bold text-end px-3">
-                  {v.item_type}
+                  {v.item_type.toUpperCase()}
                 </div>
                 <div className="w-100 h-33 fw-bold text-end px-3">
                   $ {v.price}
