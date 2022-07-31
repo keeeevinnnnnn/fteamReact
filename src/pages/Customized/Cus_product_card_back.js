@@ -5,17 +5,19 @@ import { productData } from './ProductData';
 import Cus_tab from './cus_component/Cus_tab';
 import './Cus_product_card_back.scss';
 import { Scale } from 'chart.js';
+import axios from 'axios';
 
 function Cus_product_card_back(props) {
+  const { lastInsertID, setLastInsertID } = props;
   const cuscanvas = useRef(null);
   const [bgimg, setBgimg] = useState('');
   const [bgimgName, setBgimgName] = useState('style_01');
   const [bgcolor, setBgcolor] = useState('#123456');
   const [pattern, setPattern] = useState('');
   const [patternName, setPatternName] = useState('Parallel');
-  const [sticker,setSticker]=useState('');
-  const [stickerName,setStickerName]=useState('Waves')
-  const [text, setText]=useState('SAMPLE')
+  const [sticker, setSticker] = useState('');
+  const [stickerName, setStickerName] = useState('Waves');
+  const [text, setText] = useState('SAMPLE');
 
   useEffect(() => {
     const backimg = new Image();
@@ -33,10 +35,9 @@ function Cus_product_card_back(props) {
     backimg.onload = () => {
       setBgimg(backimg);
       setPattern(patternimg);
-      setSticker(stickerimg)
-              
+      setSticker(stickerimg);
     };
-  }, [bgimgName,patternName,stickerName]);
+  }, [bgimgName, patternName, stickerName]);
 
   useEffect(() => {
     // const ctx = cuscanvas.current.getContext("2d");
@@ -61,21 +62,45 @@ function Cus_product_card_back(props) {
       ctx.drawImage(sticker, 80, 50, 400, 400);
 
       //字型顏色//
-      ctx.font = "bold 24px Montserrat";
+      ctx.font = 'bold 24px Montserrat';
       ctx.fillStyle = 'white';
-      ctx.textAlign = "left";
+      ctx.textAlign = 'left';
       ctx.strokeStyle = 'white';
-      ctx.fillText(text, 200, 100); 
-      ctx.fillText(text, 200, 115); 
-      ctx.fillText(text, 200, 130); 
-      ctx.font = "bold 48px Montserrat";
-     
+      ctx.fillText(text, 200, 100);
+      ctx.fillText(text, 200, 115);
+      ctx.fillText(text, 200, 130);
+      ctx.font = 'bold 48px Montserrat';
+
       ctx.strokeText(text, 200, 90);
       ctx.strokeText(text, 200, 130);
       ctx.strokeText(text, 200, 170);
-      
     }
-  }, [bgimg, cuscanvas, bgcolor, pattern,text]);
+  }, [bgimg, cuscanvas, bgcolor, pattern, text]);
+
+  const addback = () => {
+    // console.log(frontcolor)
+    axios.post('http://localhost:3000/custom/back', {
+      sid: lastInsertID,
+      back_style: bgimgName,
+      back_pattern: patternName,
+      back_color: bgcolor,
+      back_text: text,
+      back_sticker: stickerName,
+    });
+  };
+
+  function handleDataUrl() {
+    let link = document.createElement('a');
+    console.log(link);
+    link.download = 'yourboard.png';
+    link.href = cuscanvas.current.toDataURL('image/png');
+    link.click();
+
+    axios.post('http://localhost:3000/custom/upload', {
+      sid: lastInsertID,
+      imgData: cuscanvas.current.toDataURL('image/png'),
+    });
+  }
 
   return (
     <div className="w-100 vh-100 d-flex justify-content-end align-items-end">
@@ -97,20 +122,14 @@ function Cus_product_card_back(props) {
                 <button className="skbtn-prev"></button>
               </Link>
 
-              <Link to={'/customized/create/detail'}>
+              <Link to={'/customized/create/confirm'} onClick={addback}>
                 <button className="skbtn-next"></button>
               </Link>
             </div>
 
             <div className="cus_card flex-column">
-
-
               <div className="cus_product_card">
-                <div className="d-flex">
-                  <p>{bgcolor}_</p>
-                  <p>{bgimgName}_</p>
-                  <p>{patternName}</p>
-                </div>
+                <div className="d-flex"></div>
 
                 <Cus_tab
                   bgcolor={bgcolor}
@@ -122,6 +141,13 @@ function Cus_product_card_back(props) {
                   setStickerName={setStickerName}
                   setText={setText}
                 />
+
+                <button
+                  className="btn btn-outline-dark"
+                  onClick={handleDataUrl}
+                >
+                  Confirm
+                </button>
               </div>
             </div>
           </div>
