@@ -1,7 +1,10 @@
 .LoginLogoBox {
-    height: 15%;
+    height: 100%;
     .LoginLogoBoxText {
-        font-size: 3rem;
+        color: white;
+        width: 100%;
+        font-size: 4.5rem;
         font-weight: 600;
+        text-shadow: 4px 4px 4px var(--main);
     }
 }

@@ -24,6 +24,10 @@
         outline: none;
     }
 
+    P {
+        color: lightcoral;
+    }
+
     svg {
         width: 5%;
         margin: 5%;
@@ -35,7 +39,6 @@
         box-shadow: 3px 3px 0 0 #61dafb82;
         border: none;
         transition: 1s ease;
-        margin-right: 16px;
         margin-top: 24px;
         text-decoration: none;
     }

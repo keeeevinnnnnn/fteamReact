@@ -1,9 +1,9 @@
 import React, { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import LoginLogo from './LoginLogo';
 import '../styles/Btn8.scss';
 import '../styles/Register.scss';
+import LoginLogo from './LoginLogo';
 
 const Register = ({
   setLoginCard,
@@ -149,7 +149,7 @@ const Register = ({
     <>
       <div className={`h-100 w-100 Register LoginBack ${registerNone}`}>
         <div className="h-20 w-100">
-          <LoginLogo />
+          <LoginLogo loginLogoText={loginLogoText} />
         </div>
         <form
           className="h-80 w-100 text-white text-center"
@@ -233,6 +233,7 @@ const Register = ({
           <input
             type="email"
             name="email"
+            className="w-40"
             required
             value={fields.email}
             onChange={handleFieldsChange}
@@ -241,7 +242,7 @@ const Register = ({
           <p>{fieldErrors.email}</p>
           <div className="h-20 w-100 d-flex justify-content-around">
             <button
-              className="buttonChangePage h-25"
+              className="buttonChangePage h-30"
               onClick={(e) => {
                 e.preventDefault();
                 setLoginCard('');
@@ -250,7 +251,7 @@ const Register = ({
             >
               Back to Login
             </button>
-            <button className="buttonChangePage h-25">CONFIRM</button>
+            <button className="buttonChangePage h-30">CONFIRM</button>
           </div>
         </form>
       </div>

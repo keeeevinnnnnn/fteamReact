@@ -121,7 +121,7 @@ const LoginAdmin = ({ setLoginCard, loginLogoText }) => {
               setLoginCard('');
             }}
           >
-            Admin
+            Member
           </button>
         </div>
       </div>

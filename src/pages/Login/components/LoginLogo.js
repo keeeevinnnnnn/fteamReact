@@ -7,7 +7,7 @@ import '../styles/LoginLogo.scss'
 const LoginLogo = ({ loginLogoText }) => {
   return (
     <>
-      <div className="LoginLogoBox">
+      <div className="LoginLogoBox d-flex align-items-center">
         <Texty
           className="text-center LoginLogoBoxText"
           interval={50}
