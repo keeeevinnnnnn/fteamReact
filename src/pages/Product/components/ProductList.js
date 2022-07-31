@@ -1,13 +1,40 @@
 import React, { useState } from 'react';
 import '../styles/ProductMain.scss';
 import axios from '../commons/axios';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const ProductList = (props) => {
   const { sid, img, name, brand, price } = props;
   // 收藏按鈕開關
   const [heart, setHeart] = useState(false);
+  // 收藏成功提示訊息設定
+  const favoriteSuccess = () => {
+    return toast.success('Add Favorites Success', {
+      position: 'top-center',
+      autoClose: 1500,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  };
 
-  // 收藏商品
+  // 取消收藏成功提示訊息設定
+  const favoriteError = () => {
+    return toast.error('Cancel Favorites Success', {
+      position: 'top-center',
+      autoClose: 1500,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  };
+
+  // 收藏商品與取消收藏商品
   const getFavorites = () => {
     const addFavorites = {
       sid: sid,
@@ -37,6 +64,7 @@ const ProductList = (props) => {
             id="heartTrue"
             onClick={() => {
               getFavorites();
+              favoriteSuccess();
               setHeart(!heart);
             }}
           >
@@ -57,6 +85,8 @@ const ProductList = (props) => {
             }}
             id="heartFalse"
             onClick={() => {
+              getFavorites();
+              favoriteError();
               setHeart(!heart);
             }}
           >
@@ -97,6 +127,18 @@ const ProductList = (props) => {
           <span>$ {price}</span>
         </p>
       </div>
+      <ToastContainer
+        position="top-center"
+        autoClose={2000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
+      />
     </div>
   );
 };
