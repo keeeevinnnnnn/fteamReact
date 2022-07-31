@@ -27,7 +27,7 @@ const Lesson_teacher = () => {
           </div>
         </div>
 
-        <div className="col-sm-5   cooler_teacher_card   border ">
+        <div className="col-sm-5   cooler_teacher_card   border mb-4">
           <div className="h-55 ">
             <div className="cooler_teacher_log h-100 d-flex">
               <div className="cooler_teacher_card_head_circle w-55 ">
@@ -50,7 +50,7 @@ const Lesson_teacher = () => {
           </div>
         </div>
 
-        <div className="col-sm-5   cooler_teacher_card   border ">
+        <div className="col-sm-5   cooler_teacher_card   border mb-4">
           <div className="h-55 ">
             <div className="cooler_teacher_log h-100 d-flex">
               <div className="cooler_teacher_card_head_circle w-55 ">
@@ -73,7 +73,7 @@ const Lesson_teacher = () => {
           </div>
         </div>
 
-        <div className="col-sm-5   cooler_teacher_card   border ">
+        <div className="col-sm-5   cooler_teacher_card   border mb-4">
           <div className="h-55 ">
             <div className="cooler_teacher_log h-100 d-flex">
               <div className="cooler_teacher_card_head_circle w-55 ">
