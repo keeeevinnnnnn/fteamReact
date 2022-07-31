@@ -22,7 +22,12 @@
         aspect-ratio: 1/1;
     }
     h3 {
+        color: var(--main);
         margin-bottom: 0;
+    }
+    span {
+        color: white;
+        font-size: 80%;
     }
     form {
         position: absolute;

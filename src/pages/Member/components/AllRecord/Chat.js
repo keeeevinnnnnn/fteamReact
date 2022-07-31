@@ -103,13 +103,13 @@ const Chat = () => {
           <div className="d-flex align-items-center pt-2 pb-2">
             <img src={`http://localhost:3000/avatar/${img}`} alt="" />
             <h3 style={{ marginLeft: '1%' }}>
-              {name} :<span style={{ marginLeft: '5px' }}>{message}</span>
+              {name}<span> : {message}</span>
             </h3>
           </div>
         ) : (
           <div className="d-flex justify-content-end align-items-center pt-2 pb-2">
             <h3 style={{ marginRight: '1%' }}>
-              <span style={{ marginRight: '5px' }}>{message}</span>:
+              <span style={{ marginRight: '5px' }}>{message} :</span>
             </h3>
             <img src={`http://localhost:3000/avatar/${img}`} alt="" />
           </div>
@@ -134,14 +134,14 @@ const Chat = () => {
                       alt=""
                     />
                     <h3 style={{ marginLeft: '1%' }}>
-                      {v.mem_nickname ? v.mem_nickname : v.mem_name} :
-                      <span style={{ marginLeft: '5px' }}>{v.message}</span>
+                      {v.mem_nickname ? v.mem_nickname : v.mem_name}
+                      <span> : {v.message}</span>
                     </h3>
                   </div>
                 ) : (
                   <div className="d-flex justify-content-end align-items-center pt-2 pb-2">
                     <h3 style={{ marginRight: '1%' }}>
-                      <span style={{ marginRight: '5px' }}>{v.message}</span>:
+                      <span style={{ marginRight: '5px' }}>{v.message} : </span>
                     </h3>
                     <img
                       src={`http://localhost:3000/avatar/${v.mem_avatar}`}
