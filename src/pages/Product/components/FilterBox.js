@@ -536,9 +536,9 @@ const FilterBox = (props) => {
           </div>
         </div>
 
-        <div className="col-2 d-flex search">
+        <div className="col-2 d-flex kevinSearch">
           <input
-            className="col-10 search-input"
+            className="col-10 kevinSearch-input"
             type="search"
             placeholder=" Search"
             aria-label="Search"
@@ -550,7 +550,7 @@ const FilterBox = (props) => {
               setSearchInput(!searchInput);
             }}
           />
-          <button className="col-2 search-btn">
+          <button className="col-2 kevinSearch-btn">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-6 w-6"
