@@ -14,7 +14,6 @@ import { MemberContext } from '../../../../App';
 import '../../styles/Chat.scss';
 
 const Chat = ({ selectItem }) => {
-  console.log(15987);
   // 拿到token 存資料用
   const { token } = useContext(AuthContext);
   // 拿到使用者資訊

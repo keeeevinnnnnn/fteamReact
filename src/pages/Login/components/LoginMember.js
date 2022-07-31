@@ -121,6 +121,7 @@ const LoginMember = ({
                   value={fields.password}
                   onChange={handleFieldsChange}
                   onClick={clickErrorText}
+                  autoComplete="on"
                 />
                 <span className="loginErrorText">{fieldErrors.password}</span>
                 <img
