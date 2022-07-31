@@ -195,7 +195,7 @@ const Chat = ({ selectItem }) => {
         >
           <input
             name="message"
-            onChange={(e) => onTextChange(e)}
+            onChange={onTextChange}
             value={messageState.message}
             placeholder="Say something"
           />
