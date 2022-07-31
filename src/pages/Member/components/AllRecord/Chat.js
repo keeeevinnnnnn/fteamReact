@@ -12,7 +12,7 @@ import AuthContext from '../../../../components/AuthContext';
 import { MemberContext } from '../../../../App';
 import '../../styles/Chat.scss';
 
-const Chat = () => {
+const Chat = ({ selectItem }) => {
   // 拿到token 存資料用
   const { token } = useContext(AuthContext);
   // 拿到使用者資訊
@@ -33,11 +33,29 @@ const Chat = () => {
 
   const socketRef = useRef(null);
 
-  //   const scrollDown = useRef(null);
+  // 讓聊天室置底
+  const scrollDown = useRef(null);
+  const scrollToBottom = () => {
+    if (!scrollDown.current) {
+      return;
+    }
+    console.log(456);
+    scrollDown.current.scrollIntoView({
+      behavior: 'smooth',
+      block: 'end',
+      inline: 'nearest',
+    });
+  };
 
-  //   const scrollToBottom = () => {
-  //     scrollDown.current.scrollIntoView(false);
-  //   };
+  // 因為有新訊息時才呼叫置底涵式，若沒新訊息，當使用者點擊CHAT頁面就先呼叫一次
+  useEffect(() => {
+    if (selectItem !== 'CHAT') {
+      return;
+    }
+    setTimeout(() => {
+      scrollToBottom();
+    }, 500);
+  }, [selectItem]);
 
   // 拿到所有過去聊天紀錄
   useEffect(() => {
@@ -47,7 +65,8 @@ const Chat = () => {
   }, []);
 
   useEffect(() => {
-    // scrollToBottom();
+    // 呼叫聊天室置底的涵式
+    scrollToBottom();
     // 與聊天室Sever的連接
     socketRef.current = io.connect('http://localhost:4000');
     socketRef.current.on('message', ({ name, message, sid, img }) => {
@@ -104,7 +123,7 @@ const Chat = () => {
       <Fragment key={uuidv4()}>
         {/* 判斷對話是不是使用者本人 */}
         {sid !== member.sid ? (
-          <div className="d-flex align-items-center pt-2 pb-2">
+          <div className="d-flex align-items-center pt-2 pb-2" ref={scrollDown}>
             <img src={`http://localhost:3000/avatar/${img}`} alt="" />
             <h3 style={{ marginLeft: '1%' }}>
               {name}
@@ -112,7 +131,10 @@ const Chat = () => {
             </h3>
           </div>
         ) : (
-          <div className="d-flex justify-content-end align-items-center pt-2 pb-2">
+          <div
+            className="d-flex justify-content-end align-items-center pt-2 pb-2"
+            ref={scrollDown}
+          >
             <h3 style={{ marginRight: '1%' }}>
               <span style={{ marginRight: '5px' }}>{message} :</span>
             </h3>
@@ -133,7 +155,10 @@ const Chat = () => {
               <Fragment key={uuidv4()}>
                 {/* 判斷對話是不是使用者本人 */}
                 {v.mem_sid !== member.sid ? (
-                  <div className="d-flex align-items-center pt-2 pb-2">
+                  <div
+                    className="d-flex align-items-center pt-2 pb-2"
+                    ref={scrollDown}
+                  >
                     <img
                       src={`http://localhost:3000/avatar/${v.mem_avatar}`}
                       alt=""
@@ -144,7 +169,10 @@ const Chat = () => {
                     </h3>
                   </div>
                 ) : (
-                  <div className="d-flex justify-content-end align-items-center pt-2 pb-2">
+                  <div
+                    className="d-flex justify-content-end align-items-center pt-2 pb-2"
+                    ref={scrollDown}
+                  >
                     <h3 style={{ marginRight: '1%' }}>
                       <span style={{ marginRight: '5px' }}>{v.message} : </span>
                     </h3>
