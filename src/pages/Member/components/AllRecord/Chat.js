@@ -33,11 +33,11 @@ const Chat = () => {
 
   const socketRef = useRef(null);
 
-//   const scrollDown = useRef(null);
+  //   const scrollDown = useRef(null);
 
-//   const scrollToBottom = () => {
-//     scrollDown.current.scrollIntoView(false);
-//   };
+  //   const scrollToBottom = () => {
+  //     scrollDown.current.scrollIntoView(false);
+  //   };
 
   // 拿到所有過去聊天紀錄
   useEffect(() => {
@@ -66,6 +66,10 @@ const Chat = () => {
     // 阻擋表單送出預設行為
     e.preventDefault();
     const { message } = messageState;
+    // 如果沒有訊息就中斷
+    if (!message) {
+      return;
+    }
     // 把訊息存進資料庫
     axios
       .post(
@@ -103,7 +107,8 @@ const Chat = () => {
           <div className="d-flex align-items-center pt-2 pb-2">
             <img src={`http://localhost:3000/avatar/${img}`} alt="" />
             <h3 style={{ marginLeft: '1%' }}>
-              {name}<span> : {message}</span>
+              {name}
+              <span> : {message}</span>
             </h3>
           </div>
         ) : (
