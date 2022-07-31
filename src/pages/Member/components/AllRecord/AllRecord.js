@@ -4,6 +4,7 @@ import '../../styles/AllRecord.scss';
 import Favorite from './Favorite';
 import Record from './Record';
 import Lesson from './Lesson';
+import Chat from './Chat';
 
 const AllRecord = () => {
   const [selectItem, setSelectItem] = useState('FAVORITE');
@@ -39,7 +40,9 @@ const AllRecord = () => {
             <div className="w-25">
               <Lesson />
             </div>
-            <div className="w-25 bg-light"></div>
+            <div className="w-25">
+              <Chat />
+            </div>
           </div>
         </div>
       </div>
