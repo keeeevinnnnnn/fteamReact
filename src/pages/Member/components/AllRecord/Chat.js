@@ -4,7 +4,7 @@ import axios from 'axios';
 import { v4 as uuidv4 } from 'uuid';
 import AuthContext from '../../../../components/AuthContext';
 import { MemberContext } from '../../../../App';
-// import '../../styles/Chat.scss';
+import '../../styles/Chat.scss';
 
 const Chat = () => {
   const { auth, token } = useContext(AuthContext);
@@ -91,7 +91,7 @@ const Chat = () => {
   console.log(123, chat);
 
   return (
-    <div className="h-100 d-flex justify-content-center">
+    <div className="h-100 d-flex justify-content-center pt-4 memberChat">
       <div className="h-90 w-70 bg-light">
         <div className="h-80">
           {chatall.map((v, i) => {
