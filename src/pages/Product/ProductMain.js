@@ -31,9 +31,12 @@ const ProductMain = () => {
     searchName: '',
   });
   const [messages, setMessages] = useState([]);
+
   const searchProducts = (text) => {
-    console.log('text=', text);
+    setFilter({ ...filter, searchName: text });
   };
+
+  console.log('filter==', filter);
 
   useEffect(() => {
     axios.post('/product', { filter }).then((res) => {
