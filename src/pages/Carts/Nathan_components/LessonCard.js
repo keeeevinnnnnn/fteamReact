@@ -25,7 +25,8 @@ const LessonCard = (props) => {
           <div className="w-90 h-25 text-center lesson-title">Begin</div>
           <div className="w-90 h-65 d-flex justify-content-center align-items-center">
             <span className="lesson-name-text">
-              {singleItem.duringtime_begin.slice(0, 10)}
+              {singleItem.duringtime_begin.slice(0, 8) +
+                (parseInt(singleItem.duringtime_begin.slice(8, 10)) + 1)}
             </span>
           </div>
         </div>
@@ -33,7 +34,8 @@ const LessonCard = (props) => {
           <div className="w-90 h-25 text-center lesson-title">End</div>
           <div className="w-90 h-65 d-flex justify-content-center align-items-center">
             <span className="lesson-name-text">
-              {singleItem.duringtime_end.slice(0, 10)}
+              {singleItem.duringtime_end.slice(0, 8) +
+                (parseInt(singleItem.duringtime_end.slice(8, 10)) + 1)}
             </span>
           </div>
         </div>

@@ -43,7 +43,7 @@ function OrderMuiTabs(props) {
                 onKeyPress={keyPressHandler}
                 className="search-txt"
                 type="text"
-                placeholder="Search :"
+                placeholder="No :"
                 value={orderSearch}
                 onChange={orderSearchHandler}
                 autoComplete="off"
