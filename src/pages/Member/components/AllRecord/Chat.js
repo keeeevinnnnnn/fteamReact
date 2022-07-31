@@ -48,12 +48,16 @@ const Chat = ({ selectItem }) => {
     });
   };
 
+  // 為了停止的setTimeout
+  const scrollStop = useRef(null);
   // 因為有新訊息時才呼叫置底涵式，若沒新訊息，當使用者點擊CHAT頁面就先呼叫一次
   useEffect(() => {
     if (selectItem !== 'CHAT') {
+      // 避免按了CHAT又馬上跳換頁面
+      clearTimeout(scrollStop.current);
       return;
     }
-    setTimeout(() => {
+    scrollStop.current = setTimeout(() => {
       scrollToBottom();
     }, 500);
   }, [selectItem]);
