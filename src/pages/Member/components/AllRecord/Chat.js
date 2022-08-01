@@ -40,47 +40,6 @@ const Chat = ({ selectItem }) => {
     imgInput.current.click();
   }
 
-  // 聊天室照片input值有變換時
-  async function uploadImg(e) {
-    if (!e.target.files[0]) {
-      return;
-    }
-    const data = new FormData();
-    data.append('chatimg', e.target.files[0]);
-    // 把照片存到後端資料夾
-    await axios
-      .post('http://localhost:3000/member/chatupload', data)
-      .then((res) => {
-        // 把照片檔名當訊息存進聊天室資料庫
-        axios.post(
-          'http://localhost:3000/member/chat',
-          {
-            message: res.data.filename,
-          },
-          {
-            // 發JWT一定要加這個headers
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
-
-        // 要在後端(message 自己設置的)那邊傳入{ name, message, sid, avatar, chatimg }
-        socketRef.current.emit('message', {
-          name: chatName,
-          sid: member.sid,
-          avatar: member.mem_avatar,
-          chatimg: res.data.filename,
-          message: '',
-        });
-
-        // 聊天訊息的input value清空
-        setMessageState({
-          message: '',
-        });
-      });
-  }
-
   // 連接socket用
   const socketRef = useRef(null);
 
@@ -143,6 +102,7 @@ const Chat = ({ selectItem }) => {
     // }
   }, [member]);
 
+  // 聊天訊息連接socket
   useEffect(() => {
     // 主要為了防止下方scrollbar置底涵式
     if (chat === []) {
@@ -192,7 +152,7 @@ const Chat = ({ selectItem }) => {
         }
       )
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
       });
     // 要在後端(message 自己設置的)那邊傳入{ name, message, sid, avatar }
     socketRef.current.emit('message', {
@@ -206,6 +166,47 @@ const Chat = ({ selectItem }) => {
     // 清空聊天訊息
     setMessageState({ message: '' });
   };
+
+  // 聊天室照片input值有變換時
+  async function uploadImg(e) {
+    if (!e.target.files[0]) {
+      return;
+    }
+    const data = new FormData();
+    data.append('chatimg', e.target.files[0]);
+    // 把照片存到後端資料夾
+    await axios
+      .post('http://localhost:3000/member/chatupload', data)
+      .then((res) => {
+        // 把照片檔名當訊息存進聊天室資料庫
+        axios.post(
+          'http://localhost:3000/member/chat',
+          {
+            message: res.data.filename,
+          },
+          {
+            // 發JWT一定要加這個headers
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+
+        // 要在後端(message 自己設置的)那邊傳入{ name, message, sid, avatar, chatimg }
+        socketRef.current.emit('message', {
+          name: chatName,
+          sid: member.sid,
+          avatar: member.mem_avatar,
+          chatimg: res.data.filename,
+          message: '',
+        });
+
+        // 聊天訊息的input value清空
+        setMessageState({
+          message: '',
+        });
+      });
+  }
 
   // 判斷對話中有沒有含http 有的話包成連結 沒有的話直接顯示
   // {[message].filter((v, i) => v.includes('http')).length !== 0 ? (
@@ -221,7 +222,6 @@ const Chat = ({ selectItem }) => {
   //  *! 2.再判斷該訊息是否為圖片檔名(jpg/png/gif)
   //  *! 3.最後判斷該訊息是否為連結(http)
   //  *! 4.上面都判斷完後才輸出成一般訊息
-
 
   // socket.io渲染聊天室
   const renderChat = () => {
