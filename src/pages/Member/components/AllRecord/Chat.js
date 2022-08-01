@@ -67,7 +67,14 @@ const Chat = ({ selectItem }) => {
     axios.get('http://localhost:3000/member/chat').then((res) => {
       setChatAll(res.data);
     });
-  }, []);
+    setChat([]);
+    if (selectItem === 'CHAT') {
+      scrollStop.current = setTimeout(() => {
+        scrollToBottom();
+      }, 500);
+      return () => clearTimeout(scrollStop.current);
+    }
+  }, [member]);
 
   useEffect(() => {
     // 呼叫聊天室置底的涵式
