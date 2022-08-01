@@ -84,7 +84,7 @@ function App() {
 
                     <Route
                       path="products/details/:productId"
-                      element={<ProductDetails data={data} setData={setData} />}
+                      element={<ProductDetails />}
                     />
                     <Route path="/customized" element={<Customized />} />
                     <Route
@@ -143,11 +143,7 @@ function App() {
                     />
                     <Route
                       path="/customized/create/detail/*"
-                      element={
-                        <Cus_product_detail
-                        
-                        />
-                      }
+                      element={<Cus_product_detail />}
                     />
                     <Route
                       path="/customized/explore"

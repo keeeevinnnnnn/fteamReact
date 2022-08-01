@@ -6,7 +6,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { Link } from 'react-router-dom';
 
 const ProductList = (props) => {
-  const { sid, img, name, brand, price, data, setData } = props;
+  const { sid, img, name, brand, price } = props;
 
   // 收藏按鈕開關
   const [heart, setHeart] = useState(false);
@@ -54,21 +54,6 @@ const ProductList = (props) => {
       res.data.success === 'true' ? favoriteSuccess() : favoriteError();
     });
   };
-  // const getProductDetails = () => {
-  //   const details = {
-  //     sid: sid,
-  //     img: img,
-  //     name: name,
-  //     brand: brand,
-  //     price: price,
-  //   };
-  //   axios.post('/product/details', details).then((res) => {
-  //     const productDetails = res.data;
-  //     console.log('productDetails.db==', productDetails.db[0]);
-  //     setData(productDetails.db[0]);
-  //     console.log('data=', data);
-  //   });
-  // };
 
   return (
     <div className="col-4 mt-5">
