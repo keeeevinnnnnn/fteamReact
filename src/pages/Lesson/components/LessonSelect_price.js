@@ -6,7 +6,7 @@ function LessonSelect_price() {
   return (
     <div className="w-35 ">
       <Form.Select aria-label="Default select example">
-        <option disabled={true}>PRICE</option>
+        <option>PRICE</option>
         <option value="1">One</option>
         <option value="2">Two</option>
         <option value="3">Three</option>
