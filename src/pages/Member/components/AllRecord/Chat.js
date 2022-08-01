@@ -40,6 +40,9 @@ const Chat = ({ selectItem }) => {
     if (!scrollDown.current) {
       return;
     }
+    if (selectItem !== 'CHAT') {
+      return;
+    }
     scrollDown.current.scrollIntoView({
       behavior: 'smooth',
       block: 'end',
