@@ -1,6 +1,16 @@
 .Register {
     background: linear-gradient(to right, #2D2D2D 0%, #2D2D2D 50%, #555555 100%);
+
+    .LoginLogoRWDbox {
+        height: 20%;
+    }
+
+    form {
+        height: 80%;
+    }
+
     img {
+        width: 12%;
         object-fit: cover;
         border-radius: 50%;
         aspect-ratio: 1/1;
@@ -31,6 +41,7 @@
     }
 
     .buttonChangePage {
+        height: 30%;
         padding: .5em 2em .5em 2em;
         background-color: var(--main);
         box-shadow: 3px 3px 0 0 #61dafb82;
@@ -45,5 +56,30 @@
         background-color: black;
         color: var(--main);
         border: 1px solid var(--main);
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    .Register {
+        .LoginLogoRWDbox {
+            display: none;
+        }
+
+        form {
+            height: 100%;
+            padding-top: 15%;
+        }
+
+        img {
+            width: 20%;
+        }
+
+        input {
+            width: 80%;
+        }
+
+        .buttonChangePage {
+            height: 40%;
+        }
     }
 }

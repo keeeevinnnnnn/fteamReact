@@ -148,11 +148,11 @@ const Register = ({
   return (
     <>
       <div className={`h-100 w-100 Register LoginBack ${registerNone}`}>
-        <div className="h-20 w-100">
+        <div className="w-100 LoginLogoRWDbox">
           <LoginLogo loginLogoText={loginLogoText} />
         </div>
         <form
-          className="h-80 w-100 text-white text-center"
+          className="w-100 text-white text-center"
           // 表單點擊
           onSubmit={handleSubmit}
           // 表單檢查
@@ -169,7 +169,7 @@ const Register = ({
                   : `http://localhost:3000/avatar/${memberAvatar}`
               }
               alt=""
-              className="cursorpointer w-12"
+              className="cursorpointer"
               // 點擊頭貼input
               onClick={clickAvatar}
             />
@@ -242,16 +242,16 @@ const Register = ({
           <p>{fieldErrors.email}</p>
           <div className="h-20 w-100 d-flex justify-content-around">
             <button
-              className="buttonChangePage h-30"
+              className="buttonChangePage"
               onClick={(e) => {
                 e.preventDefault();
                 setLoginCard('');
                 setLoginLogoText('Login');
               }}
             >
-              Back to Login
+              Login
             </button>
-            <button className="buttonChangePage h-30">CONFIRM</button>
+            <button className="buttonChangePage">CONFIRM</button>
           </div>
         </form>
       </div>
