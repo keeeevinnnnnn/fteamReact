@@ -110,7 +110,7 @@ const Chat = ({ selectItem }) => {
       scrollToBottom();
     }, 400);
     return () => clearTimeout(scrollStop.current);
-  }, [selectItem, chat]);
+  }, [selectItem]);
 
   // 拿到所有過去聊天紀錄 放member是想要即時刷新個人資料
   useEffect(() => {
@@ -129,8 +129,9 @@ const Chat = ({ selectItem }) => {
   }, [member]);
 
   useEffect(() => {
-    // 呼叫聊天室置底的涵式
-    // scrollToBottom();
+    if (chat === []) {
+      return;
+    }
     // 與聊天室Sever的連接
     socketRef.current = io.connect('http://localhost:4000');
     socketRef.current.on(
@@ -140,6 +141,9 @@ const Chat = ({ selectItem }) => {
         setChat([...chat, { name, message, sid, avatar, chatimg }]);
       }
     );
+    scrollStop.current = setTimeout(() => {
+      scrollToBottom();
+    }, 100);
     return () => socketRef.current.disconnect();
   }, [chat]);
 
