@@ -16,22 +16,10 @@ const ProductDetails = () => {
   const [heart, setHeart] = useState(false);
 
   const axiosProductDetails = async (productId) => {
-    // const response = await fetch(
-    //   'http://localhost:3000/productGet/' + productId
-    // );
-    // const data = await response.json();
-
     axios.get('/productGet/' + productId).then((res) => {
       console.log(res.data);
       setdetails(res.data);
     });
-
-    // axios.get(`'/productGet?${productId}'`).then((res) => {
-    //   console.log(res.data);
-    //   setdetails(res.data);
-    // });
-
-    // setdetails(data);
   };
 
   const params = useParams();
