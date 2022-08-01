@@ -24,6 +24,16 @@
         outline: none;
     }
 
+    .passwordInput {
+        position: relative;
+    }
+
+    .seePassword {
+        width: 30px;
+        margin: 0;
+        position: absolute;
+    }
+
     P {
         color: lightcoral;
     }
