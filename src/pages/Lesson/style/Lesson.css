@@ -1,3 +1,12 @@
+.cooler_lesson_background {
+  background-image: url(../../../Images/Lesson/lesson_background/03.jpeg);
+  background-size: 100% 100%;
+  /* height: 200%; */
+  /* background-repeat: no-repeat; */
+}
+
+
+
 .cooler_arrowcenter {
   padding-top: 15%;
   /* display: flex; */

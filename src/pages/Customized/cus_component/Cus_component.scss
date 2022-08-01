@@ -27,6 +27,7 @@
   box-shadow: 8px 8px 0 0 black;
   background-color: white;
   transition: 1s ease;
+  
 
   .share-right {
     display: flex;
@@ -34,6 +35,15 @@
     align-items: flex-end;
 
     text-align: right;
+    width: 120px;
+    
+    word-wrap:break-word;
+
+    h3{
+      width: 120px;
+      word-wrap:break-word;
+    }
+    
 
     .share-creator {
       display: flex;
@@ -69,6 +79,8 @@
     img {
       height: 100%;
       object-fit: contain;
+      margin-left: -120px;
+      
     }
   }
 }

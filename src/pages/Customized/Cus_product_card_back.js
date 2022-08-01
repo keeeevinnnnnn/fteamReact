@@ -1,13 +1,14 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { productData } from './ProductData';
-
+import { useNavigate } from 'react-router-dom';
 import Cus_tab from './cus_component/Cus_tab';
 import './Cus_product_card_back.scss';
 import { Scale } from 'chart.js';
 import axios from 'axios';
 
 function Cus_product_card_back(props) {
+  const navigate = useNavigate()
   const { lastInsertID, setLastInsertID } = props;
   const cuscanvas = useRef(null);
   const [bgimg, setBgimg] = useState('');
@@ -18,6 +19,7 @@ function Cus_product_card_back(props) {
   const [sticker, setSticker] = useState('');
   const [stickerName, setStickerName] = useState('Waves');
   const [text, setText] = useState('SAMPLE');
+  const [isClick,setIsClick]=useState(false);
 
   useEffect(() => {
     const backimg = new Image();
@@ -79,14 +81,20 @@ function Cus_product_card_back(props) {
 
   const addback = () => {
     // console.log(frontcolor)
-    axios.post('http://localhost:3000/custom/back', {
-      sid: lastInsertID,
-      back_style: bgimgName,
-      back_pattern: patternName,
-      back_color: bgcolor,
-      back_text: text,
-      back_sticker: stickerName,
-    });
+    if(isClick){
+      axios.post('http://localhost:3000/custom/back', {
+        sid: lastInsertID,
+        back_style: bgimgName,
+        back_pattern: patternName,
+        back_color: bgcolor,
+        back_text: text,
+        back_sticker: stickerName,
+      });
+      navigate('/customized/create/confirm')
+    }else{
+      alert('please confirm your picture')
+    }
+
   };
 
   function handleDataUrl() {
@@ -100,6 +108,7 @@ function Cus_product_card_back(props) {
       sid: lastInsertID,
       imgData: cuscanvas.current.toDataURL('image/png'),
     });
+    setIsClick(true)
   }
 
   return (
@@ -122,9 +131,9 @@ function Cus_product_card_back(props) {
                 <button className="skbtn-prev"></button>
               </Link>
 
-              <Link to={'/customized/create/confirm'} onClick={addback}>
-                <button className="skbtn-next"></button>
-              </Link>
+              <div onClick={addback}>
+                <button  className="skbtn-next"></button>
+              </div>
             </div>
 
             <div className="cus_card flex-column">
