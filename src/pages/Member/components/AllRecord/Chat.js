@@ -41,6 +41,9 @@ const Chat = ({ selectItem }) => {
 
   // 聊天室照片input值有變換時
   async function uploadImg(e) {
+    if (!e.target.files[0]) {
+      return;
+    }
     const data = new FormData();
     data.append('chatimg', e.target.files[0]);
     // 上傳照片
@@ -88,7 +91,7 @@ const Chat = ({ selectItem }) => {
       return;
     }
     scrollDown.current.scrollIntoView({
-      behavior: 'smooth',
+      // behavior: 'smooth',
       block: 'end',
       inline: 'nearest',
     });
