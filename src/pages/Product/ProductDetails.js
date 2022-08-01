@@ -16,8 +16,7 @@ const ProductDetails = () => {
   const [heart, setHeart] = useState(false);
 
   const axiosProductDetails = async (productId) => {
-    axios.get('/productGet/' + productId).then((res) => {
-      console.log(res.data);
+    axios.get(`/product/${productId}`).then((res) => {
       setdetails(res.data);
     });
   };

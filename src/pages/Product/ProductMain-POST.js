@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 import FilterBox from './components/FilterBox';
 import ToolBox from './components/ToolBox';
 import './styles/ProductMain.scss';
@@ -6,7 +6,9 @@ import axios from './commons/axios';
 import ProductList from './components/ProductList';
 import Pagination from './components/Pagination';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
-const ProductMain = () => {
+const ProductMain = (props) => {
+  const { data, setData } = props;
+
   // 原始資料
   //  {
   //     sid:0,
@@ -15,7 +17,7 @@ const ProductMain = () => {
   //     brand:'',
   //     price:0,
   //  }
-  const [data, setData] = useState({});
+
   // post發給後端，先給預設參數，api要加上判斷如果不等於null才執行我要的sql語法
   // API還有兩個參數預設 : 1. orderField = "sid";  2. sort='ASC';
   const [filter, setFilter] = useState({
@@ -32,17 +34,17 @@ const ProductMain = () => {
   });
   const [messages, setMessages] = useState([]);
 
-  // 如果不使用 useCallback 不影響功能但會有以下黃字建議 : The 'getPageData' function makes the dependencies of useEffect Hook (at line 43) change on every render. Move it inside the useEffect callback. Alternatively, wrap the definition of 'getPageData' in its own useCallback() Hook.
-  const getPageData = useCallback(async () => {
+  const searchProducts = (text) => {
+    setFilter({ ...filter, searchName: text });
+  };
+
+  console.log('filter==', filter);
+
+  useEffect(() => {
     axios.post('/product', { filter }).then((res) => {
       setData(res.data);
     });
-    console.log('filter=', filter);
   }, [filter]);
-
-  useEffect(() => {
-    getPageData();
-  }, [getPageData]);
 
   console.log('messages==', messages);
 
@@ -55,6 +57,7 @@ const ProductMain = () => {
           setFilter={setFilter}
           messages={messages}
           setMessages={setMessages}
+          searchProducts={searchProducts}
         />
 
         <div className="d-flex productText p-0 m-0">
@@ -143,6 +146,9 @@ const ProductMain = () => {
                         name={r.name}
                         brand={r.brand}
                         price={r.price}
+                        info={r.info}
+                        data={data}
+                        setData={setData}
                       />
                     </CSSTransition>
                   );

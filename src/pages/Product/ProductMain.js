@@ -41,9 +41,24 @@ const ProductMain = (props) => {
   console.log('filter==', filter);
 
   useEffect(() => {
-    axios.post('/product', { filter }).then((res) => {
-      setData(res.data);
-    });
+    axios
+      .get('/product', {
+        params: {
+          categoryId: filter.categoryId,
+          brand: filter.brand,
+          color: filter.color,
+          price: filter.price,
+          orderfield: filter.orderfield,
+          sort: filter.sort,
+          page: filter.page,
+          where: filter.where,
+          priceRange: filter.priceRange,
+          searchName: filter.searchName,
+        },
+      })
+      .then((res) => {
+        setData(res.data);
+      });
   }, [filter]);
 
   console.log('messages==', messages);

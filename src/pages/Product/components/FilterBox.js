@@ -19,7 +19,6 @@ const FilterBox = (props) => {
     setFilter({
       ...filter,
       priceRange: [newValue[0], newValue[1]],
-      where: 'price',
       orderfield: 'price',
     });
   };
