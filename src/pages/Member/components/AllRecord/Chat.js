@@ -91,7 +91,7 @@ const Chat = ({ selectItem }) => {
       return;
     }
     scrollDown.current.scrollIntoView({
-      // behavior: 'smooth',
+      behavior: 'smooth',
       block: 'end',
       inline: 'nearest',
     });
