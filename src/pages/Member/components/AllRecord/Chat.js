@@ -32,6 +32,53 @@ const Chat = ({ selectItem }) => {
   // 從資料庫拿出過往聊天紀錄渲染用的
   const [chatAll, setChatAll] = useState([]);
 
+  // 取得照片input
+  const imgInput = useRef(null);
+
+  function clickImginput() {
+    imgInput.current.click();
+  }
+
+  // 聊天室照片input值有變換時
+  async function uploadImg(e) {
+    if (!e.target.files[0]) {
+      return;
+    }
+    const data = new FormData();
+    data.append('chatimg', e.target.files[0]);
+    // 上傳照片
+    await axios
+      .post('http://localhost:3000/member/chatupload', data)
+      .then((res) => {
+        // 把照片訊息存進資料庫
+        axios.post(
+          'http://localhost:3000/member/chat',
+          {
+            message: res.data.filename,
+          },
+          {
+            // 發JWT一定要加這個headers
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+
+        // 要在後端(message 自己設置的)那邊傳入{ name, message, sid, avatar }
+        socketRef.current.emit('message', {
+          name: chatName,
+          sid: member.sid,
+          avatar: member.mem_avatar,
+          chatimg: res.data.filename,
+          message: '',
+        });
+
+        setMessageState({
+          message: '',
+        });
+      });
+  }
+
   const socketRef = useRef(null);
 
   // 讓聊天室置底
@@ -61,7 +108,7 @@ const Chat = ({ selectItem }) => {
     }
     scrollStop.current = setTimeout(() => {
       scrollToBottom();
-    }, 500);
+    }, 400);
     return () => clearTimeout(scrollStop.current);
   }, [selectItem]);
 
@@ -82,13 +129,21 @@ const Chat = ({ selectItem }) => {
   }, [member]);
 
   useEffect(() => {
-    // 呼叫聊天室置底的涵式
-    scrollToBottom();
+    if (chat === []) {
+      return;
+    }
     // 與聊天室Sever的連接
     socketRef.current = io.connect('http://localhost:4000');
-    socketRef.current.on('message', ({ name, message, sid, img }) => {
-      setChat([...chat, { name, message, sid, img }]);
-    });
+    socketRef.current.on(
+      'message',
+      ({ name, message, sid, avatar, chatimg }) => {
+        console.log(message);
+        setChat([...chat, { name, message, sid, avatar, chatimg }]);
+      }
+    );
+    scrollStop.current = setTimeout(() => {
+      scrollToBottom();
+    }, 50);
     return () => socketRef.current.disconnect();
   }, [chat]);
 
@@ -123,12 +178,13 @@ const Chat = ({ selectItem }) => {
       .then((res) => {
         console.log(res.data);
       });
-    // 要在後端(message 自己設置的)那邊傳入{ name, message, sid, img }
+    // 要在後端(message 自己設置的)那邊傳入{ name, message, sid, avatar }
     socketRef.current.emit('message', {
       name: chatName,
       message,
       sid: member.sid,
-      img: member.mem_avatar,
+      avatar: member.mem_avatar,
+      chatimg: '',
     });
 
     setMessageState({ message: '' });
@@ -145,46 +201,108 @@ const Chat = ({ selectItem }) => {
 
   // socket.io渲染聊天室
   const renderChat = () => {
-    return chat.map(({ name, message, sid, img }) => (
+    return chat.map(({ name, message, sid, avatar, chatimg }) => (
       <Fragment key={uuidv4()}>
         {/* 判斷對話是不是使用者本人 */}
-        {sid !== member.sid ? (
-          <div className="d-flex align-items-center pt-2 pb-2" ref={scrollDown}>
-            <img src={`http://localhost:3000/avatar/${img}`} alt="" />
-            <h3 style={{ marginLeft: '1%' }}>
-              {name}
-              <span>
-                {' '}
-                :{' '}
-                {[message].filter((v, i) => v.includes('http')).length !== 0 ? (
-                  <a href={[message].filter((v, i) => v.includes('http'))}>
-                    {[message].filter((v, i) => v.includes('http'))}
-                  </a>
-                ) : (
-                  message
-                )}
-              </span>
-            </h3>
-          </div>
+        {member.sid !== sid ? (
+          <>
+            {[chatimg].filter((v, i) => v.includes('jpg' | 'png' | 'gif'))
+              .length !== 0 ? (
+              <div
+                className="d-flex align-items-center pt-2 pb-2"
+                ref={scrollDown}
+              >
+                <img
+                  className="avatar"
+                  src={`http://localhost:3000/avatar/${avatar}`}
+                  alt=""
+                />
+                <h3 style={{ marginLeft: '1%' }}>
+                  {name}
+                  <span> : </span>
+                  <img
+                    className="chatimg"
+                    src={`http://localhost:3000/chatimg/${chatimg}`}
+                    alt=""
+                  />
+                </h3>
+              </div>
+            ) : (
+              <div
+                className="d-flex align-items-center pt-2 pb-2"
+                ref={scrollDown}
+              >
+                <img
+                  className="avatar"
+                  src={`http://localhost:3000/avatar/${avatar}`}
+                  alt=""
+                />
+                <h3 style={{ marginLeft: '1%' }}>
+                  {name}
+                  <span>
+                    {' '}
+                    :{' '}
+                    {[message].filter((v, i) => v.includes('http')).length !==
+                    0 ? (
+                      <a href={[message].filter((v, i) => v.includes('http'))}>
+                        {[message].filter((v, i) => v.includes('http'))}
+                      </a>
+                    ) : (
+                      message
+                    )}
+                  </span>
+                </h3>
+              </div>
+            )}
+          </>
         ) : (
-          <div
-            className="d-flex justify-content-end align-items-center pt-2 pb-2"
-            ref={scrollDown}
-          >
-            <h3 style={{ marginRight: '1%' }}>
-              <span style={{ marginRight: '5px' }}>
-                {[message].filter((v, i) => v.includes('http')).length !== 0 ? (
-                  <a href={[message].filter((v, i) => v.includes('http'))}>
-                    {[message].filter((v, i) => v.includes('http'))}
-                  </a>
-                ) : (
-                  message
-                )}{' '}
-                :
-              </span>
-            </h3>
-            <img src={`http://localhost:3000/avatar/${img}`} alt="" />
-          </div>
+          <>
+            {[chatimg].filter((v, i) => v.includes('jpg' | 'png' | 'gif'))
+              .length !== 0 ? (
+              <div
+                className="d-flex justify-content-end align-items-center pt-2 pb-2 flex-wrap"
+                ref={scrollDown}
+              >
+                <img
+                  className="chatimg"
+                  src={`http://localhost:3000/chatimg/${chatimg}`}
+                  alt=""
+                />
+                <h3 style={{ marginRight: '1%' }}>
+                  <span style={{ marginRight: '5px' }}> :</span>
+                </h3>
+                <img
+                  className="avatar"
+                  src={`http://localhost:3000/avatar/${avatar}`}
+                  alt=""
+                />
+              </div>
+            ) : (
+              <div
+                className="d-flex justify-content-end align-items-center pt-2 pb-2"
+                ref={scrollDown}
+              >
+                <h3 style={{ marginRight: '1%' }}>
+                  <span style={{ marginRight: '5px' }}>
+                    {[message].filter((v, i) => v.includes('http')).length !==
+                    0 ? (
+                      <a href={[message].filter((v, i) => v.includes('http'))}>
+                        {[message].filter((v, i) => v.includes('http'))}
+                      </a>
+                    ) : (
+                      message
+                    )}{' '}
+                    :
+                  </span>
+                </h3>
+                <img
+                  className="avatar"
+                  src={`http://localhost:3000/avatar/${avatar}`}
+                  alt=""
+                />
+              </div>
+            )}
+          </>
         )}
       </Fragment>
     ));
@@ -200,62 +318,118 @@ const Chat = ({ selectItem }) => {
               <Fragment key={uuidv4()}>
                 {/* 判斷對話是不是使用者本人 */}
                 {v.mem_sid !== member.sid ? (
-                  <div
-                    className="d-flex align-items-center pt-2 pb-2"
-                    ref={scrollDown}
-                  >
-                    <img
-                      src={`http://localhost:3000/avatar/${v.mem_avatar}`}
-                      alt=""
-                    />
-                    <h3 style={{ marginLeft: '1%' }}>
-                      {/* 有暱稱顯示暱稱 沒暱稱顯示姓名 */}
-                      {v.mem_nickname ? v.mem_nickname : v.mem_name}
-                      <span>
-                        {' '}
-                        :{' '}
-                        {[v.message].filter((v, i) => v.includes('http'))
-                          .length !== 0 ? (
-                          <a
-                            href={[v.message].filter((v, i) =>
-                              v.includes('http')
+                  <>
+                    {[v.message].filter((v, i) =>
+                      v.includes('jpg' | 'png' | 'gif')
+                    ).length !== 0 ? (
+                      <div
+                        className="d-flex align-items-center pt-2 pb-2"
+                        ref={scrollDown}
+                      >
+                        <img
+                          className="avatar"
+                          src={`http://localhost:3000/avatar/${v.mem_avatar}`}
+                          alt=""
+                        />
+                        <h3 style={{ marginLeft: '1%' }}>
+                          {v.mem_nickname ? v.mem_nickname : v.mem_name}
+                          <span> : </span>
+                          <img
+                            className="chatimg"
+                            src={`http://localhost:3000/chatimg/${v.message}`}
+                            alt=""
+                          />
+                        </h3>
+                      </div>
+                    ) : (
+                      <div
+                        className="d-flex align-items-center pt-2 pb-2"
+                        ref={scrollDown}
+                      >
+                        <img
+                          className="avatar"
+                          src={`http://localhost:3000/avatar/${v.mem_avatar}`}
+                          alt=""
+                        />
+                        <h3 style={{ marginLeft: '1%' }}>
+                          {v.mem_nickname ? v.mem_nickname : v.mem_name}
+                          <span>
+                            {' '}
+                            :{' '}
+                            {[v.message].filter((v, i) => v.includes('http'))
+                              .length !== 0 ? (
+                              <a
+                                href={[v.message].filter((v, i) =>
+                                  v.includes('http')
+                                )}
+                              >
+                                {[v.message].filter((v, i) =>
+                                  v.includes('http')
+                                )}
+                              </a>
+                            ) : (
+                              v.message
                             )}
-                          >
-                            {[v.message].filter((v, i) => v.includes('http'))}
-                          </a>
-                        ) : (
-                          v.message
-                        )}
-                      </span>
-                    </h3>
-                  </div>
+                          </span>
+                        </h3>
+                      </div>
+                    )}
+                  </>
                 ) : (
-                  <div
-                    className="d-flex justify-content-end align-items-center pt-2 pb-2"
-                    ref={scrollDown}
-                  >
-                    <h3 style={{ marginRight: '1%' }}>
-                      <span style={{ marginRight: '5px' }}>
-                        {[v.message].filter((v, i) => v.includes('http'))
-                          .length !== 0 ? (
-                          <a
-                            href={[v.message].filter((v, i) =>
-                              v.includes('http')
-                            )}
-                          >
-                            {[v.message].filter((v, i) => v.includes('http'))}
-                          </a>
-                        ) : (
-                          v.message
-                        )}{' '}
-                        :{' '}
-                      </span>
-                    </h3>
-                    <img
-                      src={`http://localhost:3000/avatar/${v.mem_avatar}`}
-                      alt=""
-                    />
-                  </div>
+                  <>
+                    {[v.message].filter((v, i) =>
+                      v.includes('jpg' | 'png' | 'gif')
+                    ).length !== 0 ? (
+                      <div
+                        className="d-flex justify-content-end align-items-center pt-2 pb-2 flex-wrap"
+                        ref={scrollDown}
+                      >
+                        <img
+                          className="chatimg"
+                          src={`http://localhost:3000/chatimg/${v.message}`}
+                          alt=""
+                        />
+                        <h3 style={{ marginRight: '1%' }}>
+                          <span style={{ marginRight: '5px' }}> :</span>
+                        </h3>
+                        <img
+                          className="avatar"
+                          src={`http://localhost:3000/avatar/${v.mem_avatar}`}
+                          alt=""
+                        />
+                      </div>
+                    ) : (
+                      <div
+                        className="d-flex justify-content-end align-items-center pt-2 pb-2"
+                        ref={scrollDown}
+                      >
+                        <h3 style={{ marginRight: '1%' }}>
+                          <span style={{ marginRight: '5px' }}>
+                            {[v.message].filter((v, i) => v.includes('http'))
+                              .length !== 0 ? (
+                              <a
+                                href={[v.message].filter((v, i) =>
+                                  v.includes('http')
+                                )}
+                              >
+                                {[v.message].filter((v, i) =>
+                                  v.includes('http')
+                                )}
+                              </a>
+                            ) : (
+                              v.message
+                            )}{' '}
+                            :
+                          </span>
+                        </h3>
+                        <img
+                          className="avatar"
+                          src={`http://localhost:3000/avatar/${v.mem_avatar}`}
+                          alt=""
+                        />
+                      </div>
+                    )}
+                  </>
                 )}
               </Fragment>
             );
@@ -273,7 +447,25 @@ const Chat = ({ selectItem }) => {
             value={messageState.message}
             placeholder="Say something"
           />
+          <input
+            type="file"
+            name="img"
+            ref={imgInput}
+            onChange={uploadImg}
+            hidden
+          />
           <button>Send</button>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 448 512"
+            className="cursorpointer"
+            onClick={clickImginput}
+          >
+            <path
+              fill="white"
+              d="M384 352v64c0 17.67-14.33 32-32 32H96c-17.67 0-32-14.33-32-32v-64c0-17.67-14.33-32-32-32s-32 14.33-32 32v64c0 53.02 42.98 96 96 96h256c53.02 0 96-42.98 96-96v-64c0-17.67-14.33-32-32-32S384 334.3 384 352zM201.4 9.375l-128 128c-12.51 12.51-12.49 32.76 0 45.25c12.5 12.5 32.75 12.5 45.25 0L192 109.3V320c0 17.69 14.31 32 32 32s32-14.31 32-32V109.3l73.38 73.38c12.5 12.5 32.75 12.5 45.25 0s12.5-32.75 0-45.25l-128-128C234.1-3.125 213.9-3.125 201.4 9.375z"
+            />
+          </svg>
         </form>
       </div>
     </div>
