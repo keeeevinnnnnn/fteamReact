@@ -27,7 +27,7 @@ const CustomCard = (props) => {
                 <div className="cart-img-wrap">
                   <img
                     className=" w-100 h-100"
-                    src={`http://localhost:3000/productImages/${singleItem.back_img}`}
+                    src={`http://localhost:3000/custom/${singleItem.back_img}`}
                     alt=""
                   />
                 </div>

@@ -32,17 +32,17 @@ const ProductMain = () => {
   });
   const [messages, setMessages] = useState([]);
 
-  const searchProducts = (text) => {
-    setFilter({ ...filter, searchName: text });
-  };
-
-  console.log('filter==', filter);
-
-  useEffect(() => {
+  // 如果不使用 useCallback 不影響功能但會有以下黃字建議 : The 'getPageData' function makes the dependencies of useEffect Hook (at line 43) change on every render. Move it inside the useEffect callback. Alternatively, wrap the definition of 'getPageData' in its own useCallback() Hook.
+  const getPageData = useCallback(async () => {
     axios.post('/product', { filter }).then((res) => {
       setData(res.data);
     });
+    console.log('filter=', filter);
   }, [filter]);
+
+  useEffect(() => {
+    getPageData();
+  }, [getPageData]);
 
   console.log('messages==', messages);
 
@@ -55,7 +55,6 @@ const ProductMain = () => {
           setFilter={setFilter}
           messages={messages}
           setMessages={setMessages}
-          searchProducts={searchProducts}
         />
 
         <div className="d-flex productText p-0 m-0">

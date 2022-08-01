@@ -77,6 +77,7 @@ function App() {
                       element={<Lesson_banqiao />}
                     />
                     <Route path="/products" element={<ProductMain />} />
+
                     <Route path="/products/main" element={<ProductDetails />} />
                     <Route path="/customized" element={<Customized />} />
                     <Route

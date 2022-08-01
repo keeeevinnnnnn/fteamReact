@@ -6,7 +6,9 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import '../style/Lesson_tab.scss';
 import Lesson_card from './Lesson_card';
-import Lesson_filter from './Lesson_filter';
+import LessonSelect_time from './LessonSelect_time';
+import LessonSelect_dance from './LessonSelect_dance';
+import LessonSelect_price from './LessonSelect_price';
 import Lesson_teacher from './Lesson_teacher';
 
 function TabPanel(props) {
@@ -62,7 +64,11 @@ export default function BasicTabs() {
         </Tabs>
       </Box>
       <TabPanel value={value} index={0}>
-        <Lesson_filter />
+        <div className="w-80 d-flex cooler_lessonselect">
+          <LessonSelect_time />
+          <LessonSelect_dance />
+          <LessonSelect_price />
+        </div>
         <Lesson_card />
       </TabPanel>
       <TabPanel value={value} index={1}>
