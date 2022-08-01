@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Link, Route, Routes } from 'react-router-dom';
 import Cus_product_card from './Cus_product_card_sample';
 import Cus_product_card_wheel from './Cus_product_card_wheel';
 import Cus_product_card_fcolor from './Cus_product_card_fcolor';
 import Cus_product_card_name from './Cus_product_card_name';
 import axios from 'axios';
+import AuthContext from '../../components/AuthContext';
 
 // `member_id`,
 // `custom_product_name`,
@@ -18,8 +19,18 @@ import axios from 'axios';
 // `back_img`,
 // `price`,
 // `created_date`
-
+// axios
+//         .get('http://localhost:3000/member/memberself', {
+//           headers: {
+//             Authorization: `Bearer ${token}`,
+//           },
+//         })
+//         .then((res) => {
+//           // 接會員所有資料
+//         });
 function Customized_add(props) {
+  const { auth, token } = useContext(AuthContext);
+
   const { lastInsertID, setLastInsertID } = props;
   const [member_id, setMember_id] = useState('');
   const [custom_product_name, setCustom_product_name] = useState('');
@@ -36,41 +47,57 @@ function Customized_add(props) {
   const [created_date, setCreated_date] = useState('');
 
   const addCustome = () => {
-    console.log(
-      member_id +
-        custom_product_name +
-        wheel_style +
-        carrier +
-        front_color +
-        back_style +
-        back_pattern +
-        back_color +
-        back_text +
-        back_sticker +
-        back_img +
-        price
-    );
-
     axios
-      .post('http://localhost:3000/custom', {
-        member_id: member_id,
-        custom_product_name: custom_product_name,
-        wheel_style: wheel_style,
-        carrier: carrier,
-        front_color: front_color,
-        back_style: back_style,
-        back_pattern: back_pattern,
-        back_color: back_color,
-        back_text: back_text,
-        back_sticker: back_sticker,
-        back_img: back_img,
-        price: price,
-        // created_date:created_date
+      .get('http://localhost:3000/member/memberself', {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
       })
       .then((res) => {
-        console.log(res.data.insertId);
-        setLastInsertID(res.data.insertId);
+          console.log(res)
+          axios
+          .post('http://localhost:3000/custom', {
+            member_id: res.data.sid,
+            custom_product_name: custom_product_name,
+            wheel_style: wheel_style,
+            carrier: carrier,
+            front_color: front_color,
+            back_style: back_style,
+            back_pattern: back_pattern,
+            back_color: back_color,
+            back_text: back_text,
+            back_sticker: back_sticker,
+            back_img: back_img,
+            price: price,
+            // created_date:created_date
+          })
+          .then((res) => {
+            console.log(res.data.insertId);
+            setLastInsertID(res.data.insertId);
+          });
+
       });
+
+    // axios
+    //   .post('http://localhost:3000/custom', {
+    //     member_id: member_id,
+    //     custom_product_name: custom_product_name,
+    //     wheel_style: wheel_style,
+    //     carrier: carrier,
+    //     front_color: front_color,
+    //     back_style: back_style,
+    //     back_pattern: back_pattern,
+    //     back_color: back_color,
+    //     back_text: back_text,
+    //     back_sticker: back_sticker,
+    //     back_img: back_img,
+    //     price: price,
+    //     // created_date:created_date
+    //   })
+    //   .then((res) => {
+    //     console.log(res.data.insertId);
+    //     setLastInsertID(res.data.insertId);
+    //   });
   };
 
   return (
@@ -93,8 +120,6 @@ function Customized_add(props) {
           </div>
 
           <div className="cus_card_container">
-    
-
             <div className="step-control">
               <Link to={'/customized/create'}>
                 <button className="skbtn-prev"></button>
@@ -108,14 +133,14 @@ function Customized_add(props) {
             <div className="cus_card">
               <div className="cus_product_card">
                 <h3 className="text-black">Project Name</h3>
-                <input
+                {/* <input
                   type="text"
                   placeholder="memberid(暫時)"
                   className="viv-input"
                   onChange={(event) => {
                     setMember_id(event.target.value);
                   }}
-                />
+                /> */}
 
                 <input
                   type="text"
