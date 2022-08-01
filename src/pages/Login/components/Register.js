@@ -205,7 +205,7 @@ const Register = ({
               <p>{fieldErrors.account}</p>
             </div>
             <div className="col-6">
-              <h3>Check</h3>
+              <h3>Password</h3>
               <input
                 type="password"
                 name="password"
@@ -216,7 +216,7 @@ const Register = ({
                 autoComplete="on"
               />
               <p>{fieldErrors.password}</p>
-              <h3>Again</h3>
+              <h3>Check</h3>
               <input
                 type="password"
                 name="confirmPassword"
