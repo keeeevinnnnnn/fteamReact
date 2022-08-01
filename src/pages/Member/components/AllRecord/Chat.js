@@ -108,9 +108,9 @@ const Chat = ({ selectItem }) => {
     }
     scrollStop.current = setTimeout(() => {
       scrollToBottom();
-    }, 500);
+    }, 400);
     return () => clearTimeout(scrollStop.current);
-  }, [selectItem]);
+  }, [selectItem, chat]);
 
   // 拿到所有過去聊天紀錄 放member是想要即時刷新個人資料
   useEffect(() => {
@@ -130,7 +130,7 @@ const Chat = ({ selectItem }) => {
 
   useEffect(() => {
     // 呼叫聊天室置底的涵式
-    scrollToBottom();
+    // scrollToBottom();
     // 與聊天室Sever的連接
     socketRef.current = io.connect('http://localhost:4000');
     socketRef.current.on(
