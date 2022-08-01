@@ -75,11 +75,11 @@ const LoginAdmin = ({ setLoginCard, loginLogoText }) => {
   return (
     <>
       <div className="h-100 w-100 LoginAdmin LoginBack">
-        <div className="h-20 w-100">
+        <div className="w-100 LoginLogoRWDbox">
           <LoginLogo loginLogoText={loginLogoText} />
         </div>
         <form
-          className="h-40 w-100 text-white text-center"
+          className="w-100 text-white text-center"
           // 表單點擊
           onSubmit={handleSubmit}
           // 表單檢查
@@ -146,7 +146,7 @@ const LoginAdmin = ({ setLoginCard, loginLogoText }) => {
         </form>
         <div className="h-20 w-100 d-flex justify-content-center">
           <button
-            className="buttonChangePage h-25"
+            className="buttonChangePage"
             onClick={() => {
               setLoginCard('');
             }}

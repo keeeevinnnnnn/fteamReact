@@ -82,11 +82,11 @@ const LoginMember = ({
   return (
     <>
       <div className="h-100 w-100 LoginMember LoginFront">
-        <div className="h-20 w-100">
+        <div className="w-100 LoginLogoRWDbox">
           <LoginLogo loginLogoText={loginLogoText} />
         </div>
         <form
-          className="h-40 w-100 text-white text-center"
+          className="w-100 text-white text-center"
           // 表單點擊
           onSubmit={handleSubmit}
           // 表單檢查
@@ -166,7 +166,7 @@ const LoginMember = ({
             </button>
           </div>
         </form>
-        <div className="h-20 w-100 d-flex justify-content-center">
+        <div className="w-100 d-flex justify-content-center googleFBsvgBox">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 488 512"
@@ -200,7 +200,7 @@ const LoginMember = ({
         </div>
         <div className="h-20 w-100 d-flex justify-content-center">
           <button
-            className="buttonChangePage h-25"
+            className="buttonChangePage"
             onClick={() => {
               setLoginCard('LoginCardRotate');
               setRegisterNone('d-none');
