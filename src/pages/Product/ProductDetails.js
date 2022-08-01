@@ -1,23 +1,59 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import ProductTabsBox from './components/ProductTabsBox';
+import axios from './commons/axios';
 import './styles/ProductDetails.scss';
 
 const ProductDetails = () => {
+  const [details, setdetails] = useState({
+    sid: '',
+    img: '',
+    name: '',
+    brand: '',
+    price: 0,
+    info: '',
+  });
   const [heart, setHeart] = useState(false);
+
+  const axiosProductDetails = async (productId) => {
+    // const response = await fetch(
+    //   'http://localhost:3000/productGet/' + productId
+    // );
+    // const data = await response.json();
+
+    axios.get('/productGet/' + productId).then((res) => {
+      console.log(res.data);
+      setdetails(res.data);
+    });
+
+    // axios.get(`'/productGet?${productId}'`).then((res) => {
+    //   console.log(res.data);
+    //   setdetails(res.data);
+    // });
+
+    // setdetails(data);
+  };
+
+  const params = useParams();
+
+  useEffect(() => {
+    axiosProductDetails(params.productId);
+  }, [params.productId]);
+
   return (
     <div className="w-100 vh-100 d-flex justify-content-end align-items-end">
       <div className="work-area col-10 pb-5 pe-5 text-danger">
         <div className="d-flex w-100">
           <div className="d-flex mb-5 p-0 m-0 vh-50 w-100">
             <div className="col-7 productDetailsImg">
-              <img src="/imgs/Products/phpo5Yfwm.jpg" alt="" />
+              <img src={`/imgs/Products/${details.img}`} alt="" />
             </div>
             <div className="col-5 productDetail">
               <div className="productDetailBody mb-3">
-                <h5 className="detail-name">Edward's case is well done</h5>
-                <p className="detail-brand">SOUR VX</p>
+                <h5 className="detail-name">{details.name}</h5>
+                <p className="detail-brand">{details.brand}</p>
                 <p className="detail-price">
-                  <span>$ 6599</span>
+                  <span>$ {details.price}</span>
                 </p>
               </div>
 
@@ -72,13 +108,7 @@ const ProductDetails = () => {
 
               <div className="detail-info">
                 <h5 className="mb-3">Product details</h5>
-                <p>
-                  The 2020 Z-Smooth wheel has changed the formula to be more
-                  elastic when sliding to support the stability of carving, You
-                  can control stably even when driving on a tiled floor Of
-                  course, what attracts the editor the most is the avant-garde
-                  and fashionable street battlefield in the 1970s.
-                </p>
+                <p>{details.info}</p>
               </div>
             </div>
           </div>
