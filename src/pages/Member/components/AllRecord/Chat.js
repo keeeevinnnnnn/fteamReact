@@ -67,7 +67,9 @@ const Chat = ({ selectItem }) => {
     axios.get('http://localhost:3000/member/chat').then((res) => {
       setChatAll(res.data);
     });
+    // 把即時聊天清空
     setChat([]);
+    // 訊息重新置底
     if (selectItem === 'CHAT') {
       scrollStop.current = setTimeout(() => {
         scrollToBottom();
