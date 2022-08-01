@@ -142,11 +142,10 @@ function App() {
                       }
                     />
                     <Route
-                      path="/customized/create/detail"
+                      path="/customized/create/detail/*"
                       element={
                         <Cus_product_detail
-                          lastInsertID={lastInsertID}
-                          setLastInsertID={setLastInsertID}
+                        
                         />
                       }
                     />

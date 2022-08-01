@@ -62,12 +62,21 @@ const Chat = ({ selectItem }) => {
     return () => clearTimeout(scrollStop.current);
   }, [selectItem]);
 
-  // 拿到所有過去聊天紀錄
+  // 拿到所有過去聊天紀錄 放member是想要即時刷新個人資料
   useEffect(() => {
     axios.get('http://localhost:3000/member/chat').then((res) => {
       setChatAll(res.data);
     });
-  }, []);
+    // 把即時聊天清空
+    setChat([]);
+    // 訊息重新置底
+    if (selectItem === 'CHAT') {
+      scrollStop.current = setTimeout(() => {
+        scrollToBottom();
+      }, 100);
+      return () => clearTimeout(scrollStop.current);
+    }
+  }, [member]);
 
   useEffect(() => {
     // 呼叫聊天室置底的涵式
@@ -75,6 +84,7 @@ const Chat = ({ selectItem }) => {
     // 與聊天室Sever的連接
     socketRef.current = io.connect('http://localhost:4000');
     socketRef.current.on('message', ({ name, message, sid, img }) => {
+      console.log([message].filter((v, i) => v.includes('http')));
       setChat([...chat, { name, message, sid, img }]);
     });
     return () => socketRef.current.disconnect();
@@ -122,6 +132,15 @@ const Chat = ({ selectItem }) => {
     setMessageState({ message: '' });
   };
 
+  // 判斷對話中有沒有含http 有的話包成連結 沒有的話直接顯示
+  // {[message].filter((v, i) => v.includes('http')).length !== 0 ? (
+  //   <a href={[message].filter((v, i) => v.includes('http'))}>
+  //     {[message].filter((v, i) => v.includes('http'))}
+  //   </a>
+  // ) : (
+  //   message
+  // )}
+
   // socket.io渲染聊天室
   const renderChat = () => {
     return chat.map(({ name, message, sid, img }) => (
@@ -132,7 +151,17 @@ const Chat = ({ selectItem }) => {
             <img src={`http://localhost:3000/avatar/${img}`} alt="" />
             <h3 style={{ marginLeft: '1%' }}>
               {name}
-              <span> : {message}</span>
+              <span>
+                {' '}
+                :{' '}
+                {[message].filter((v, i) => v.includes('http')).length !== 0 ? (
+                  <a href={[message].filter((v, i) => v.includes('http'))}>
+                    {[message].filter((v, i) => v.includes('http'))}
+                  </a>
+                ) : (
+                  message
+                )}
+              </span>
             </h3>
           </div>
         ) : (
@@ -141,7 +170,16 @@ const Chat = ({ selectItem }) => {
             ref={scrollDown}
           >
             <h3 style={{ marginRight: '1%' }}>
-              <span style={{ marginRight: '5px' }}>{message} :</span>
+              <span style={{ marginRight: '5px' }}>
+                {[message].filter((v, i) => v.includes('http')).length !== 0 ? (
+                  <a href={[message].filter((v, i) => v.includes('http'))}>
+                    {[message].filter((v, i) => v.includes('http'))}
+                  </a>
+                ) : (
+                  message
+                )}{' '}
+                :
+              </span>
             </h3>
             <img src={`http://localhost:3000/avatar/${img}`} alt="" />
           </div>
@@ -169,8 +207,24 @@ const Chat = ({ selectItem }) => {
                       alt=""
                     />
                     <h3 style={{ marginLeft: '1%' }}>
+                      {/* 有暱稱顯示暱稱 沒暱稱顯示姓名 */}
                       {v.mem_nickname ? v.mem_nickname : v.mem_name}
-                      <span> : {v.message}</span>
+                      <span>
+                        {' '}
+                        :{' '}
+                        {[v.message].filter((v, i) => v.includes('http'))
+                          .length !== 0 ? (
+                          <a
+                            href={[v.message].filter((v, i) =>
+                              v.includes('http')
+                            )}
+                          >
+                            {[v.message].filter((v, i) => v.includes('http'))}
+                          </a>
+                        ) : (
+                          v.message
+                        )}
+                      </span>
                     </h3>
                   </div>
                 ) : (
@@ -179,7 +233,21 @@ const Chat = ({ selectItem }) => {
                     ref={scrollDown}
                   >
                     <h3 style={{ marginRight: '1%' }}>
-                      <span style={{ marginRight: '5px' }}>{v.message} : </span>
+                      <span style={{ marginRight: '5px' }}>
+                        {[v.message].filter((v, i) => v.includes('http'))
+                          .length !== 0 ? (
+                          <a
+                            href={[v.message].filter((v, i) =>
+                              v.includes('http')
+                            )}
+                          >
+                            {[v.message].filter((v, i) => v.includes('http'))}
+                          </a>
+                        ) : (
+                          v.message
+                        )}{' '}
+                        :{' '}
+                      </span>
                     </h3>
                     <img
                       src={`http://localhost:3000/avatar/${v.mem_avatar}`}

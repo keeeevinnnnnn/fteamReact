@@ -10,8 +10,7 @@ import CustBar from './CustBar';
 
 
 function TabPanel(props) {
-  const { children, value, index, ...other } = props;
-
+  const { children, value, index,shareDetailData, ...other } = props;
   return (
     <div
       role="tabpanel"
@@ -36,7 +35,10 @@ function a11yProps(index) {
   };
 }
 
-export default function DataTabs() {
+export default function DataTabs(props) {
+  const {shareDetailData}=props
+  // console.log('shareDetailData',shareDetailData)
+
   const [value, setValue] = useState(0);
 
   const handleChange = (event, newValue) => {
@@ -45,6 +47,7 @@ export default function DataTabs() {
 
   return (
     <Box sx={{ width: '100%' }}>
+
       <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
         <Tabs
           value={value}
@@ -59,12 +62,27 @@ export default function DataTabs() {
       </Box>
       <TabPanel value={value} index={0}>
         <div className="row detail_tab">
-          <Cus_attributes />
-          <Cus_attributes />
-          <Cus_attributes />
-          <Cus_attributes />
-          <Cus_attributes />
-          <Cus_attributes />
+        <div className="attributes col-4">
+        <label>style</label>
+        <h5>{shareDetailData.back_style}</h5>
+      </div>
+      <div className="attributes col-4">
+        <label>pattern</label>
+        <h5>{shareDetailData.back_pattern}</h5>
+      </div>
+      <div className="attributes col-4">
+        <label>base color</label>
+        <h5>{shareDetailData.back_color}</h5>
+      </div>
+      <div className="attributes col-4">
+        <label>sticker</label>
+        <h5>{shareDetailData.back_sticker}</h5>
+      </div>
+      <div className="attributes col-4">
+        <label>text</label>
+        <h5>{shareDetailData.back_text}</h5>
+      </div>
+         
         </div>
       </TabPanel>
       <TabPanel value={value} index={1}>
