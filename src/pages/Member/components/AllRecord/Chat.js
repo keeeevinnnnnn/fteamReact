@@ -128,7 +128,6 @@ const Chat = ({ selectItem }) => {
 
   // 拿到所有過去聊天紀錄 deps放member是想要即時刷新個人資料
   useEffect(() => {
-    console.log(789789);
     // 拿到所有過去聊天紀錄
     axios.get('http://localhost:3000/member/chat').then((res) => {
       setChatAll(res.data);
@@ -154,7 +153,6 @@ const Chat = ({ selectItem }) => {
     socketRef.current.on(
       'message',
       ({ name, message, sid, avatar, chatimg }) => {
-        console.log(message);
         setChat([...chat, { name, message, sid, avatar, chatimg }]);
       }
     );
