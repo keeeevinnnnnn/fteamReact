@@ -62,7 +62,7 @@ const Chat = ({ selectItem }) => {
     return () => clearTimeout(scrollStop.current);
   }, [selectItem]);
 
-  // 拿到所有過去聊天紀錄
+  // 拿到所有過去聊天紀錄 放member是想要即時刷新個人資料
   useEffect(() => {
     axios.get('http://localhost:3000/member/chat').then((res) => {
       setChatAll(res.data);
@@ -71,7 +71,7 @@ const Chat = ({ selectItem }) => {
     if (selectItem === 'CHAT') {
       scrollStop.current = setTimeout(() => {
         scrollToBottom();
-      }, 500);
+      }, 100);
       return () => clearTimeout(scrollStop.current);
     }
   }, [member]);
