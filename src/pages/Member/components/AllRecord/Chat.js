@@ -87,7 +87,6 @@ const Chat = ({ selectItem }) => {
     // 與聊天室Sever的連接
     socketRef.current = io.connect('http://localhost:4000');
     socketRef.current.on('message', ({ name, message, sid, img }) => {
-      console.log([message].filter((v, i) => v.includes('http')));
       setChat([...chat, { name, message, sid, img }]);
     });
     return () => socketRef.current.disconnect();
@@ -131,7 +130,7 @@ const Chat = ({ selectItem }) => {
       sid: member.sid,
       img: member.mem_avatar,
     });
-    // 把原有默認提交功能停止
+
     setMessageState({ message: '' });
   };
 
