@@ -132,8 +132,6 @@ const Chat = ({ selectItem }) => {
     setMessageState({ message: '' });
   };
 
-  // socket.io渲染聊天室
-
   // 判斷對話中有沒有含http 有的話包成連結 沒有的話直接顯示
   // {[message].filter((v, i) => v.includes('http')).length !== 0 ? (
   //   <a href={[message].filter((v, i) => v.includes('http'))}>
@@ -143,7 +141,7 @@ const Chat = ({ selectItem }) => {
   //   message
   // )}
 
-
+  // socket.io渲染聊天室
   const renderChat = () => {
     return chat.map(({ name, message, sid, img }) => (
       <Fragment key={uuidv4()}>
@@ -179,7 +177,7 @@ const Chat = ({ selectItem }) => {
                   </a>
                 ) : (
                   message
-                )}
+                )}{' '}
                 :
               </span>
             </h3>
@@ -209,7 +207,7 @@ const Chat = ({ selectItem }) => {
                       alt=""
                     />
                     <h3 style={{ marginLeft: '1%' }}>
-                    {/* 有暱稱顯示暱稱 沒暱稱顯示姓名 */}
+                      {/* 有暱稱顯示暱稱 沒暱稱顯示姓名 */}
                       {v.mem_nickname ? v.mem_nickname : v.mem_name}
                       <span>
                         {' '}
