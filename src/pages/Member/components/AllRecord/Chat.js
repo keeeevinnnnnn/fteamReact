@@ -143,7 +143,7 @@ const Chat = ({ selectItem }) => {
     );
     scrollStop.current = setTimeout(() => {
       scrollToBottom();
-    }, 100);
+    }, 50);
     return () => socketRef.current.disconnect();
   }, [chat]);
 
@@ -206,7 +206,7 @@ const Chat = ({ selectItem }) => {
         {/* 判斷對話是不是使用者本人 */}
         {member.sid !== sid ? (
           <>
-            {[chatimg].filter((v, i) => v.includes('jpg' || 'png' || 'gif'))
+            {[chatimg].filter((v, i) => v.includes('jpg' | 'png' | 'gif'))
               .length !== 0 ? (
               <div
                 className="d-flex align-items-center pt-2 pb-2"
@@ -257,7 +257,7 @@ const Chat = ({ selectItem }) => {
           </>
         ) : (
           <>
-            {[chatimg].filter((v, i) => v.includes('jpg' || 'png' || 'gif'))
+            {[chatimg].filter((v, i) => v.includes('jpg' | 'png' | 'gif'))
               .length !== 0 ? (
               <div
                 className="d-flex justify-content-end align-items-center pt-2 pb-2 flex-wrap"
@@ -320,7 +320,7 @@ const Chat = ({ selectItem }) => {
                 {v.mem_sid !== member.sid ? (
                   <>
                     {[v.message].filter((v, i) =>
-                      v.includes('jpg' || 'png' || 'gif')
+                      v.includes('jpg' | 'png' | 'gif')
                     ).length !== 0 ? (
                       <div
                         className="d-flex align-items-center pt-2 pb-2"
@@ -378,7 +378,7 @@ const Chat = ({ selectItem }) => {
                 ) : (
                   <>
                     {[v.message].filter((v, i) =>
-                      v.includes('jpg' || 'png' || 'gif')
+                      v.includes('jpg' | 'png' | 'gif')
                     ).length !== 0 ? (
                       <div
                         className="d-flex justify-content-end align-items-center pt-2 pb-2 flex-wrap"
