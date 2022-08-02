@@ -59,16 +59,16 @@ const RecordCard = ({ products, customized }) => {
                 <p className="h-50 p-3 recordName">{v.name}</p>
                 <div className="h-50 d-flex justify-content-between p-3">
                   <h5 className="text-gray">{v.order_date}</h5>
-                  <div
-                    className="recordProductsColor"
+                  <h5
+                    // className="recordProductsColor"
                     style={{
-                      background: `${v.color}`,
+                      color: `${v.color !== 'Black' ? v.color : 'white'}`,
                       // 如果顏色是黑色的話boxShadow顏色改用白色(因為背景是黑色)
-                      boxShadow: `0px 0px 20px 5px ${
-                        v.color !== 'Black' ? v.color : 'white'
-                      }`,
+                      textShadow: `2px 0px 2px white`,
                     }}
-                  ></div>
+                  >
+                    {v.color}
+                  </h5>
                   <h5 className="text-gray">$ {v.price}</h5>
                 </div>
               </div>
