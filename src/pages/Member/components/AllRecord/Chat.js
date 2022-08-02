@@ -246,7 +246,7 @@ const Chat = ({ selectItem }) => {
                   <span> : </span>
                 </h3>
                 <img
-                  className="chatimg"
+                  className="chatimgOtherMember"
                   src={`http://localhost:3000/chatimg/${chatimg}`}
                   alt=""
                 />
@@ -360,7 +360,7 @@ const Chat = ({ selectItem }) => {
                           <span> : </span>
                         </h3>
                         <img
-                          className="chatimg"
+                          className="chatimgOtherMember"
                           src={`http://localhost:3000/chatimg/${v.message}`}
                           alt=""
                         />

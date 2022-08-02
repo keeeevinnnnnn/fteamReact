@@ -27,6 +27,12 @@
         // aspect-ratio: 1/1;
         margin-right: 20px;
     }
+    .chatimgOtherMember {
+        width: 20%;
+        object-fit: cover;
+        // aspect-ratio: 1/1;
+        margin-left: 20px;
+    }
     h3 {
         color: var(--main);
         margin-bottom: 0;
