@@ -64,23 +64,23 @@ export default function DataTabs(props) {
         <div className="row detail_tab">
         <div className="attributes col-4">
         <label>style</label>
-        <h5>{shareDetailData.back_style}</h5>
+        <parent>{shareDetailData.back_style}</parent>
       </div>
       <div className="attributes col-4">
         <label>pattern</label>
-        <h5>{shareDetailData.back_pattern}</h5>
+        <p>{shareDetailData.back_pattern}</p>
       </div>
       <div className="attributes col-4">
         <label>base color</label>
-        <h5>{shareDetailData.back_color}</h5>
+        <p>{shareDetailData.back_color}</p>
       </div>
       <div className="attributes col-4">
         <label>sticker</label>
-        <h5>{shareDetailData.back_sticker}</h5>
+        <p>{shareDetailData.back_sticker}</p>
       </div>
       <div className="attributes col-4">
         <label>text</label>
-        <h5>{shareDetailData.back_text}</h5>
+        <p>{shareDetailData.back_text}</p>
       </div>
          
         </div>
