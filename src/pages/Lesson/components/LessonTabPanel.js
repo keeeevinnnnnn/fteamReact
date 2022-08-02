@@ -86,7 +86,14 @@ export default function BasicTabs() {
         </ScrollBox>
       </TabPanel>
       <TabPanel value={value} index={1}>
-        <Lesson_teacher />
+        <ScrollBox>
+          <div className="  w-100 h-100 d-flex flex-wrap justify-content-between">
+            <Lesson_teacher />
+            <Lesson_teacher />
+            <Lesson_teacher />
+            <Lesson_teacher />
+          </div>
+        </ScrollBox>
       </TabPanel>
     </Box>
   );
