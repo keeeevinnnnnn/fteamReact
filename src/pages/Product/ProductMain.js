@@ -7,7 +7,7 @@ import ProductList from './components/ProductList';
 import Pagination from './components/Pagination';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 const ProductMain = (props) => {
-  const { data, setData } = props;
+  const { data, setData, favoritesNum, setFavoritesNum } = props;
 
   // 原始資料
   //  {
@@ -164,6 +164,8 @@ const ProductMain = (props) => {
                         info={r.info}
                         data={data}
                         setData={setData}
+                        favoritesNum={favoritesNum}
+                        setFavoritesNum={setFavoritesNum}
                       />
                     </CSSTransition>
                   );
