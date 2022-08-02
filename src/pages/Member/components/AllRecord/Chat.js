@@ -244,12 +244,12 @@ const Chat = ({ selectItem }) => {
                 <h3 style={{ marginLeft: '1%' }}>
                   {name}
                   <span> : </span>
-                  <img
-                    className="chatimg"
-                    src={`http://localhost:3000/chatimg/${chatimg}`}
-                    alt=""
-                  />
                 </h3>
+                <img
+                  className="chatimgOtherMember"
+                  src={`http://localhost:3000/chatimg/${chatimg}`}
+                  alt=""
+                />
               </div>
             ) : (
               <div
@@ -358,12 +358,12 @@ const Chat = ({ selectItem }) => {
                         <h3 style={{ marginLeft: '1%' }}>
                           {v.mem_nickname ? v.mem_nickname : v.mem_name}
                           <span> : </span>
-                          <img
-                            className="chatimg"
-                            src={`http://localhost:3000/chatimg/${v.message}`}
-                            alt=""
-                          />
                         </h3>
+                        <img
+                          className="chatimgOtherMember"
+                          src={`http://localhost:3000/chatimg/${v.message}`}
+                          alt=""
+                        />
                       </div>
                     ) : (
                       <div

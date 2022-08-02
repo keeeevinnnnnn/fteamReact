@@ -1,5 +1,6 @@
 import './style/Lesson_zhongxiao.scss';
 import TabPanel from './components/LessonTabPanel';
+
 const Lesson_zhongxiao = () => {
   return (
     <>
