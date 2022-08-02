@@ -15,7 +15,7 @@ import './HomeStyles.css';
 // import required modules
 import { Pagination, Navigation } from 'swiper';
 
-export default function App() {
+export default function HomeSwiper() {
   return (
     <>
       <Swiper
@@ -31,13 +31,7 @@ export default function App() {
       >
         <SwiperSlide className="HomeBg2"></SwiperSlide>
         <SwiperSlide className="HomeBg3"></SwiperSlide>
-        <SwiperSlide className="">Slide 3</SwiperSlide>
-        <SwiperSlide className="">Slide 4</SwiperSlide>
-        <SwiperSlide className="">Slide 5</SwiperSlide>
-        <SwiperSlide>Slide 6</SwiperSlide>
-        <SwiperSlide>Slide 7</SwiperSlide>
-        <SwiperSlide>Slide 8</SwiperSlide>
-        <SwiperSlide>Slide 9</SwiperSlide>
+        <SwiperSlide className="HomeBg4"></SwiperSlide>
       </Swiper>
     </>
   );

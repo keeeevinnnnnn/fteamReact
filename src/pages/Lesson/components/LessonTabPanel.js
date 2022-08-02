@@ -11,6 +11,8 @@ import LessonSelect_dance from './LessonSelect_dance';
 import LessonSelect_price from './LessonSelect_price';
 import Lesson_teacher from './Lesson_teacher';
 
+import ScrollBox from '../components/ScrollBox/ScrollBox';
+
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
 
@@ -69,10 +71,29 @@ export default function BasicTabs() {
           <LessonSelect_dance />
           <LessonSelect_price />
         </div>
-        <Lesson_card />
+
+        <ScrollBox>
+          <Lesson_card />
+          <Lesson_card />
+          <Lesson_card />
+          <Lesson_card />
+          <Lesson_card />
+          <Lesson_card />
+          <Lesson_card />
+          <Lesson_card />
+          <Lesson_card />
+          <Lesson_card />
+        </ScrollBox>
       </TabPanel>
       <TabPanel value={value} index={1}>
-        <Lesson_teacher />
+        <ScrollBox>
+          <div className="  w-100 h-100 d-flex flex-wrap justify-content-between">
+            <Lesson_teacher />
+            <Lesson_teacher />
+            <Lesson_teacher />
+            <Lesson_teacher />
+          </div>
+        </ScrollBox>
       </TabPanel>
     </Box>
   );

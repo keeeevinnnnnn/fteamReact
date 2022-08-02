@@ -6,6 +6,7 @@ import axios from 'axios';
 import CreditForm from './CreditForm';
 import CheckoutFinish from './CheckoutFinish';
 import { useNavigate } from 'react-router-dom';
+import Convenience from './Convenience';
 export default function OffcanvasPage(props) {
   const { loginMemberID, setProductDep, setCustomDep, setLessonDep } = props;
   const navigate = useNavigate();
@@ -28,6 +29,12 @@ export default function OffcanvasPage(props) {
     countryName: '',
     townshipName: '',
     fullAddress: '',
+  });
+  // 超商form setting
+  const [toConvenceFrom, setToConvenceFrom] = useState({
+    convenceCountry: '',
+    convenceTownship: '',
+    convenceStore: '',
   });
   const [creditForm, setCreditForm] = useState({
     num1to4: '',
@@ -159,9 +166,7 @@ export default function OffcanvasPage(props) {
                           配送方式
                         </option>
                         <option value="toHome">宅配到府</option>
-                        <option disabled value="pickSelf">
-                          超商取貨
-                        </option>
+                        <option value="pickSelf">超商取貨</option>
                       </select>
                     </div>
                     <div className="w-100 h-75">
@@ -251,7 +256,10 @@ export default function OffcanvasPage(props) {
                           display: delivery === 'toHome' ? 'none' : 'flex',
                         }}
                       >
-                        <div className=" w-100 h-100 bg-black"></div>
+                        <Convenience
+                          toConvenceFrom={toConvenceFrom}
+                          setToConvenceFrom={setToConvenceFrom}
+                        />
                       </div>
                     </div>
                   </div>

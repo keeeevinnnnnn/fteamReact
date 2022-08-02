@@ -3,7 +3,8 @@
 }
 
 .cooler_teacher_card {
-  width: 49%;
+  margin: 4% 1% 4% 1%;
+  width: 48%;
   height: 20rem;
   -webkit-box-shadow: 5px 10px 0px -2px #000000;
   box-shadow: 5px 10px 0px -2px #000000;
@@ -91,5 +92,6 @@
 @media (max-width: 500px) {
   .cooler_teacher_card {
     width: 100%;
+    margin: 4% 0 4% 0;
   }
 }

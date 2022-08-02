@@ -35,61 +35,29 @@ const Chat = ({ selectItem }) => {
   // 取得照片input
   const imgInput = useRef(null);
 
+  // 模擬點擊上傳照片
   function clickImginput() {
     imgInput.current.click();
   }
 
-  // 聊天室照片input值有變換時
-  async function uploadImg(e) {
-    if (!e.target.files[0]) {
-      return;
-    }
-    const data = new FormData();
-    data.append('chatimg', e.target.files[0]);
-    // 上傳照片
-    await axios
-      .post('http://localhost:3000/member/chatupload', data)
-      .then((res) => {
-        // 把照片訊息存進資料庫
-        axios.post(
-          'http://localhost:3000/member/chat',
-          {
-            message: res.data.filename,
-          },
-          {
-            // 發JWT一定要加這個headers
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
-
-        // 要在後端(message 自己設置的)那邊傳入{ name, message, sid, avatar }
-        socketRef.current.emit('message', {
-          name: chatName,
-          sid: member.sid,
-          avatar: member.mem_avatar,
-          chatimg: res.data.filename,
-          message: '',
-        });
-
-        setMessageState({
-          message: '',
-        });
-      });
-  }
-
+  // 連接socket用
   const socketRef = useRef(null);
 
-  // 讓聊天室置底
+  // 讓聊天室scrollbar置底
   const scrollDown = useRef(null);
+
+  // 聊天室scrollbar置底涵式
   const scrollToBottom = () => {
+    // 如果還沒綁定離開此funtion
     if (!scrollDown.current) {
       return;
     }
+    // 會員中心tabs不是聊天室的話離開此funtion
     if (selectItem !== 'CHAT') {
       return;
     }
+
+    // 聊天室scrollbar置底
     scrollDown.current.scrollIntoView({
       behavior: 'smooth',
       block: 'end',
@@ -97,38 +65,46 @@ const Chat = ({ selectItem }) => {
     });
   };
 
-  // 為了停止的setTimeout
+  // 為了停止scrollbar置底的setTimeout
   const scrollStop = useRef(null);
   // 因為有新訊息時才呼叫置底涵式，若沒新訊息，當使用者點擊CHAT頁面就先呼叫一次
   useEffect(() => {
     if (selectItem !== 'CHAT') {
       // 避免按了CHAT又馬上跳換頁面
       clearTimeout(scrollStop.current);
+      // 生命週期unMont用
       return () => clearTimeout(scrollStop.current);
     }
+
+    // 0.4毫秒後呼叫聊天室scrollbar置底涵式
     scrollStop.current = setTimeout(() => {
       scrollToBottom();
     }, 400);
+
+    // 生命週期unMont用
     return () => clearTimeout(scrollStop.current);
   }, [selectItem]);
 
-  // 拿到所有過去聊天紀錄 放member是想要即時刷新個人資料
+  // 拿到所有過去聊天紀錄 deps放member是想要即時刷新個人資料
   useEffect(() => {
+    // 拿到所有過去聊天紀錄
     axios.get('http://localhost:3000/member/chat').then((res) => {
       setChatAll(res.data);
     });
-    // 把即時聊天清空
+    // 把即時聊天清空 讓聊天室不會有重複訊息
     setChat([]);
     // 訊息重新置底
-    if (selectItem === 'CHAT') {
-      scrollStop.current = setTimeout(() => {
-        scrollToBottom();
-      }, 100);
-      return () => clearTimeout(scrollStop.current);
-    }
+    // if (selectItem === 'CHAT') {
+    //   scrollStop.current = setTimeout(() => {
+    //     scrollToBottom();
+    //   }, 100);
+    //   return () => clearTimeout(scrollStop.current);
+    // }
   }, [member]);
 
+  // 聊天訊息連接socket
   useEffect(() => {
+    // 主要為了防止下方scrollbar置底涵式
     if (chat === []) {
       return;
     }
@@ -137,10 +113,10 @@ const Chat = ({ selectItem }) => {
     socketRef.current.on(
       'message',
       ({ name, message, sid, avatar, chatimg }) => {
-        console.log(message);
         setChat([...chat, { name, message, sid, avatar, chatimg }]);
       }
     );
+    // 矯正照片位置即時置底對不齊 設置個時間差讓新訊息置底
     scrollStop.current = setTimeout(() => {
       scrollToBottom();
     }, 50);
@@ -176,7 +152,7 @@ const Chat = ({ selectItem }) => {
         }
       )
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
       });
     // 要在後端(message 自己設置的)那邊傳入{ name, message, sid, avatar }
     socketRef.current.emit('message', {
@@ -187,8 +163,50 @@ const Chat = ({ selectItem }) => {
       chatimg: '',
     });
 
+    // 清空聊天訊息
     setMessageState({ message: '' });
   };
+
+  // 聊天室照片input值有變換時
+  async function uploadImg(e) {
+    if (!e.target.files[0]) {
+      return;
+    }
+    const data = new FormData();
+    data.append('chatimg', e.target.files[0]);
+    // 把照片存到後端資料夾
+    await axios
+      .post('http://localhost:3000/member/chatupload', data)
+      .then((res) => {
+        // 把照片檔名當訊息存進聊天室資料庫
+        axios.post(
+          'http://localhost:3000/member/chat',
+          {
+            message: res.data.filename,
+          },
+          {
+            // 發JWT一定要加這個headers
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+
+        // 要在後端(message 自己設置的)那邊傳入{ name, message, sid, avatar, chatimg }
+        socketRef.current.emit('message', {
+          name: chatName,
+          sid: member.sid,
+          avatar: member.mem_avatar,
+          chatimg: res.data.filename,
+          message: '',
+        });
+
+        // 聊天訊息的input value清空
+        setMessageState({
+          message: '',
+        });
+      });
+  }
 
   // 判斷對話中有沒有含http 有的話包成連結 沒有的話直接顯示
   // {[message].filter((v, i) => v.includes('http')).length !== 0 ? (
@@ -198,6 +216,12 @@ const Chat = ({ selectItem }) => {
   // ) : (
   //   message
   // )}
+
+  //  *! 聊天室多重三元運算子判斷 GaryLin 2022.08.02
+  //  *! 1.先判斷該訊息是否為使用者自己發的(會員sid)
+  //  *! 2.再判斷該訊息是否為圖片檔名(jpg/png/gif)
+  //  *! 3.最後判斷該訊息是否為連結(http)
+  //  *! 4.上面都判斷完後才輸出成一般訊息
 
   // socket.io渲染聊天室
   const renderChat = () => {
@@ -220,12 +244,12 @@ const Chat = ({ selectItem }) => {
                 <h3 style={{ marginLeft: '1%' }}>
                   {name}
                   <span> : </span>
-                  <img
-                    className="chatimg"
-                    src={`http://localhost:3000/chatimg/${chatimg}`}
-                    alt=""
-                  />
                 </h3>
+                <img
+                  className="chatimgOtherMember"
+                  src={`http://localhost:3000/chatimg/${chatimg}`}
+                  alt=""
+                />
               </div>
             ) : (
               <div
@@ -334,12 +358,12 @@ const Chat = ({ selectItem }) => {
                         <h3 style={{ marginLeft: '1%' }}>
                           {v.mem_nickname ? v.mem_nickname : v.mem_name}
                           <span> : </span>
-                          <img
-                            className="chatimg"
-                            src={`http://localhost:3000/chatimg/${v.message}`}
-                            alt=""
-                          />
                         </h3>
+                        <img
+                          className="chatimgOtherMember"
+                          src={`http://localhost:3000/chatimg/${v.message}`}
+                          alt=""
+                        />
                       </div>
                     ) : (
                       <div
