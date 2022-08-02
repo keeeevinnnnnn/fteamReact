@@ -3,14 +3,16 @@ import '../styles/ProductMain.scss';
 import axios from '../commons/axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { Link } from 'react-router-dom';
 
 const ProductList = (props) => {
   const { sid, img, name, brand, price } = props;
+
   // 收藏按鈕開關
   const [heart, setHeart] = useState(false);
   // 收藏成功提示訊息設定
   const favoriteSuccess = () => {
-    return toast.success('Add Favorites Success', {
+    toast.success('Add Favorites Success', {
       position: 'top-center',
       autoClose: 1500,
       hideProgressBar: false,
@@ -19,11 +21,12 @@ const ProductList = (props) => {
       draggable: true,
       progress: undefined,
     });
+    setHeart(true);
   };
 
   // 取消收藏成功提示訊息設定
   const favoriteError = () => {
-    return toast.error('Cancel Favorites Success', {
+    toast.error('Cancel Favorites Success', {
       position: 'top-center',
       autoClose: 1500,
       hideProgressBar: false,
@@ -32,9 +35,10 @@ const ProductList = (props) => {
       draggable: true,
       progress: undefined,
     });
+    setHeart(false);
   };
 
-  // 收藏商品與取消收藏商品
+  // 收藏商品與取消收藏商品;
   const getFavorites = () => {
     const addFavorites = {
       sid: sid,
@@ -45,9 +49,12 @@ const ProductList = (props) => {
       memId: 5,
     };
     axios.post('/product/favorites', addFavorites).then((res) => {
-      console.log('resss==', res.data);
+      // 拿到成功或失敗的訊息
+      console.log('favorites==', res.data);
+      res.data.success === 'true' ? favoriteSuccess() : favoriteError();
     });
   };
+
   return (
     <div className="col-4 mt-5">
       <div className="product-header">
@@ -63,11 +70,7 @@ const ProductList = (props) => {
               display: heart === false ? 'block' : 'none',
             }}
             id="heartTrue"
-            onClick={() => {
-              getFavorites();
-              favoriteSuccess();
-              setHeart(!heart);
-            }}
+            onClick={getFavorites}
           >
             <path
               stroke-linecap="round"
@@ -85,11 +88,7 @@ const ProductList = (props) => {
               display: heart === false ? 'none' : 'block',
             }}
             id="heartFalse"
-            onClick={() => {
-              getFavorites();
-              favoriteError();
-              setHeart(!heart);
-            }}
+            onClick={getFavorites}
           >
             <path
               fillRule="evenodd"
@@ -116,9 +115,9 @@ const ProductList = (props) => {
         </div>
       </div>
       <div className="productImg">
-        <a href="#/">
+        <Link to={`details/${sid}`}>
           <img src={`/imgs/Products/${img}`} className="card-img-top" alt="" />
-        </a>
+        </Link>
       </div>
 
       <div className="card-body productBody">

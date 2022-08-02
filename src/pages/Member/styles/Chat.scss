@@ -15,15 +15,24 @@
     .chatScroll::-webkit-scrollbar-thumb {
     background-color: white;
     }
-    img {
+    .avatar {
         width: 7%;
         object-fit: cover;
         border-radius: 50%;
         aspect-ratio: 1/1;
     }
+    .chatimg {
+        width: 20%;
+        object-fit: cover;
+        // aspect-ratio: 1/1;
+        margin-right: 20px;
+    }
     h3 {
         color: var(--main);
         margin-bottom: 0;
+    }
+    a {
+        font-size: 16px;
     }
     span {
         color: white;
@@ -54,6 +63,10 @@
             color: black;
             transition: .3s ease;
             padding: 5px;
+            margin-right: 10px;
+        }
+        svg {
+            height: 60%;
         }
     }
 }

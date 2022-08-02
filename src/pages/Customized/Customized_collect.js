@@ -17,9 +17,9 @@ function Customized_collect() {
             <div class="prev-creation col-8 w-100 mh-100">
               
               <div class="prev-train d-flex flex-column flex-md-row p-0  ">
+                {/* <Share_card />
                 <Share_card />
-                <Share_card />
-                <Share_card />
+                <Share_card /> */}
                 
               </div>
             </div>

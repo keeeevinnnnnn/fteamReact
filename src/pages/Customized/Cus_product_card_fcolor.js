@@ -13,6 +13,8 @@ function Cus_product_card_fcolor(props) {
      axios.post('http://localhost:3000/custom/frontcolor',{
           sid:lastInsertID,
           front_color:frontcolor,
+     }).then((res)=>{
+      console.log(res.data)
      })
 
 

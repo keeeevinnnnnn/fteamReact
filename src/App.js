@@ -11,7 +11,6 @@ import Lesson from './pages/Lesson/Lesson';
 import Lesson_zhongxiao from './pages/Lesson/Lesson_zhongxiao';
 import Lesson_banqiao from './pages/Lesson/Lesson_banqiao';
 import Products from './pages/Product/Products';
-import ProductTest from './pages/Product/ProductTest';
 import ProductMain from './pages/Product/ProductMain';
 import ProductDetails from './pages/Product/ProductDetails';
 import Customized from './pages/Customized/Customized';
@@ -38,6 +37,8 @@ function App() {
   const [productTotalQty, setProductTotalQty] = useState(0);
   const [lessonTotalQty, setLessonTotalQty] = useState(0);
   const [customTotalQty, setCustomTotalQty] = useState(0);
+  // 商品原始資料
+  const [data, setData] = useState({});
 
   return (
     <Router>
@@ -76,9 +77,15 @@ function App() {
                       path="/lesson/lesson_banqiao"
                       element={<Lesson_banqiao />}
                     />
-                    <Route path="/products" element={<ProductMain />} />
+                    <Route
+                      path="products"
+                      element={<ProductMain data={data} setData={setData} />}
+                    />
 
-                    <Route path="/products/main" element={<ProductDetails />} />
+                    <Route
+                      path="products/details/:productId"
+                      element={<ProductDetails />}
+                    />
                     <Route path="/customized" element={<Customized />} />
                     <Route
                       path="/customized/create"
@@ -135,13 +142,8 @@ function App() {
                       }
                     />
                     <Route
-                      path="/customized/create/detail"
-                      element={
-                        <Cus_product_detail
-                          lastInsertID={lastInsertID}
-                          setLastInsertID={setLastInsertID}
-                        />
-                      }
+                      path="/customized/create/detail/*"
+                      element={<Cus_product_detail />}
                     />
                     <Route
                       path="/customized/explore"
