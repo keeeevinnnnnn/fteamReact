@@ -88,7 +88,7 @@ const CreditForm = (props) => {
                 type="text"
                 className="checkout-input credit-invalid border-bottom w-20 focus-none text-gray bg-transparent"
                 maxLength={4}
-                autocomplete="off"
+                autoComplete="off"
               />
               {/* 5~8 */}
               <input
@@ -100,7 +100,7 @@ const CreditForm = (props) => {
                 type="text"
                 className="checkout-input border-bottom w-20 focus-none text-gray bg-transparent"
                 maxLength={4}
-                autocomplete="off"
+                autoComplete="off"
               />
               {/* 9~12 */}
               <input
@@ -112,7 +112,7 @@ const CreditForm = (props) => {
                 type="text"
                 className="checkout-input border-bottom w-20 focus-none text-gray bg-transparent"
                 maxLength={4}
-                autocomplete="off"
+                autoComplete="off"
               />
               {/* 13~16 */}
               <input
@@ -124,7 +124,7 @@ const CreditForm = (props) => {
                 type="text"
                 className="checkout-input border-bottom w-20 focus-none text-gray bg-transparent"
                 maxLength={4}
-                autocomplete="off"
+                autoComplete="off"
               />
             </div>
           </div>
@@ -146,7 +146,7 @@ const CreditForm = (props) => {
                   type="text"
                   maxLength={2}
                   placeholder={'MM'}
-                  autocomplete="off"
+                  autoComplete="off"
                 />
                 /{/* YY年 */}
                 <input
@@ -159,7 +159,7 @@ const CreditForm = (props) => {
                   type="text"
                   maxLength={2}
                   placeholder={'YY'}
-                  autocomplete="off"
+                  autoComplete="off"
                 />
               </div>
             </div>
@@ -178,7 +178,7 @@ const CreditForm = (props) => {
                   className="checkout-input w-100 border-bottom  focus-none text-gray bg-transparent"
                   type="text"
                   maxLength={3}
-                  autocomplete="off"
+                  autoComplete="off"
                 />
               </div>
             </div>
