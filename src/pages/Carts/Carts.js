@@ -1,13 +1,13 @@
 import React, { useState, Fragment, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-import ProductCard from './Nathan/ProductCard';
+import ProductCard from './Nathan_components/ProductCard';
 import Scroll from 'react-scroll';
 import './Carts.scss';
-import OffcanvasPage from './Nathan/OffcanvasPage';
-import MuiTabs from './Nathan/MuiTabs';
+import OffcanvasPage from './Nathan_components/OffcanvasPage';
+import CartMuiTabs from './Nathan_components/CartMuiTabs';
 import axios from 'axios';
-import CustomCard from './Nathan/CustomCard';
-import LessonCard from './Nathan/LessonCard';
+import CustomCard from './Nathan_components/CustomCard';
+import LessonCard from './Nathan_components/LessonCard';
 import AuthContext from '../../components/AuthContext';
 
 const Carts = (props) => {
@@ -65,16 +65,16 @@ const Carts = (props) => {
             setProductTotalPrice(
               response.data.result.length !== 0
                 ? response.data.result.reduce((init, obj) => {
-                  return init + obj.item_price;
-                }, 0)
+                    return init + obj.item_price;
+                  }, 0)
                 : 0
             );
             // get product qty
             setProductTotalQty(
               response.data.result.length !== 0
                 ? response.data.result.reduce((init, obj) => {
-                  return init + obj.quantity;
-                }, 0)
+                    return init + obj.quantity;
+                  }, 0)
                 : 0
             );
           });
@@ -100,16 +100,16 @@ const Carts = (props) => {
             setCustomTotalPrice(
               response.data.result.length !== 0
                 ? response.data.result.reduce((init, obj) => {
-                  return init + obj.item_price;
-                }, 0)
+                    return init + obj.item_price;
+                  }, 0)
                 : 0
             );
             // get custom qty
             setCustomTotalQty(
               response.data.result.length !== 0
                 ? response.data.result.reduce((init, obj) => {
-                  return init + obj.quantity;
-                }, 0)
+                    return init + obj.quantity;
+                  }, 0)
                 : 0
             );
           });
@@ -135,16 +135,16 @@ const Carts = (props) => {
             setLessonTotalPrice(
               response.data.result.length !== 0
                 ? response.data.result.reduce((init, obj) => {
-                  return init + obj.item_price;
-                }, 0)
+                    return init + obj.item_price;
+                  }, 0)
                 : 0
             );
             // get lesson qty
             setLessonTotalQty(
               response.data.result.length !== 0
                 ? response.data.result.reduce((init, obj) => {
-                  return init + obj.quantity;
-                }, 0)
+                    return init + obj.quantity;
+                  }, 0)
                 : 0
             );
           });
@@ -161,7 +161,7 @@ const Carts = (props) => {
           <div className="col-12 col-md-10 h-100">
             <div className="tabs-section w-100">
               <div className="w-100 h-100 d-none d-md-block">
-                <MuiTabs
+                <CartMuiTabs
                   selectItem={selectItem}
                   setSelectItem={setSelectItem}
                 />
@@ -193,8 +193,8 @@ const Carts = (props) => {
                         selectItem === 'PRODUCTS'
                           ? '-0%'
                           : selectItem === 'CUSTOMIZED'
-                            ? '-100%'
-                            : '-200%',
+                          ? '-100%'
+                          : '-200%',
                     }}
                     className="card-scroll-list"
                   >

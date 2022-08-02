@@ -1,30 +1,81 @@
 .adminTable {
+  .adminFilter {
+    height: 10%;
+    button {
+      height: 50%;
+      width: 10%;
+      font-size: .8rem;
+      font-weight: 700;
+      color: white;
+      background-color: black;
+      border: 2px solid var(--main);
+      padding: 3px;
+      margin-left: 2%;
+      transition: .3s ease;
+    }
+    button:hover {
+      color: black;
+      background-color: white;
+      border: 2px solid black;
+      transform: translateX(-2px) translateY(-2px);
+            box-shadow: 4px 4px 0px 0px #047d92;
+    }
+  }
     table {
-        font-family: Arial, Helvetica, sans-serif;
-        border-collapse: collapse;
-        width: 100%;
-      }
+      // border-collapse: collapse;
+      border-radius: 20px 20px 0 0;
+      // border: 1px solid var(--main);
+      width: 100%;
+      background: linear-gradient(to top, #a3bded 0%, #6991c7 100%);
+    }
 
-      td, th {
-        border: 1px solid #ddd;
-        padding: 8px;
-      }
+    th {
+      text-align: center;
+      padding-top: 12px;
+      padding-bottom: 12px;
+      color: white;
+      background: black;
+    }
 
-      /* tr:nth-child(even){background-color: #f2f2f2;} */
-      tr {
-        color: white;
-      }
+    .thLeft {
+      border-radius: 20px 0px 0 0;
+    }
 
-      tr:hover {
-        background-color: #ddd;
-        color: black;
-      }
+    .thRight {
+      border-radius: 0px 20px 0 0;
+    }
 
-      th {
-        padding-top: 12px;
-        padding-bottom: 12px;
-        text-align: left;
-        background-color: gray;
-        color: white;
-      }
+    tbody {
+      display: block;
+      height: 100%;
+      overflow-y: scroll;
+      background: rgba(0, 0, 0, 0.774);
+      font-weight: 600;
+      color: var(--main);
+    }
+    tbody::-webkit-scrollbar {
+      width: 5px;
+      height: 0px;
+    }
+
+    tbody::-webkit-scrollbar-thumb {
+      background-color: white;
+    }
+
+    td {
+      text-align: center;
+      border-bottom: 1px solid var(--main);
+      padding: 8px;
+    }
+
+    tr {
+      width: 100%;
+      display: table;
+      table-layout: fixed;
+    }
+
+    .trHover:hover {
+      background-color: rgb(250, 167, 167);
+      color: black;
+    }
 }

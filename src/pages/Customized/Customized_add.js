@@ -27,9 +27,10 @@ function Customized_add(props) {
   const [carrier, setCarrier] = useState('');
   const [front_color, setFront_color] = useState('');
   const [back_style, setBack_style] = useState('');
+  const [back_pattern, setBack_pattern] = useState('');
+  const [back_color, setBack_color] = useState('');
   const [back_text, setBack_text] = useState('');
   const [back_sticker, setBack_sticker] = useState('');
-  const [back_filter, setBack_filter] = useState('');
   const [back_img, setBack_img] = useState('');
   const [price, setPrice] = useState('');
   const [created_date, setCreated_date] = useState('');
@@ -42,9 +43,10 @@ function Customized_add(props) {
         carrier +
         front_color +
         back_style +
+        back_pattern +
+        back_color +
         back_text +
         back_sticker +
-        back_filter +
         back_img +
         price
     );
@@ -57,9 +59,10 @@ function Customized_add(props) {
         carrier: carrier,
         front_color: front_color,
         back_style: back_style,
+        back_pattern: back_pattern,
+        back_color: back_color,
         back_text: back_text,
         back_sticker: back_sticker,
-        back_filter: back_filter,
         back_img: back_img,
         price: price,
         // created_date:created_date
@@ -90,19 +93,7 @@ function Customized_add(props) {
           </div>
 
           <div className="cus_card_container">
-            <p>
-              member_id:{member_id} |custom_product_name:{custom_product_name} |
-              wheel_style:{wheel_style}{' '}
-            </p>
-            <p>
-              carrier:{carrier} | front_color:{front_color} | back_text:
-              {back_text} | back_text:{back_text}
-            </p>
-            <br />
-            <p>
-              back_sticker:{back_sticker} | back_filter:{back_filter} |
-              back_img:{back_img} | price:{price}
-            </p>
+    
 
             <div className="step-control">
               <Link to={'/customized/create'}>

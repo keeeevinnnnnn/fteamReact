@@ -70,12 +70,19 @@ export default function OffcanvasPage(props) {
           })
           .then((res) => {
             if (res.data.success) {
-              alert('恭喜您，訂購成功!');
               setNewOrderNumber(res.data.orderNumber);
-              setDisplace(displace + 200);
+              setToHomeForm({
+                fullName: '',
+                mobile: '',
+                email: '',
+                countryName: '',
+                townshipName: '',
+                fullAddress: '',
+              });
               setProductDep((prev) => prev + 1);
               setCustomDep((prev) => prev + 1);
               setLessonDep((prev) => prev + 1);
+              setDisplace(displace + 200);
             }
           });
         setDisplace(displace + 200);
@@ -172,7 +179,7 @@ export default function OffcanvasPage(props) {
                           type="text"
                           placeholder="* Name :"
                           onChange={toHomeFormHandler}
-                          autocomplete="off"
+                          autoComplete="off"
                         />
                         <input
                           className="border-bottom w-100 focus-none text-gray bg-transparent checkout-input"
@@ -182,7 +189,7 @@ export default function OffcanvasPage(props) {
                           type="text"
                           placeholder="* Mobile :"
                           onChange={toHomeFormHandler}
-                          autocomplete="off"
+                          autoComplete="off"
                         />
                         <input
                           className=" border-bottom w-100 focus-none text-gray bg-transparent checkout-input"
@@ -191,7 +198,7 @@ export default function OffcanvasPage(props) {
                           type="text"
                           placeholder="Email :"
                           onChange={toHomeFormHandler}
-                          autocomplete="off"
+                          autoComplete="off"
                         />
                         <TWZipCode
                           toHomeForm={toHomeForm}
@@ -204,7 +211,7 @@ export default function OffcanvasPage(props) {
                           type="text"
                           placeholder="* Address :"
                           onChange={toHomeFormHandler}
-                          autocomplete="off"
+                          autoComplete="off"
                         />
 
                         {/* 付款方式選擇 */}

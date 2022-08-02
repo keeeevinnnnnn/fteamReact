@@ -9,7 +9,7 @@ const FilterBox = (props) => {
   const [brand, setBrand] = useState(false);
   const [sortby, setSortby] = useState(false);
   const [searchInput, setSearchInput] = useState(false);
-  const { filter, setFilter, messages, setMessages } = props;
+  const { filter, setFilter, messages, setMessages, searchProducts } = props;
 
   // double range input
   const [value, setValue] = useState([1200, 10000]);
@@ -23,6 +23,14 @@ const FilterBox = (props) => {
       orderfield: 'price',
     });
   };
+
+  const [searchText, setSearchtext] = useState('');
+  const handleSearchText = (e) => {
+    const value = e.target.value;
+    setSearchtext(value);
+    searchProducts(value);
+  };
+
   const [sortbyItems, setSortbyItems] = useState([
     'Name asc (A-Z)',
     'Name desc (Z-A)',
@@ -228,6 +236,7 @@ const FilterBox = (props) => {
                       <input
                         type="checkbox"
                         key={i}
+                        checked={filter.color.includes(v)}
                         value={v}
                         onChange={(e) => {
                           //先判斷是否有在brand狀態陣列中
@@ -335,6 +344,7 @@ const FilterBox = (props) => {
                   <div className="brandBox pt-2" key={i}>
                     <input
                       type="checkbox"
+                      checked={filter.brand.includes(v)}
                       value={v}
                       onChange={(e) => {
                         //先判斷是否有在brand狀態陣列中
@@ -534,21 +544,20 @@ const FilterBox = (props) => {
           </div>
         </div>
 
-        <div className="col-2 d-flex search">
+        <div className="col-2 d-flex kevinSearch">
           <input
-            className="col-10 search-input"
+            className="col-10 kevinSearch-input"
             type="search"
             placeholder=" Search"
             aria-label="Search"
+            value={searchText}
             style={{ width: searchInput === false ? '40%' : '80%' }}
-            onMouseOver={() => {
-              setSearchInput(!searchInput);
-            }}
+            onChange={handleSearchText}
             onMouseOut={() => {
               setSearchInput(!searchInput);
             }}
           />
-          <button className="col-2 search-btn">
+          <button className="col-2 kevinSearch-btn">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-6 w-6"

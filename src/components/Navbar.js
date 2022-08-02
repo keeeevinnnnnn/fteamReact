@@ -27,7 +27,7 @@ const Navbar = (props) => {
   // 判斷有沒有登入存的值
   useEffect(() => {
     // 登入狀態不是false再執行 否則直接return
-    console.log(token);
+    // console.log(token);
     if (!auth) {
       setProductTotalQty(0);
       setLessonTotalQty(0);
@@ -50,6 +50,32 @@ const Navbar = (props) => {
           if (res.data.mem_nickname === '') {
             setNavName(res.data.mem_name);
           }
+          // 讀取購物車總數
+          axios
+            .get(`http://localhost:3000/carts/getTotal?memID=${res.data.sid}`)
+            .then((res) => {
+              if (res.data.productResult.length !== 0) {
+                let productTotal = 0;
+                for (let i of res.data.productResult) {
+                  productTotal += i.quantity;
+                }
+                setProductTotalQty(productTotal);
+              }
+              if (res.data.customResult.length !== 0) {
+                let customTotal = 0;
+                for (let i of res.data.customResult) {
+                  customTotal += i.quantity;
+                }
+                setCustomTotalQty(customTotal);
+              }
+              if (res.data.lessonResult.length !== 0) {
+                let lessonTotal = 0;
+                for (let i of res.data.lessonResult) {
+                  lessonTotal += i.quantity;
+                }
+                setLessonTotalQty(lessonTotal);
+              }
+            });
         });
     }
   }, [auths, auth, token, setMember]); // 有變更資料才刷新
@@ -172,8 +198,8 @@ const Navbar = (props) => {
                     style={{
                       width:
                         productTotalQty + lessonTotalQty + customTotalQty > 10
-                          ? '80%'
-                          : '50%',
+                          ? '70%'
+                          : '40%',
                     }}
                   >
                     {productTotalQty + lessonTotalQty + customTotalQty}

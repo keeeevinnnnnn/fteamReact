@@ -27,6 +27,7 @@ import Cus_product_detail from './pages/Customized/Cus_product_detail';
 import Customized_explore from './pages/Customized/Customized_explore';
 import Customized_collect from './pages/Customized/Customized_collect';
 import AuthContextProvider from './components/AuthContextProvider';
+import Cus_product_confirm from './pages/Customized/Cus_product_confirm';
 
 export const MemberContext = React.createContext();
 function App() {
@@ -76,6 +77,7 @@ function App() {
                       element={<Lesson_banqiao />}
                     />
                     <Route path="/products" element={<ProductMain />} />
+
                     <Route path="/products/main" element={<ProductDetails />} />
                     <Route path="/customized" element={<Customized />} />
                     <Route
@@ -118,6 +120,15 @@ function App() {
                       path="/customized/create/back"
                       element={
                         <Cus_product_card_back
+                          lastInsertID={lastInsertID}
+                          setLastInsertID={setLastInsertID}
+                        />
+                      }
+                    />
+                    <Route
+                      path="/customized/create/confirm"
+                      element={
+                        <Cus_product_confirm
                           lastInsertID={lastInsertID}
                           setLastInsertID={setLastInsertID}
                         />

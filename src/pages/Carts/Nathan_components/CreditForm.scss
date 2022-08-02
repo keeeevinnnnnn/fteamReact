@@ -74,6 +74,12 @@
   outline: thin solid rgb(142, 0, 0);
 }
 
+.credit-card-text {
+  color: rgb(205, 205, 205);
+  -webkit-text-fill-color: var(--main);
+  -webkit-text-stroke: 1px rgb(197, 197, 197);
+}
+
 @media screen and (max-width: 768px) {
   .credit-wrap-rwd {
     width: 300px;
