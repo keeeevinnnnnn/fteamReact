@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+// import React, { useRef, useState } from 'react';
 // Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react';
 
@@ -19,7 +19,7 @@ export default function LessonSwiper() {
     <>
       <Swiper navigation={true} modules={[Navigation]} className="mySwiper ">
         <SwiperSlide>
-          <div className="h-100  d-flex flex-wrap  justify-content-around  ">
+          <div className=" cooler_lesson_computer cooler_lesson_background h-100  d-flex flex-wrap  justify-content-around  ">
             <div className="w-40 h-95 cooler_lesson_class shadowblack">
               <div className="h-40">
                 <img src="./imgs/lesson_imgs/l01.jpg" className="" alt="..." />
@@ -126,7 +126,7 @@ export default function LessonSwiper() {
           </div>
         </SwiperSlide>
         <SwiperSlide>
-          <div className="h-100  d-flex flex-wrap  justify-content-around  ">
+          <div className="cooler_lesson_background h-100  d-flex flex-wrap  justify-content-around  ">
             <div className="w-40 h-95 cooler_lesson_class shadowblack">
               <div className="h-40">
                 <img src="./imgs/lesson_imgs/l02.jpg" className="" alt="..." />
@@ -181,12 +181,12 @@ export default function LessonSwiper() {
             </div>
             <div className="w-40 h-95 cooler_lesson_class shadowblack">
               <div className="h-40">
-                <img src="./imgs/lesson_imgs/l01.jpg" className="" alt="..." />
+                <img src="./imgs/lesson_imgs/l03.jpg" className="" alt="..." />
               </div>
               <div className="h-60 p-3">
                 <div className="h-25 ">
                   <h4 className=" text-center h-40 fw-bold">HRC 舞蹈工作室</h4>
-                  <h5 className=" text-center h-30 fw-bold">【忠孝館】</h5>
+                  <h5 className=" text-center h-30 fw-bold">【台中精誠館】</h5>
                 </div>
                 <div className="h-15 d-flex ">
                   <div className="coolermap d-inline-block">
@@ -206,7 +206,7 @@ export default function LessonSwiper() {
                       </svg>
                     </a>
                   </div>
-                  <div className="fs-6 fw-bold"> 國父紀念館</div>
+                  <div className="fs-6 fw-bold"></div>
                 </div>
                 <div className="h-55">
                   <p className=" h-75 ">
@@ -215,7 +215,7 @@ export default function LessonSwiper() {
                   <div className="h-35 w-100 d-flex justify-content-end">
                     <div className="w-25">
                       <Link
-                        to={'/lesson/lesson_zhongxiao'}
+                        to={'/lesson/lesson_taichung'}
                         className="cooler-btn"
                       >
                         Go
