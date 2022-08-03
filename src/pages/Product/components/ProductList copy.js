@@ -6,7 +6,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { Link } from 'react-router-dom';
 
 const ProductList = (props) => {
-  const { sid, img, name, brand, price, setFavoritesNum, whoFavorites } = props;
+  const { sid, img, name, brand, price, setFavoritesNum } = props;
 
   // 收藏按鈕開關
   const [heart, setHeart] = useState(false);
@@ -21,7 +21,7 @@ const ProductList = (props) => {
       draggable: true,
       progress: undefined,
     });
-    setHeart(!heart);
+    setHeart(true);
   };
 
   // 取消收藏成功提示訊息設定
@@ -35,7 +35,7 @@ const ProductList = (props) => {
       draggable: true,
       progress: undefined,
     });
-    setHeart(!heart);
+    setHeart(false);
   };
 
   // 收藏商品與取消收藏商品;
@@ -56,16 +56,12 @@ const ProductList = (props) => {
     });
   };
 
-  // 計算收藏商品總數
   const countFavorites = async () => {
     await axios.get(`/product/favoriteCount?memId=${5}`).then((res) => {
       let favoritesNum = res.data[`count(sid)`];
       setFavoritesNum(favoritesNum);
     });
   };
-
-  // 紀錄誰收藏
-  const findWhoFavorites = whoFavorites.filter((v) => v.sid === sid);
 
   return (
     <div className="col-4 mt-5">
@@ -79,10 +75,7 @@ const ProductList = (props) => {
             stroke="currentColor"
             stroke-width="2"
             style={{
-              display:
-                findWhoFavorites.length > 0 || heart === true
-                  ? 'none'
-                  : 'block',
+              display: heart === false ? 'block' : 'none',
             }}
             id="heartTrue"
             onClick={getFavorites}
@@ -100,10 +93,7 @@ const ProductList = (props) => {
             viewBox="0 0 20 20"
             fill="currentColor"
             style={{
-              display:
-                findWhoFavorites.length > 0 || heart === true
-                  ? 'block'
-                  : 'none',
+              display: heart === false ? 'none' : 'block',
             }}
             id="heartFalse"
             onClick={getFavorites}

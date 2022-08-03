@@ -31,7 +31,7 @@ const ProductDetails = (props) => {
       draggable: true,
       progress: undefined,
     });
-    setHeart(true);
+    setHeart(!heart);
   };
 
   // 取消收藏成功提示訊息設定
@@ -45,7 +45,7 @@ const ProductDetails = (props) => {
       draggable: true,
       progress: undefined,
     });
-    setHeart(false);
+    setHeart(!heart);
   };
 
   const axiosProductDetails = async (productId) => {

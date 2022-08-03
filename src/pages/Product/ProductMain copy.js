@@ -68,10 +68,6 @@ const ProductMain = (props) => {
     });
   }, []);
 
-  // const hey = whoFavorites.filter((v) => v.sid === );
-
-  // console.log(hey);
-
   return (
     <div className="bg w-100 vh-100 d-flex justify-content-end align-items-end">
       <div className="work-area col-10 text-danger">
@@ -175,7 +171,6 @@ const ProductMain = (props) => {
                         setData={setData}
                         favoritesNum={favoritesNum}
                         setFavoritesNum={setFavoritesNum}
-                        whoFavorites={whoFavorites}
                       />
                     </CSSTransition>
                   );
