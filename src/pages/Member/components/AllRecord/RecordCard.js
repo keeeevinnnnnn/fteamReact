@@ -64,7 +64,7 @@ const RecordCard = ({ products, customized }) => {
                     style={{
                       color: `${v.color !== 'Black' ? v.color : 'white'}`,
                       // 如果顏色是黑色的話boxShadow顏色改用白色(因為背景是黑色)
-                      textShadow: `2px 0px 2px white`,
+                      textShadow: '2px 0px 2px white',
                     }}
                   >
                     {v.color}
