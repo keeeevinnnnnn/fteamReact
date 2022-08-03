@@ -3,8 +3,8 @@
 }
 
 .focus-none:focus {
-  border: none;
-  outline: none;
+  border: none !important;
+  outline: none !important;
 }
 
 .text-gray {

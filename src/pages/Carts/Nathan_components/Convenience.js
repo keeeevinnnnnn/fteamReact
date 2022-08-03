@@ -19,6 +19,7 @@ import Hsinchu from './data/711/新竹市.json';
 import Chiayi from './data/711/嘉義市.json';
 import Changhua from './data/711/彰化縣.json';
 import Penghu from './data/711/澎湖縣.json';
+import MyMap from './MyMap';
 
 function Convenience(props) {
   // group by key function
@@ -34,6 +35,7 @@ function Convenience(props) {
   const [convenceCountryInd, setConvenceCountryInd] = useState(-1);
   const [convenceTownsShipInd, setConvenceTownsShipInd] = useState(-1);
   const [convenceStoreInd, setConvenceStoreInd] = useState(-1);
+  const [isDisable, setIsDisable] = useState(true);
   let Convence = [
     JSON.parse(JSON.stringify(Taipei)),
     JSON.parse(JSON.stringify(Newtaipei)),
@@ -65,7 +67,7 @@ function Convenience(props) {
   for (let i = 0; i < Convence.length; i++) {
     Convence[i].stores = groupBy(Convence[i].stores, 'townsShip');
   }
-  console.log('Convence', Convence);
+  // console.log('Convence', Convence);
   let storeArr = [];
   for (let i = 0; i < Convence.length; i++) {
     storeArr.push(Convence[i].stores);
@@ -92,11 +94,28 @@ function Convenience(props) {
     let townshipName = Object.keys(v[countryName]);
     townshipArr.push(townshipName);
   });
-  console.log('townshipArr', townshipArr);
+  // console.log('townshipArr', townshipArr);
+  const clearConvenceFormHandler = () => {
+    setToConvenceFrom({
+      convenceCountry: '',
+      convenceTownship: '',
+      convenceStore: '',
+    });
+    setConvenceCountryInd(-1);
+    setConvenceTownsShipInd(-1);
+    setConvenceStoreInd(-1);
+  };
   return (
     <div className="w-100 h-100">
-      <div className="w-100 h-10 d-flex justify-content-between align-items-center">
+      <div className="w-100 h-10 d-flex justify-content-between align-items-center store-selectors-wrap">
         <select
+          disabled={toConvenceFrom.convenceStore !== '' ? true : false}
+          style={{
+            color:
+              toConvenceFrom.convenceStore !== ''
+                ? 'rgb(120, 120, 120)'
+                : 'rgb(207, 207,207)',
+          }}
           className="w-30 text-center bg-transparent text-gray border-0 border-bottom focus-none"
           value={convenceCountryInd}
           onChange={(e) => {
@@ -109,7 +128,7 @@ function Convenience(props) {
           }}
         >
           <option disabled value="-1">
-            ---縣市---
+            選擇縣市
           </option>
           {countryArr.map((v, i) => {
             return (
@@ -120,6 +139,13 @@ function Convenience(props) {
           })}
         </select>
         <select
+          disabled={toConvenceFrom.convenceStore !== '' ? true : false}
+          style={{
+            color:
+              toConvenceFrom.convenceStore !== ''
+                ? 'rgb(120, 120, 120)'
+                : 'rgb(207, 207,207)',
+          }}
           value={convenceTownsShipInd}
           className="w-30 text-center bg-transparent text-gray border-0 border-bottom focus-none"
           onChange={(e) => {
@@ -131,7 +157,7 @@ function Convenience(props) {
           }}
         >
           <option disabled value="-1">
-            ---區域---
+            選擇區域
           </option>
           {convenceCountryInd > -1 &&
             townshipArr[convenceCountryInd].map((v, i) => {
@@ -143,7 +169,11 @@ function Convenience(props) {
             })}
         </select>
         <select
-          defaultValue={1}
+          style={{
+            color: !isDisable ? 'rgb(120, 120, 120)' : 'rgb(207, 207,207)',
+          }}
+          disabled={!isDisable}
+          defaultValue={convenceStoreInd}
           className="w-30 text-center bg-transparent text-gray border-0 border-bottom focus-none"
           onChange={(e) => {
             setToConvenceFrom({
@@ -152,8 +182,8 @@ function Convenience(props) {
             });
           }}
         >
-          <option disabled value="1">
-            ---門市---
+          <option disabled value={convenceStoreInd}>
+            選擇門市
           </option>
           {convenceTownsShipInd > -1
             ? storeArr[convenceCountryInd][toConvenceFrom.convenceTownship].map(
@@ -167,8 +197,25 @@ function Convenience(props) {
             )
             : null}
         </select>
+        <button
+          style={{ backgroundColor: !isDisable && '#4091a7' }}
+          disabled={!isDisable}
+          onClick={isDisable ? clearConvenceFormHandler : null}
+          className="focus-none clear-store"
+        >
+          Clear
+        </button>
       </div>
-      <div className="w-100 h-90"></div>
+      <div className="w-100 h-90">
+        <MyMap
+          storeArr={storeArr}
+          convenceCountryInd={convenceCountryInd}
+          toConvenceFrom={toConvenceFrom}
+          setToConvenceFrom={setToConvenceFrom}
+          isDisable={isDisable}
+          setIsDisable={setIsDisable}
+        />
+      </div>
     </div>
   );
 }
