@@ -165,3 +165,22 @@
 .pay-radio[type="radio"]:checked+label span {
   background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/210284/check_radio_sheet.png) -57px top no-repeat;
 }
+
+.store-selectors-wrap {
+  position: relative;
+
+  .clear-store {
+    height: 30px;
+    width: 80px;
+    top: -40px;
+    right: 0;
+    font-size: .8rem;
+    position: absolute;
+    transition: .3s ease;
+    border-radius: 5px;
+  }
+
+  .clear-store:hover {
+    background-color: #4091a7;
+  }
+}

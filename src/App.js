@@ -10,6 +10,7 @@ import Admin from './pages/Admin/Admin';
 import Lesson from './pages/Lesson/Lesson';
 import Lesson_zhongxiao from './pages/Lesson/Lesson_zhongxiao';
 import Lesson_banqiao from './pages/Lesson/Lesson_banqiao';
+import Lesson_taichung from './pages/Lesson/Lesson_taichung';
 import Products from './pages/Product/Products';
 import ProductMain from './pages/Product/ProductMain';
 import ProductDetails from './pages/Product/ProductDetails';
@@ -79,6 +80,10 @@ function App() {
                     <Route
                       path="/lesson/lesson_banqiao"
                       element={<Lesson_banqiao />}
+                    />
+                    <Route
+                      path="/lesson/lesson_taichung"
+                      element={<Lesson_taichung />}
                     />
                     <Route
                       path="products"

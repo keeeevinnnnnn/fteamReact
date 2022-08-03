@@ -38,39 +38,39 @@ const RecordEcharts = () => {
 
   // 白色商品在陣列中的長度(數量)
   const whiteLength = Object.values(productsColor).filter((v, i) => {
-    return v.color === 'withe';
+    return v.color === 'Withe';
   }).length;
   // 黑色商品在陣列中的長度(數量)
   const blackLength = Object.values(productsColor).filter((v, i) => {
-    return v.color === 'black';
+    return v.color === 'Black';
   }).length;
   // 藍色商品在陣列中的長度(數量)
   const blueLength = Object.values(productsColor).filter((v, i) => {
-    return v.color === 'blue';
+    return v.color === 'Blue';
   }).length;
   // 綠色商品在陣列中的長度(數量)
   const greenLength = Object.values(productsColor).filter((v, i) => {
-    return v.color === 'green';
+    return v.color === 'Green';
   }).length;
   // 黃色商品在陣列中的長度(數量)
   const yellowLength = Object.values(productsColor).filter((v, i) => {
-    return v.color === 'yellow';
+    return v.color === 'Yellow';
   }).length;
   // 橘色商品在陣列中的長度(數量)
   const orangeLength = Object.values(productsColor).filter((v, i) => {
-    return v.color === 'orange';
+    return v.color === 'Orange';
   }).length;
   // 紅色商品在陣列中的長度(數量)
   const redLength = Object.values(productsColor).filter((v, i) => {
-    return v.color === 'red';
+    return v.color === 'Red';
   }).length;
   // 粉紅色商品在陣列中的長度(數量)
   const pinkLength = Object.values(productsColor).filter((v, i) => {
-    return v.color === 'pink';
+    return v.color === 'Pink';
   }).length;
   // 紫色商品在陣列中的長度(數量)
   const purpleLength = Object.values(productsColor).filter((v, i) => {
-    return v.color === 'purple';
+    return v.color === 'Purple';
   }).length;
 
   const option = {
