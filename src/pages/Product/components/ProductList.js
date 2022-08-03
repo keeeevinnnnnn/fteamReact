@@ -6,7 +6,8 @@ import 'react-toastify/dist/ReactToastify.css';
 import { Link } from 'react-router-dom';
 
 const ProductList = (props) => {
-  const { sid, img, name, brand, price } = props;
+  const { sid, img, name, brand, price, favoritesNum, setFavoritesNum } = props;
+  const [whoFavorites, setWhoFavorites] = useState([]);
 
   // 收藏按鈕開關
   const [heart, setHeart] = useState(false);
@@ -39,7 +40,7 @@ const ProductList = (props) => {
   };
 
   // 收藏商品與取消收藏商品;
-  const getFavorites = () => {
+  const getFavorites = async () => {
     const addFavorites = {
       sid: sid,
       favoriteImg: img,
@@ -48,10 +49,18 @@ const ProductList = (props) => {
       favoritePrice: price,
       memId: 5,
     };
-    axios.post('/product/favorites', addFavorites).then((res) => {
+    await axios.post('/product/favorites', addFavorites).then((res) => {
       // 拿到成功或失敗的訊息
       console.log('favorites==', res.data);
       res.data.success === 'true' ? favoriteSuccess() : favoriteError();
+      countFavorites();
+    });
+  };
+
+  const countFavorites = async () => {
+    await axios.get(`/product/favoriteCount?memId=${5}`).then((res) => {
+      let favoritesNum = res.data[`count(sid)`];
+      setFavoritesNum(favoritesNum);
     });
   };
 

@@ -3,8 +3,10 @@ import { useParams } from 'react-router-dom';
 import ProductTabsBox from './components/ProductTabsBox';
 import axios from './commons/axios';
 import './styles/ProductDetails.scss';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-const ProductDetails = () => {
+const ProductDetails = (props) => {
   const [details, setdetails] = useState({
     sid: '',
     img: '',
@@ -13,11 +15,67 @@ const ProductDetails = () => {
     price: 0,
     info: '',
   });
+
+  const { setFavoritesNum } = props;
+  // 收藏svg開關
   const [heart, setHeart] = useState(false);
+
+  // 收藏成功提示訊息設定
+  const detailsSuccess = () => {
+    toast.success('Add Favorites Success', {
+      position: 'top-center',
+      autoClose: 1500,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+    setHeart(true);
+  };
+
+  // 取消收藏成功提示訊息設定
+  const detailsError = () => {
+    toast.error('Cancel Favorites Success', {
+      position: 'top-center',
+      autoClose: 1500,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+    setHeart(false);
+  };
 
   const axiosProductDetails = async (productId) => {
     axios.get(`/product/${productId}`).then((res) => {
       setdetails(res.data);
+    });
+  };
+
+  // 收藏商品與取消收藏商品;
+  const detailsFavorites = async () => {
+    const addFavorites = {
+      sid: details.sid,
+      favoriteImg: details.img,
+      favoriteName: details.name,
+      favoriteBrand: details.brand,
+      favoritePrice: details.price,
+      memId: 5,
+    };
+    await axios.post('/product/favorites', addFavorites).then((res) => {
+      // 拿到成功或失敗的訊息
+      console.log('favorites==', res.data);
+      res.data.success === 'true' ? detailsSuccess() : detailsError();
+      countDetailsFavorites();
+    });
+  };
+
+  const countDetailsFavorites = async () => {
+    await axios.get(`/product/favoriteCount?memId=${5}`).then((res) => {
+      let favoritesNum = res.data[`count(sid)`];
+      setFavoritesNum(favoritesNum);
     });
   };
 
@@ -50,11 +108,7 @@ const ProductDetails = () => {
                 </button>
               </div>
               <div className="detail-int-heart mb-5">
-                <button
-                  onClick={() => {
-                    setHeart(!heart);
-                  }}
-                >
+                <button onClick={detailsFavorites}>
                   <span>Favorite</span>
                   <span>
                     <svg
@@ -106,6 +160,18 @@ const ProductDetails = () => {
           </div>
         </div>
       </div>
+      <ToastContainer
+        position="top-center"
+        autoClose={2000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
+      />
     </div>
   );
 };

@@ -85,6 +85,7 @@ const Verify = ({
             type="email"
             name="email"
             className="w-40"
+            disabled
             required
             value={verification.email}
             onChange={handleverifyChange}

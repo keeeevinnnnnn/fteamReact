@@ -15,7 +15,9 @@ const Navbar = (props) => {
     setProductTotalQty,
     setLessonTotalQty,
     setCustomTotalQty,
+    favoritesNum,
   } = props;
+
   const navigate = useNavigate();
   // 從這支Context拿值
   // auth為登入判斷(true,false) token為會員JWT的token logout是登出涵式
@@ -156,6 +158,14 @@ const Navbar = (props) => {
               </Link>
             )}
             <div className="like-icon-wrap">
+              <div
+                className="like-icon-count"
+                style={{ display: favoritesNum === 0 ? 'none' : '' }}
+              >
+                <span style={{ width: favoritesNum >= 10 ? '65%' : '50%' }}>
+                  {favoritesNum}
+                </span>
+              </div>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-6 w-6"

@@ -10,6 +10,7 @@ import Admin from './pages/Admin/Admin';
 import Lesson from './pages/Lesson/Lesson';
 import Lesson_zhongxiao from './pages/Lesson/Lesson_zhongxiao';
 import Lesson_banqiao from './pages/Lesson/Lesson_banqiao';
+import Lesson_taichung from './pages/Lesson/Lesson_taichung';
 import Products from './pages/Product/Products';
 import ProductMain from './pages/Product/ProductMain';
 import ProductDetails from './pages/Product/ProductDetails';
@@ -39,7 +40,8 @@ function App() {
   const [customTotalQty, setCustomTotalQty] = useState(0);
   // 商品原始資料
   const [data, setData] = useState({});
-
+  // 商品收藏後icon + 1
+  const [favoritesNum, setFavoritesNum] = useState(0);
   return (
     <Router>
       {/* 裡面包含ConText(會員登入判斷)及登出涵式 */}
@@ -56,6 +58,8 @@ function App() {
                   setProductTotalQty={setProductTotalQty}
                   setLessonTotalQty={setLessonTotalQty}
                   setCustomTotalQty={setCustomTotalQty}
+                  favoritesNum={favoritesNum}
+                  setFavoritesNum={setFavoritesNum}
                 />
                 <div className="w-100 bottom-grid d-flex">
                   <SideBar />
@@ -78,13 +82,26 @@ function App() {
                       element={<Lesson_banqiao />}
                     />
                     <Route
+                      path="/lesson/lesson_taichung"
+                      element={<Lesson_taichung />}
+                    />
+                    <Route
                       path="products"
-                      element={<ProductMain data={data} setData={setData} />}
+                      element={
+                        <ProductMain
+                          data={data}
+                          setData={setData}
+                          favoritesNum={favoritesNum}
+                          setFavoritesNum={setFavoritesNum}
+                        />
+                      }
                     />
 
                     <Route
                       path="products/details/:productId"
-                      element={<ProductDetails />}
+                      element={
+                        <ProductDetails setFavoritesNum={setFavoritesNum} />
+                      }
                     />
                     <Route path="/customized" element={<Customized />} />
                     <Route
