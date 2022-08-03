@@ -17,7 +17,12 @@ import '../style/Lesson.css';
 export default function LessonSwiper() {
   return (
     <>
-      <Swiper navigation={true} modules={[Navigation]} className="mySwiper ">
+      <Swiper
+        loop={true}
+        navigation={true}
+        modules={[Navigation]}
+        className="mySwiper "
+      >
         <SwiperSlide>
           <div className=" cooler_lesson_computer cooler_lesson_background h-100  d-flex flex-wrap  justify-content-around  ">
             <div className="w-40 h-95 cooler_lesson_class shadowblack">

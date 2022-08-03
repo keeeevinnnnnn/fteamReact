@@ -6,7 +6,7 @@ const LessonPhone = () => {
     <>
       <div className="  d-block d-sm-none  cooler_lesson_phone cooler_lesson_background w-100 vh-100 d-flex justify-content-end align-items-end">
         <div className=" work-area col-12 col-md-10 p-0">
-          <div className="d-flex flex-wrap ">
+          <div className="cooler_lesson_background d-flex flex-wrap ">
             <div className="col-12 col-md-1 d-none d-lg-block  cooler_arrowcenter  m-3">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -24,7 +24,7 @@ const LessonPhone = () => {
               </svg>
             </div>
 
-            <div className="col-12 col-md-4 m-md-4 card  shadowblack  ">
+            <div className="col-12 card mb-5 shadowblack  ">
               <img
                 src="./imgs/lesson_imgs/l01.jpg"
                 className="card-img-top"
@@ -65,7 +65,7 @@ const LessonPhone = () => {
                 </div>
               </div>
             </div>
-            <div className="col-12 col-md-4 m-md-4 card  shadowblack ">
+            <div className="col-12 card mb-5 shadowblack ">
               <img
                 src="./imgs/lesson_imgs/l02.jpg"
                 className="card-img-top"
@@ -106,7 +106,7 @@ const LessonPhone = () => {
                 </div>
               </div>
             </div>
-            <div className="col-12 col-md-4 m-md-4 card  shadowblack ">
+            <div className="col-12 card mb-5 shadowblack ">
               <img
                 src="./imgs/lesson_imgs/l03.jpg"
                 className="card-img-top"
