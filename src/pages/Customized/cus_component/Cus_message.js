@@ -1,7 +1,9 @@
 import React from 'react';
 import Avatar from '@mui/material/Avatar';
 
-function Cus_message() {
+function Cus_message(props) {
+  const {setMessageboard}=props
+
   return (
     <>
       <div class="d-flex m-2 border-bottom border-gray">
@@ -9,8 +11,8 @@ function Cus_message() {
           <Avatar sx={{ bgcolor: 'black'[900] }}>OP</Avatar>
         </div>
         <div className="col-10">
-          <h6>User Name</h6>
-          <p>這是留言這是留言這是留言這是留言這是留言這是留言</p>
+          <h6>{setMessageboard.mem_name}</h6>
+          <p>{setMessageboard.comment}</p>
         </div>
       </div>
     </>

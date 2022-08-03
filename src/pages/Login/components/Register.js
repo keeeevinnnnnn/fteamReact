@@ -4,6 +4,7 @@ import axios from 'axios';
 import '../styles/Btn8.scss';
 import '../styles/Register.scss';
 import LoginLogo from './LoginLogo';
+import Verify from './Verify';
 
 const Register = ({
   setLoginCard,
@@ -16,6 +17,8 @@ const Register = ({
   // 取得頭貼input
   const registerAvatarRef = useRef(null);
   const [memberAvatar, setMemberAvatar] = useState('');
+
+  const [verify, setVerify] = useState(false);
 
   // 點擊頭貼 觸發頭貼input
   function clickAvatar() {
@@ -118,14 +121,16 @@ const Register = ({
     );
 
     if (response.data.success === true) {
-      alert('註冊成功');
+      alert('註冊成功，請立即去信箱驗證您的帳號');
+      // 呈現驗證頁面
+      setVerify(true);
       // 清空欄位
-      setFields({ ...endRegister });
+      // setFields({ ...endRegister });
       // 頭貼狀態設回空字串
       setMemberAvatar('');
       // 卡片翻回去
-      setLoginCard('');
-      setLoginLogoText('Login');
+      // setLoginCard('');
+      // setLoginLogoText('Login');
     } else {
       alert('註冊失敗');
     }
@@ -139,6 +144,7 @@ const Register = ({
     });
   };
 
+  // 點擊input就消除錯誤訊息
   const clickErrorText = (e) => {
     setFieldErrors({
       ...fieldErrors,
@@ -151,109 +157,120 @@ const Register = ({
         <div className="w-100 LoginLogoRWDbox">
           <LoginLogo loginLogoText={loginLogoText} />
         </div>
-        <form
-          className="w-100 text-white text-center"
-          // 表單點擊
-          onSubmit={handleSubmit}
-          // 表單檢查
-          onInvalid={handleInvalid}
-          // 表單有更動時
-          onChange={handleFormChange}
-        >
-          <div className="w-100 d-flex justify-content-center mb-2">
-            <img
-              // 有選頭貼就給頭貼照片 否則給預設照片
-              src={
-                memberAvatar === ''
-                  ? '../../imgs/GaryComponents/images.png'
-                  : `http://localhost:3000/avatar/${memberAvatar}`
-              }
-              alt=""
-              className="cursorpointer"
-              // 點擊頭貼input
-              onClick={clickAvatar}
+        {verify ? (
+          <Verify
+            fields={fields}
+            setVerify={setVerify}
+            endRegister={endRegister}
+            setFields={setFields}
+            setLoginCard={setLoginCard}
+            setLoginLogoText={setLoginLogoText}
+          />
+        ) : (
+          <form
+            className="w-100 text-white text-center"
+            // 表單點擊
+            onSubmit={handleSubmit}
+            // 表單檢查
+            onInvalid={handleInvalid}
+            // 表單有更動時
+            onChange={handleFormChange}
+          >
+            <div className="w-100 d-flex justify-content-center mb-2">
+              <img
+                // 有選頭貼就給頭貼照片 否則給預設照片
+                src={
+                  memberAvatar === ''
+                    ? '../../imgs/GaryComponents/images.png'
+                    : `http://localhost:3000/avatar/${memberAvatar}`
+                }
+                alt=""
+                className="cursorpointer"
+                // 點擊頭貼input
+                onClick={clickAvatar}
+              />
+            </div>
+            <input
+              type="file"
+              name="avatar"
+              ref={registerAvatarRef}
+              onChange={uploadAvatar}
+              hidden
             />
-          </div>
-          <input
-            type="file"
-            name="avatar"
-            ref={registerAvatarRef}
-            onChange={uploadAvatar}
-            hidden
-          />
-          <div className="w-100 d-flex">
-            <div className="col-6">
-              <h3>Name</h3>
-              <input
-                type="text"
-                name="name"
-                required // 必填欄位
-                value={fields.name}
-                onChange={handleFieldsChange}
-                onClick={clickErrorText}
-              />
-              <p>{fieldErrors.name}</p>
-              <h3>Account</h3>
-              <input
-                type="text"
-                name="account"
-                required
-                value={fields.account}
-                onChange={handleFieldsChange}
-                onClick={clickErrorText}
-              />
-              <p>{fieldErrors.account}</p>
+            <div className="w-100 d-flex">
+              <div className="col-6">
+                <h3>Name</h3>
+                <input
+                  type="text"
+                  name="name"
+                  required // 必填欄位
+                  value={fields.name}
+                  onChange={handleFieldsChange}
+                  onClick={clickErrorText}
+                />
+                <p>{fieldErrors.name}</p>
+                <h3>Account</h3>
+                <input
+                  type="text"
+                  name="account"
+                  required
+                  value={fields.account}
+                  onChange={handleFieldsChange}
+                  onClick={clickErrorText}
+                />
+                <p>{fieldErrors.account}</p>
+              </div>
+              <div className="col-6">
+                <h3>Password</h3>
+                <input
+                  type="password"
+                  name="password"
+                  required
+                  value={fields.password}
+                  onChange={handleFieldsChange}
+                  onClick={clickErrorText}
+                  autoComplete="on"
+                />
+                <p>{fieldErrors.password}</p>
+                <h3>Check</h3>
+                <input
+                  type="password"
+                  name="confirmPassword"
+                  required
+                  value={fields.confirmPassword}
+                  onChange={handleFieldsChange}
+                  onClick={clickErrorText}
+                  autoComplete="on"
+                />
+                <p>{fieldErrors.confirmPassword}</p>
+              </div>
             </div>
-            <div className="col-6">
-              <h3>Password</h3>
-              <input
-                type="password"
-                name="password"
-                required
-                value={fields.password}
-                onChange={handleFieldsChange}
-                onClick={clickErrorText}
-                autoComplete="on"
-              />
-              <p>{fieldErrors.password}</p>
-              <h3>Check</h3>
-              <input
-                type="password"
-                name="confirmPassword"
-                required
-                value={fields.confirmPassword}
-                onChange={handleFieldsChange}
-                onClick={clickErrorText}
-                autoComplete="on"
-              />
-              <p>{fieldErrors.confirmPassword}</p>
+            <h3>Email</h3>
+            <input
+              type="email"
+              name="email"
+              className="w-40"
+              required
+              value={fields.email}
+              onChange={handleFieldsChange}
+              onClick={clickErrorText}
+            />
+            <p>{fieldErrors.email}</p>
+            <div className="h-20 w-100 d-flex justify-content-around">
+              <button
+                className="buttonChangePage"
+                onClick={(e) => {
+                  e.preventDefault();
+                  setLoginCard('');
+                  setLoginLogoText('Login');
+                }}
+              >
+                Login
+              </button>
+              <button className="buttonChangePage">CONFIRM</button>
             </div>
-          </div>
-          <h3>Email</h3>
-          <input
-            type="email"
-            name="email"
-            className="w-40"
-            required
-            value={fields.email}
-            onChange={handleFieldsChange}
-            onClick={clickErrorText}
-          />
-          <p>{fieldErrors.email}</p>
-          <div className="h-20 w-100 d-flex justify-content-around">
-            <button
-              className="buttonChangePage"
-              onClick={(e) => {
-                e.preventDefault();
-                setLoginCard('');
-                setLoginLogoText('Login');
-              }}
-            >
-              Login
-            </button>
-            <button className="buttonChangePage">CONFIRM</button>
-          </div>
-        </form>
+          </form>
+        )}
       </div>
     </>
   );
