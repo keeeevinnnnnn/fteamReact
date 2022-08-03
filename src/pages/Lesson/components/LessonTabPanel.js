@@ -61,8 +61,18 @@ export default function BasicTabs() {
           onChange={handleChange}
           aria-label="basic tabs example"
         >
-          <Tab label="LESSON" {...a11yProps(0)} disableRipple={true} />
-          <Tab label="TEACHER" {...a11yProps(1)} disableRipple={true} />
+          <Tab
+            sx={{ fontSize: '1.3rem', fontWeight: '600' }}
+            label="LESSON"
+            {...a11yProps(0)}
+            disableRipple={true}
+          />
+          <Tab
+            sx={{ fontSize: '1.3rem', fontWeight: '600' }}
+            label="TEACHER"
+            {...a11yProps(1)}
+            disableRipple={true}
+          />
         </Tabs>
       </Box>
       <TabPanel value={value} index={0}>
