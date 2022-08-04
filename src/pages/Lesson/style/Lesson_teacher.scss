@@ -50,6 +50,10 @@
   text-align: justify;
 }
 
+.cooler_teacher_card_info {
+  text-align: justify;
+}
+
 .cooler_teacher_card:hover {
   -webkit-box-shadow: 13px 14px 0px -2px #2ce6ff;
   box-shadow: 13px 14px 0px -2px #2ce6ff;
@@ -71,23 +75,40 @@
 
   .cooler_teacher_card_teachername {
     justify-content: end;
-    padding-top: 3rem;
+    padding-top: 1.5rem;
     padding-right: 0.5rem;
+    // background-color: #000000;
   }
 
   .cooler_teacher_log {
     flex-direction: column;
   }
 
-  .cooler_teacher_card__info {
+  .cooler_teacher_card_info {
     padding-top: 2rem;
   }
 
-  // .cooler_teacher_card_bottom {
-  // }
+  .cooler_teacher_card_right {
+    height: 0%;
+  }
+
+  .cooler_teacher_card_head_circle {
+    width: 100%;
+    height: 100%;
+  }
 }
 
 // ----------------RWD------------------
+
+@media (min-width: 1500px) {
+  .cooler_teacher_card_teachername {
+    font-size: 2.2rem;
+  }
+
+  .cooler_teacher_card_info {
+    font-size: 1.23rem;
+  }
+}
 
 @media (max-width: 500px) {
   .cooler_teacher_card {
