@@ -193,6 +193,7 @@ const Navbar = (props) => {
 
               <div
                 className="favoritesList"
+                style={{ display: 'none' }}
                 // style={{ display: IamKevin === false ? 'none' : 'block' }}
               >
                 <ScrollBox>
