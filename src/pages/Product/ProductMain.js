@@ -7,7 +7,8 @@ import ProductList from './components/ProductList';
 import Pagination from './components/Pagination';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 const ProductMain = (props) => {
-  const { data, setData, favoritesNum, setFavoritesNum } = props;
+  const { data, setData, favoritesNum, setFavoritesNum, countFavorites } =
+    props;
 
   // 原始資料
   //  {
@@ -32,14 +33,19 @@ const ProductMain = (props) => {
     priceRange: [],
     searchName: '',
   });
+
+  // 複合篩選的文字顯示
   const [messages, setMessages] = useState([]);
+
+  // 瀏覽器重新渲染拿到該會員收藏過的商品
   const [whoFavorites, setWhoFavorites] = useState([]);
 
+  // 商品搜尋
   const searchProducts = (text) => {
     setFilter({ ...filter, searchName: text });
   };
 
-  console.log('filter==', filter);
+  // console.log('filter==', filter);
 
   useEffect(() => {
     axios
@@ -67,10 +73,6 @@ const ProductMain = (props) => {
       setWhoFavorites(res.data);
     });
   }, []);
-
-  // const hey = whoFavorites.filter((v) => v.sid === );
-
-  // console.log(hey);
 
   return (
     <div className="bg w-100 vh-100 d-flex justify-content-end align-items-end">
@@ -176,6 +178,7 @@ const ProductMain = (props) => {
                         favoritesNum={favoritesNum}
                         setFavoritesNum={setFavoritesNum}
                         whoFavorites={whoFavorites}
+                        setWhoFavorites={setWhoFavorites}
                       />
                     </CSSTransition>
                   );

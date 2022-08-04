@@ -28,6 +28,7 @@ import Customized_explore from './pages/Customized/Customized_explore';
 import Customized_collect from './pages/Customized/Customized_collect';
 import AuthContextProvider from './components/AuthContextProvider';
 import Cus_product_confirm from './pages/Customized/Cus_product_confirm';
+import axios from './pages/Product/commons/axios';
 
 export const MemberContext = React.createContext();
 function App() {
@@ -42,6 +43,13 @@ function App() {
   const [data, setData] = useState({});
   // 商品收藏後icon + 1
   const [favoritesNum, setFavoritesNum] = useState(0);
+  // 紀錄該會員商品收藏總數
+  const countFavorites = async () => {
+    await axios.get(`/product/favoriteCount?memId=${5}`).then((res) => {
+      let favoritesNum = res.data[`count(sid)`];
+      setFavoritesNum(favoritesNum);
+    });
+  };
   return (
     <Router>
       {/* 裡面包含ConText(會員登入判斷)及登出涵式 */}
@@ -60,6 +68,7 @@ function App() {
                   setCustomTotalQty={setCustomTotalQty}
                   favoritesNum={favoritesNum}
                   setFavoritesNum={setFavoritesNum}
+                  countFavorites={countFavorites()}
                 />
                 <div className="w-100 bottom-grid d-flex">
                   <SideBar />

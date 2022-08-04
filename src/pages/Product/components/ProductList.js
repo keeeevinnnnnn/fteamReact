@@ -6,7 +6,16 @@ import 'react-toastify/dist/ReactToastify.css';
 import { Link } from 'react-router-dom';
 
 const ProductList = (props) => {
-  const { sid, img, name, brand, price, setFavoritesNum, whoFavorites } = props;
+  const {
+    sid,
+    img,
+    name,
+    brand,
+    price,
+    setFavoritesNum,
+    whoFavorites,
+    setWhoFavorites,
+  } = props;
 
   // 收藏按鈕開關
   const [heart, setHeart] = useState(false);
@@ -52,21 +61,20 @@ const ProductList = (props) => {
       // 拿到成功或失敗的訊息
       console.log('favorites==', res.data);
       res.data.success === 'true' ? favoriteSuccess() : favoriteError();
-      countFavorites();
+      countSonFavorites();
     });
   };
 
   // 計算收藏商品總數
-  const countFavorites = async () => {
+  const countSonFavorites = async () => {
     await axios.get(`/product/favoriteCount?memId=${5}`).then((res) => {
       let favoritesNum = res.data[`count(sid)`];
       setFavoritesNum(favoritesNum);
     });
   };
 
-  // 紀錄誰收藏
-  const findWhoFavorites = whoFavorites.filter((v) => v.sid === sid);
-
+  // 紀錄重新渲染時第一次誰收藏;
+  let findWhoFavorites = whoFavorites.filter((v) => v.sid === sid);
   return (
     <div className="col-4 mt-5">
       <div className="product-header">

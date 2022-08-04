@@ -16,8 +16,8 @@ const Navbar = (props) => {
     setLessonTotalQty,
     setCustomTotalQty,
     favoritesNum,
+    countFavorites,
   } = props;
-
   const navigate = useNavigate();
   // 從這支Context拿值
   // auth為登入判斷(true,false) token為會員JWT的token logout是登出涵式
@@ -80,7 +80,9 @@ const Navbar = (props) => {
             });
         });
     }
+    countFavorites();
   }, [auths, auth, token, setMember]); // 有變更資料才刷新
+
   return (
     <>
       <div className="w-100 top-grid d-flex">
