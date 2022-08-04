@@ -72,12 +72,15 @@
 }
 
 //-------------------RWD--------------------
-@media (max-width: 1930px) {
+@media (min-width: 1500px) {
   .cooler_lesson_card {
+    h5 {
+      font-size: 1.5rem;
+    }
     p,
     span,
     button {
-      font-size: xx-small !important;
+      font-size: 1.3rem;
     }
   }
 }
@@ -88,7 +91,7 @@
   }
 
   .cooler_lesson_card h5 {
-    font-size: small;
+    font-size: 1.06rem;
   }
 }
 

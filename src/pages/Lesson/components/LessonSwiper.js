@@ -52,7 +52,9 @@ export default function LessonSwiper() {
                       </svg>
                     </a>
                   </div>
-                  <div className="fs-6 fw-bold"> 國父紀念館</div>
+                  <div className="fs-6 fw-bold">
+                    <p>國父紀念館</p>
+                  </div>
                 </div>
                 <div className="h-55">
                   <p className=" h-75 ">
@@ -105,7 +107,9 @@ export default function LessonSwiper() {
                       </svg>
                     </a>
                   </div>
-                  <div className="fs-6 fw-bold">新埔站</div>
+                  <div className="fs-6 fw-bold">
+                    <p>新埔店</p>
+                  </div>
                 </div>
                 <div className="h-55">
                   <p className=" h-75 ">
@@ -122,16 +126,12 @@ export default function LessonSwiper() {
                     </div>
                   </div>
                 </div>
-
-                {/* <Link to={'/lesson/lesson_zhongxiao'} className=" ">
-                    Go
-                  </Link> */}
               </div>
             </div>
           </div>
         </SwiperSlide>
         <SwiperSlide>
-          <div className="cooler_lesson_background h-100  d-flex flex-wrap  justify-content-around  ">
+          <div className="cooler_lesson_computer cooler_lesson_background h-100  d-flex flex-wrap  justify-content-around  ">
             <div className="w-40 h-95 cooler_lesson_class shadowblack">
               <div className="h-40">
                 <img src="./imgs/lesson_imgs/l02.jpg" className="" alt="..." />
@@ -161,7 +161,9 @@ export default function LessonSwiper() {
                       </svg>
                     </a>
                   </div>
-                  <div className="fs-6 fw-bold">新埔站</div>
+                  <div className="fs-6 fw-bold">
+                    <p>新埔店</p>
+                  </div>
                 </div>
                 <div className="h-55">
                   <p className=" h-75 ">
@@ -178,10 +180,6 @@ export default function LessonSwiper() {
                     </div>
                   </div>
                 </div>
-
-                {/* <Link to={'/lesson/lesson_zhongxiao'} className=" ">
-                    Go
-                  </Link> */}
               </div>
             </div>
             <div className="w-40 h-95 cooler_lesson_class shadowblack">
@@ -211,7 +209,9 @@ export default function LessonSwiper() {
                       </svg>
                     </a>
                   </div>
-                  <div className="fs-6 fw-bold"></div>
+                  <div className="fs-6 fw-bold">
+                    <p></p>
+                  </div>
                 </div>
                 <div className="h-55">
                   <p className=" h-75 ">
@@ -228,10 +228,6 @@ export default function LessonSwiper() {
                     </div>
                   </div>
                 </div>
-
-                {/* <Link to={'/lesson/lesson_zhongxiao'} className=" ">
-                    Go
-                  </Link> */}
               </div>
             </div>
           </div>

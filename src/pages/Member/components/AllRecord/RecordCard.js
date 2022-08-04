@@ -3,8 +3,10 @@ import AuthContext from '../../../../components/AuthContext';
 import axios from 'axios';
 import { v4 as uuidv4 } from 'uuid';
 import '../../styles/RecordCard.scss';
+import { useNavigate } from 'react-router-dom';
 
 const RecordCard = ({ products, customized }) => {
+  const navigate = useNavigate();
   const { auth, token } = useContext(AuthContext);
   const [recordProducts, setRecordProducts] = useState([]);
   const [recordCustomized, setRecordCustomized] = useState([]);
@@ -53,10 +55,20 @@ const RecordCard = ({ products, customized }) => {
                     objectFit: 'cover',
                     aspectRatio: '1/1',
                   }}
+                  onClick={() => {
+                    navigate(`/PRODUCTS/details/${v.sid}`);
+                  }}
                 />
               </div>
               <div className="col-xl-9">
-                <p className="h-50 p-3 recordName">{v.name}</p>
+                <p
+                  className="h-50 p-3 recordName"
+                  onClick={() => {
+                    navigate(`/PRODUCTS/details/${v.sid}`);
+                  }}
+                >
+                  {v.name}
+                </p>
                 <div className="h-50 d-flex justify-content-between p-3">
                   <h5 className="text-gray">{v.order_date}</h5>
                   <h5

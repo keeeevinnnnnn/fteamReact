@@ -1,4 +1,4 @@
-.cooler_card_img {
+.cooler_card_zhongxiao_img {
   background: url(../../../Images/Lesson/l01.jpg);
   background-size: 100% 100%;
 }
@@ -8,7 +8,7 @@
 }
 
 .cooler_card_wrap {
-  height: 120%;
+  height: 110%;
 }
 
 .cooler_gray {
@@ -17,4 +17,30 @@
 
 .cooler_lesson_position {
   padding-top: 4%;
+}
+
+// --------------RWD-------------------
+@media (min-width: 1630px) {
+  .lesson_card {
+    h4 {
+      font-size: 1.9rem;
+    }
+    h5 {
+      font-size: 1.6rem;
+    }
+
+    p,
+    span {
+      font-size: 1.3rem;
+    }
+  }
+}
+
+@media (max-width: 1630px) {
+  .lesson_card {
+    p,
+    span {
+      font-size: 0.99rem;
+    }
+  }
 }
