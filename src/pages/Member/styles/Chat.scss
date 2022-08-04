@@ -1,4 +1,6 @@
 .memberChat {
+    width: 70%;
+    height: 90%;
     color: white;
     border: 1px solid var(--main);
     background: rgba(0, 0, 0, 0.871);
@@ -74,5 +76,16 @@
         svg {
             height: 60%;
         }
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    .memberChat {
+        width: 90%;
+        height: 100%;
+    }
+
+    button {
+        display: none;
     }
 }
