@@ -104,10 +104,6 @@ const Chat = ({ selectItem }) => {
 
   // 聊天訊息連接socket
   useEffect(() => {
-    // 主要為了防止下方scrollbar置底涵式
-    if (chat === []) {
-      return;
-    }
     // 與聊天室Sever的連接
     socketRef.current = io.connect('http://localhost:4000');
     socketRef.current.on(
@@ -116,6 +112,10 @@ const Chat = ({ selectItem }) => {
         setChat([...chat, { name, message, sid, avatar, chatimg }]);
       }
     );
+    // 主要為了防止下方scrollbar置底涵式
+    if (chat === []) {
+      return;
+    }
     // 矯正照片位置即時置底對不齊 設置個時間差讓新訊息置底
     scrollStop.current = setTimeout(() => {
       scrollToBottom();
