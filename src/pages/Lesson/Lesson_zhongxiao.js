@@ -9,7 +9,7 @@ const Lesson_zhongxiao = () => {
           <div className="w-100 h-100 d-flex flex-wrap cooler_lesson_position">
             <div className=" mb-5 col-md-4 flex-wrap col-12  d-flex  justify-content-center cooler_card_wrap align-items-center">
               <div className="lesson-card-wrap w-100 h-100">
-                <div className="lesson-card shadow border w-100 h-100 d-flex flex-column justify-content-around ">
+                <div className="lesson_card shadow border w-100 h-100 d-flex flex-column justify-content-around ">
                   <div className="w-100 h-30 cooler_card_img"></div>
                   <div className="w-100 h-70 d-flex flex-column ">
                     <div className="w-100 h-20 ">
@@ -18,7 +18,7 @@ const Lesson_zhongxiao = () => {
                       </h4>
                       <h5 className="fw-bold text-center">【忠孝館】</h5>
                     </div>
-                    <div className="w-100 h-80 p-3 ">
+                    <div className="coolertest w-100 h-80 p-3 ">
                       <div className="h-15 ">
                         <div className="coolermap d-inline-block">
                           <a href="#/">

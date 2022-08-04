@@ -18,3 +18,20 @@
 .cooler_lesson_position {
   padding-top: 4%;
 }
+
+// --------------RWD-------------------
+@media (min-width: 1500px) {
+  .lesson_card {
+    h4 {
+      font-size: 1.9rem;
+    }
+    h5 {
+      font-size: 1.6rem;
+    }
+
+    p,
+    span {
+      font-size: 1.4rem;
+    }
+  }
+}
