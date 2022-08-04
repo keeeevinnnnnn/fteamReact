@@ -32,6 +32,9 @@ export default function HomeSwiper() {
         <SwiperSlide className="HomeBg2"></SwiperSlide>
         <SwiperSlide className="HomeBg3"></SwiperSlide>
         <SwiperSlide className="HomeBg4"></SwiperSlide>
+        <SwiperSlide className="HomeBg5"></SwiperSlide>
+        <SwiperSlide className="HomeBg6"></SwiperSlide>
+        <SwiperSlide className="HomeBg7"></SwiperSlide>
       </Swiper>
     </>
   );
