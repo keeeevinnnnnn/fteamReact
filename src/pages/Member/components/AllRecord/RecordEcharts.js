@@ -85,7 +85,7 @@ const RecordEcharts = () => {
     series: [
       {
         // 圓餅圖距離上方文字的間隔
-        top:'5%',
+        top: '5%',
         name: 'Products Proportion',
         type: 'pie',
         color: [
@@ -122,15 +122,15 @@ const RecordEcharts = () => {
         },
         data: [
           // 數量不是0再顯示
-          whiteLength !== 0 ? { value: whiteLength, name: 'White' } : '',
-          blackLength !== 0 ? { value: blackLength, name: 'Black' } : '',
-          blueLength !== 0 ? { value: blueLength, name: 'Blue' } : '',
-          greenLength !== 0 ? { value: greenLength, name: 'Green' } : '',
-          yellowLength !== 0 ? { value: yellowLength, name: 'Yellow' } : '',
-          orangeLength !== 0 ? { value: orangeLength, name: 'Orange' } : '',
-          redLength !== 0 ? { value: redLength, name: 'Red' } : '',
-          pinkLength !== 0 ? { value: pinkLength, name: 'Pink' } : '',
-          purpleLength !== 0 ? { value: purpleLength, name: 'Purple' } : '',
+          { value: whiteLength, name: 'White' },
+          { value: blackLength, name: 'Black' },
+          { value: blueLength, name: 'Blue' },
+          { value: greenLength, name: 'Green' },
+          { value: yellowLength, name: 'Yellow' },
+          { value: orangeLength, name: 'Orange' },
+          { value: redLength, name: 'Red' },
+          { value: pinkLength, name: 'Pink' },
+          { value: purpleLength, name: 'Purple' },
         ],
       },
     ],
