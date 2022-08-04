@@ -108,6 +108,67 @@
   transform: translateY(-50%) translateX(0%);
 }
 
+.favoritesList{
+  position: absolute;
+  width: 330px;
+  height: 35vh;
+  right: -95px;
+  top: 40px;
+  background-color: rgb(250, 250, 250);
+  z-index: 99999999999999999999999999999999999999999;
+}
+
+.favoritesBigBox{
+  margin: 10px;
+  border-bottom: 1px solid gray;
+  z-index: 99999999999999999999999999999999999999999
+}
+
+.favoritesBoxImg{
+  
+}
+
+.favoritesBoxImg img{
+  width: 100%;
+  height: 100%;
+}
+
+.favoritesBody{
+  padding-left: 13px;
+  z-index: 99999999999999999999999999999999999999999
+}
+
+.favoritesBody h5{
+  font-size: 1rem;
+  z-index: 99999999999999999999999999999999999999999
+}
+
+.favoritesBodyBrand{
+  font-size: 0.85rem;
+  color: gray;
+  z-index: 99999999999999999999999999999999999999999
+}
+
+.favoritesBodyPrice span{
+  font-size: 1rem;
+  z-index: 99999999999999999999999999999999999999999
+}
+
+.favoritesInt {  
+  display: flex;
+  z-index: 99999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999;
+}
+
+.favoritesInt button{
+  text-align: center;
+  background-color: white;
+  border: 1px solid black;
+  padding: 10px;
+  width: 100%;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
 /* ------------------------------------------------------------------------------------- */
 .user-icon-wrap {
   width: 20px;
@@ -171,6 +232,7 @@
   width: 100%;
   height: 100%;
 }
+
 
 .user-icon-wrap svg {
   width: 100%;
