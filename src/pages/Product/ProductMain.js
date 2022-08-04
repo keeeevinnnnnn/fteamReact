@@ -40,8 +40,6 @@ const ProductMain = (props) => {
 
   // 瀏覽器重新渲染拿到該會員收藏過的商品
   const [whoFavorites, setWhoFavorites] = useState([]);
-  // 收藏按鈕開關
-  const [heart, setHeart] = useState(false);
 
   // 商品搜尋
   const searchProducts = (text) => {
@@ -70,13 +68,6 @@ const ProductMain = (props) => {
         setData(res.data);
       });
   }, [filter]);
-
-  // 讓heart重新渲染會員所收藏的商品
-  useEffect(() => {
-    axios.get(`/product/whoFavorites?memId=${5}`).then((res) => {
-      setWhoFavorites(res.data);
-    });
-  }, [heart]);
 
   return (
     <div className="bg w-100 vh-100 d-flex justify-content-end align-items-end">
@@ -183,8 +174,6 @@ const ProductMain = (props) => {
                         setFavoritesNum={setFavoritesNum}
                         whoFavorites={whoFavorites}
                         setWhoFavorites={setWhoFavorites}
-                        heart={heart}
-                        setHeart={setHeart}
                       />
                     </CSSTransition>
                   );

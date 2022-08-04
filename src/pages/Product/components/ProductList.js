@@ -14,8 +14,7 @@ const ProductList = (props) => {
     price,
     setFavoritesNum,
     whoFavorites,
-    heart,
-    setHeart,
+    setWhoFavorites,
   } = props;
   // 收藏成功提示訊息設定
   const favoriteSuccess = () => {
@@ -41,6 +40,8 @@ const ProductList = (props) => {
       progress: undefined,
     });
   };
+  // 收藏按鈕開關
+  const [heart, setHeart] = useState(false);
   // 收藏商品與取消收藏商品;
   const getFavorites = async () => {
     const addFavorites = {
@@ -67,6 +68,12 @@ const ProductList = (props) => {
       setFavoritesNum(favoritesNum);
     });
   };
+  // 讓heart值改變重新渲染，改變會員所收藏的商品
+  useEffect(() => {
+    axios.get(`/product/whoFavorites?memId=${5}`).then((res) => {
+      setWhoFavorites(res.data);
+    });
+  }, [heart]);
 
   return (
     <div className="col-4 mt-5">
