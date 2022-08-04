@@ -46,7 +46,7 @@ const RecordCard = ({ products, customized }) => {
         return (
           <div className={`w-95 m-3 recordCard ${products}`} key={uuidv4()}>
             <div className="d-flex h-100 w-100">
-              <div className="col-xl-3">
+              <div className="col-3">
                 <img
                   src={`/imgs/Products/${v.img}`}
                   alt=""
@@ -60,7 +60,7 @@ const RecordCard = ({ products, customized }) => {
                   }}
                 />
               </div>
-              <div className="col-xl-9">
+              <div className="col-9">
                 <p
                   className="h-50 p-3 recordName"
                   onClick={() => {
@@ -94,9 +94,10 @@ const RecordCard = ({ products, customized }) => {
         return (
           <div className={`w-95 m-3 recordCard ${customized}`} key={uuidv4()}>
             <div className="d-flex h-100 w-100">
-              <div className="col-xl-3">
+              <div className="col-3">
                 <img
-                  src={`http://localhost:3000/custom/${v.img}`}
+                  // src={`http://localhost:3000/custom/${v.img}`}
+                  src="https://img.ttshow.tw/images/author/Lauren/Screenshotter--SPYxFAMILY1-5%E2%80%9938%E2%80%9D.jpg"
                   alt=""
                   className="h-100"
                   style={{
@@ -105,8 +106,8 @@ const RecordCard = ({ products, customized }) => {
                   }}
                 />
               </div>
-              <div className="col-xl-9">
-                <p className="h-50 p-3">{v.custom_product_name}</p>
+              <div className="col-9">
+                <p className="h-50 p-3 recordName">{v.custom_product_name}</p>
                 <div className="h-50 d-flex justify-content-between p-3">
                   <h5 className="text-gray">{v.order_date}</h5>
                   <h5 className="text-gray">$ {v.price}</h5>
