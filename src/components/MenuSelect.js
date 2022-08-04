@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import { Link } from 'react-router-dom';
+import AuthContext from './AuthContext';
 
 export default function MenuSelect() {
+  const { auth, logout, grade } = useContext(AuthContext);
   const [anchorEl, setAnchorEl] = useState(false);
   const open = anchorEl;
   const handleClick = (e) => {
@@ -13,14 +15,7 @@ export default function MenuSelect() {
   const handleClose = () => {
     setAnchorEl(null);
   };
-  const navArr = [
-    'MEMBER',
-    'LESSON',
-    'PRODUCTS',
-    'CUSTOMIZED',
-    'CARTS',
-    'ORDERS',
-  ];
+  const navArr = ['LESSON', 'PRODUCTS', 'CUSTOMIZED', 'CARTS', 'ORDERS'];
   return (
     <div className=" d-md-none d-flex justify-content-end align-items-center w-100 h-100 menu-wrap">
       <Button
@@ -55,6 +50,15 @@ export default function MenuSelect() {
         <MenuItem onClick={handleClose}>
           <Link to={'/'}>HOME</Link>
         </MenuItem>
+        {auth ? (
+          <MenuItem onClick={handleClose}>
+            <Link to={grade === 'low' ? '/member' : '/admin'}>
+              {grade === 'low' ? 'MEMBER' : 'ADMIN'}
+            </Link>
+          </MenuItem>
+        ) : (
+          ''
+        )}
         {navArr.map((v, i) => {
           return (
             <MenuItem key={i} onClick={handleClose}>
@@ -62,6 +66,21 @@ export default function MenuSelect() {
             </MenuItem>
           );
         })}
+        {auth ? (
+          <MenuItem
+            onClick={() => {
+              // 呼叫登出函式
+              logout();
+              handleClose();
+            }}
+          >
+            SIGNOUT
+          </MenuItem>
+        ) : (
+          <MenuItem onClick={handleClose}>
+            <Link to={'/login'}>LOGIN</Link>
+          </MenuItem>
+        )}
       </Menu>
     </div>
   );
