@@ -80,7 +80,7 @@ export default function LessonSwiper() {
 
             <div className="w-40 h-95 cooler_lesson_class shadowblack">
               <div className="h-40">
-                <img src="./imgs/lesson_imgs/l01.jpg" className="" alt="..." />
+                <img src="./imgs/lesson_imgs/l02.jpg" className="" alt="..." />
               </div>
               <div className="h-60 p-3">
                 <div className="h-25 ">
@@ -134,7 +134,7 @@ export default function LessonSwiper() {
           <div className="cooler_lesson_computer cooler_lesson_background h-100  d-flex flex-wrap  justify-content-around  ">
             <div className="w-40 h-95 cooler_lesson_class shadowblack">
               <div className="h-40">
-                <img src="./imgs/lesson_imgs/l01.jpg" className="" alt="..." />
+                <img src="./imgs/lesson_imgs/l02.jpg" className="" alt="..." />
               </div>
               <div className="h-60 p-3">
                 <div className="h-25 ">
@@ -184,7 +184,7 @@ export default function LessonSwiper() {
             </div>
             <div className="w-40 h-95 cooler_lesson_class shadowblack">
               <div className="h-40">
-                <img src="./imgs/lesson_imgs/l01.jpg" className="" alt="..." />
+                <img src="./imgs/lesson_imgs/l03.jpg" className="" alt="..." />
               </div>
               <div className="h-60 p-3">
                 <div className="h-25 ">
