@@ -9,14 +9,16 @@ const Lesson_taichung = () => {
           <div className="w-100 h-100 d-flex flex-wrap cooler_lesson_position">
             <div className=" mb-5 col-md-4 flex-wrap col-12  d-flex  justify-content-center cooler_card_wrap align-items-center">
               <div className="lesson-card-wrap w-100 h-100">
-                <div className="lesson-card shadow border w-100 h-100 d-flex flex-column justify-content-around ">
-                  <div className="w-100 h-30 cooler_card_taichung_img"></div>
+                <div className="lesson_card shadow border w-100 h-100 d-flex flex-column justify-content-around ">
+                  <div className="w-100 h-30 cooler_card_img"></div>
                   <div className="w-100 h-70 d-flex flex-column ">
-                    <div className="w-100 h-20 d-flex flex-column  align-items-center">
-                      <p className="fs-4 fw-bold">HRC舞蹈工作室</p>
-                      <p className="fw-bold ">【台中精誠館】</p>
+                    <div className="w-100 h-20 ">
+                      <h4 className=" fw-bold text-center pt-2">
+                        HRC舞蹈工作室
+                      </h4>
+                      <h5 className="fw-bold text-center">【台中精誠館】</h5>
                     </div>
-                    <div className="w-100 h-80 p-2 ">
+                    <div className="coolertest w-100 h-80 p-3 ">
                       <div className="h-15 ">
                         <div className="coolermap d-inline-block">
                           <a href="#/">
@@ -35,18 +37,18 @@ const Lesson_taichung = () => {
                             </svg>
                           </a>
                         </div>
-                        <span className="fs-6 ">403台中市西區精誠路92號B1</span>
+                        <span className="fw-5 ">403台中市西區精誠路92號B1</span>
                       </div>
 
                       <div className="h-75 cooler_gray">
-                        <p className="card-text  pt-1  ">
+                        <p className="card-text   ">
                           HRC舞蹈工作室提供最優質的舞蹈教學服務，每月超過三百堂多樣化課程、數十種舞蹈風格，多元的課程選擇、由淺入深的漸進式學習，讓你輕鬆踏出舞蹈的第一步，打穩基礎、深根學習、挑戰自己！
                         </p>
                         <p>
                           一起讓生活充滿節奏，用舞蹈豐富生活，加入HRC舞蹈生活館，讓生活多一件喜歡的事！
                         </p>
                       </div>
-                      <div className="h-10 cooler_gray d-flex ">
+                      <div className="h-10 cooler_gray d-flex pt-2">
                         <div className="coolermap  px-1">
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
