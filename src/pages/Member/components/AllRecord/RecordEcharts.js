@@ -146,7 +146,7 @@ const RecordEcharts = () => {
           onClick={(e) => {
             e.preventDefault();
             // 頁面轉向訂單頁面
-            navigate('/oders', { replace: true });
+            navigate('/ORDERS', { replace: true });
           }}
         >
           More detail
