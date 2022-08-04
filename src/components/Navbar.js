@@ -85,7 +85,6 @@ const Navbar = (props) => {
             });
         });
     }
-    countFavorites();
   }, [auths, auth, token, setMember]); // 有變更資料才刷新
 
   return (
@@ -193,8 +192,10 @@ const Navbar = (props) => {
 
               <div
                 className="favoritesList"
-                style={{ display: 'none' }}
-                // style={{ display: IamKevin === false ? 'none' : 'block' }}
+                style={{ display: IamKevin === false ? 'none' : 'block' }}
+                onMouseLeave={() => {
+                  setIamKevin(!IamKevin);
+                }}
               >
                 <ScrollBox>
                   <div className="favoritesBigBox">
