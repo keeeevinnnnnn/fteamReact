@@ -4,8 +4,10 @@ import axios from 'axios';
 import { v4 as uuidv4 } from 'uuid';
 import '../../styles/FavoriteCard.scss';
 import EmptyBox from './EmptyBox';
+import { useNavigate } from 'react-router-dom';
 
 const FavoriteCard = () => {
+  const navigate = useNavigate();
   const { auth, token, auths, setAuths } = useContext(AuthContext);
   const [favoriteCard, setFavoriteCard] = useState([]);
   useEffect(() => {
@@ -98,10 +100,20 @@ const FavoriteCard = () => {
                       objectFit: 'cover',
                       aspectRatio: '1/1',
                     }}
+                    onClick={() => {
+                      navigate(`/PRODUCTS/details/${v.favoriteId}`);
+                    }}
                   />
                 </div>
                 <div className="col-xl-9">
-                  <p className="h-50 p-3 m-0">{v.favoriteName}</p>
+                  <p
+                    className="h-50 p-3 m-0"
+                    onClick={() => {
+                      navigate(`/PRODUCTS/details/${v.favoriteId}`);
+                    }}
+                  >
+                    {v.favoriteName}
+                  </p>
                   <div className="h-50 d-flex justify-content-between align-items-center">
                     <h5 className="text-gray p-3">$ {v.favoritePrice}</h5>
                     <div className="d-flex h-100 svgBox">
