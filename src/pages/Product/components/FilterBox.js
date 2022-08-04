@@ -543,7 +543,7 @@ const FilterBox = (props) => {
           </div>
         </div>
 
-        <div className="col-2 d-flex kevinSearch">
+        {/* <div className="col-2 d-flex kevinSearch">
           <input
             className="col-10 kevinSearch-input"
             type="search"
@@ -572,7 +572,7 @@ const FilterBox = (props) => {
               />
             </svg>
           </button>
-        </div>
+        </div> */}
       </div>
     </>
   );
