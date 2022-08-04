@@ -6,7 +6,18 @@ import 'react-toastify/dist/ReactToastify.css';
 import { Link } from 'react-router-dom';
 
 const ProductList = (props) => {
-  const { sid, img, name, brand, price, setFavoritesNum } = props;
+  const {
+    sid,
+    img,
+    name,
+    brand,
+    price,
+    setFavoritesNum,
+    whoFavorites,
+    setWhoFavorites,
+    setFilter,
+    filter,
+  } = props;
 
   // 收藏按鈕開關
   const [heart, setHeart] = useState(false);
@@ -21,7 +32,6 @@ const ProductList = (props) => {
       draggable: true,
       progress: undefined,
     });
-    setHeart(true);
   };
 
   // 取消收藏成功提示訊息設定
@@ -35,8 +45,9 @@ const ProductList = (props) => {
       draggable: true,
       progress: undefined,
     });
-    setHeart(false);
   };
+
+  const [check, setCheck] = useState(true);
 
   // 收藏商品與取消收藏商品;
   const getFavorites = async () => {
@@ -48,15 +59,20 @@ const ProductList = (props) => {
       favoritePrice: price,
       memId: 5,
     };
+
     await axios.post('/product/favorites', addFavorites).then((res) => {
       // 拿到成功或失敗的訊息
       console.log('favorites==', res.data);
       res.data.success === 'true' ? favoriteSuccess() : favoriteError();
-      countFavorites();
+      setFilter({ ...filter, check: true });
+      countSonFavorites();
     });
   };
 
-  const countFavorites = async () => {
+  //紀錄重新渲染時第一次誰收藏;
+  let f = whoFavorites.filter((v) => v === sid);
+  // 計算收藏商品總數
+  const countSonFavorites = async () => {
     await axios.get(`/product/favoriteCount?memId=${5}`).then((res) => {
       let favoritesNum = res.data[`count(sid)`];
       setFavoritesNum(favoritesNum);
@@ -75,7 +91,7 @@ const ProductList = (props) => {
             stroke="currentColor"
             stroke-width="2"
             style={{
-              display: heart === false ? 'block' : 'none',
+              display: f.length > 0 ? 'none' : 'block',
             }}
             id="heartTrue"
             onClick={getFavorites}
@@ -93,7 +109,7 @@ const ProductList = (props) => {
             viewBox="0 0 20 20"
             fill="currentColor"
             style={{
-              display: heart === false ? 'none' : 'block',
+              display: f.length > 0 ? 'block' : 'none',
             }}
             id="heartFalse"
             onClick={getFavorites}

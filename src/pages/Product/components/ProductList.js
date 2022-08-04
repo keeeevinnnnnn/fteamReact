@@ -14,11 +14,9 @@ const ProductList = (props) => {
     price,
     setFavoritesNum,
     whoFavorites,
-    setWhoFavorites,
+    heart,
+    setHeart,
   } = props;
-
-  // 收藏按鈕開關
-  const [heart, setHeart] = useState(false);
   // 收藏成功提示訊息設定
   const favoriteSuccess = () => {
     toast.success('Add Favorites Success', {
@@ -30,9 +28,7 @@ const ProductList = (props) => {
       draggable: true,
       progress: undefined,
     });
-    setHeart(!heart);
   };
-
   // 取消收藏成功提示訊息設定
   const favoriteError = () => {
     toast.error('Cancel Favorites Success', {
@@ -44,9 +40,7 @@ const ProductList = (props) => {
       draggable: true,
       progress: undefined,
     });
-    setHeart(!heart);
   };
-
   // 收藏商品與取消收藏商品;
   const getFavorites = async () => {
     const addFavorites = {
@@ -59,12 +53,13 @@ const ProductList = (props) => {
     };
     await axios.post('/product/favorites', addFavorites).then((res) => {
       // 拿到成功或失敗的訊息
-      console.log('favorites==', res.data);
       res.data.success === 'true' ? favoriteSuccess() : favoriteError();
+      setHeart(!heart);
       countSonFavorites();
     });
   };
-
+  //紀錄重新渲染時誰收藏;
+  let findWhoFavorites = whoFavorites.filter((v) => v === sid);
   // 計算收藏商品總數
   const countSonFavorites = async () => {
     await axios.get(`/product/favoriteCount?memId=${5}`).then((res) => {
@@ -73,8 +68,6 @@ const ProductList = (props) => {
     });
   };
 
-  // 紀錄重新渲染時第一次誰收藏;
-  let findWhoFavorites = whoFavorites.filter((v) => v.sid === sid);
   return (
     <div className="col-4 mt-5">
       <div className="product-header">
@@ -87,10 +80,7 @@ const ProductList = (props) => {
             stroke="currentColor"
             stroke-width="2"
             style={{
-              display:
-                findWhoFavorites.length > 0 || heart === true
-                  ? 'none'
-                  : 'block',
+              display: findWhoFavorites.length > 0 ? 'none' : 'block',
             }}
             id="heartTrue"
             onClick={getFavorites}
@@ -108,10 +98,7 @@ const ProductList = (props) => {
             viewBox="0 0 20 20"
             fill="currentColor"
             style={{
-              display:
-                findWhoFavorites.length > 0 || heart === true
-                  ? 'block'
-                  : 'none',
+              display: findWhoFavorites.length > 0 ? 'block' : 'none',
             }}
             id="heartFalse"
             onClick={getFavorites}
