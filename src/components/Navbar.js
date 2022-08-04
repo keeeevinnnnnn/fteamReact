@@ -193,8 +193,10 @@ const Navbar = (props) => {
 
               <div
                 className="favoritesList"
-                style={{ display: 'none' }}
-                // style={{ display: IamKevin === false ? 'none' : 'block' }}
+                style={{ display: IamKevin === false ? 'none' : 'block' }}
+                onMouseLeave={() => {
+                  setIamKevin(!IamKevin);
+                }}
               >
                 <ScrollBox>
                   <div className="favoritesBigBox">
