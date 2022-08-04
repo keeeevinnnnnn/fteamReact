@@ -20,7 +20,7 @@
 }
 
 // --------------RWD-------------------
-@media (min-width: 1500px) {
+@media (min-width: 1630px) {
   .lesson_card {
     h4 {
       font-size: 1.9rem;
@@ -31,7 +31,16 @@
 
     p,
     span {
-      font-size: 1.4rem;
+      font-size: 1.3rem;
+    }
+  }
+}
+
+@media (max-width: 1630px) {
+  .lesson_card {
+    p,
+    span {
+      font-size: 0.99rem;
     }
   }
 }
