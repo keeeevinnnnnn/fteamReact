@@ -79,7 +79,7 @@ const Chat = ({ selectItem }) => {
     // 0.4毫秒後呼叫聊天室scrollbar置底涵式
     scrollStop.current = setTimeout(() => {
       scrollToBottom();
-    }, 400);
+    }, 600);
 
     // 生命週期unMont用
     return () => clearTimeout(scrollStop.current);
@@ -334,7 +334,7 @@ const Chat = ({ selectItem }) => {
 
   return (
     <div className="h-100 d-flex justify-content-center pt-4">
-      <div className="h-90 w-70 memberChat">
+      <div className="memberChat">
         <div className="h-90 chatScroll">
           {/* 過往聊天紀錄 */}
           {chatAll.map((v, i) => {
