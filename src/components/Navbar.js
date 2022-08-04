@@ -80,7 +80,7 @@ const Navbar = (props) => {
             });
         });
     }
-    countFavorites();
+    // countFavorites();
   }, [auths, auth, token, setMember]); // 有變更資料才刷新
 
   return (
