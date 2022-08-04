@@ -6,6 +6,7 @@ import axios from 'axios';
 import { MemberContext } from '../App';
 import AuthContext from './AuthContext';
 import { useNavigate } from 'react-router-dom';
+import ScrollBox from './ScrollBox/ScrollBox';
 
 const Navbar = (props) => {
   const {
@@ -26,6 +27,10 @@ const Navbar = (props) => {
   const { member, setMember } = useContext(MemberContext);
   // 接NavBar要顯示的姓名或暱稱
   const [navName, setNavName] = useState('');
+
+  // 收藏清單開關
+  const [IamKevin, setIamKevin] = useState(false);
+
   // 判斷有沒有登入存的值
   useEffect(() => {
     // 登入狀態不是false再執行 否則直接return
@@ -175,6 +180,9 @@ const Navbar = (props) => {
                 viewBox="0 0 24 24"
                 stroke="currentColor"
                 strokeWidth={2}
+                onMouseEnter={() => {
+                  setIamKevin(!IamKevin);
+                }}
               >
                 <path
                   strokeLinecap="round"
@@ -182,7 +190,40 @@ const Navbar = (props) => {
                   d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
                 />
               </svg>
+
+              <div
+                className="favoritesList"
+                // style={{ display: IamKevin === false ? 'none' : 'block' }}
+              >
+                <ScrollBox>
+                  <div className="favoritesBigBox">
+                    <div className="favoritesBox d-flex">
+                      <div className="col-4 favoritesBoxImg">
+                        <img
+                          src="/imgs/Products/637894482942270000.jpg"
+                          alt=""
+                        />
+                      </div>
+
+                      <div className="col-8 favoritesBody">
+                        <h5 className="favoritesBodyName">
+                          Smoke a cigarette The whole set of skateboards 8.18
+                        </h5>
+                        <p className="favoritesBodyBrand">FUCKING AWESOME</p>
+                        <p className="favoritesBodyPrice">
+                          <span>$ 6900</span>
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="favoritesInt">
+                      <button>Add to Carts</button>
+                    </div>
+                  </div>
+                </ScrollBox>
+              </div>
             </div>
+
             <div
               onClick={() => {
                 if (!auth) {
