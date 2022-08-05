@@ -1,16 +1,32 @@
 import React from 'react';
 import FavoriteCard from './FavoriteCard';
 import ScrollBox from '../../../../components/ScrollBox/ScrollBox';
-import '../../styles/Favorite.scss'
+import '../../styles/Favorite.scss';
 
 const Favorite = () => {
   return (
     <>
       <div className="w-100 h-100 d-flex justify-content-center">
-        <div className="favoriteWarp">
-          <ScrollBox>
-            <FavoriteCard />
-          </ScrollBox>
+        <div className="w-100 h-100">
+          <div className="d-flex justify-content-center h-08 d-xl-none">
+            <button
+              className="scrollTopBtn mt-2"
+              onClick={(e) => {
+                e.preventDefault();
+                window.scrollTo({
+                  top: 0,
+                  behavior: 'smooth',
+                });
+              }}
+            >
+              Top
+            </button>
+          </div>
+          <div className="favoriteWarp h-92">
+            <ScrollBox>
+              <FavoriteCard />
+            </ScrollBox>
+          </div>
         </div>
       </div>
     </>
