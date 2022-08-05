@@ -40,35 +40,35 @@
   background:url(../../Images/Home/HomeBg/HomeBg2.png);
   filter: brightness(1);
   background-size: cover;
-  opacity: .8;
+  /* opacity: .8; */
   }
   .HomeBg3 {
     background:url(../../Images/Home/HomeBg/HomeBg3.png);
     filter: brightness(1);
     background-size: cover;
-    opacity: .8;
+    /* opacity: .8; */
     }
     .HomeBg4 {
       background:url(../../Images/Home/HomeBg/HomeBg4.png);
       filter: brightness(1);
       background-size: cover;
-      opacity: .8;
+      /* opacity: .8; */
       }
       .HomeBg5 {
         background:url(../../Images/Home/HomeBg/HomeBg5.png);
         filter: brightness(1);
         background-size: cover;
-        opacity: .8;
+        /* opacity: .8; */
         }
         .HomeBg6 {
           background:url(../../Images/Home/HomeBg/HomeBg6.png);
           filter: brightness(1);
           background-size: cover;
-          opacity: .8;
+          /* opacity: .8; */
           }
           .HomeBg7 {
             background:url(../../Images/Home/HomeBg/HomeBg7.png);
             filter: brightness(1);
             background-size: cover;
-            opacity: .8;
+            /* opacity: .8; */
             }
