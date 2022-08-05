@@ -2,6 +2,8 @@ import React, { useState, useEffect, useMemo } from 'react';
 import axios from 'axios';
 import { v4 as uuidv4 } from 'uuid';
 import './styles/Admin.scss';
+import { confirm } from '../../components/ConfirmComponent';
+import { alert } from '../../components/AlertComponent';
 
 const Admin = () => {
   // 發fetch更新畫面用
@@ -66,44 +68,55 @@ const Admin = () => {
   // 管理員變動會員狀態 (停用/啟用)
   function changeState(v) {
     if (v.mem_bollen === 1) {
-      if (window.confirm(`確定要停用會原${v.mem_name}嗎?`)) {
-        // 停用
-        axios
-          .put('http://localhost:3000/admin/stop', { sid: v.sid })
-          .then((res) => {
-            if (res.data.success) {
-              // 讓useEffect資料重新取得
-              setChange(uuidv4());
-            }
-          });
-      }
+      let i = confirm(`確定要停用會原${v.mem_name}嗎?`);
+      i.then((res) => {
+        if (res) {
+          // 停用
+          axios
+            .put('http://localhost:3000/admin/stop', { sid: v.sid })
+            .then((res) => {
+              if (res.data.success) {
+                // 讓useEffect資料重新取得
+                setChange(uuidv4());
+              }
+            });
+        }
+      });
       return;
     }
     if (v.mem_bollen === 0) {
-      if (window.confirm(`確定要重啟會原${v.mem_name}嗎?`)) {
-        // 啟用
-        axios
-          .put('http://localhost:3000/admin/reboot', { sid: v.sid })
-          .then((res) => {
-            if (res.data.success) {
-              // 讓useEffect資料重新取得
-              setChange(uuidv4());
-            }
-          });
-      }
+      let i = confirm(`確定要重啟會原${v.mem_name}嗎?`);
+      i.then((res) => {
+        if (res) {
+          // 啟用
+          axios
+            .put('http://localhost:3000/admin/reboot', { sid: v.sid })
+            .then((res) => {
+              if (res.data.success) {
+                // 讓useEffect資料重新取得
+                setChange(uuidv4());
+              }
+            });
+        }
+      });
     }
   }
 
   // 刪除會員帳號
   function deleteMember(v) {
-    if (window.confirm(`確定要刪除會原${v.mem_name}嗎?`)) {
-      axios.delete(`http://localhost:3000/admin/?sid=${v.sid}`).then((res) => {
-        if (res.data.success) {
-          // 讓useEffect資料重新取得
-          setChange(uuidv4());
-        }
-      });
-    }
+    let i = confirm(`確定要刪除會原${v.mem_name}嗎?`);
+    i.then((res) => {
+      if (res) {
+        axios
+          .delete(`http://localhost:3000/admin/?sid=${v.sid}`)
+          .then((res) => {
+            if (res.data.success) {
+              // 讓useEffect資料重新取得
+              setChange(uuidv4());
+            }
+          });
+      }
+    });
   }
 
   return (
