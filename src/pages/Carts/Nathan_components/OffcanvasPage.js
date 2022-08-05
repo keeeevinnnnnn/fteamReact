@@ -108,22 +108,6 @@ export default function OffcanvasPage(props) {
                     setIsCheckoutFinish(true);
                   }
                 });
-                // if (alert('恭喜您購買成功，請查看您的訂單編號')) {
-                //   setNewOrderNumber(res.data.orderNumber);
-                //   setToHomeForm({
-                //     fullName: '',
-                //     mobile: '',
-                //     email: '',
-                //     countryName: '',
-                //     townshipName: '',
-                //     fullAddress: '',
-                //   });
-                //   setProductDep((prev) => prev + 1);
-                //   setCustomDep((prev) => prev + 1);
-                //   setLessonDep((prev) => prev + 1);
-                //   setDisplace(displace + 200);
-                //   setIsCheckoutFinish(true);
-                // }
               }
             });
         } else {

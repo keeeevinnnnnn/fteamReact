@@ -1,6 +1,8 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
 import axios from 'axios';
+import { confirm } from './ConfirmComponent';
+import { alert } from './AlertComponent';
 import './LessonCard.scss';
 const LessonCard = (props) => {
   const {
@@ -45,19 +47,22 @@ const LessonCard = (props) => {
             <a
               style={{ cursor: 'pointer' }}
               onClick={() => {
-                if (window.confirm('確定要刪除此商品嗎？')) {
-                  axios
-                    .delete(
-                      `http://localhost:3000/carts?sid=${singleItem.item_id}&type=${singleItem.item_type}&memID=${singleItem.member_id}`
-                    )
-                    .then((res) => {
-                      console.log(res.data);
-                      if (res.data.success) {
-                        setLessonDep(lessonDep + 1);
-                        alert('刪除成功!');
-                      }
-                    });
-                }
+                let i = confirm('確定要刪除此商品嗎？');
+                i.then((res) => {
+                  if (res === true) {
+                    axios
+                      .delete(
+                        `http://localhost:3000/carts?sid=${singleItem.item_id}&type=${singleItem.item_type}&memID=${singleItem.member_id}`
+                      )
+                      .then((res) => {
+                        console.log(res.data);
+                        if (res.data.success) {
+                          setLessonDep(lessonDep + 1);
+                          alert('刪除成功!');
+                        }
+                      });
+                  }
+                });
               }}
             >
               <svg
