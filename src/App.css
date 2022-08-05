@@ -14,7 +14,8 @@
 /* mui tabs setting */
 /* 要拿掉click特效 在<Tab/> 加上 disableRipple={true} */
 
-.css-1a0mt41-MuiButtonBase-root-MuiTab-root.Mui-selected,.css-12a74cf-MuiButtonBase-root-MuiTab-root.Mui-selected {
+.css-1a0mt41-MuiButtonBase-root-MuiTab-root.Mui-selected,
+.css-12a74cf-MuiButtonBase-root-MuiTab-root.Mui-selected {
   font-weight: 700;
   color: rgb(58, 58, 58) !important;
 }
@@ -108,7 +109,7 @@
   transform: translateY(-50%) translateX(0%);
 }
 
-.favoritesList{
+.favoritesList {
   position: absolute;
   width: 12vw;
   height: 35vh;
@@ -119,48 +120,46 @@
   border-radius: 5px;
 }
 
-.favoritesBigBox{
+.favoritesBigBox {
   margin: 10px;
   border-bottom: 1px solid gray;
   z-index: 99999999999999999999999999999999999999999
 }
 
-.favoritesBoxImg{
-  
-}
+.favoritesBoxImg {}
 
-.favoritesBoxImg img{
+.favoritesBoxImg img {
   width: 100%;
   height: 100%;
 }
 
-.favoritesBody{
+.favoritesBody {
   padding-left: 13px;
   z-index: 99999999999999999999999999999999999999999
 }
 
-.favoritesBody h5{
+.favoritesBody h5 {
   font-size: 1rem;
   z-index: 99999999999999999999999999999999999999999
 }
 
-.favoritesBodyBrand{
+.favoritesBodyBrand {
   font-size: 0.85rem;
   color: gray;
   z-index: 99999999999999999999999999999999999999999
 }
 
-.favoritesBodyPrice span{
+.favoritesBodyPrice span {
   font-size: 1rem;
   z-index: 99999999999999999999999999999999999999999
 }
 
-.favoritesInt {  
+.favoritesInt {
   display: flex;
   z-index: 99999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999;
 }
 
-.favoritesInt button{
+.favoritesInt button {
   text-align: center;
   background-color: white;
   border: 1px solid black;
@@ -294,6 +293,52 @@
   letter-spacing: 20px;
 }
 
+/* confirm and alert style setting */
+.public-confirm-modal {
+  background-color: #2a2a2a49;
+}
+
+.public-confirm-modal .modal-content {
+  background-color: rgb(243, 242, 242) !important;
+  border-radius: 0 !important;
+}
+
+.public-confirm-modal .modal-header {
+  justify-content: start !important;
+  border: none !important;
+}
+
+.public-confirm-modal .modal-body {
+  text-align: center !important;
+  border: none !important;
+}
+
+.public-confirm-modal .modal-footer {
+  border: none !important;
+}
+
+.public-confirm-btn {
+  width: 50px !important;
+  background-color: #2d2d2d !important;
+  color: white;
+  border: none !important;
+  font-size: .8rem !important;
+  transition: .3s ease;
+}
+
+.public-confirm-btn:hover {
+  opacity: .9;
+  transform: translateY(-5px) translateX(-3px);
+  box-shadow: 3px 5px 10px 0px rgb(0, 0, 0);
+}
+
+.public-confirm-btn:focus {
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* confirm and alert style setting */
 @media screen and (max-width: 768px) {
   .logo-wrap {
     margin-left: 5px;

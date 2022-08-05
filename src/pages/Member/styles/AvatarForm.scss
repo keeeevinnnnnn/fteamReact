@@ -1,4 +1,5 @@
 .memberAvatarForm {
+    position: relative;
     figure {
         margin-bottom: 10px;
     }
@@ -23,6 +24,18 @@
         color: var(--main);
         transform: translateX(-2px) translateY(-2px);
         box-shadow: 4px 4px 0px 0px #047d92;
+    }
+    .scrollToBottom {
+        background: white;
+        border: 3px solid var(--main);
+        color: black;
+        text-align: center;
+        height: 60px;
+        width: 60px;
+        // border-radius: 50%;
+        position: absolute;
+        right: 10px;
+        top: 40px;
     }
 }
 
