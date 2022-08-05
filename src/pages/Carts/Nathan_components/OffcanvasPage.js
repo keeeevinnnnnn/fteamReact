@@ -1,5 +1,5 @@
 import { Offcanvas } from 'react-bootstrap';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import './Offcanvas.scss';
 import TWZipCode from './TWZipCode';
 import axios from 'axios';
@@ -7,8 +7,14 @@ import CreditForm from './CreditForm';
 import CheckoutFinish from './CheckoutFinish';
 import { useNavigate } from 'react-router-dom';
 import Convenience from './Convenience';
+import AuthContext from '../../../components/AuthContext';
+import { useSpinner } from '../../../components/useSpinner/useSpinner';
+import { alert } from './AlertComponent';
+import { confirm } from './ConfirmComponent';
 export default function OffcanvasPage(props) {
   const { loginMemberID, setProductDep, setCustomDep, setLessonDep } = props;
+  const { token } = useContext(AuthContext);
+  const { spinner, setLoading } = useSpinner(1500);
   const navigate = useNavigate();
   // offcanvas setting
   const [show, setShow] = useState(false);
@@ -32,6 +38,9 @@ export default function OffcanvasPage(props) {
   });
   // 超商form setting
   const [toConvenceFrom, setToConvenceFrom] = useState({
+    fullName: '',
+    mobile: '',
+    email: '',
     convenceCountry: '',
     convenceTownship: '',
     convenceStore: '',
@@ -45,60 +54,155 @@ export default function OffcanvasPage(props) {
     validYear: '',
     CVV: '',
   });
-  const [pickSelfForm, setPickSelfForm] = useState({});
   const [delivery, setDelivery] = useState('toHome');
   const [paySelected, setPaySelected] = useState('cash');
+  const [isCheckoutFinish, setIsCheckoutFinish] = useState(false);
   // 宅配欄位handler
   const toHomeFormHandler = (e) => {
     setToHomeForm({ ...toHomeForm, [e.target.name]: e.target.value });
   };
   // 填完基本資料下一步
   const nextStep = (e) => {
-    // 判斷 必填欄位 有無輸入值 配送方式為宅配
-    if (
-      delivery === 'toHome' &&
-      toHomeForm.fullName !== '' &&
-      toHomeForm.mobile !== '' &&
-      toHomeForm.countryName !== '' &&
-      toHomeForm.townshipName !== ''
-    ) {
-      // 付款方式如果是貨到付款直接進行結帳
+    // 如果選擇宅配
+    if (delivery === 'toHome') {
+      // 如果選現金
       if (paySelected === 'cash') {
-        // 貨到付款 直接發axios
-        axios
-          .post('http://localhost:3000/orders', {
-            memID: loginMemberID,
-            recipient: toHomeForm.fullName,
-            address:
-              toHomeForm.countryName +
-              toHomeForm.townshipName +
-              toHomeForm.fullAddress,
-            shipping: delivery,
-          })
-          .then((res) => {
-            if (res.data.success) {
-              setNewOrderNumber(res.data.orderNumber);
-              setToHomeForm({
-                fullName: '',
-                mobile: '',
-                email: '',
-                countryName: '',
-                townshipName: '',
-                fullAddress: '',
-              });
-              setProductDep((prev) => prev + 1);
-              setCustomDep((prev) => prev + 1);
-              setLessonDep((prev) => prev + 1);
-              setDisplace(displace + 200);
-            }
-          });
-        setDisplace(displace + 200);
-      } else {
-        // 選線上刷卡 導向信用卡資訊填寫頁面
-        setDisplace(displace + 100);
+        if (
+          toHomeForm.fullName !== '' &&
+          toHomeForm.mobile !== '' &&
+          toHomeForm.email !== '' &&
+          toHomeForm.countryName !== '' &&
+          toHomeForm.townshipName !== '' &&
+          toHomeForm.fullAddress !== ''
+        ) {
+          // 資料填寫有完整 完成結帳產生訂單編號
+          axios
+            .post('http://localhost:3000/orders', {
+              memID: loginMemberID,
+              recipient: toHomeForm.fullName,
+              email: toHomeForm.email,
+              address:
+                toHomeForm.countryName +
+                toHomeForm.townshipName +
+                toHomeForm.fullAddress,
+              shipping: delivery,
+            })
+            .then((res) => {
+              if (res.data.success) {
+                setNewOrderNumber(res.data.orderNumber);
+                let i = alert('恭喜您購買成功，請查看您的訂單編號');
+                i.then((res) => {
+                  if (res === true) {
+                    setToHomeForm({
+                      fullName: '',
+                      mobile: '',
+                      email: '',
+                      countryName: '',
+                      townshipName: '',
+                      fullAddress: '',
+                    });
+                    setProductDep((prev) => prev + 1);
+                    setCustomDep((prev) => prev + 1);
+                    setLessonDep((prev) => prev + 1);
+                    setDisplace(displace + 200);
+                    setIsCheckoutFinish(true);
+                  }
+                });
+                // if (alert('恭喜您購買成功，請查看您的訂單編號')) {
+                //   setNewOrderNumber(res.data.orderNumber);
+                //   setToHomeForm({
+                //     fullName: '',
+                //     mobile: '',
+                //     email: '',
+                //     countryName: '',
+                //     townshipName: '',
+                //     fullAddress: '',
+                //   });
+                //   setProductDep((prev) => prev + 1);
+                //   setCustomDep((prev) => prev + 1);
+                //   setLessonDep((prev) => prev + 1);
+                //   setDisplace(displace + 200);
+                //   setIsCheckoutFinish(true);
+                // }
+              }
+            });
+        } else {
+          // 資料沒填完整
+          alert('資料填寫不完整');
+        }
+        // 如果選信用卡
+      } else if (paySelected === 'credit') {
+        if (
+          toHomeForm.fullName !== '' &&
+          toHomeForm.mobile !== '' &&
+          toHomeForm.email !== '' &&
+          toHomeForm.countryName !== '' &&
+          toHomeForm.townshipName !== ''
+        ) {
+          // 寄送資料都有填就導向信用卡填寫頁面
+          setDisplace(displace + 100);
+        } else {
+          // 資料沒填完整
+          alert('資料填寫不完整');
+        }
       }
-    } else {
-      alert('請填寫完整資訊');
+    }
+    // 如果選擇超商取貨
+    if (delivery === 'pickSelf') {
+      // 如果選現金
+      if (paySelected === 'cash') {
+        if (
+          toConvenceFrom.fullName !== '' &&
+          toConvenceFrom.mobile !== '' &&
+          toConvenceFrom.email !== '' &&
+          toConvenceFrom.convenceCountry !== '' &&
+          toConvenceFrom.convenceTownship !== '' &&
+          toConvenceFrom.convenceStore !== ''
+        ) {
+          // 資料填寫有完整 完成結帳產生訂單編號
+          axios
+            .post('http://localhost:3000/orders', {
+              memID: loginMemberID,
+              recipient: toConvenceFrom.fullName,
+              email: toConvenceFrom.email,
+              address:
+                toConvenceFrom.convenceCountry +
+                toConvenceFrom.convenceTownship +
+                toConvenceFrom.convenceStore,
+              shipping: delivery,
+            })
+            .then((res) => {
+              if (res.data.success) {
+                setNewOrderNumber(res.data.orderNumber);
+                setProductDep((prev) => prev + 1);
+                setCustomDep((prev) => prev + 1);
+                setLessonDep((prev) => prev + 1);
+                setDisplace(displace + 200);
+              }
+            });
+          setDisplace(displace + 200);
+          setIsCheckoutFinish(true);
+        } else {
+          // 資料沒填完整
+          alert('資料填寫不完整');
+        }
+        // 如果選信用卡
+      } else if (paySelected === 'credit') {
+        if (
+          toConvenceFrom.fullName !== '' &&
+          toConvenceFrom.mobile !== '' &&
+          toConvenceFrom.email !== '' &&
+          toConvenceFrom.convenceCountry !== '' &&
+          toConvenceFrom.convenceTownship !== '' &&
+          toConvenceFrom.convenceStore !== ''
+        ) {
+          // 寄送資料都有填就導向信用卡填寫頁面
+          setDisplace(displace + 100);
+        } else {
+          // 資料沒填完整
+          alert('資料填寫不完整');
+        }
+      }
     }
   };
   // 填完信用卡下一步
@@ -112,7 +216,58 @@ export default function OffcanvasPage(props) {
       setDisplace(0);
     }
   };
-
+  const toHomeMemberDataHandler = (e) => {
+    if (e.target.checked) {
+      axios
+        .get('http://localhost:3000/member/memberself', {
+          // 發JWT一定要加這個headers
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
+        .then((res) => {
+          setToHomeForm({
+            ...toHomeForm,
+            fullName: res.data.mem_name,
+            mobile: res.data.mem_mobile,
+            email: res.data.mem_email,
+          });
+        });
+    } else {
+      setToHomeForm({
+        ...toHomeForm,
+        fullName: '',
+        mobile: '',
+        email: '',
+      });
+    }
+  };
+  const ConvenceMemberDataHandler = (e) => {
+    if (e.target.checked) {
+      axios
+        .get('http://localhost:3000/member/memberself', {
+          // 發JWT一定要加這個headers
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
+        .then((res) => {
+          setToConvenceFrom({
+            ...toConvenceFrom,
+            fullName: res.data.mem_name,
+            mobile: res.data.mem_mobile,
+            email: res.data.mem_email,
+          });
+        });
+    } else {
+      setToConvenceFrom({
+        ...toConvenceFrom,
+        fullName: '',
+        mobile: '',
+        email: '',
+      });
+    }
+  };
   const payHandleChange = (e) => {
     setPaySelected(e.target.value);
   };
@@ -129,7 +284,11 @@ export default function OffcanvasPage(props) {
             <Offcanvas.Header closeButton></Offcanvas.Header>
           </div>
           {/* previous step */}
-          <div onClick={prevStep} className="back-step">
+          <div
+            style={{ display: !isCheckoutFinish ? 'block' : 'none' }}
+            onClick={prevStep}
+            className={'back-step'}
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-6 w-6 w-100 h-100"
@@ -154,20 +313,37 @@ export default function OffcanvasPage(props) {
                     <div className="w-100 h-10 step-page-title-wrap d-flex justify-content-center align-items-center">
                       <span className="d-block">Distribution</span>
                     </div>
-                    <div className="w-100 h-10">
+                    <div className="w-100 h-10 d-flex">
                       {/* 配送方式選取 */}
-                      <select
-                        onChange={(e) => {
-                          setDelivery(e.target.value);
-                        }}
-                        className="focus-none bg-transparent border-0 text-gray fs-6"
-                      >
-                        <option value="" disabled>
-                          配送方式
-                        </option>
-                        <option value="toHome">宅配到府</option>
-                        <option value="pickSelf">超商取貨</option>
-                      </select>
+                      <div className="w-50 h-100 d-flex align-items-center">
+                        <select
+                          onChange={(e) => {
+                            setDelivery(e.target.value);
+                          }}
+                          className="focus-none bg-transparent border-0 text-gray fs-6"
+                        >
+                          <option value="" disabled>
+                            配送方式
+                          </option>
+                          <option value="toHome">宅配到府</option>
+                          <option value="pickSelf">超商取貨</option>
+                        </select>
+                      </div>
+                      {/* 同會員資料 */}
+                      <div className="w-50 h-100 d-flex justify-content-end align-items-center">
+                        <input
+                          type="checkbox"
+                          name="toHomeData"
+                          onChange={
+                            delivery === 'toHome'
+                              ? toHomeMemberDataHandler
+                              : ConvenceMemberDataHandler
+                          }
+                        />
+                        <label className="text-gray px-2" htmlFor="toHomeData">
+                          同會員資料
+                        </label>
+                      </div>
                     </div>
                     <div className="w-100 h-75">
                       {/* 宅配表單 */}
@@ -201,7 +377,7 @@ export default function OffcanvasPage(props) {
                           name="email"
                           value={toHomeForm.email}
                           type="text"
-                          placeholder="Email :"
+                          placeholder="* Email :"
                           onChange={toHomeFormHandler}
                           autoComplete="off"
                         />

@@ -8,7 +8,6 @@ import {
   InfoBox,
 } from '@react-google-maps/api';
 import './MyMap.scss';
-
 function MyMap(props) {
   const {
     toConvenceFrom,
@@ -77,16 +76,16 @@ function MyMap(props) {
                                                   ? { lat: 23.01087, lng: 120.666 }
                                                   : { lat: 23.6, lng: 121 };
   return (
-    <LoadScript googleMapsApiKey={'先不開'}>
+    <LoadScript googleMapsApiKey={'AIzaSyDcDVpo-0xdVNcs0_HDYD0QKQPDfJ4QAQk'}>
       <GoogleMap
         mapContainerClassName="my-map"
         center={center}
         zoom={
           toConvenceFrom.convenceStore !== ''
-            ? 20
+            ? 16
             : toConvenceFrom.convenceCountry !== ''
               ? 8
-              : 7
+              : 5
         }
       >
         {toConvenceFrom.convenceStore !== '' ? (

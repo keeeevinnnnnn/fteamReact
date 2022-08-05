@@ -75,7 +75,32 @@
 }
 
 .order-card-main {
+    position: relative;
     min-height: 130px;
+}
+
+.recipient {
+    position: absolute;
+    top: 5px;
+    left: 0;
+}
+
+.shipping {
+    position: absolute;
+    top: 5px;
+    right: 0;
+}
+
+.convence-address {
+    position: absolute;
+    bottom: 5px;
+    right: 0;
+}
+
+.order-mail {
+    position: absolute;
+    bottom: 5px;
+    left: 0;
 }
 
 .hr-div {
