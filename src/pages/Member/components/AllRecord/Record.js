@@ -77,7 +77,19 @@ const Record = () => {
         ) : (
           <div className="w-100 h-100 d-flex flex-warp">
             <div className="col-12 col-xl-6 h-100">
-              <div className="d-flex justify-content-end px-3 h-5">
+              <div className="d-flex justify-content-around px-3 h-5">
+                <button
+                  className="Filterbtn mt-2"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    window.scrollTo({
+                      top: 0,
+                      behavior: 'smooth',
+                    });
+                  }}
+                >
+                  Top
+                </button>
                 <section className="recordFilter pt-2">
                   <select
                     value={select}

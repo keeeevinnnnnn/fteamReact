@@ -1,3 +1,10 @@
+.Filterbtn {
+    width: 20%;
+    font-size: .8rem;
+    font-weight: 700;
+    background-color: black;
+    color: var(--main);
+}
 .recordFilter {
     select {
         text-align: center;
@@ -14,11 +21,6 @@
     select:focus {
         outline: none;
     }
-    // select:hover {
-    //     color: black;
-    //     background-color: var(--main);
-    //     border: 1px solid black;
-    // }
 }
 
 @media screen and (max-width: 1200px) {

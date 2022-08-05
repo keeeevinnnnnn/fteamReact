@@ -92,6 +92,18 @@ const AvatarForm = ({ member }) => {
             <div className="d-flex justify-content-center">
               <button className="btn">Confirm</button>
             </div>
+            <button
+              className="btn scrollToBottom"
+              onClick={(e) => {
+                e.preventDefault();
+                window.scrollTo({
+                  top: 667,
+                  behavior: 'smooth',
+                });
+              }}
+            >
+              More
+            </button>
           </>
         )}
       </form>
