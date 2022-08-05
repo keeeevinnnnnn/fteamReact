@@ -39,6 +39,7 @@ function App() {
   const [productTotalQty, setProductTotalQty] = useState(0);
   const [lessonTotalQty, setLessonTotalQty] = useState(0);
   const [customTotalQty, setCustomTotalQty] = useState(0);
+  const [cartTotalDep, setCartTotalDep] = useState(0);
   // 商品原始資料
   const [data, setData] = useState({});
   // 商品收藏後icon + 1
@@ -68,6 +69,7 @@ function App() {
                   setCustomTotalQty={setCustomTotalQty}
                   favoritesNum={favoritesNum}
                   setFavoritesNum={setFavoritesNum}
+                  cartTotalDep={cartTotalDep}
                 />
                 <div className="w-100 bottom-grid d-flex">
                   <SideBar />

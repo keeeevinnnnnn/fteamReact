@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import Taipei from './data/711/台北市.json';
 import Newtaipei from './data/711/新北市.json';
 import Taichung from './data/711/台中市.json';
@@ -20,6 +20,8 @@ import Chiayi from './data/711/嘉義市.json';
 import Changhua from './data/711/彰化縣.json';
 import Penghu from './data/711/澎湖縣.json';
 import MyMap from './MyMap';
+import axios from 'axios';
+import AuthContext from '../../../components/AuthContext';
 
 function Convenience(props) {
   // group by key function
@@ -31,7 +33,9 @@ function Convenience(props) {
       return result;
     }, {});
   };
+
   const { toConvenceFrom, setToConvenceFrom } = props;
+  const { token } = useContext(AuthContext);
   const [convenceCountryInd, setConvenceCountryInd] = useState(-1);
   const [convenceTownsShipInd, setConvenceTownsShipInd] = useState(-1);
   const [convenceStoreInd, setConvenceStoreInd] = useState(-1);
@@ -72,13 +76,13 @@ function Convenience(props) {
   for (let i = 0; i < Convence.length; i++) {
     storeArr.push(Convence[i].stores);
   }
-  console.log('storeArr : ', storeArr);
+  // console.log('storeArr : ', storeArr);
   const rows = Convence.map((v, i) => {
     return {
       [v.city_name]: v.stores,
     };
   });
-  console.log('rows', rows);
+  // console.log('rows', rows);
   // 取得縣市的陣列
   let countryArr = [];
   rows.map((v, i) => {
@@ -97,6 +101,9 @@ function Convenience(props) {
   // console.log('townshipArr', townshipArr);
   const clearConvenceFormHandler = () => {
     setToConvenceFrom({
+      fullName: '',
+      mobile: '',
+      email: '',
       convenceCountry: '',
       convenceTownship: '',
       convenceStore: '',
@@ -105,116 +112,159 @@ function Convenience(props) {
     setConvenceTownsShipInd(-1);
     setConvenceStoreInd(-1);
   };
+
+  const toConvenceFromHandler = (e) => {
+    setToConvenceFrom({ ...toConvenceFrom, [e.target.name]: e.target.value });
+  };
   return (
     <div className="w-100 h-100">
-      <div className="w-100 h-10 d-flex justify-content-between align-items-center store-selectors-wrap">
-        <select
-          disabled={toConvenceFrom.convenceStore !== '' ? true : false}
-          style={{
-            color:
-              toConvenceFrom.convenceStore !== ''
-                ? 'rgb(120, 120, 120)'
-                : 'rgb(207, 207,207)',
-          }}
-          className="w-30 text-center bg-transparent text-gray border-0 border-bottom focus-none"
-          value={convenceCountryInd}
-          onChange={(e) => {
-            setConvenceCountryInd(Number(e.target.value));
-            setToConvenceFrom({
-              ...toConvenceFrom,
-              convenceCountry: countryArr[e.target.value],
-            });
-            setConvenceTownsShipInd(-1);
-          }}
-        >
-          <option disabled value="-1">
-            選擇縣市
-          </option>
-          {countryArr.map((v, i) => {
-            return (
-              <option key={i} value={i}>
-                {v}
-              </option>
-            );
-          })}
-        </select>
-        <select
-          disabled={toConvenceFrom.convenceStore !== '' ? true : false}
-          style={{
-            color:
-              toConvenceFrom.convenceStore !== ''
-                ? 'rgb(120, 120, 120)'
-                : 'rgb(207, 207,207)',
-          }}
-          value={convenceTownsShipInd}
-          className="w-30 text-center bg-transparent text-gray border-0 border-bottom focus-none"
-          onChange={(e) => {
-            setConvenceTownsShipInd(Number(e.target.value));
-            setToConvenceFrom({
-              ...toConvenceFrom,
-              convenceTownship: townshipArr[convenceCountryInd][e.target.value],
-            });
-          }}
-        >
-          <option disabled value="-1">
-            選擇區域
-          </option>
-          {convenceCountryInd > -1 &&
-            townshipArr[convenceCountryInd].map((v, i) => {
+      <div className="w-100 h-30 store-selectors-wrap">
+        <div className="w-100 h-33 d-flex">
+          <input
+            className=" w-100 text-gray bg-transparent checkout-input"
+            name="fullName"
+            value={toConvenceFrom.fullName}
+            type="text"
+            placeholder="* Name :"
+            onChange={toConvenceFromHandler}
+            autoComplete="off"
+          />
+          <input
+            className=" w-100 focus-none text-gray bg-transparent checkout-input"
+            name="mobile"
+            pattern="09\d{2}(\d{6}|-\d{3}-\d{3})"
+            value={toConvenceFrom.mobile}
+            type="text"
+            placeholder="* Mobile :"
+            onChange={toConvenceFromHandler}
+            autoComplete="off"
+          />
+        </div>
+        <div className="w-100 h-33 d-flex align-items-center">
+          <input
+            className=" w-100 focus-none text-gray bg-transparent checkout-input"
+            name="email"
+            value={toConvenceFrom.email}
+            type="text"
+            placeholder="* Email :"
+            onChange={toConvenceFromHandler}
+            autoComplete="off"
+          />
+        </div>
+        <div className="w-100 h-33 d-flex justify-content-between">
+          <select
+            disabled={toConvenceFrom.convenceStore !== '' ? true : false}
+            style={{
+              color:
+                toConvenceFrom.convenceStore !== ''
+                  ? 'rgb(120, 120, 120)'
+                  : 'rgb(207, 207,207)',
+            }}
+            className="w-30 bg-transparent text-gray border-0 focus-none"
+            value={convenceCountryInd}
+            onChange={(e) => {
+              setConvenceCountryInd(Number(e.target.value));
+              setToConvenceFrom({
+                ...toConvenceFrom,
+                convenceCountry: countryArr[e.target.value],
+              });
+              setConvenceTownsShipInd(-1);
+            }}
+          >
+            <option disabled value="-1">
+              選擇縣市
+            </option>
+            {countryArr.map((v, i) => {
               return (
                 <option key={i} value={i}>
                   {v}
                 </option>
               );
             })}
-        </select>
-        <select
-          style={{
-            color: !isDisable ? 'rgb(120, 120, 120)' : 'rgb(207, 207,207)',
-          }}
-          disabled={!isDisable}
-          defaultValue={convenceStoreInd}
-          className="w-30 text-center bg-transparent text-gray border-0 border-bottom focus-none"
-          onChange={(e) => {
-            setToConvenceFrom({
-              ...toConvenceFrom,
-              convenceStore: e.target.value,
-            });
-          }}
-        >
-          <option disabled value={convenceStoreInd}>
-            選擇門市
-          </option>
-          {convenceTownsShipInd > -1
-            ? storeArr[convenceCountryInd][toConvenceFrom.convenceTownship].map(
-              (v, i) => {
+          </select>
+          <select
+            disabled={toConvenceFrom.convenceStore !== '' ? true : false}
+            style={{
+              color:
+                toConvenceFrom.convenceStore !== ''
+                  ? 'rgb(120, 120, 120)'
+                  : 'rgb(207, 207,207)',
+            }}
+            value={convenceTownsShipInd}
+            className="w-30 bg-transparent text-gray border-0 focus-none"
+            onChange={(e) => {
+              setConvenceTownsShipInd(Number(e.target.value));
+              setToConvenceFrom({
+                ...toConvenceFrom,
+                convenceTownship:
+                  townshipArr[convenceCountryInd][e.target.value],
+              });
+            }}
+          >
+            <option disabled value="-1">
+              選擇區域
+            </option>
+            {convenceCountryInd > -1 &&
+              townshipArr[convenceCountryInd].map((v, i) => {
+                return (
+                  <option key={i} value={i}>
+                    {v}
+                  </option>
+                );
+              })}
+          </select>
+          <select
+            style={{
+              color: !isDisable ? 'rgb(120, 120, 120)' : 'rgb(207, 207,207)',
+            }}
+            disabled={!isDisable}
+            defaultValue={-1}
+            className="w-30 bg-transparent text-gray border-0 focus-none"
+            onChange={(e) => {
+              setToConvenceFrom({
+                ...toConvenceFrom,
+                convenceStore: e.target.value,
+              });
+            }}
+          >
+            <option disabled value={-1}>
+              選擇門市
+            </option>
+            {convenceTownsShipInd > -1
+              ? storeArr[convenceCountryInd][
+                toConvenceFrom.convenceTownship
+              ].map((v, i) => {
                 return (
                   <option key={i} value={v.POIName + '門市'}>
                     {v.POIName + '門市'}
                   </option>
                 );
-              }
-            )
-            : null}
-        </select>
-        <button
-          style={{ backgroundColor: !isDisable && '#4091a7' }}
-          disabled={!isDisable}
-          onClick={isDisable ? clearConvenceFormHandler : null}
-          className="focus-none clear-store"
-        >
-          Clear
-        </button>
+              })
+              : null}
+          </select>
+        </div>
       </div>
-      <div className="w-100 h-90">
-        <MyMap
-          storeArr={storeArr}
-          convenceCountryInd={convenceCountryInd}
-          toConvenceFrom={toConvenceFrom}
-          setToConvenceFrom={setToConvenceFrom}
-          isDisable={isDisable}
-          setIsDisable={setIsDisable}
-        />
+      <div className="w-100 h-70">
+        <div className="w-100 h-15 d-flex justify-content-end">
+          <button
+            style={{ backgroundColor: !isDisable && '#4091a7' }}
+            disabled={!isDisable}
+            onClick={isDisable ? clearConvenceFormHandler : null}
+            className="focus-none clear-store"
+          >
+            Clear
+          </button>
+        </div>
+        <div className="w-100 h-85">
+          <MyMap
+            storeArr={storeArr}
+            convenceCountryInd={convenceCountryInd}
+            toConvenceFrom={toConvenceFrom}
+            setToConvenceFrom={setToConvenceFrom}
+            isDisable={isDisable}
+            setIsDisable={setIsDisable}
+          />
+        </div>
       </div>
     </div>
   );

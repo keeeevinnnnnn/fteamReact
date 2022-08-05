@@ -2,6 +2,7 @@
 import axios from 'axios';
 import React from 'react';
 import './ProductCard.scss';
+import { confirm } from './ConfirmComponent';
 const ProductCard = (props) => {
   const {
     singleItem,
@@ -44,7 +45,7 @@ const ProductCard = (props) => {
               <a
                 style={{ cursor: 'pointer' }}
                 onClick={() => {
-                  if (window.confirm('確定要刪除此商品嗎？')) {
+                  if (confirm('確定要刪除此商品嗎？') === true) {
                     axios
                       .delete(
                         `http://localhost:3000/carts?sid=${singleItem.item_id}&type=${singleItem.item_type}&memID=${singleItem.member_id}`
@@ -100,7 +101,7 @@ const ProductCard = (props) => {
                         }
                       });
                   } else {
-                    if (window.confirm('確定要刪除此商品嗎？')) {
+                    if (confirm('確定要刪除此商品嗎？') === true) {
                       axios
                         .delete(
                           `http://localhost:3000/carts?sid=${singleItem.item_id}&type=${singleItem.item_type}&memID=${singleItem.member_id}`
