@@ -4,8 +4,9 @@ import axios from '../../Product/commons/axios';
 
 
 function Prev_card(props) {
-  const {prevdata}=props
+  const {prevdata,singleShareData}=props
   // console.log(singleShareData)
+  console.log(prevdata)
   const navigate = useNavigate()
 
   return (
@@ -25,7 +26,7 @@ function Prev_card(props) {
                   <h6>{prevdata.mem_name}</h6>
                 </div>
               </div>
-              <Link to={`/customized/create/detail/${prevdata.sid}`} >
+              <Link to={`/customized/create/detail/${singleShareData.sid}`} >
               <button className='viv-btn'>View</button>
               </Link>
             

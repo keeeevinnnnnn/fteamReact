@@ -165,12 +165,16 @@ function App() {
                         <Cus_product_confirm
                           lastInsertID={lastInsertID}
                           setLastInsertID={setLastInsertID}
+                          setCartTotalDep={setCartTotalDep}
                         />
                       }
                     />
                     <Route
                       path="/customized/create/detail/*"
-                      element={<Cus_product_detail />}
+                      element={<Cus_product_detail 
+                        setCartTotalDep={setCartTotalDep}
+                      />}
+                      
                     />
                     <Route
                       path="/customized/explore"

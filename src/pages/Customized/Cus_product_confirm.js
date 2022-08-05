@@ -1,6 +1,7 @@
-import React,{useEffect,useState} from 'react';
+import React,{useEffect,useState,useContext} from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import AuthContext from '../../components/AuthContext';
 
 
 import { red } from '@mui/material/colors';
@@ -8,11 +9,34 @@ import { red } from '@mui/material/colors';
 import './Cus_product_confirm.scss';
 
 function Cus_product_confirm(props) {
-  const {lastInsertID,setLastInsertID} = props
+  const {lastInsertID,setLastInsertID,setCartTotalDep} = props
   const [cusData,setCusData]=useState({})
+  const { auth, token } = useContext(AuthContext);
 
 
-  
+  const addToCart =()=>{
+    axios
+    .get('http://localhost:3000/member/memberself', {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }).then((res)=>{
+      axios.post('http://localhost:3000/carts',{
+        type:'custom',
+        quantity:'1',
+        sid:lastInsertID,
+        memID:res.data.sid,
+      }).then((res)=>{
+        if(res.data.success){
+          alert('加入成功')
+          setCartTotalDep((prev)=>prev+1)
+        }else{
+          alert('商品已存在購物車')
+        }
+      })
+    })
+
+  }
 
  useEffect(()=>{
   console.log(lastInsertID);
@@ -20,8 +44,11 @@ function Cus_product_confirm(props) {
   console.log(res.data)
    setCusData(res.data[0])
    })
+ 
+
 
  },[])
+
 
 
   return (
@@ -150,7 +177,7 @@ function Cus_product_confirm(props) {
                 <Link to={'/customized/explore'}>
                   <button className="viv-btn">Explore</button>
                 </Link>
-                <button className="viv-btn">Add To Cart</button>
+                <button className="viv-btn" onClick={addToCart}>Add To Cart</button>
               </div>
             </div>
           </div>

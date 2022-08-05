@@ -133,14 +133,7 @@ function Customized_add(props) {
             <div className="cus_card">
               <div className="cus_product_card">
                 <h3 className="text-black">Project Name</h3>
-                {/* <input
-                  type="text"
-                  placeholder="memberid(暫時)"
-                  className="viv-input"
-                  onChange={(event) => {
-                    setMember_id(event.target.value);
-                  }}
-                /> */}
+              
 
                 <input
                   type="text"

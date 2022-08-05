@@ -5,7 +5,7 @@ import axios from '../../Product/commons/axios';
 
 function Share_card(props) {
   const {singleShareData,shareCardId}=props
-  // console.log(singleShareData)
+  console.log(singleShareData)
   const navigate = useNavigate()
 
   return (

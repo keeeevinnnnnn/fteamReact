@@ -14,7 +14,7 @@ import Avatar from '@mui/material/Avatar';
 function Cus_product_detail(props) {
   // {shareCardId}=props
   let params = useParams();
-  const { singleShareData } = props;
+  const { singleShareData,setCartTotalDep } = props;
   //把那個妙米字轉成變數
   let cid = params['*'];
   console.log(params['*']);
@@ -27,7 +27,39 @@ function Cus_product_detail(props) {
   const [mes_cusproduct_id, setMes_cusproduct_id] = useState('');
 
   const [messageboard, setMessageboard] = useState([]);
+  const [messageDep,setMessageDep] = useState(0)
+  //商品加入購物車//
+  const addToCart = () => {
+    axios
+      .get('http://localhost:3000/member/memberself', {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((res) => {
+        if (res.data.sid+'' === shareDetailData.member_id) {
+          axios
+            .post('http://localhost:3000/carts', {
+              type: 'custom',
+              quantity: '1',
+              sid: cid,
+              memID: res.data.sid,
+            })
+            .then((res) => {
+              if (res.data.success) {
+                alert('加入成功');
+                setCartTotalDep((prev)=>prev+1)
+              } else {
+                alert('商品已存在購物車');
+              }
+            });
+        } else {
+          alert('您只能訂購自己擁有的商品呦！');
+        }
+      });
+  };
 
+  //撈商品//
   useEffect(() => {
     // console.log(shareCardId);
     axios
@@ -39,6 +71,7 @@ function Cus_product_detail(props) {
       });
   }, []);
 
+  //加留言//
   const addComment = () => {
     axios
       .get('http://localhost:3000/member/memberself', {
@@ -53,8 +86,11 @@ function Cus_product_detail(props) {
           stars: stars,
           comment: comment,
         });
+        setMessageDep((prev)=>prev+1)
       });
   };
+
+  //撈留言//
   useEffect(() => {
     console.log(mes_cusproduct_id);
 
@@ -64,7 +100,7 @@ function Cus_product_detail(props) {
         console.log(res.data);
         setMessageboard(res.data);
       });
-  }, []);
+  }, [messageDep]);
 
   return (
     <>
@@ -88,19 +124,22 @@ function Cus_product_detail(props) {
               <div className="message mb-2">
                 <h2 className="mb-3">Message Board</h2>
                 <div className="message-area">
-                 
                   {messageboard.map((v, i) => {
                     return (
                       <div class="d-flex m-2 border-bottom border-gray">
                         <div class="col-2">
                           <Avatar sx={{ bgcolor: 'black'[900] }}>
-                            <img  src={`http://localhost:3000/avatar/${v.mem_avatar}`}
-                  className="img-fluid"/>
-                          
+                            <img
+                              src={`http://localhost:3000/avatar/${v.mem_avatar}`}
+                              className="img-fluid"
+                            />
                           </Avatar>
                         </div>
                         <div className="col-10">
-                          <h6>{v.mem_name}<span className='text-warning'>{v.stars}</span></h6>
+                          <h6>
+                            {v.mem_name}
+                            <span className="text-warning">{v.stars}</span>
+                          </h6>
                           <p>{v.comment}</p>
                         </div>
                       </div>
@@ -151,7 +190,9 @@ function Cus_product_detail(props) {
                 <Link to={'/customized/explore'}>
                   <button className="viv-btn">Explore</button>
                 </Link>
-                <button className="viv-btn">Add To Cart</button>
+                <button className="viv-btn" onClick={addToCart}>
+                  Add To Cart
+                </button>
               </div>
             </div>
           </div>
