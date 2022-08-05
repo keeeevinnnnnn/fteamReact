@@ -98,16 +98,12 @@ const Navbar = (props) => {
             });
         });
     }
-<<<<<<< HEAD
-  }, [auths, auth, token, setMember]); // 有變更資料才刷新
-=======
     // 紀錄該會員商品收藏總數
     axios.get(`/product/favoriteCount?memId=${5}`).then((res) => {
       let favoritesNum = res.data[`count(sid)`];
       setFavoritesNum(favoritesNum);
     });
   }, [auths, auth, token, setMember, setFavoritesNum, cartTotalDep]); // 有變更資料才刷新
->>>>>>> 3f08fc2becca52e8923b8dd0cdc187fc41384626
 
   return (
     <>
