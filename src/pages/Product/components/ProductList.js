@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import '../styles/ProductMain.scss';
 import axios from '../commons/axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Link } from 'react-router-dom';
+import AuthContext from '../../../components/AuthContext';
 
 const ProductList = (props) => {
   const {
@@ -16,6 +17,10 @@ const ProductList = (props) => {
     whoFavorites,
     setWhoFavorites,
   } = props;
+
+  // auth為登入判斷(true,false) token為會員JWT的token logout是登出涵式
+  const { token } = useContext(AuthContext);
+
   // 收藏成功提示訊息設定
   const favoriteSuccess = () => {
     toast.success('Add Favorites Success', {
@@ -50,29 +55,52 @@ const ProductList = (props) => {
       favoriteName: name,
       favoriteBrand: brand,
       favoritePrice: price,
-      memId: 5,
     };
-    await axios.post('/product/favorites', addFavorites).then((res) => {
-      // 拿到成功或失敗的訊息
-      res.data.success === 'true' ? favoriteSuccess() : favoriteError();
-      setHeart(!heart);
-      countSonFavorites();
-    });
+    await axios
+      .post('/product/favorites', addFavorites, {
+        // 發JWT一定要加這個headers
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((res) => {
+        // 拿到成功或失敗的訊息
+        res.data.success === 'true' ? favoriteSuccess() : favoriteError();
+        setHeart(!heart);
+        countSonFavorites();
+      });
   };
+
   //紀錄重新渲染時誰收藏;
   let findWhoFavorites = whoFavorites.filter((v) => v === sid);
+
+  console.log(whoFavorites);
   // 計算收藏商品總數
   const countSonFavorites = async () => {
-    await axios.get(`/product/favoriteCount?memId=${5}`).then((res) => {
-      let favoritesNum = res.data[`count(sid)`];
-      setFavoritesNum(favoritesNum);
-    });
+    await axios
+      .get(`/product/favoriteCount`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((res) => {
+        let favoritesNum = res.data[`count(sid)`];
+        setFavoritesNum(favoritesNum);
+      });
   };
   // 讓heart值改變重新渲染，改變會員所收藏的商品
   useEffect(() => {
-    axios.get(`/product/whoFavorites?memId=${5}`).then((res) => {
-      setWhoFavorites(res.data);
-    });
+    axios
+      .get(`/product/whoFavorites`, {
+        // 發JWT一定要加這個headers
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((res) => {
+        console.log(res.data);
+        setWhoFavorites(res.data);
+      });
   }, [heart]);
 
   return (

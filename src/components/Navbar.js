@@ -84,6 +84,18 @@ const Navbar = (props) => {
                 setLessonTotalQty(lessonTotal);
               }
             });
+          // 紀錄該會員商品收藏總數
+          axios
+            .get(`http://localhost:3000/product/favoriteCount`, {
+              // 發JWT一定要加這個headers
+              headers: {
+                Authorization: `Bearer ${token}`,
+              },
+            })
+            .then((res) => {
+              let favoritesNum = res.data[`count(sid)`];
+              setFavoritesNum(favoritesNum);
+            });
         });
     }
     // 紀錄該會員商品收藏總數
