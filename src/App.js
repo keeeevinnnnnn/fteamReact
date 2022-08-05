@@ -44,12 +44,12 @@ function App() {
   // 商品收藏後icon + 1
   const [favoritesNum, setFavoritesNum] = useState(0);
   // 紀錄該會員商品收藏總數
-  const countFavorites = async () => {
-    await axios.get(`/product/favoriteCount?memId=${5}`).then((res) => {
-      let favoritesNum = res.data[`count(sid)`];
-      setFavoritesNum(favoritesNum);
-    });
-  };
+  // const countFavorites = async () => {
+  //   await axios.get(`/product/favoriteCount?memId=${5}`).then((res) => {
+  //     let favoritesNum = res.data[`count(sid)`];
+  //     setFavoritesNum(favoritesNum);
+  //   });
+  // };
   return (
     <Router>
       {/* 裡面包含ConText(會員登入判斷)及登出涵式 */}
@@ -68,7 +68,6 @@ function App() {
                   setCustomTotalQty={setCustomTotalQty}
                   favoritesNum={favoritesNum}
                   setFavoritesNum={setFavoritesNum}
-                  countFavorites={countFavorites()}
                 />
                 <div className="w-100 bottom-grid d-flex">
                   <SideBar />

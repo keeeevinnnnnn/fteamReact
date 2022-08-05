@@ -17,7 +17,7 @@ const Navbar = (props) => {
     setLessonTotalQty,
     setCustomTotalQty,
     favoritesNum,
-    countFavorites,
+    setFavoritesNum,
   } = props;
   const navigate = useNavigate();
   // 從這支Context拿值
@@ -85,8 +85,12 @@ const Navbar = (props) => {
             });
         });
     }
-    // countFavorites();
-  }, [auths, auth, token, setMember]); // 有變更資料才刷新
+    // 紀錄該會員商品收藏總數
+    axios.get(`/product/favoriteCount?memId=${5}`).then((res) => {
+      let favoritesNum = res.data[`count(sid)`];
+      setFavoritesNum(favoritesNum);
+    });
+  }, [auths, auth, token, setMember, setFavoritesNum]); // 有變更資料才刷新
 
   return (
     <>
