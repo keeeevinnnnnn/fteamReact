@@ -18,6 +18,7 @@ const Navbar = (props) => {
     setCustomTotalQty,
     favoritesNum,
     setFavoritesNum,
+    cartTotalDep,
   } = props;
   const navigate = useNavigate();
   // 從這支Context拿值
@@ -90,7 +91,7 @@ const Navbar = (props) => {
       let favoritesNum = res.data[`count(sid)`];
       setFavoritesNum(favoritesNum);
     });
-  }, [auths, auth, token, setMember, setFavoritesNum]); // 有變更資料才刷新
+  }, [auths, auth, token, setMember, setFavoritesNum, cartTotalDep]); // 有變更資料才刷新
 
   return (
     <>
