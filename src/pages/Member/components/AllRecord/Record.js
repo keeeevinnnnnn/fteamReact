@@ -79,7 +79,7 @@ const Record = () => {
             <div className="col-12 col-xl-6 h-100">
               <div className="d-flex justify-content-around px-3 h-5">
                 <button
-                  className="Filterbtn mt-2"
+                  className="Filterbtn mt-2 d-xl-none"
                   onClick={(e) => {
                     e.preventDefault();
                     window.scrollTo({

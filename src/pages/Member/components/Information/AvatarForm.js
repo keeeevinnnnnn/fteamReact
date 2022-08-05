@@ -93,7 +93,7 @@ const AvatarForm = ({ member }) => {
               <button className="btn">Confirm</button>
             </div>
             <button
-              className="btn scrollToBottom"
+              className="btn d-xl-none scrollToBottom"
               onClick={(e) => {
                 e.preventDefault();
                 window.scrollTo({
