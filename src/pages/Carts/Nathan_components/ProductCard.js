@@ -3,6 +3,7 @@ import axios from 'axios';
 import React from 'react';
 import './ProductCard.scss';
 import { confirm } from './ConfirmComponent';
+import { alert } from './AlertComponent';
 const ProductCard = (props) => {
   const {
     singleItem,
@@ -45,19 +46,22 @@ const ProductCard = (props) => {
               <a
                 style={{ cursor: 'pointer' }}
                 onClick={() => {
-                  if (confirm('確定要刪除此商品嗎？') === true) {
-                    axios
-                      .delete(
-                        `http://localhost:3000/carts?sid=${singleItem.item_id}&type=${singleItem.item_type}&memID=${singleItem.member_id}`
-                      )
-                      .then((res) => {
-                        console.log(res.data);
-                        if (res.data.success) {
-                          setProductDep(productDep + 1);
-                          alert('刪除成功!');
-                        }
-                      });
-                  }
+                  let i = confirm('確定要刪除此商品嗎？');
+                  i.then((res) => {
+                    if (res === true) {
+                      axios
+                        .delete(
+                          `http://localhost:3000/carts?sid=${singleItem.item_id}&type=${singleItem.item_type}&memID=${singleItem.member_id}`
+                        )
+                        .then((res) => {
+                          console.log(res.data);
+                          if (res.data.success) {
+                            setProductDep(productDep + 1);
+                            alert('刪除成功!');
+                          }
+                        });
+                    }
+                  });
                 }}
               >
                 <svg
@@ -101,19 +105,22 @@ const ProductCard = (props) => {
                         }
                       });
                   } else {
-                    if (confirm('確定要刪除此商品嗎？') === true) {
-                      axios
-                        .delete(
-                          `http://localhost:3000/carts?sid=${singleItem.item_id}&type=${singleItem.item_type}&memID=${singleItem.member_id}`
-                        )
-                        .then((res) => {
-                          console.log(res.data);
-                          if (res.data.success) {
-                            setProductDep(productDep + 1);
-                            alert('刪除成功!');
-                          }
-                        });
-                    }
+                    let i = confirm('確定要刪除此商品嗎？');
+                    i.then((res) => {
+                      if (res === true) {
+                        axios
+                          .delete(
+                            `http://localhost:3000/carts?sid=${singleItem.item_id}&type=${singleItem.item_type}&memID=${singleItem.member_id}`
+                          )
+                          .then((res) => {
+                            console.log(res.data);
+                            if (res.data.success) {
+                              setProductDep(productDep + 1);
+                              alert('刪除成功!');
+                            }
+                          });
+                      }
+                    });
                   }
                 }}
                 className="cart-minus-icon cursorpointer mx-3 mx-md-5"
