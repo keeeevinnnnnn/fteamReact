@@ -3,6 +3,8 @@ import '../../styles/MemberEdit.scss';
 import axios from 'axios';
 import AuthContext from '../../../../components/AuthContext';
 import { v4 as uuidv4 } from 'uuid';
+import { alert } from '../../../../components/AlertComponent';
+import { confirm } from '../../../../components/ConfirmComponent';
 
 const MemberEdit = ({
   setmoveTrain,
@@ -121,40 +123,49 @@ const MemberEdit = ({
           setLeaveForm({ ...res.data.body });
           // 讓NavBar的顯示跟著做即時變動
           setAuths({ ...auths, change: uuidv4() });
-          alert('修改成功');
-          // 把隱藏的大頭貼區塊恢復顯示
-          setAvatarFromNone('');
-          // 個人資料區塊從90%設回75%
-          setInformationWrap('h-75');
-          // 移動到顯示個人資料
-          setmoveTrain('translateY(-0%)');
+          let i = alert('修改成功');
+          i.then((res) => {
+            if (res === true) {
+              setTimeout(() => {
+                // 把隱藏的大頭貼區塊恢復顯示
+                setAvatarFromNone('');
+                // 個人資料區塊從90%設回75%
+                setInformationWrap('h-75');
+                // 移動到顯示個人資料
+                setmoveTrain('translateY(-0%)');
+              }, 200);
+            }
+          });
         } else {
           alert('修改失敗');
         }
       });
   }
 
-  async function deleteSelf(e) {
+  function deleteSelf(e) {
     // 先阻擋預設送出行為
     e.preventDefault();
-    if (window.confirm('確認刪除帳號?')) {
-      await axios
-        .delete('http://localhost:3000/member/', {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        })
-        .then((res) => {
-          if (res.data.success) {
-            alert('刪除成功');
-            logout();
-          } else {
-            alert('刪除失敗');
-          }
-        });
-    } else {
-      return;
-    }
+    let i = confirm('確認刪除帳號?');
+    i.then((res) => {
+      if (res) {
+        axios
+          .delete('http://localhost:3000/member/', {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          })
+          .then((res) => {
+            if (res.data.success) {
+              alert('刪除成功');
+              logout();
+            } else {
+              alert('刪除失敗');
+            }
+          });
+      } else {
+        return;
+      }
+    });
   }
   return (
     <>

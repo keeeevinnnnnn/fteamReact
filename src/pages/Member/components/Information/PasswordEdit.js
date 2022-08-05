@@ -2,6 +2,8 @@ import React, { useState, useContext } from 'react';
 import '../../styles/PasswordEdit.scss';
 import axios from 'axios';
 import AuthContext from '../../../../components/AuthContext';
+import { alert } from '../../../../components/AlertComponent';
+
 const PasswordEdit = ({ setmoveTrain }) => {
   const { token, logout } = useContext(AuthContext);
   // 記錄表單每個欄位輸入值
@@ -78,9 +80,12 @@ const PasswordEdit = ({ setmoveTrain }) => {
       )
       .then((res) => {
         if (res.data.success) {
-          alert('更新成功，請重新登入');
-          // 呼叫登出函式
-          logout();
+          let i = alert('更新成功，請重新登入');
+          i.then((res) => {
+            if (res) {
+              logout();
+            }
+          });
         } else {
           alert('密碼更新失敗');
         }

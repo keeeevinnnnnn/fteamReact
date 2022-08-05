@@ -3,6 +3,7 @@ import axios from 'axios';
 import AuthContext from '../../../../components/AuthContext';
 import '../../styles/AvatarForm.scss';
 import { v4 as uuidv4 } from 'uuid';
+import { alert } from '../../../../components/AlertComponent';
 
 const AvatarForm = ({ member }) => {
   // 大頭貼更換成功動畫效果

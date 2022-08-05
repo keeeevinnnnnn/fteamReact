@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { alert } from '../../../components/AlertComponent';
 
 const Verify = ({
   fields,
@@ -55,7 +56,7 @@ const Verify = ({
     );
 
     if (response.data.success === true) {
-      alert('帳號開通成功!');
+      alert('帳號開通成功');
       // 呈現註冊頁面
       setVerify(false);
       // 清空欄位

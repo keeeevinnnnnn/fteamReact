@@ -5,6 +5,7 @@ import '../styles/Btn8.scss';
 import '../styles/LoginAdmin.scss';
 import LoginLogo from './LoginLogo';
 import AuthContext from '../../../components/AuthContext';
+import { alert } from '../../../components/AlertComponent';
 
 const LoginAdmin = ({ setLoginCard, loginLogoText }) => {
   const { auths, setAuths } = useContext(AuthContext);
@@ -63,11 +64,15 @@ const LoginAdmin = ({ setLoginCard, loginLogoText }) => {
     if (response.data.success) {
       localStorage.setItem('user_info', JSON.stringify(response.data.info));
       localStorage.setItem('user_token', response.data.token);
-      alert('登入成功');
-      // 整個網站判斷有沒有登入
-      setAuths({ ...auths, token: response.data.token, auth: true });
-      // 頁面轉向
-      navigate('/', { replace: true });
+      let i = alert('登入成功');
+      i.then((res) => {
+        if (res) {
+          // 整個網站判斷有沒有登入
+          setAuths({ ...auths, token: response.data.token, auth: true });
+          // 頁面轉向
+          navigate('/', { replace: true });
+        }
+      });
     } else {
       alert('登入失敗');
     }

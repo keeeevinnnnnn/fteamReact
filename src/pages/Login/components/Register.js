@@ -5,6 +5,7 @@ import '../styles/Btn8.scss';
 import '../styles/Register.scss';
 import LoginLogo from './LoginLogo';
 import Verify from './Verify';
+import { alert } from '../../../components/AlertComponent';
 
 const Register = ({
   setLoginCard,
