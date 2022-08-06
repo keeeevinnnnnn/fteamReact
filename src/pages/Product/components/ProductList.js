@@ -74,7 +74,7 @@ const ProductList = (props) => {
   //紀錄重新渲染時誰收藏;
   let findWhoFavorites = whoFavorites.filter((v) => v === sid);
 
-  console.log(whoFavorites);
+  // console.log(whoFavorites);
   // 計算收藏商品總數
   const countSonFavorites = async () => {
     await axios
@@ -98,7 +98,7 @@ const ProductList = (props) => {
         },
       })
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         setWhoFavorites(res.data);
       });
   }, [heart]);
