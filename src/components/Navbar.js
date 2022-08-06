@@ -100,15 +100,15 @@ const Navbar = (props) => {
               setFavoritesNum(favoritesNum);
             });
           // 顯示收藏icon清單商品資料
-          axios
-            .get(`http://localhost:3000/product/iconFavorites`, {
-              headers: {
-                Authorization: `Bearer ${token}`,
-              },
-            })
-            .then((res) => {
-              setIconFavorites(res.data);
-            });
+          // axios
+          //   .get(`http://localhost:3000/product/iconFavorites`, {
+          //     headers: {
+          //       Authorization: `Bearer ${token}`,
+          //     },
+          //   })
+          //   .then((res) => {
+          //     setIconFavorites(res.data);
+          //   });
         });
     }
   }, [
