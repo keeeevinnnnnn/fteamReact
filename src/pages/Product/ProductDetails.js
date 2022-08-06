@@ -1,12 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import ProductTabsBox from './components/ProductTabsBox';
 import axios from './commons/axios';
 import './styles/ProductDetails.scss';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import AuthContext from '../../components/AuthContext';
 
 const ProductDetails = (props) => {
+  // 商品細節原始資料
   const [details, setdetails] = useState({
     sid: '',
     img: '',
@@ -17,6 +19,9 @@ const ProductDetails = (props) => {
   });
 
   const { setFavoritesNum } = props;
+
+  // auth為登入判斷(true,false) token為會員JWT的token logout是登出涵式
+  const { token } = useContext(AuthContext);
   // 收藏svg開關
   const [heart, setHeart] = useState(false);
 
@@ -48,6 +53,7 @@ const ProductDetails = (props) => {
     setHeart(!heart);
   };
 
+  // 該商品資料
   const axiosProductDetails = async (productId) => {
     axios.get(`/product/${productId}`).then((res) => {
       setdetails(res.data);
@@ -62,21 +68,35 @@ const ProductDetails = (props) => {
       favoriteName: details.name,
       favoriteBrand: details.brand,
       favoritePrice: details.price,
-      memId: 5,
     };
-    await axios.post('/product/favorites', addFavorites).then((res) => {
-      // 拿到成功或失敗的訊息
-      console.log('favorites==', res.data);
-      res.data.success === 'true' ? detailsSuccess() : detailsError();
-      countDetailsFavorites();
-    });
+    await axios
+      .post('/product/favorites', addFavorites, {
+        // 發JWT一定要加這個headers
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((res) => {
+        // 拿到成功或失敗的訊息
+        console.log('favorites==', res.data);
+        res.data.success === 'true' ? detailsSuccess() : detailsError();
+        countDetailsFavorites();
+      });
   };
 
+  // 商品收藏總數
   const countDetailsFavorites = async () => {
-    await axios.get(`/product/favoriteCount?memId=${5}`).then((res) => {
-      let favoritesNum = res.data[`count(sid)`];
-      setFavoritesNum(favoritesNum);
-    });
+    await axios
+      .get(`/product/favoriteCount`, {
+        // 發JWT一定要加這個headers
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((res) => {
+        let favoritesNum = res.data[`count(sid)`];
+        setFavoritesNum(favoritesNum);
+      });
   };
 
   const params = useParams();
