@@ -32,6 +32,9 @@ const Navbar = (props) => {
   // 收藏清單開關
   const [IamKevin, setIamKevin] = useState(false);
 
+  // Icon收藏列表清單
+  const [iconFavorites, setIconFavorites] = useState([]);
+
   // 判斷有沒有登入存的值
   useEffect(() => {
     // 登入狀態不是false再執行 否則直接return
@@ -96,14 +99,27 @@ const Navbar = (props) => {
               let favoritesNum = res.data[`count(sid)`];
               setFavoritesNum(favoritesNum);
             });
+          // 顯示收藏icon清單商品資料
+          axios
+            .get(`http://localhost:3000/product/iconFavorites`, {
+              headers: {
+                Authorization: `Bearer ${token}`,
+              },
+            })
+            .then((res) => {
+              setIconFavorites(res.data);
+            });
         });
     }
-    // 紀錄該會員商品收藏總數
-    axios.get(`/product/favoriteCount?memId=${5}`).then((res) => {
-      let favoritesNum = res.data[`count(sid)`];
-      setFavoritesNum(favoritesNum);
-    });
-  }, [auths, auth, token, setMember, setFavoritesNum, cartTotalDep]); // 有變更資料才刷新
+  }, [
+    auths,
+    auth,
+    token,
+    setMember,
+    setFavoritesNum,
+    cartTotalDep,
+    favoritesNum,
+  ]); // 有變更資料才刷新
 
   return (
     <>
@@ -197,7 +213,7 @@ const Navbar = (props) => {
                 viewBox="0 0 24 24"
                 stroke="currentColor"
                 strokeWidth={2}
-                onMouseEnter={() => {
+                onClick={() => {
                   setIamKevin(!IamKevin);
                 }}
               >
@@ -216,30 +232,36 @@ const Navbar = (props) => {
                 }}
               >
                 <ScrollBox>
-                  <div className="favoritesBigBox">
-                    <div className="favoritesBox d-flex">
-                      <div className="col-4 favoritesBoxImg">
-                        <img
-                          src="/imgs/Products/637894482942270000.jpg"
-                          alt=""
-                        />
-                      </div>
+                  {iconFavorites.map((r) => {
+                    return (
+                      <div className="favoritesBigBox">
+                        <div className="favoritesBox d-flex">
+                          <div className="col-4 favoritesBoxImg">
+                            <img
+                              src={`/imgs/Products/${r.favoriteImg}`}
+                              alt=""
+                            />
+                          </div>
 
-                      <div className="col-8 favoritesBody">
-                        <h5 className="favoritesBodyName">
-                          Smoke a cigarette The whole set of skateboards 8.18
-                        </h5>
-                        <p className="favoritesBodyBrand">FUCKING AWESOME</p>
-                        <p className="favoritesBodyPrice">
-                          <span>$ 6900</span>
-                        </p>
-                      </div>
-                    </div>
+                          <div className="col-8 favoritesBody">
+                            <h5 className="favoritesBodyName">
+                              {r.favoriteName}
+                            </h5>
+                            <p className="favoritesBodyBrand">
+                              {r.favoriteBrand}
+                            </p>
+                            <p className="favoritesBodyPrice">
+                              <span>$ {r.favoritePrice}</span>
+                            </p>
+                          </div>
+                        </div>
 
-                    <div className="favoritesInt">
-                      <button>Add to Carts</button>
-                    </div>
-                  </div>
+                        <div className="favoritesInt">
+                          <button>Add to Carts</button>
+                        </div>
+                      </div>
+                    );
+                  })}
                 </ScrollBox>
               </div>
             </div>
