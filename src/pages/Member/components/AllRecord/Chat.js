@@ -48,41 +48,24 @@ const Chat = ({ selectItem }) => {
 
   // 聊天室scrollbar置底涵式
   const scrollToBottom = () => {
-    // 如果還沒綁定離開此funtion
-    if (!scrollDown.current) {
-      return;
-    }
-    // 會員中心tabs不是聊天室的話離開此funtion
-    if (selectItem !== 'CHAT') {
-      return;
-    }
-
-    // 聊天室scrollbar置底
-    scrollDown.current.scrollIntoView({
+    // 計算現在聊天室的高度
+    const scrollHeight = scrollDown.current.scrollHeight;
+    // 置底 smooth有動畫效果
+    scrollDown.current.scrollTo({
+      top: scrollHeight,
       behavior: 'smooth',
-      block: 'end',
-      inline: 'nearest',
     });
   };
 
-  // 為了停止scrollbar置底的setTimeout
-  const scrollStop = useRef(null);
-  // 因為有新訊息時才呼叫置底涵式，若沒新訊息，當使用者點擊CHAT頁面就先呼叫一次
+  // 到聊天室頁面的時候訊息瞬間置底
   useEffect(() => {
-    if (selectItem !== 'CHAT') {
-      // 避免按了CHAT又馬上跳換頁面
-      clearTimeout(scrollStop.current);
-      // 生命週期unMont用
-      return () => clearTimeout(scrollStop.current);
+    if (selectItem === 'CHAT') {
+      const scrollHeight = scrollDown.current.scrollHeight;
+      scrollDown.current.scrollTo({
+        top: scrollHeight,
+        behavior: 'instant',
+      });
     }
-
-    // 0.4毫秒後呼叫聊天室scrollbar置底涵式
-    scrollStop.current = setTimeout(() => {
-      scrollToBottom();
-    }, 600);
-
-    // 生命週期unMont用
-    return () => clearTimeout(scrollStop.current);
   }, [selectItem]);
 
   // 拿到所有過去聊天紀錄 deps放member是想要即時刷新個人資料
@@ -94,12 +77,7 @@ const Chat = ({ selectItem }) => {
     // 把即時聊天清空 讓聊天室不會有重複訊息
     setChat([]);
     // 訊息重新置底
-    // if (selectItem === 'CHAT') {
-    //   scrollStop.current = setTimeout(() => {
-    //     scrollToBottom();
-    //   }, 100);
-    //   return () => clearTimeout(scrollStop.current);
-    // }
+    scrollToBottom();
   }, [member]);
 
   // 聊天訊息連接socket
@@ -112,12 +90,8 @@ const Chat = ({ selectItem }) => {
         setChat([...chat, { name, message, sid, avatar, chatimg }]);
       }
     );
-    // 主要為了防止下方scrollbar置底涵式
-    if (chat === []) {
-      return;
-    }
-    // 矯正照片位置即時置底對不齊 設置個時間差讓新訊息置底
-    scrollStop.current = setTimeout(() => {
+    // 過0.05毫秒置底
+    setTimeout(() => {
       scrollToBottom();
     }, 50);
     return () => socketRef.current.disconnect();
@@ -232,10 +206,7 @@ const Chat = ({ selectItem }) => {
           <>
             {[chatimg].filter((v, i) => v.includes('jpg' | 'png' | 'gif'))
               .length !== 0 ? (
-              <div
-                className="d-flex align-items-center pt-2 pb-2"
-                ref={scrollDown}
-              >
+              <div className="d-flex align-items-center pt-2 pb-2">
                 <img
                   className="avatar"
                   src={`http://localhost:3000/avatar/${avatar}`}
@@ -252,10 +223,7 @@ const Chat = ({ selectItem }) => {
                 />
               </div>
             ) : (
-              <div
-                className="d-flex align-items-center pt-2 pb-2"
-                ref={scrollDown}
-              >
+              <div className="d-flex align-items-center pt-2 pb-2">
                 <img
                   className="avatar"
                   src={`http://localhost:3000/avatar/${avatar}`}
@@ -283,10 +251,7 @@ const Chat = ({ selectItem }) => {
           <>
             {[chatimg].filter((v, i) => v.includes('jpg' | 'png' | 'gif'))
               .length !== 0 ? (
-              <div
-                className="d-flex justify-content-end align-items-center pt-2 pb-2 flex-wrap"
-                ref={scrollDown}
-              >
+              <div className="d-flex justify-content-end align-items-center pt-2 pb-2 flex-wrap">
                 <img
                   className="chatimg"
                   src={`http://localhost:3000/chatimg/${chatimg}`}
@@ -302,10 +267,7 @@ const Chat = ({ selectItem }) => {
                 />
               </div>
             ) : (
-              <div
-                className="d-flex justify-content-end align-items-center pt-2 pb-2"
-                ref={scrollDown}
-              >
+              <div className="d-flex justify-content-end align-items-center pt-2 pb-2">
                 <h3 style={{ marginRight: '1%' }}>
                   <span style={{ marginRight: '5px' }}>
                     {[message].filter((v, i) => v.includes('http')).length !==
@@ -335,7 +297,7 @@ const Chat = ({ selectItem }) => {
   return (
     <div className="h-100 d-flex justify-content-center pt-4">
       <div className="memberChat">
-        <div className="h-90 chatScroll">
+        <div className="h-90 chatScroll" ref={scrollDown}>
           {/* 過往聊天紀錄 */}
           {chatAll.map((v, i) => {
             return (
@@ -346,10 +308,7 @@ const Chat = ({ selectItem }) => {
                     {[v.message].filter((v, i) =>
                       v.includes('jpg' | 'png' | 'gif')
                     ).length !== 0 ? (
-                      <div
-                        className="d-flex align-items-center pt-2 pb-2"
-                        ref={scrollDown}
-                      >
+                      <div className="d-flex align-items-center pt-2 pb-2">
                         <img
                           className="avatar"
                           src={`http://localhost:3000/avatar/${v.mem_avatar}`}
@@ -366,10 +325,7 @@ const Chat = ({ selectItem }) => {
                         />
                       </div>
                     ) : (
-                      <div
-                        className="d-flex align-items-center pt-2 pb-2"
-                        ref={scrollDown}
-                      >
+                      <div className="d-flex align-items-center pt-2 pb-2">
                         <img
                           className="avatar"
                           src={`http://localhost:3000/avatar/${v.mem_avatar}`}
@@ -404,10 +360,7 @@ const Chat = ({ selectItem }) => {
                     {[v.message].filter((v, i) =>
                       v.includes('jpg' | 'png' | 'gif')
                     ).length !== 0 ? (
-                      <div
-                        className="d-flex justify-content-end align-items-center pt-2 pb-2 flex-wrap"
-                        ref={scrollDown}
-                      >
+                      <div className="d-flex justify-content-end align-items-center pt-2 pb-2 flex-wrap">
                         <img
                           className="chatimg"
                           src={`http://localhost:3000/chatimg/${v.message}`}
@@ -423,10 +376,7 @@ const Chat = ({ selectItem }) => {
                         />
                       </div>
                     ) : (
-                      <div
-                        className="d-flex justify-content-end align-items-center pt-2 pb-2"
-                        ref={scrollDown}
-                      >
+                      <div className="d-flex justify-content-end align-items-center pt-2 pb-2">
                         <h3 style={{ marginRight: '1%' }}>
                           <span style={{ marginRight: '5px' }}>
                             {[v.message].filter((v, i) => v.includes('http'))
