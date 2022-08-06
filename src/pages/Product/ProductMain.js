@@ -86,6 +86,7 @@ const ProductMain = (props) => {
             return (
               <button
                 className="button-38"
+                key={Math.random() * 100}
                 onClick={() => {
                   setMessages(
                     messages.filter((v) => {

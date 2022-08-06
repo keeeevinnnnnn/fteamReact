@@ -234,7 +234,7 @@ const Navbar = (props) => {
                 <ScrollBox>
                   {iconFavorites.map((r) => {
                     return (
-                      <div className="favoritesBigBox">
+                      <div className="favoritesBigBox" key={r.sid}>
                         <div className="favoritesBox d-flex">
                           <div className="col-4 favoritesBoxImg">
                             <img
