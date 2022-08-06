@@ -8,7 +8,7 @@ const FilterBox = (props) => {
   const [colour, setColour] = useState(false);
   const [brand, setBrand] = useState(false);
   const [sortby, setSortby] = useState(false);
-  const [searchInput, setSearchInput] = useState(false);
+  // const [searchInput, setSearchInput] = useState(false);
   const { filter, setFilter, messages, setMessages, searchProducts } = props;
 
   // double range input
@@ -543,18 +543,15 @@ const FilterBox = (props) => {
           </div>
         </div>
 
-        {/* <div className="col-2 d-flex kevinSearch">
+        <div className="col-2 d-flex kevinSearch">
           <input
             className="col-10 kevinSearch-input"
             type="search"
             placeholder=" Search"
             aria-label="Search"
             value={searchText}
-            style={{ width: searchInput === false ? '40%' : '80%' }}
+            style={{ width: '50%' }}
             onChange={handleSearchText}
-            onMouseOut={() => {
-              setSearchInput(!searchInput);
-            }}
           />
           <button className="col-2 kevinSearch-btn">
             <svg
@@ -572,7 +569,7 @@ const FilterBox = (props) => {
               />
             </svg>
           </button>
-        </div> */}
+        </div>
       </div>
     </>
   );
