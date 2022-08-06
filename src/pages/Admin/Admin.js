@@ -188,7 +188,7 @@ const Admin = () => {
                       </td>
                       <td>{v.mem_name}</td>
                       <td>{v.mem_nickname}</td>
-                      <td>{v.mem_email}</td>
+                      <td className='emailTD'>{v.mem_email}</td>
                       <td>{v.mem_created_at}</td>
                       <td>
                         <Link to={`memberfavorite/${v.sid}`}>
