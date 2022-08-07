@@ -4,12 +4,12 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
-import '../style/Lesson_tab.scss';
-import Lesson_card from './Lesson_card';
-import LessonSelect_time from './LessonSelect_time';
-import LessonSelect_dance from './LessonSelect_dance';
-import LessonSelect_price from './LessonSelect_price';
-import Lesson_teacher from './Lesson_teacher';
+import '../style/LessonTabPanel.scss';
+import LessonCard from './Lesson_card';
+import LessonSelectTime from './LessonSelectTime';
+import LessonSelectDance from './LessonSelectDance';
+import LessonSelectPrice from './LessonSelectPrice';
+import LessonTeacher from './LessonTeacher';
 
 import ScrollBox from '../components/ScrollBox/ScrollBox';
 
@@ -46,7 +46,11 @@ function a11yProps(index) {
   };
 }
 
-export default function BasicTabs() {
+export default function LessonTabPanel(props) {
+  const { lessonDisplay } = props;
+
+  // console.log('LessonTabPanel:', { lessonDisplay });
+
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event, newValue) => {
@@ -76,32 +80,24 @@ export default function BasicTabs() {
         </Tabs>
       </Box>
       <TabPanel value={value} index={0}>
-        <div className="w-80 d-flex cooler_lessonselect">
-          <LessonSelect_time />
-          <LessonSelect_dance />
-          <LessonSelect_price />
+        <div className="w-80 h-20 d-flex cooler_lessonselect">
+          <LessonSelectTime />
+          <LessonSelectDance />
+          <LessonSelectPrice />
         </div>
-
-        <ScrollBox>
-          <Lesson_card />
-          <Lesson_card />
-          <Lesson_card />
-          <Lesson_card />
-          <Lesson_card />
-          <Lesson_card />
-          <Lesson_card />
-          <Lesson_card />
-          <Lesson_card />
-          <Lesson_card />
-        </ScrollBox>
+        <div className="w-100 h-80">
+          <ScrollBox>
+            <LessonCard lessonDisplay={lessonDisplay} />
+          </ScrollBox>
+        </div>
       </TabPanel>
       <TabPanel value={value} index={1}>
         <ScrollBox>
           <div className="  w-100 h-100 d-flex flex-wrap justify-content-between">
-            <Lesson_teacher />
-            <Lesson_teacher />
-            <Lesson_teacher />
-            <Lesson_teacher />
+            <LessonTeacher />
+            <LessonTeacher />
+            <LessonTeacher />
+            <LessonTeacher />
           </div>
         </ScrollBox>
       </TabPanel>

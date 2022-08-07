@@ -1,7 +1,39 @@
 import './style/Lesson_zhongxiao.scss';
-import TabPanel from './components/LessonTabPanel';
+import LessonTabPanel from './components/LessonTabPanel';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 
 const Lesson_zhongxiao = () => {
+  // 第一次記錄伺服器的原始資料用
+  // const [lessonRaw, setLessonRaw] = useState([]);
+  // 呈現資料用
+  const [lessonDisplay, setlessonDisplay] = useState([]);
+  // useEffect(() => {
+  //   axios
+  //     .get(
+  //       `http://localhost:3000/lesson?location=忠孝館
+  //   `
+  //     )
+  //     .then((res) => {
+  //
+  //     });
+  // }, []);
+
+  const getLessonData = async () => {
+    const response = await axios.get(
+      `http://localhost:3000/lesson?location=忠孝館`
+    );
+    // 設定到state
+    // setLessonRaw(response.data);
+
+    setlessonDisplay(response.data);
+  };
+
+  useEffect(() => {
+    // 開啟載入指示動態
+    getLessonData();
+  }, []);
+
   return (
     <>
       <div className="w-100 vh-100 d-flex justify-content-end align-items-end">
@@ -69,7 +101,7 @@ const Lesson_zhongxiao = () => {
               </div>
             </div>
             <div className="  col-md-8 col-12 h-100">
-              <TabPanel />
+              <LessonTabPanel lessonDisplay={lessonDisplay} />
             </div>
           </div>
         </div>
