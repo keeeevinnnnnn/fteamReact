@@ -22,9 +22,9 @@ const ProductTabsBox = () => {
               aria-label="lab API tabs example"
               centered
             >
-              <Tab label="Item One" value="1" />
-              <Tab label="Item Two" value="2" />
-              <Tab label="Item Three" value="3" />
+              <Tab label="YOU MAY ALSO LIKE" value="1" />
+              <Tab label="#KEVIN22" value="2" />
+              <Tab label="#KEVIN33" value="3" />
             </TabList>
           </Box>
           <TabPanel value="1">

@@ -25,6 +25,27 @@ const ProductDetails = (props) => {
   // 收藏svg開關
   const [heart, setHeart] = useState(false);
 
+  const [detailsWhoFavorites, setDetailsWhoFavorites] = useState([]);
+
+  // 拿到該會員已收藏過的產品編號
+  const findFetailsWhoFavorites = async () => {
+    await axios
+      .get(`/product/whoFavorites`, {
+        // 發JWT一定要加這個headers
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((res) => {
+        setDetailsWhoFavorites(res.data);
+      });
+  };
+
+  //紀錄重新渲染時誰收藏;
+  const CheckWhoFavorites = detailsWhoFavorites.filter(
+    (v) => v === details.sid
+  );
+
   // 收藏成功提示訊息設定
   const detailsSuccess = () => {
     toast.success('Add Favorites Success', {
@@ -36,7 +57,6 @@ const ProductDetails = (props) => {
       draggable: true,
       progress: undefined,
     });
-    setHeart(!heart);
   };
 
   // 取消收藏成功提示訊息設定
@@ -50,7 +70,6 @@ const ProductDetails = (props) => {
       draggable: true,
       progress: undefined,
     });
-    setHeart(!heart);
   };
 
   // 該商品資料
@@ -80,6 +99,7 @@ const ProductDetails = (props) => {
         // 拿到成功或失敗的訊息
         console.log('favorites==', res.data);
         res.data.success === 'true' ? detailsSuccess() : detailsError();
+        setHeart(!heart);
         countDetailsFavorites();
       });
   };
@@ -103,7 +123,8 @@ const ProductDetails = (props) => {
 
   useEffect(() => {
     axiosProductDetails(params.productId);
-  }, [params.productId]);
+    findFetailsWhoFavorites();
+  }, [params.productId, heart]);
 
   return (
     <div className="w-100 vh-100 d-flex justify-content-end align-items-end">
@@ -139,7 +160,7 @@ const ProductDetails = (props) => {
                       stroke="currentColor"
                       stroke-width="2"
                       style={{
-                        display: heart === false ? '' : 'none',
+                        display: CheckWhoFavorites.length > 0 ? 'none' : '',
                       }}
                     >
                       <path
@@ -154,7 +175,7 @@ const ProductDetails = (props) => {
                       viewBox="0 0 20 20"
                       fill="currentColor"
                       style={{
-                        display: heart === false ? 'none' : '',
+                        display: CheckWhoFavorites.length > 0 ? '' : 'none',
                       }}
                     >
                       <path

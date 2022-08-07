@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import axios from '../commons/axios';
+import { Link } from 'react-router-dom';
 
 const ProductTabsBoxItem1 = (props) => {
   function SampleNextArrow(props) {
@@ -35,6 +37,16 @@ const ProductTabsBoxItem1 = (props) => {
     nextArrow: <SampleNextArrow />,
     prevArrow: <SamplePrevArrow />,
   };
+
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    axios.get('/product/guessULike').then((res) => {
+      // console.log(res.data);
+      setData(res.data);
+    });
+  }, []);
+
   return (
     <>
       <div className="col-12">
@@ -43,24 +55,15 @@ const ProductTabsBoxItem1 = (props) => {
         </div>
         <div className="whoSeeImgBox">
           <Slider {...settings}>
-            <div>
-              <img src="/imgs/Products/phpo5Yfwm.jpg" alt="" />
-            </div>
-            <div>
-              <img src="/imgs/Products/phpo5Yfwm.jpg" alt="" />
-            </div>
-            <div>
-              <img src="/imgs/Products/phpo5Yfwm.jpg" alt="" />
-            </div>
-            <div>
-              <img src="/imgs/Products/phpo5Yfwm.jpg" alt="" />
-            </div>
-            <div>
-              <img src="/imgs/Products/phpo5Yfwm.jpg" alt="" />
-            </div>
-            <div>
-              <img src="/imgs/Products/phpo5Yfwm.jpg" alt="" />
-            </div>
+            {data.map((r) => {
+              return (
+                <div key={r.sid}>
+                  <Link to={`${r.sid}`}>
+                    <img src={`/imgs/Products/${r.img}`} alt="" />
+                  </Link>
+                </div>
+              );
+            })}
           </Slider>
         </div>
       </div>

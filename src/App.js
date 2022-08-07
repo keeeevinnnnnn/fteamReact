@@ -15,6 +15,7 @@ import Lesson_taichung from './pages/Lesson/Lesson_taichung';
 import Products from './pages/Product/Products';
 import ProductMain from './pages/Product/ProductMain';
 import ProductDetails from './pages/Product/ProductDetails';
+import ProductTabsBoxItem1 from './pages/Product/components/ProductTabsBoxItem1';
 import Customized from './pages/Customized/Customized';
 import Orders from './pages/Orders/Orders';
 import Login from './pages/Login/Login';
@@ -45,13 +46,6 @@ function App() {
   const [data, setData] = useState({});
   // 商品收藏後icon + 1
   const [favoritesNum, setFavoritesNum] = useState(0);
-  // 紀錄該會員商品收藏總數
-  // const countFavorites = async () => {
-  //   await axios.get(`/product/favoriteCount?memId=${5}`).then((res) => {
-  //     let favoritesNum = res.data[`count(sid)`];
-  //     setFavoritesNum(favoritesNum);
-  //   });
-  // };
   return (
     <Router>
       {/* 裡面包含ConText(會員登入判斷)及登出涵式 */}
@@ -117,6 +111,10 @@ function App() {
                       element={
                         <ProductDetails setFavoritesNum={setFavoritesNum} />
                       }
+                    />
+                    <Route
+                      path="products/details/:productId"
+                      element={<ProductTabsBoxItem1 />}
                     />
                     <Route path="/customized" element={<Customized />} />
                     <Route
