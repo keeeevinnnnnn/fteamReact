@@ -19,7 +19,7 @@ const Loader = ({ loading = false }) => {
         style={{ display: loading ? 'block' : 'none' }}
       >
         <div
-          className="col-4 LoaderKidBox"
+          className="col-4 col-xl-2 LoaderKidBox"
           // style={{ display: loading ? 'block' : 'none' }}
         >
           <Swiper
