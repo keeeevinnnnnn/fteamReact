@@ -110,6 +110,7 @@ const RecordCard = ({ products, customized }) => {
                 <p className="h-50 p-3 recordName">{v.custom_product_name}</p>
                 <div className="h-50 d-flex justify-content-between p-3">
                   <h5 className="text-gray">{v.order_date}</h5>
+                  <h5 className="text-gray">Customized</h5>
                   <h5 className="text-gray">$ {v.price}</h5>
                 </div>
               </div>
