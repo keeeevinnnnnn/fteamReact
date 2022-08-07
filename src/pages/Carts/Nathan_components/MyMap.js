@@ -8,6 +8,8 @@ import {
   InfoBox,
 } from '@react-google-maps/api';
 import './MyMap.scss';
+import { confirm } from './ConfirmComponent';
+import { alert } from './AlertComponent';
 function MyMap(props) {
   const {
     toConvenceFrom,
@@ -92,12 +94,15 @@ function MyMap(props) {
           <>
             <Marker
               onClick={() => {
-                if (
-                  window.confirm(`確認要選取${toConvenceFrom.convenceStore}?`)
-                ) {
-                  alert('選取成功!');
-                  setIsDisable((prev) => !prev);
-                }
+                let i = confirm(
+                  `確定選取${toConvenceFrom.convenceStore}嗎?選取後就無法更改囉!`
+                );
+                i.then((res) => {
+                  if (res === true) {
+                    alert('選取成功!');
+                    setIsDisable((prev) => !prev);
+                  }
+                });
               }}
               position={{
                 lat: storeArr[convenceCountryInd][

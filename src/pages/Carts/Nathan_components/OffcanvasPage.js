@@ -45,14 +45,23 @@ export default function OffcanvasPage(props) {
     convenceTownship: '',
     convenceStore: '',
   });
+  // 信用卡表單
   const [creditForm, setCreditForm] = useState({
-    num1to4: '',
-    num5to8: '',
-    num9to12: '',
-    num13to16: '',
+    num_1: '',
+    num_2: '',
+    num_3: '',
+    num_4: '',
     validMonth: '',
     validYear: '',
     CVV: '',
+  });
+  const [creditResult, setCreditResult] = useState({});
+  // error message setting
+  const [formErrorMsg, setFormErrorMsg] = useState({
+    nameMsg: '',
+    mobileMsg: '',
+    emailMsg: '',
+    addressMsg: '',
   });
   const [delivery, setDelivery] = useState('toHome');
   const [paySelected, setPaySelected] = useState('cash');
@@ -80,12 +89,14 @@ export default function OffcanvasPage(props) {
             .post('http://localhost:3000/orders', {
               memID: loginMemberID,
               recipient: toHomeForm.fullName,
+              mobile: toHomeForm.mobile,
               email: toHomeForm.email,
               address:
                 toHomeForm.countryName +
                 toHomeForm.townshipName +
                 toHomeForm.fullAddress,
               shipping: delivery,
+              pay_method: paySelected,
             })
             .then((res) => {
               if (res.data.success) {
@@ -108,6 +119,10 @@ export default function OffcanvasPage(props) {
                     setIsCheckoutFinish(true);
                   }
                 });
+              } else {
+                console.log(res.data.msg);
+                setFormErrorMsg(res.data.msg);
+                alert(res.data.error);
               }
             });
         } else {
@@ -148,24 +163,33 @@ export default function OffcanvasPage(props) {
             .post('http://localhost:3000/orders', {
               memID: loginMemberID,
               recipient: toConvenceFrom.fullName,
+              mobile: toConvenceFrom.mobile,
               email: toConvenceFrom.email,
               address:
                 toConvenceFrom.convenceCountry +
                 toConvenceFrom.convenceTownship +
                 toConvenceFrom.convenceStore,
               shipping: delivery,
+              pay_method: paySelected,
             })
             .then((res) => {
               if (res.data.success) {
                 setNewOrderNumber(res.data.orderNumber);
-                setProductDep((prev) => prev + 1);
-                setCustomDep((prev) => prev + 1);
-                setLessonDep((prev) => prev + 1);
-                setDisplace(displace + 200);
+                let i = alert('恭喜您購買成功，請查看您的訂單編號');
+                i.then((res) => {
+                  if (res === true) {
+                    setProductDep((prev) => prev + 1);
+                    setCustomDep((prev) => prev + 1);
+                    setLessonDep((prev) => prev + 1);
+                    setDisplace(displace + 200);
+                    setIsCheckoutFinish(true);
+                  }
+                });
+              } else {
+                setFormErrorMsg(res.data.msg);
+                alert(res.data.error);
               }
             });
-          setDisplace(displace + 200);
-          setIsCheckoutFinish(true);
         } else {
           // 資料沒填完整
           alert('資料填寫不完整');
@@ -190,7 +214,115 @@ export default function OffcanvasPage(props) {
     }
   };
   // 填完信用卡下一步
-  const creditNextStep = (e) => { };
+  const creditNextStep = (e) => {
+    // 先檢查所有信用卡欄位有無甜寫
+    if (
+      creditForm.num_1 !== '' &&
+      creditForm.num_2 !== '' &&
+      creditForm.num_3 !== '' &&
+      creditForm.num_4 !== '' &&
+      creditForm.validMonth !== '' &&
+      creditForm.validYear !== '' &&
+      creditForm.CVV !== ''
+    ) {
+      // 發AJAX到 TabPay 介接路由
+      axios
+        .post('http://localhost:3000/orders/pay-credit', creditForm)
+        .then((res) => {
+          // 如果回傳成功
+          if (res.data.result.status === 0) {
+            setCreditResult(res.data.result);
+            // 上一部選擇宅配
+            if (delivery === 'toHome') {
+              axios
+                .post('http://localhost:3000/orders', {
+                  memID: loginMemberID,
+                  recipient: toHomeForm.fullName,
+                  mobile: toHomeForm.mobile,
+                  email: toHomeForm.email,
+                  address:
+                    toHomeForm.countryName +
+                    toHomeForm.townshipName +
+                    toHomeForm.fullAddress,
+                  shipping: delivery,
+                  pay_method: paySelected,
+                })
+                .then((res) => {
+                  if (res.data.success) {
+                    setNewOrderNumber(res.data.orderNumber);
+                    let i = alert('恭喜您購買成功，請查看您的訂單編號');
+                    i.then((res) => {
+                      if (res === true) {
+                        setToHomeForm({
+                          fullName: '',
+                          mobile: '',
+                          email: '',
+                          countryName: '',
+                          townshipName: '',
+                          fullAddress: '',
+                        });
+                        setProductDep((prev) => prev + 1);
+                        setCustomDep((prev) => prev + 1);
+                        setLessonDep((prev) => prev + 1);
+                        setDisplace(displace + 100);
+                        setIsCheckoutFinish(true);
+                      }
+                    });
+                  } else {
+                    setFormErrorMsg(res.data.msg);
+                    let i = alert(res.data.error);
+                    i.then((res) => {
+                      if (res === true) {
+                        setDisplace(displace - 100);
+                      }
+                    });
+                  }
+                });
+              // 上一部選擇超取
+            } else {
+              axios
+                .post('http://localhost:3000/orders', {
+                  memID: loginMemberID,
+                  recipient: toConvenceFrom.fullName,
+                  mobile: toConvenceFrom.mobile,
+                  email: toConvenceFrom.email,
+                  address:
+                    toConvenceFrom.convenceCountry +
+                    toConvenceFrom.convenceTownship +
+                    toConvenceFrom.convenceStore,
+                  shipping: delivery,
+                  pay_method: paySelected,
+                })
+                .then((res) => {
+                  if (res.data.success) {
+                    setNewOrderNumber(res.data.orderNumber);
+                    let i = alert('恭喜您購買成功，請查看您的訂單編號');
+                    i.then((res) => {
+                      if (res === true) {
+                        setProductDep((prev) => prev + 1);
+                        setCustomDep((prev) => prev + 1);
+                        setLessonDep((prev) => prev + 1);
+                        setDisplace(displace + 100);
+                        setIsCheckoutFinish(true);
+                      }
+                    });
+                  } else {
+                    setFormErrorMsg(res.data.msg);
+                    let i = alert(res.data.error);
+                    i.then((res) => {
+                      if (res === true) {
+                        setDisplace(displace - 100);
+                      }
+                    });
+                  }
+                });
+            }
+          }
+        });
+    } else {
+      alert('請填寫完整資料');
+    }
+  };
   // 上一步
   const prevStep = () => {
     // 不是最後一頁 && 付款方式是信用卡
@@ -337,47 +469,107 @@ export default function OffcanvasPage(props) {
                           display: delivery === 'pickSelf' ? 'none' : 'flex',
                         }}
                       >
-                        <input
-                          className="border-bottom w-100 text-gray bg-transparent checkout-input"
-                          name="fullName"
-                          value={toHomeForm.fullName}
-                          type="text"
-                          placeholder="* Name :"
-                          onChange={toHomeFormHandler}
-                          autoComplete="off"
-                        />
-                        <input
-                          className="border-bottom w-100 focus-none text-gray bg-transparent checkout-input"
-                          name="mobile"
-                          pattern="09\d{2}(\d{6}|-\d{3}-\d{3})"
-                          value={toHomeForm.mobile}
-                          type="text"
-                          placeholder="* Mobile :"
-                          onChange={toHomeFormHandler}
-                          autoComplete="off"
-                        />
-                        <input
-                          className=" border-bottom w-100 focus-none text-gray bg-transparent checkout-input"
-                          name="email"
-                          value={toHomeForm.email}
-                          type="text"
-                          placeholder="* Email :"
-                          onChange={toHomeFormHandler}
-                          autoComplete="off"
-                        />
+                        <div className="relative">
+                          <input
+                            className="border-bottom w-100 text-gray bg-transparent checkout-input"
+                            name="fullName"
+                            value={toHomeForm.fullName}
+                            type="text"
+                            placeholder="* Name :"
+                            onChange={toHomeFormHandler}
+                            autoComplete="off"
+                          />
+                          <span
+                            style={{
+                              fontSize: '12px',
+                              right: '0px',
+                              bottom: '0px',
+                              color: 'red',
+                            }}
+                            className="absolute"
+                          >
+                            {formErrorMsg.nameMsg !== ''
+                              ? '* 姓名最少兩個字'
+                              : ''}
+                          </span>
+                        </div>
+                        <div className="relative">
+                          <input
+                            className="border-bottom w-100 focus-none text-gray bg-transparent checkout-input"
+                            name="mobile"
+                            pattern="09\d{2}(\d{6}|-\d{3}-\d{3})"
+                            value={toHomeForm.mobile}
+                            type="text"
+                            placeholder="* Mobile :"
+                            onChange={toHomeFormHandler}
+                            autoComplete="off"
+                          />
+                          <span
+                            style={{
+                              fontSize: '12px',
+                              right: '0px',
+                              bottom: '0px',
+                              color: 'red',
+                            }}
+                            className="absolute"
+                          >
+                            {formErrorMsg.mobileMsg !== ''
+                              ? '* 手機格式不符'
+                              : ''}
+                          </span>
+                        </div>
+                        <div className="relative">
+                          <input
+                            className=" border-bottom w-100 focus-none text-gray bg-transparent checkout-input"
+                            name="email"
+                            value={toHomeForm.email}
+                            type="text"
+                            placeholder="* Email :"
+                            onChange={toHomeFormHandler}
+                            autoComplete="off"
+                          />
+                          <span
+                            style={{
+                              fontSize: '12px',
+                              right: '0px',
+                              bottom: '0px',
+                              color: 'red',
+                            }}
+                            className="absolute"
+                          >
+                            {formErrorMsg.emailMsg !== ''
+                              ? '* Email格式不符'
+                              : ''}
+                          </span>
+                        </div>
                         <TWZipCode
                           toHomeForm={toHomeForm}
                           setToHomeForm={setToHomeForm}
                         />
-                        <input
-                          className=" border-bottom w-100 focus-none text-gray bg-transparent checkout-input"
-                          name="fullAddress"
-                          value={toHomeForm.fullAddress}
-                          type="text"
-                          placeholder="* Address :"
-                          onChange={toHomeFormHandler}
-                          autoComplete="off"
-                        />
+                        <div className="relative">
+                          <input
+                            className=" border-bottom w-100 focus-none text-gray bg-transparent checkout-input"
+                            name="fullAddress"
+                            value={toHomeForm.fullAddress}
+                            type="text"
+                            placeholder="* Address :"
+                            onChange={toHomeFormHandler}
+                            autoComplete="off"
+                          />
+                          <span
+                            style={{
+                              fontSize: '12px',
+                              right: '0px',
+                              bottom: '0px',
+                              color: 'red',
+                            }}
+                            className="absolute"
+                          >
+                            {formErrorMsg.addressMsg !== ''
+                              ? '* 地址格式不符'
+                              : ''}
+                          </span>
+                        </div>
 
                         {/* 付款方式選擇 */}
                         <div className="w-100 radio-wrap d-flex">
@@ -419,6 +611,11 @@ export default function OffcanvasPage(props) {
                         <Convenience
                           toConvenceFrom={toConvenceFrom}
                           setToConvenceFrom={setToConvenceFrom}
+                          formErrorMsg={formErrorMsg}
+                          setFormErrorMsg={setFormErrorMsg}
+                          paySelected={paySelected}
+                          setPaySelected={setPaySelected}
+                          payHandleChange={payHandleChange}
                         />
                       </div>
                     </div>

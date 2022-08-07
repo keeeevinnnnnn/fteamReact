@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, { useState } from 'react';
 import './CreditForm.scss';
 const CreditForm = (props) => {
@@ -18,6 +19,44 @@ const CreditForm = (props) => {
   };
   const rotateToBack = () => {
     setRotateDeg(180);
+  };
+  // 填完4碼 跳轉下個 input focus 設定 + 填完16碼 發ajax 判斷卡種
+  const [cardType, setCardType] = useState('請輸入卡號');
+  const numOfFields = 4;
+  const handleKeyUp = (e) => {
+    // 填完4碼 跳轉下個 input focus 設定
+    const { maxLength, value, name } = e.target;
+    const [fieldName, fieldIndex] = name.split('_');
+    // Check if they hit the max character length
+    if (value.length >= maxLength) {
+      // Check if it's not the last input field
+      if (parseInt(fieldIndex, 10) < 4) {
+        // Get the next input field
+        const nextSibling = document.querySelector(
+          `input[name=num_${parseInt(fieldIndex, 10) + 1}]`
+        );
+
+        // If found, focus the next field
+        if (nextSibling !== null) {
+          nextSibling.focus();
+        }
+      }
+    }
+
+    // 填完16碼 發ajax 判斷卡種
+    const creditFormNumber =
+      creditForm.num_1 + creditForm.num_2 + creditForm.num_3 + creditForm.num_4;
+    if (creditFormNumber.length > 15) {
+      axios
+        .get(
+          `http://localhost:3000/orders/card-type?cardNumber=${creditFormNumber}`
+        )
+        .then((res) => {
+          setCardType(res.data);
+        });
+    } else {
+      setCardType('請輸入卡號');
+    }
   };
   return (
     <div className="w-100 h-100 d-flex flex-column">
@@ -46,19 +85,18 @@ const CreditForm = (props) => {
             </div>
             <div className="w-33 d-flex justify-content-center align-items-center">
               <svg
-                className=" w-50 h-50"
-                fill="rgb(207, 207, 207)"
-                width="32px"
-                height="32px"
-                viewBox="0 0 32 32"
                 xmlns="http://www.w3.org/2000/svg"
+                fill="lightgray"
+                viewBox="0 0 50 50"
+                width="40px"
+                height="40px"
               >
-                <path d="M23.972 15.35v-1.794c2.289 0 2.139 0.011 2.139 0.011 0.406 0.072 0.739 0.406 0.739 0.889 0 0.489-0.333 0.806-0.739 0.878-0.067 0.022-0.183 0.017-2.139 0.017zM26.35 16.472c-0.156-0.039-0.183-0.028-2.378-0.028v1.944c2.2 0 2.222 0.011 2.378-0.028 0.417-0.083 0.75-0.444 0.75-0.944 0-0.483-0.333-0.861-0.75-0.944zM32 6.222v19.556c0 1.472-1.194 2.667-2.667 2.667h-26.667c-1.472 0-2.667-1.194-2.667-2.667v-19.556c0-1.472 1.194-2.667 2.667-2.667h26.667c1.472 0 2.667 1.194 2.667 2.667zM10.111 12.461h-3.167c0 3.728 0.594 6.094-1.989 6.094-1.083 0-2.156-0.317-3.178-0.822v1.556c1.667 0.461 3.778 0.461 3.778 0.461 5.439 0 4.556-2.65 4.556-7.289zM20.028 12.711c-3.522-0.889-9.167-0.828-9.167 3.295 0 4.283 6.011 4.089 9.167 3.289v-1.572c-2.645 1.372-5.972 1.222-5.972-1.722s3.322-3.089 5.972-1.733zM30.222 17.694c0-1.028-0.917-1.694-2.111-1.778v-0.044c1.083-0.15 1.683-0.861 1.683-1.678 0-1.056-0.872-1.667-2.056-1.722 0 0 0.35-0.017-6.683-0.017v7.083h6.817c1.35 0.006 2.35-0.717 2.35-1.844z" />
+                <path d="M 5 7 C 2.25 7 0 9.25 0 12 L 0 38 C 0 40.75 2.25 43 5 43 L 45 43 C 47.75 43 50 40.75 50 38 L 50 12 C 50 9.25 47.75 7 45 7 Z M 5 9 L 45 9 C 46.667969 9 48 10.332031 48 12 L 48 38 C 48 39.667969 46.667969 41 45 41 L 5 41 C 3.332031 41 2 39.667969 2 38 L 2 12 C 2 10.332031 3.332031 9 5 9 Z M 21.1875 21.90625 C 19.355469 21.90625 17.875 23.355469 17.875 25.15625 C 17.875 26.976563 19.316406 28.375 21.15625 28.375 C 21.675781 28.375 22.136719 28.289063 22.6875 28.03125 L 22.6875 26.59375 C 22.203125 27.078125 21.765625 27.28125 21.21875 27.28125 C 20 27.28125 19.125 26.410156 19.125 25.15625 C 19.125 23.96875 20.023438 23.03125 21.15625 23.03125 C 21.730469 23.03125 22.183594 23.226563 22.6875 23.71875 L 22.6875 22.3125 C 22.15625 22.042969 21.707031 21.90625 21.1875 21.90625 Z M 15.46875 21.9375 C 14.371094 21.9375 13.53125 22.703125 13.53125 23.71875 C 13.53125 24.570313 13.933594 25.011719 15.0625 25.4375 C 15.71875 25.683594 16.25 25.808594 16.25 26.40625 C 16.25 26.910156 15.851563 27.28125 15.3125 27.28125 C 14.738281 27.28125 14.277344 27.007813 14 26.46875 L 13.21875 27.21875 C 13.777344 28.035156 14.457031 28.40625 15.375 28.40625 C 16.628906 28.40625 17.5 27.574219 17.5 26.375 C 17.5 25.390625 17.09375 24.941406 15.71875 24.4375 C 14.992188 24.167969 14.78125 23.992188 14.78125 23.65625 C 14.78125 23.265625 15.167969 22.96875 15.6875 22.96875 C 16.050781 22.96875 16.339844 23.117188 16.65625 23.46875 L 17.28125 22.625 C 16.761719 22.171875 16.148438 21.9375 15.46875 21.9375 Z M 26.28125 21.9375 C 24.496094 21.9375 23.03125 23.371094 23.03125 25.15625 C 23.03125 26.941406 24.496094 28.40625 26.28125 28.40625 C 28.066406 28.40625 29.5 26.941406 29.5 25.15625 C 29.5 23.371094 28.066406 21.9375 26.28125 21.9375 Z M 5.90625 22.0625 L 5.90625 28.25 L 7.6875 28.25 C 10.382813 28.25 11 26.121094 11 25.15625 C 11 23.328125 9.648438 22.0625 7.6875 22.0625 Z M 11.5625 22.0625 L 11.5625 28.25 L 12.78125 28.25 L 12.78125 22.0625 Z M 29.28125 22.0625 L 31.90625 28.40625 L 32.5625 28.40625 L 35.25 22.0625 L 33.9375 22.0625 L 32.25 26.21875 L 30.59375 22.0625 Z M 35.78125 22.0625 L 35.78125 28.25 L 39.21875 28.25 L 39.21875 27.1875 L 37 27.1875 L 37 25.53125 L 39.125 25.53125 L 39.125 24.46875 L 37 24.46875 L 37 23.09375 L 39.21875 23.09375 L 39.21875 22.0625 Z M 40 22.0625 L 40 28.25 L 41.21875 28.25 L 41.21875 25.75 L 41.375 25.75 L 43.03125 28.25 L 44.53125 28.25 L 42.59375 25.65625 C 43.503906 25.46875 44 24.824219 44 23.875 C 44 22.714844 43.207031 22.0625 41.8125 22.0625 Z M 41.21875 23.03125 L 41.59375 23.03125 C 42.347656 23.03125 42.75 23.335938 42.75 23.9375 C 42.75 24.558594 42.332031 24.90625 41.5625 24.90625 L 41.21875 24.90625 Z M 7.125 23.09375 L 7.53125 23.09375 C 9.175781 23.09375 9.75 24.183594 9.75 25.15625 C 9.75 25.621094 9.613281 27.1875 7.4375 27.1875 L 7.125 27.1875 Z" />
               </svg>
             </div>
             <div className="w-33 d-flex justify-content-center align-items-center">
               <svg
-                className=" w-50 h-50"
+                className=" w-60 h-60"
                 fill="rgb(207,207,207)"
                 width="24px"
                 height="24px"
@@ -74,15 +112,34 @@ const CreditForm = (props) => {
         <div className=" w-100 h-30 d-flex flex-column justify-content-between">
           <div className="w-100 h-40">
             <div className=" w-100 h-35 text-gray d-flex justify-content-between align-items-center">
-              <span>Select Card Type</span>
+              <span>Card Number</span>
+              <span>
+                {/* 即時顯示卡種 */}
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  style={{ width: '24px' }}
+                  className="h-5 w-5"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                >
+                  <path d="M4 4a2 2 0 00-2 2v1h16V6a2 2 0 00-2-2H4z" />
+                  <path
+                    fillRule="evenodd"
+                    d="M18 9H2v5a2 2 0 002 2h12a2 2 0 002-2V9zM4 13a1 1 0 011-1h1a1 1 0 110 2H5a1 1 0 01-1-1zm5-1a1 1 0 100 2h1a1 1 0 100-2H9z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+                ： {cardType}
+              </span>
             </div>
             {/* 卡號 */}
             <div className="w-100 h-65 text-gray d-flex justify-content-between align-items-end">
               {/* 1~4 */}
               <input
+                onKeyUp={handleKeyUp}
                 onKeyPress={keyPressHandler}
                 onChange={creditFormHandler}
-                name="num1to4"
+                name="num_1"
                 onFocus={rotateToZero}
                 defaultValue={creditForm.num1to4}
                 type="text"
@@ -92,9 +149,10 @@ const CreditForm = (props) => {
               />
               {/* 5~8 */}
               <input
+                onKeyUp={handleKeyUp}
                 onKeyPress={keyPressHandler}
                 onChange={creditFormHandler}
-                name="num5to8"
+                name="num_2"
                 onFocus={rotateToZero}
                 defaultValue={creditForm.num5to8}
                 type="text"
@@ -104,9 +162,10 @@ const CreditForm = (props) => {
               />
               {/* 9~12 */}
               <input
+                onKeyUp={handleKeyUp}
                 onKeyPress={keyPressHandler}
                 onChange={creditFormHandler}
-                name="num9to12"
+                name="num_3"
                 onFocus={rotateToZero}
                 defaultValue={creditForm.num9to12}
                 type="text"
@@ -116,9 +175,10 @@ const CreditForm = (props) => {
               />
               {/* 13~16 */}
               <input
+                onKeyUp={handleKeyUp}
                 onKeyPress={keyPressHandler}
                 onChange={creditFormHandler}
-                name="num13to16"
+                name="num_4"
                 onFocus={rotateToZero}
                 defaultValue={creditForm.num13to16}
                 type="text"
@@ -197,22 +257,22 @@ const CreditForm = (props) => {
                     <input
                       className="w-15 bg-transparent border-0 credit-card-text"
                       type="text"
-                      defaultValue={creditForm.num1to4}
+                      defaultValue={creditForm.num_1}
                     />
                     <input
                       className="w-15 bg-transparent border-0 credit-card-text"
                       type="text"
-                      defaultValue={creditForm.num5to8}
+                      defaultValue={creditForm.num_2}
                     />
                     <input
                       className="w-15 bg-transparent border-0 credit-card-text"
                       type="text"
-                      defaultValue={creditForm.num9to12}
+                      defaultValue={creditForm.num_3}
                     />
                     <input
                       className="w-15 bg-transparent border-0 credit-card-text"
                       type="text"
-                      defaultValue={creditForm.num13to16}
+                      defaultValue={creditForm.num_4}
                     />
                     <div className="w-30 d-flex justify-content-end text-gray">
                       <input

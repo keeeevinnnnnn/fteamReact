@@ -45,10 +45,10 @@ const OrderCard = (props) => {
         </div>
         <div className="w-100 h-45 d-flex">
           <div className="col-6 h-100 d-flex justify-content-start align-items-start py-2">
-            Total ：
+            付款方式 ： {singleOrder.pay_method}
           </div>
           <div className="col-6 h-100 d-flex justify-content-end align-items-start py-2 fw-bold">
-            {/* total_price */}$ {singleOrder.total}
+            Total ： $ {singleOrder.total}
           </div>
         </div>
         <span
@@ -71,12 +71,6 @@ const OrderCard = (props) => {
           {singleOrder.shipping_method === 'pickSelf'
             ? '門市名稱 ：' + singleOrder.address.slice(6, 10)
             : ''}
-        </span>
-        <span
-          style={{ display: !showDetail ? 'block' : 'none' }}
-          className="order-mail"
-        >
-          E-mail ：{singleOrder.email}
         </span>
       </div>
     </div>

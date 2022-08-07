@@ -4,7 +4,13 @@ import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
 
 function CartMuiTabs(props) {
-  const { selectItem, setSelectItem } = props;
+  const {
+    selectItem,
+    setSelectItem,
+    productTotalQty,
+    customTotalQty,
+    lessonTotalQty,
+  } = props;
   const handleChange = (event, newValue) => {
     setSelectItem(newValue);
   };
@@ -20,19 +26,19 @@ function CartMuiTabs(props) {
           <Tab
             sx={{ fontSize: '1.1rem' }}
             disableRipple={true}
-            label="PRODUCTS"
+            label={'PRODUCTS' + ' (' + productTotalQty + ')'}
             value={'PRODUCTS'}
           />
           <Tab
             sx={{ fontSize: '1.1rem' }}
             disableRipple={true}
-            label="CUSTOMIZED"
+            label={'CUSTOMIZED' + ' (' + customTotalQty + ')'}
             value={'CUSTOMIZED'}
           />
           <Tab
             sx={{ fontSize: '1.1rem' }}
             disableRipple={true}
-            label="LESSONS"
+            label={'LESSONS' + ' (' + lessonTotalQty + ')'}
             value={'LESSONS'}
           />
         </Tabs>
