@@ -11,6 +11,16 @@
   /* outline: thin solid rgb(203, 108, 108); */
 }
 
+/* 要用直接下className */
+.relative {
+  position: relative;
+}
+
+/* 要用直接下className */
+.absolute {
+  position: absolute;
+}
+
 /* mui tabs setting */
 /* 要拿掉click特效 在<Tab/> 加上 disableRipple={true} */
 

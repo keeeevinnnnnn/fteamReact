@@ -7,7 +7,7 @@ import { MemberContext } from '../App';
 import AuthContext from './AuthContext';
 import { useNavigate } from 'react-router-dom';
 import ScrollBox from './ScrollBox/ScrollBox';
-
+import { confirm } from './ConfirmComponent';
 const Navbar = (props) => {
   const {
     productTotalQty,
@@ -270,11 +270,14 @@ const Navbar = (props) => {
             <div
               onClick={() => {
                 if (!auth) {
-                  if (window.confirm('是否前往登入會員?')) {
-                    navigate('/login');
-                  } else {
-                    return;
-                  }
+                  let i = confirm('您尚未登入,是否前往登入會員?');
+                  i.then((res) => {
+                    if (res === true) {
+                      navigate('/login');
+                    } else {
+                      return;
+                    }
+                  });
                 } else {
                   navigate('/carts');
                 }
