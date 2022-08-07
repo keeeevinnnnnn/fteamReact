@@ -39,6 +39,7 @@ const RecordCard = ({ products, customized }) => {
     }
   }, []);
   // console.log(recordProducts);
+  console.log(recordCustomized);
   return (
     <>
       {/* 商品 */}
@@ -96,8 +97,7 @@ const RecordCard = ({ products, customized }) => {
             <div className="d-flex h-100 w-100">
               <div className="col-3">
                 <img
-                  // src={`http://localhost:3000/custom/${v.img}`}
-                  src="https://img.ttshow.tw/images/author/Lauren/Screenshotter--SPYxFAMILY1-5%E2%80%9938%E2%80%9D.jpg"
+                  src={`http://localhost:3000/custom/${v.back_img}`}
                   alt=""
                   className="h-100"
                   style={{
