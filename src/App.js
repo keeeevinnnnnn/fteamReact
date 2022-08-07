@@ -112,10 +112,6 @@ function App() {
                         <ProductDetails setFavoritesNum={setFavoritesNum} />
                       }
                     />
-                    <Route
-                      path="products/details/:productId"
-                      element={<ProductTabsBoxItem1 />}
-                    />
                     <Route path="/customized" element={<Customized />} />
                     <Route
                       path="/customized/create"

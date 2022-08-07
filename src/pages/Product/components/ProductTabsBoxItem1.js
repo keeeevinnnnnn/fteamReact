@@ -3,7 +3,7 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import axios from '../commons/axios';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 
 const ProductTabsBoxItem1 = (props) => {
   function SampleNextArrow(props) {
@@ -58,9 +58,9 @@ const ProductTabsBoxItem1 = (props) => {
             {data.map((r) => {
               return (
                 <div key={r.sid}>
-                  <Link to={`${r.sid}`}>
+                  <NavLink replace to={`/products/details/${r.sid}`}>
                     <img src={`/imgs/Products/${r.img}`} alt="" />
-                  </Link>
+                  </NavLink>
                 </div>
               );
             })}
