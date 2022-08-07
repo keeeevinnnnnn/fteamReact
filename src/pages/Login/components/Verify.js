@@ -50,7 +50,7 @@ const Verify = ({
     // 先阻擋預設送出行為
     e.preventDefault();
 
-    const response = await axios.post(
+    const response = await axios.put(
       'http://localhost:3000/member/verify',
       verification
     );

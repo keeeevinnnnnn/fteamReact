@@ -7,6 +7,7 @@ import SideBar from './components/SideBar';
 import Home from './pages/Home/Home';
 import Member from './pages/Member/Member';
 import Admin from './pages/Admin/Admin';
+import WatchFavorite from './pages/Admin/components/WatchFavorite';
 import Lesson from './pages/Lesson/Lesson';
 import Lesson_zhongxiao from './pages/Lesson/Lesson_zhongxiao';
 import Lesson_banqiao from './pages/Lesson/Lesson_banqiao';
@@ -79,9 +80,13 @@ function App() {
 
                   <Routes>
                     <Route path="/" element={<Home />} />
+                    <Route path="/login" element={<Login />} />
                     <Route path="/member" element={<Member />} />
                     <Route path="/admin" element={<Admin />} />
-                    <Route path="/login" element={<Login />} />
+                    <Route
+                      path="admin/memberfavorite/:memberId"
+                      element={<WatchFavorite />}
+                    />
                     <Route path="/lesson" element={<Lesson />} />
                     <Route
                       path="/lesson/lesson_zhongxiao"
@@ -171,10 +176,9 @@ function App() {
                     />
                     <Route
                       path="/customized/create/detail/*"
-                      element={<Cus_product_detail 
-                        setCartTotalDep={setCartTotalDep}
-                      />}
-                      
+                      element={
+                        <Cus_product_detail setCartTotalDep={setCartTotalDep} />
+                      }
                     />
                     <Route
                       path="/customized/explore"
