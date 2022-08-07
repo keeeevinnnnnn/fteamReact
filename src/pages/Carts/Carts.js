@@ -165,6 +165,9 @@ const Carts = (props) => {
                 <CartMuiTabs
                   selectItem={selectItem}
                   setSelectItem={setSelectItem}
+                  productTotalQty={productTotalQty}
+                  customTotalQty={customTotalQty}
+                  lessonTotalQty={lessonTotalQty}
                 />
               </div>
               <div className="carts-tabs-wrap w-100 h-100 p-4 d-md-none">
@@ -178,7 +181,15 @@ const Carts = (props) => {
                   {cartItemArr.map((v, i) => {
                     return (
                       <Fragment key={i}>
-                        <option value={v}>{v}</option>
+                        <option value={v}>
+                          {v}---(
+                          {v === 'PRODUCTS'
+                            ? productTotalQty
+                            : v === 'CUSTOMIZED'
+                              ? customTotalQty
+                              : lessonTotalQty}
+                          )
+                        </option>
                       </Fragment>
                     );
                   })}

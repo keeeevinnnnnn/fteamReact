@@ -34,7 +34,8 @@ function Convenience(props) {
     }, {});
   };
 
-  const { toConvenceFrom, setToConvenceFrom } = props;
+  const { toConvenceFrom, setToConvenceFrom, formErrorMsg, setFormErrorMsg } =
+    props;
   const { token } = useContext(AuthContext);
   const [convenceCountryInd, setConvenceCountryInd] = useState(-1);
   const [convenceTownsShipInd, setConvenceTownsShipInd] = useState(-1);
@@ -120,36 +121,75 @@ function Convenience(props) {
     <div className="w-100 h-100">
       <div className="w-100 h-30 store-selectors-wrap">
         <div className="w-100 h-33 d-flex">
-          <input
-            className=" w-100 text-gray bg-transparent checkout-input"
-            name="fullName"
-            value={toConvenceFrom.fullName}
-            type="text"
-            placeholder="* Name :"
-            onChange={toConvenceFromHandler}
-            autoComplete="off"
-          />
-          <input
-            className=" w-100 focus-none text-gray bg-transparent checkout-input"
-            name="mobile"
-            pattern="09\d{2}(\d{6}|-\d{3}-\d{3})"
-            value={toConvenceFrom.mobile}
-            type="text"
-            placeholder="* Mobile :"
-            onChange={toConvenceFromHandler}
-            autoComplete="off"
-          />
+          <div className=" position-relative">
+            <input
+              className=" w-100 text-gray bg-transparent checkout-input"
+              name="fullName"
+              value={toConvenceFrom.fullName}
+              type="text"
+              placeholder="* Name :"
+              onChange={toConvenceFromHandler}
+              autoComplete="off"
+            />
+            <span
+              style={{
+                fontSize: '12px',
+                right: '0px',
+                bottom: '30%',
+                color: 'red',
+              }}
+              className="position-absolute"
+            >
+              {formErrorMsg.nameMsg !== '' ? '* 姓名最少兩個字' : ''}
+            </span>
+          </div>
+          <div className="relative">
+            <input
+              className=" w-100 focus-none text-gray bg-transparent checkout-input"
+              name="mobile"
+              pattern="09\d{2}(\d{6}|-\d{3}-\d{3})"
+              value={toConvenceFrom.mobile}
+              type="text"
+              placeholder="* Mobile :"
+              onChange={toConvenceFromHandler}
+              autoComplete="off"
+            />
+            <span
+              style={{
+                fontSize: '12px',
+                right: '-15px',
+                bottom: '30%',
+                color: 'red',
+              }}
+              className="position-absolute"
+            >
+              {formErrorMsg.mobileMsg !== '' ? '* 手機格式不符' : ''}
+            </span>
+          </div>
         </div>
         <div className="w-100 h-33 d-flex align-items-center">
-          <input
-            className=" w-100 focus-none text-gray bg-transparent checkout-input"
-            name="email"
-            value={toConvenceFrom.email}
-            type="text"
-            placeholder="* Email :"
-            onChange={toConvenceFromHandler}
-            autoComplete="off"
-          />
+          <div className="w-100 h-100 relative">
+            <input
+              className=" w-100 focus-none text-gray bg-transparent checkout-input"
+              name="email"
+              value={toConvenceFrom.email}
+              type="text"
+              placeholder="* Email :"
+              onChange={toConvenceFromHandler}
+              autoComplete="off"
+            />
+            <span
+              style={{
+                fontSize: '12px',
+                right: '-15px',
+                bottom: '30%',
+                color: 'red',
+              }}
+              className="absolute"
+            >
+              {formErrorMsg.emailMsg !== '' ? '* Email格式不符' : ''}
+            </span>
+          </div>
         </div>
         <div className="w-100 h-33 d-flex justify-content-between">
           <select
