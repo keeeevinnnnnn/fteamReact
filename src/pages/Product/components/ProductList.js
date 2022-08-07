@@ -168,9 +168,9 @@ const ProductList = (props) => {
         </Link>
       </div>
 
-      <div className="card-body productBody">
+      <div className="productBody">
         <h5 className="card-name">{name}</h5>
-        <p className="card-brand">{brand}</p>
+        <p className="card-brand flex-grow-1">{brand}</p>
         <p className="card-price">
           <span>$ {price}</span>
         </p>

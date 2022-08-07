@@ -152,7 +152,7 @@ const ProductMain = (props) => {
           </button>
         </div>
 
-        <div className="row product-list p-0 m-0">
+        <div className="product-list p-0 m-0 d-flex flex-wrap">
           <TransitionGroup component={null}>
             {data && data.rows
               ? data.rows.map((r) => {
