@@ -1,7 +1,25 @@
 import './style/Lesson_taichung.scss';
-import TabPanel from './components/LessonTabPanel';
+import LessonTabPanel from './components/LessonTabPanel';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 
 const Lesson_taichung = () => {
+  const [lessonDisplay, setlessonDisplay] = useState([]);
+  const getLessonData = async () => {
+    const response = await axios.get(
+      `http://localhost:3000/lesson?location=台中精誠館`
+    );
+    // 設定到state
+    // setLessonRaw(response.data);
+
+    setlessonDisplay(response.data);
+  };
+
+  useEffect(() => {
+    // 開啟載入指示動態
+    getLessonData();
+  }, []);
+
   return (
     <>
       <div className="w-100 vh-100 d-flex justify-content-end align-items-end">
@@ -67,7 +85,7 @@ const Lesson_taichung = () => {
               </div>
             </div>
             <div className="  col-md-8 col-12 h-100">
-              <TabPanel />
+              <LessonTabPanel lessonDisplay={lessonDisplay} />
             </div>
           </div>
         </div>

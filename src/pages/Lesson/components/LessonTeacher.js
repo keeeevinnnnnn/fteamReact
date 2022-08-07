@@ -1,6 +1,6 @@
-import '../style/Lesson_teacher.scss';
+import '../style/LessonTeacher.scss';
 
-const Lesson_teacher = () => {
+const LessonTeacher = () => {
   return (
     <>
       <div className="col-sm-4   cooler_teacher_card   border ">
@@ -29,4 +29,4 @@ const Lesson_teacher = () => {
   );
 };
 
-export default Lesson_teacher;
+export default LessonTeacher;

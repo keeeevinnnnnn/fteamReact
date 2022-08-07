@@ -1,8 +1,8 @@
-import '../style/LessonSelect_time.scss';
+import '../style/LessonSelectTime.scss';
 
 import Form from 'react-bootstrap/Form';
 
-function LessonSelect_time() {
+function LessonSelectTime() {
   return (
     <div className="w-35 ">
       <Form.Select aria-label="Default select example ">
@@ -15,4 +15,4 @@ function LessonSelect_time() {
   );
 }
 
-export default LessonSelect_time;
+export default LessonSelectTime;
