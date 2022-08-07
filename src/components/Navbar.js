@@ -43,6 +43,7 @@ const Navbar = (props) => {
       setProductTotalQty(0);
       setLessonTotalQty(0);
       setCustomTotalQty(0);
+      setFavoritesNum(0);
       return;
     } else {
       axios

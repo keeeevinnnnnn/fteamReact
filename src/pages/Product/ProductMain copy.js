@@ -46,7 +46,7 @@ const ProductMain = (props) => {
     setFilter({ ...filter, searchName: text });
   };
 
-  // console.log('filter==', filter);
+  console.log('filter==', filter);
 
   useEffect(() => {
     axios
@@ -69,11 +69,7 @@ const ProductMain = (props) => {
       });
   }, [filter]);
 
-  useEffect(() => {
-    axios.get(`/product/whoFavorites?memId=${5}`).then((res) => {
-      setWhoFavorites(res.data);
-    });
-  }, [filter]);
+  console.log('dada==', data);
 
   return (
     <div className="bg w-100 vh-100 d-flex justify-content-end align-items-end">
@@ -92,6 +88,7 @@ const ProductMain = (props) => {
             return (
               <button
                 className="button-38"
+                key={Math.random() * 100}
                 onClick={() => {
                   setMessages(
                     messages.filter((v) => {
@@ -157,7 +154,7 @@ const ProductMain = (props) => {
           </button>
         </div>
 
-        <div className="row product-list p-0 m-0">
+        <div className="product-list p-0 m-0 d-flex flex-wrap">
           <TransitionGroup component={null}>
             {data && data.rows
               ? data.rows.map((r) => {
@@ -180,8 +177,6 @@ const ProductMain = (props) => {
                         setFavoritesNum={setFavoritesNum}
                         whoFavorites={whoFavorites}
                         setWhoFavorites={setWhoFavorites}
-                        setFilter={setFilter}
-                        filter={filter}
                       />
                     </CSSTransition>
                   );

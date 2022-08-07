@@ -46,7 +46,7 @@ const ProductMain = (props) => {
     setFilter({ ...filter, searchName: text });
   };
 
-  // console.log('filter==', filter);
+  console.log('filter==', filter);
 
   useEffect(() => {
     axios
@@ -68,6 +68,8 @@ const ProductMain = (props) => {
         setData(res.data);
       });
   }, [filter]);
+
+  console.log('dada==', data);
 
   return (
     <div className="bg w-100 vh-100 d-flex justify-content-end align-items-end">
@@ -185,7 +187,7 @@ const ProductMain = (props) => {
 
         <div className="row paginationBox p-0 m-0">
           <div className="col-4">
-            {data && data.totalPages ? (
+            {data.rows && data.rows !== [] ? (
               <Pagination
                 page={data.page}
                 totalPages={data.totalPages}
