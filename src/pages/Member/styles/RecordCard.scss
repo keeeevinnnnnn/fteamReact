@@ -7,7 +7,8 @@
     transition: .3s;
     box-shadow: 5px 5px 15px 5px #000000;
     img {
-        border-right: 1px solid black;
+        border-right: 1px solid var(--main);
+        background: white;
     }
     .recordName {
         text-align: justify; // 文字左右切齊設定

@@ -116,7 +116,7 @@ const Navbar = (props) => {
     auths,
     auth,
     token,
-    setMember,
+    // setMember,
     setFavoritesNum,
     cartTotalDep,
     favoritesNum,
