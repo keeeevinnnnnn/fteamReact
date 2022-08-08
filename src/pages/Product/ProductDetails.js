@@ -27,6 +27,12 @@ const ProductDetails = (props) => {
 
   const [detailsWhoFavorites, setDetailsWhoFavorites] = useState([]);
 
+  const [priceData, setPriceData] = useState({
+    orderData: 0,
+    itemId: 0,
+    quantity: '',
+  });
+
   // 拿到該會員已收藏過的產品編號
   const findFetailsWhoFavorites = async () => {
     await axios
@@ -119,11 +125,19 @@ const ProductDetails = (props) => {
       });
   };
 
+  // 該商品銷售數據
+  const ChartData = async (productId) => {
+    axios.get(`/product/priceHistory/${productId}`).then((res) => {
+      setPriceData(res.data);
+    });
+  };
+
   const params = useParams();
 
   useEffect(() => {
     axiosProductDetails(params.productId);
     findFetailsWhoFavorites();
+    ChartData(params.productId);
   }, [params.productId, heart]);
 
   return (
@@ -197,7 +211,13 @@ const ProductDetails = (props) => {
         </div>
 
         <div className="d-flex p-0 m-0 ProductTabsBox w-100">
-          <ProductTabsBox sid={details.sid} />
+          <ProductTabsBox
+            sid={details.sid}
+            priceData={priceData}
+            setPriceData={setPriceData}
+            setHeart={setHeart}
+            heart={heart}
+          />
         </div>
       </div>
       <ToastContainer

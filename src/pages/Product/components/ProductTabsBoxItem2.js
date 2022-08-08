@@ -11,59 +11,72 @@ import {
 import axios from '../commons/axios';
 
 const ProductTabsBoxItem2 = (props) => {
-  const { sid } = props;
-
-  // 銷售數據原始資料
-  //   month(order_date): 0
-  //   item_id: 1
-  //   sum(order_details.quantity): 0
-  const [priceData, setPriceData] = useState([]);
+  const { priceData } = props;
 
   const data = [
     {
-      name: 'Mar',
-      uv: 140,
-      amt: 50,
-    },
-    {
-      name: 'Apr',
-      uv: 130,
+      name: 'Jul',
+      uv: 100,
       amt: 100,
     },
     {
-      name: 'May',
-      uv: 100,
-      amt: 150,
-    },
-    {
-      name: 'Jun',
-      uv: 180,
-      amt: 200,
-    },
-    {
-      name: 'Jul',
-      uv: 100,
-      amt: 250,
-    },
-    {
       name: 'Aug',
-      uv: 200,
+      uv: 100,
       amt: 300,
     },
   ];
 
-  useEffect(() => {
-    axios.get('/product/priceHistory', { params: { sid: sid } }).then((res) => {
-      setPriceData(res.data);
-    });
-  }, [sid]);
+  priceData.map((r, i) => {
+    data[i].uv = r.quantity;
+
+    switch (r.orderData) {
+      case 1:
+        r.orderData = 'Jan';
+        break;
+      case 2:
+        r.orderData = 'Feb';
+        break;
+      case 3:
+        r.orderData = 'Mar';
+        break;
+      case 4:
+        r.orderData = 'Apr';
+        break;
+      case 5:
+        r.orderData = 'May';
+        break;
+      case 6:
+        r.orderData = 'Jun';
+        break;
+      case 7:
+        r.orderData = 'Jul';
+        break;
+      case 8:
+        r.orderData = 'Aug';
+        break;
+      case 9:
+        r.orderData = 'Sep';
+        break;
+      case 10:
+        r.orderData = 'Oct';
+        break;
+      case 11:
+        r.orderData = 'Nov';
+        break;
+      case 12:
+        r.orderData = 'Dec';
+        break;
+      default:
+        r.orderData = 0;
+    }
+
+    data[i].name = r.orderData;
+  });
 
   return (
     <div className="col-12 w-100 h-100">
       <ResponsiveContainer width="100%" height={360}>
         <AreaChart
-          // width={2071}
-          // height={550}
           data={data}
           margin={{
             top: 10,
