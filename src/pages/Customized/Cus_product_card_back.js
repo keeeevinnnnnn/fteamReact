@@ -8,7 +8,7 @@ import { Scale } from 'chart.js';
 import axios from 'axios';
 
 function Cus_product_card_back(props) {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const { lastInsertID, setLastInsertID } = props;
   const cuscanvas = useRef(null);
   const [bgimg, setBgimg] = useState('');
@@ -19,7 +19,24 @@ function Cus_product_card_back(props) {
   const [sticker, setSticker] = useState('');
   const [stickerName, setStickerName] = useState('Waves');
   const [text, setText] = useState('SAMPLE');
-  const [isClick,setIsClick]=useState(false);
+  const [isClick, setIsClick] = useState(false);
+  const [price, setPrice] = useState(0);
+  const [originalPrice, setOriginalPrice] = useState(0);
+
+  //取得價錢//
+  useEffect(() => {
+    console.log(lastInsertID);
+    axios
+      .get(`http://localhost:3000/custom/price?sid=${lastInsertID}`)
+      .then((res) => {
+        console.log('111', res.data[0].price);
+
+        setOriginalPrice(+res.data[0].price);
+        setPrice(+res.data[0].price);
+      });
+  }, []);
+
+  //canvas喔喔喔//
 
   useEffect(() => {
     const backimg = new Image();
@@ -81,7 +98,7 @@ function Cus_product_card_back(props) {
 
   const addback = () => {
     // console.log(frontcolor)
-    if(isClick){
+    if (isClick) {
       axios.post('http://localhost:3000/custom/back', {
         sid: lastInsertID,
         back_style: bgimgName,
@@ -89,12 +106,12 @@ function Cus_product_card_back(props) {
         back_color: bgcolor,
         back_text: text,
         back_sticker: stickerName,
+        price:price
       });
-      navigate('/customized/create/confirm')
-    }else{
-      alert('please confirm your picture')
+      navigate('/customized/create/confirm');
+    } else {
+      alert('please confirm your picture');
     }
-
   };
 
   function handleDataUrl() {
@@ -108,7 +125,7 @@ function Cus_product_card_back(props) {
       sid: lastInsertID,
       imgData: cuscanvas.current.toDataURL('image/png'),
     });
-    setIsClick(true)
+    setIsClick(true);
   }
 
   return (
@@ -127,18 +144,29 @@ function Cus_product_card_back(props) {
 
           <div className="cus_card_container ">
             <div className="step-control">
-              <Link to={'/customized/create/carrier'}>
-                <button className="skbtn-prev"></button>
-              </Link>
+              <div className="price-container m-0 px-3">
+                <h4>
+                  NT
+                  <span className="price">
+                    {price === 0 ? originalPrice : price}
+                  </span>
+                </h4>
+              </div>
 
-              <div onClick={addback}>
-                <button  className="skbtn-next"></button>
+              <div className="links">
+                <Link to={'/customized/create/carrier'}>
+                  <button className="skbtn-prev"></button>
+                </Link>
+                <div onClick={addback}>
+                  <button className="skbtn-next"></button>
+                </div>
               </div>
             </div>
 
             <div className="cus_card flex-column">
               <div className="cus_product_card">
                 <div className="d-flex"></div>
+                {bgimgName}{patternName}{stickerName}{text}
 
                 <Cus_tab
                   bgcolor={bgcolor}
@@ -149,6 +177,8 @@ function Cus_product_card_back(props) {
                   setPatternName={setPatternName}
                   setStickerName={setStickerName}
                   setText={setText}
+                  setPrice={setPrice}
+                  originalPrice={originalPrice}
                 />
 
                 <button

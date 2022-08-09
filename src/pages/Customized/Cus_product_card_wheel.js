@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link,useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './Cus_product_card_wheel.scss';
 
@@ -27,22 +27,64 @@ const whselect = [
 ];
 
 function Cus_product_card_wheel(props) {
-  const {lastInsertID,setLastInsertID} = props
+  const { lastInsertID, setLastInsertID } = props;
+  const [lastInsertIDDep , setLastInsertIDDep] = useState(0)
   const [wheel, setWheel] = useState('NeonGreen');
+  const navigate =useNavigate()
+  
+  const [price, setPrice] = useState(0);
+  const [originalPrice, setOriginalPrice] = useState(0);
+  //取得價錢//
+  useEffect(() => {
+    console.log(lastInsertID);
+    if(lastInsertID !==0){
+          axios
+      .get(`http://localhost:3000/custom/price?sid=${lastInsertID}`)
+      .then((res) => {
+        console.log('111', res.data[0].price);
+        setOriginalPrice(+res.data[0].price);
+        setPrice(+res.data[0].price)
+      })
+    }
 
+  }, []);
   const selectWheel = (e) => {
-    const newWheel = e.target.value;
+          const newWheel = e.target.value;
     setWheel(newWheel);
     console.log(newWheel);
+    if (newWheel === 'NeonGreen') {
+      setPrice(originalPrice + 400);
+    }
+    if (newWheel === 'PinkWave') {
+      setPrice(originalPrice + 800);
+    }
+    if (newWheel === 'PurpleStart') {
+      setPrice(originalPrice + 1200);
+    }
+    if (newWheel === 'BlackBlue') {
+      setPrice(originalPrice + 1600);
+    }
+  
+
   };
 
-  const addwheel = ()=>{
-    axios.post('http://localhost:3000/custom/wheel',{
-          sid:lastInsertID,
-          wheel_style:wheel,
+  const addwheel = () => {
+    console.log(price)
+    if(price==originalPrice){
+      alert('請選擇')
+    }else{
+      axios.post('http://localhost:3000/custom/wheel', {
+        sid: lastInsertID,
+        wheel_style: wheel,
+        price: price,
+      }).then(()=>{
+        navigate('/customized/create/carrier')
+      })
 
-    })
-  }
+    }
+    
+   
+  };
   return (
     <div className="w-100 vh-100 d-flex justify-content-end align-items-end">
       <div className="cus_matte w-100 h-100 ovweflow-hidden  ">
@@ -50,6 +92,7 @@ function Cus_product_card_wheel(props) {
       </div>
 
       <div className="work-area col-12 col-md-10 p-0 overflow-hidden">
+        {lastInsertID}
         <div className="cus_container">
           <div className="cus-product-container">
             <div className="wheel-img">
@@ -69,25 +112,35 @@ function Cus_product_card_wheel(props) {
 
           <div className="cus_card_container ">
             <div className="step-control">
-              <Link to={'/customized/create'}>
-                <button className="skbtn-prev"></button>
-              </Link>
+              <div className="price-container m-0 px-3">
+                <h4>
+                  NT
+                  <span className="price">
+                    {price === 0 ? originalPrice : price}
+                  </span>
+                </h4>
+              </div>
 
-              <Link to={'/customized/create/carrier'}>
-                <button className="skbtn-next" onClick={addwheel}></button>
-              </Link>
+              <div className="links">
+                <Link to={'/customized/create'}>
+                  <button className="skbtn-prev"></button>
+                </Link>
+                <div>
+                  <button className="skbtn-next" onClick={addwheel}></button>
+                </div>
+              </div>
             </div>
 
             <div className="cus_card flex-column">
               <div className="cus_product_card">
-              <p>{wheel}</p>
+                <p>{wheel}</p>
                 <h3 className="text-black">Choose Your Wheel</h3>
                 <div className="wheel-selectors">
                   <div className="wheel-select">
                     <input
                       type="radio"
                       value="NeonGreen"
-                      name='cus_wheel'
+                      name="cus_wheel"
                       onChange={selectWheel}
                     />
                     <img src="/imgs/Customized/select_w01.png" />
@@ -96,7 +149,7 @@ function Cus_product_card_wheel(props) {
                     <input
                       type="radio"
                       value="PinkWave"
-                      name='cus_wheel'
+                      name="cus_wheel"
                       onChange={selectWheel}
                     />
                     <img src="/imgs/Customized/select_w02.png" />
@@ -105,7 +158,7 @@ function Cus_product_card_wheel(props) {
                     <input
                       type="radio"
                       value="PurpleStart"
-                      name='cus_wheel'
+                      name="cus_wheel"
                       onChange={selectWheel}
                     />
                     <img src="/imgs/Customized/select_w03.png" />
@@ -114,7 +167,7 @@ function Cus_product_card_wheel(props) {
                     <input
                       type="radio"
                       value="BlackBlue"
-                      name='cus_wheel'
+                      name="cus_wheel"
                       onChange={selectWheel}
                     />
                     <img src="/imgs/Customized/select_w04.png" />

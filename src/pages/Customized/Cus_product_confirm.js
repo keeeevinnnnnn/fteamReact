@@ -1,55 +1,52 @@
-import React,{useEffect,useState,useContext} from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import AuthContext from '../../components/AuthContext';
-
 
 import { red } from '@mui/material/colors';
 
 import './Cus_product_confirm.scss';
 
 function Cus_product_confirm(props) {
-  const {lastInsertID,setLastInsertID,setCartTotalDep} = props
-  const [cusData,setCusData]=useState({})
+  const { lastInsertID, setLastInsertID, setCartTotalDep } = props;
+  const [cusData, setCusData] = useState({});
   const { auth, token } = useContext(AuthContext);
 
-
-  const addToCart =()=>{
+  const addToCart = () => {
     axios
-    .get('http://localhost:3000/member/memberself', {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    }).then((res)=>{
-      axios.post('http://localhost:3000/carts',{
-        type:'custom',
-        quantity:'1',
-        sid:lastInsertID,
-        memID:res.data.sid,
-      }).then((res)=>{
-        if(res.data.success){
-          alert('加入成功')
-          setCartTotalDep((prev)=>prev+1)
-        }else{
-          alert('商品已存在購物車')
-        }
+      .get('http://localhost:3000/member/memberself', {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
       })
-    })
+      .then((res) => {
+        axios
+          .post('http://localhost:3000/carts', {
+            type: 'custom',
+            quantity: '1',
+            sid: lastInsertID,
+            memID: res.data.sid,
+          })
+          .then((res) => {
+            if (res.data.success) {
+              alert('加入成功');
+              setCartTotalDep((prev) => prev + 1);
+            } else {
+              alert('商品已存在購物車');
+            }
+          });
+      });
+  };
 
-  }
-
- useEffect(()=>{
-  console.log(lastInsertID);
-   axios.get(`http://localhost:3000/custom/confirm?sid=${lastInsertID}`).then((res)=>{
-  console.log(res.data)
-   setCusData(res.data[0])
-   })
- 
-
-
- },[])
-
-
+  useEffect(() => {
+    console.log(lastInsertID);
+    axios
+      .get(`http://localhost:3000/custom/confirm?sid=${lastInsertID}`)
+      .then((res) => {
+        console.log(res.data);
+        setCusData(res.data[0]);
+      });
+  }, []);
 
   return (
     <>
@@ -57,28 +54,27 @@ function Cus_product_confirm(props) {
         <div className="work-area col-12 col-md-10 p-0">
           <div className="d-flex flex-wrap px-5">
             <div className="left col-12 col-sm-6 p-0 pe-sm-5 ">
-           
-
-              
-              <h2>CUSTOM PRODUCT <br/> DETAIE</h2>
+              <h2>
+                CUSTOM PRODUCT <br /> DETAIE
+              </h2>
               <p>Created at {cusData.created_date} </p>
               <div className="cusdetail-pic col-12 col-sm-6">
                 <img
                   src={`http://localhost:3000/custom/${cusData.back_img}`}
                   className="img-fluid"
                 />
-               
               </div>
 
               <div className="attribuies">
                 <p>Project Name</p>
-                <h3>{cusData.custom_product_name}</h3>
+                <div className='d-flex justify-content-between'>
+                  <h3>{cusData.custom_product_name}</h3>
+                  <h4 className='fw-light'>NT<span className='fw-bold'>{cusData.price}</span></h4>
+                </div>
               </div>
-  
             </div>
             <div className="right col-12 col-sm-6 d-flex flex-column ">
               <div className="cus-confirm-detail">
-              
                 <div className="attribuies">
                   <h4>Wheel</h4>
                   <div className="attribuie">
@@ -167,8 +163,6 @@ function Cus_product_confirm(props) {
                         <p>{cusData.back_text}</p>
                       </div>
                     </div>
-                    
-    
                   </div>
                 </div>
               </div>
@@ -177,7 +171,9 @@ function Cus_product_confirm(props) {
                 <Link to={'/customized/explore'}>
                   <button className="viv-btn">Explore</button>
                 </Link>
-                <button className="viv-btn" onClick={addToCart}>Add To Cart</button>
+                <button className="viv-btn" onClick={addToCart}>
+                  Add To Cart
+                </button>
               </div>
             </div>
           </div>

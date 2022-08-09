@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React,{useState,useEffect} from 'react';
 import { Link } from 'react-router-dom';
 import './Cus_product_card_fcolor.scss';
 import axios from 'axios';
@@ -7,6 +7,22 @@ function Cus_product_card_fcolor(props) {
 
   const {lastInsertID,setLastInsertID} = props
   const [frontcolor,setFrontcolor]=useState('#E9573F')
+  const [originalPrice, setOriginalPrice] = useState(0);
+  const [price, setPrice] = useState(0);
+  
+
+
+    //取得價錢//
+    useEffect(() => {
+      console.log(lastInsertID);
+      axios
+        .get(`http://localhost:3000/custom/price?sid=${lastInsertID}`)
+        .then((res) => {
+          console.log('111', res.data[0].price);
+  
+          setOriginalPrice(+res.data[0].price);
+        });
+    }, []);
 
   const addfcolor = ()=>{
     console.log(frontcolor)
@@ -43,13 +59,22 @@ function Cus_product_card_fcolor(props) {
 
           <div className="cus_card_container ">
             <div className="step-control">
-              <Link to={'/customized/create/carrier'}>
-                <button className="skbtn-prev"></button>
-              </Link>
-
-              <Link to={'/customized/create/back'} onClick={addfcolor}>
-                <button className="skbtn-next"></button>
-              </Link>
+            <div className="price-container m-0 px-3">
+                <h4>
+                  NT
+                  <span className="price">
+                    {price === 0 ? originalPrice : price}
+                  </span>
+                </h4>
+              </div>
+              <div className='links'>
+                <Link to={'/customized/create/carrier'}>
+                  <button className="skbtn-prev"></button>
+                </Link>
+                <Link to={'/customized/create/back'} onClick={addfcolor}>
+                  <button className="skbtn-next"></button>
+                </Link>
+              </div>
             </div>
 
             <div className="cus_card flex-column">

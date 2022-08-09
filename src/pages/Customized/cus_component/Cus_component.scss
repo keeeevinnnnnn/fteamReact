@@ -38,10 +38,21 @@
     width: 120px;
     
     word-wrap:break-word;
+    svg{
+      width: 24px;
+      height: 24px;
+      stroke:black;
+      transform: scale(0);
+      transition: 1s ease;
+      transform-origin: top right;
+    }
 
     h3{
       width: 120px;
-      word-wrap:break-word;
+      word-wrap:normal;
+      
+      
+      overflow: hidden;
     }
     
 
@@ -89,6 +100,11 @@
     background-color: black;
     color: white;
     box-shadow: 12px 12px 0 0 var(--main);
+    svg{
+      transform: scale(1);
+     stroke: var(--main);
+    }
+    
     .board{
         transition: 1s ease;
         padding: 0px;

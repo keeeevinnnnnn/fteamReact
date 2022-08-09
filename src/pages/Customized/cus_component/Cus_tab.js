@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
@@ -32,27 +32,75 @@ function a11yProps(index) {
 }
 
 export default function Cus_tab(props) {
-  const { setBgcolor, bgcolor, bgimgName, setBgimgName,setPatternName,setStickerName,setText } = props;
+  const { setBgcolor, bgcolor, bgimgName, setBgimgName,setPatternName,setStickerName,setText,originalPrice,setPrice } = props;
   const [value, setValue] = useState(0);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
 
+  const [BGprice,setBGPrice]=useState(100);
+  const [patternPrice,setPatternPrice]=useState(100);
+  const [stickerPrice,setStickerPrice]=useState(100);
+
+  
+
+  useEffect(()=>{
+    setPrice(originalPrice+BGprice+patternPrice+stickerPrice)
+  },[BGprice,patternPrice,stickerPrice])
+
   const selectBGName = (e) => {
     const newSelectBg = e.target.value;
     setBgimgName(newSelectBg);
+
+    if(newSelectBg==='style_01'){
+      setBGPrice(100)
+    }
+    if(newSelectBg==='style_02'){
+      setBGPrice(200)
+    }
+    if(newSelectBg==='style_03'){
+      setBGPrice(300)
+    }
+    if(newSelectBg==='style_04'){
+      setBGPrice(400)
+    }
   };
  
 
   const selectPatternName = (e)=>{
     const newSelectPattern = e.target.value;
     setPatternName(newSelectPattern)
+    if(newSelectPattern==='Disturb'){
+      setPatternPrice(100)
+    }
+    if(newSelectPattern==='Parallel'){
+      setPatternPrice(200)
+    }
+    if(newSelectPattern==='Startwave'){
+      setPatternPrice(300)
+    }
+    if(newSelectPattern==='Triangles'){
+      setPatternPrice(400)
+    }
   }
 
   const selectStickerName = (e) => {
     const newSelectSticker = e.target.value;
     setStickerName(newSelectSticker);
+    if(newSelectSticker==='Dot'){
+      setStickerPrice(100)
+    }
+    if(newSelectSticker==='skew'){
+      setStickerPrice(200)
+    }
+    if(newSelectSticker==='waves'){
+      setStickerPrice(300)
+    }
+    if(newSelectSticker==='stars'){
+      setStickerPrice(400)
+    }
+
   };
   
 

@@ -6,32 +6,13 @@ import Cus_product_card_fcolor from './Cus_product_card_fcolor';
 import Cus_product_card_name from './Cus_product_card_name';
 import axios from 'axios';
 import AuthContext from '../../components/AuthContext';
+import { useNavigate } from 'react-router-dom';
 
-// `member_id`,
-// `custom_product_name`,
-// `wheel_style`,
-// `carrier`,
-// `front_color`,
-// `back_style`,
-// `back_text`,
-// `back_sticker`,
-// `back_filter`,
-// `back_img`,
-// `price`,
-// `created_date`
-// axios
-//         .get('http://localhost:3000/member/memberself', {
-//           headers: {
-//             Authorization: `Bearer ${token}`,
-//           },
-//         })
-//         .then((res) => {
-//           // 接會員所有資料
-//         });
 function Customized_add(props) {
   const { auth, token } = useContext(AuthContext);
 
   const { lastInsertID, setLastInsertID } = props;
+  const navigate =useNavigate()
   const [member_id, setMember_id] = useState('');
   const [custom_product_name, setCustom_product_name] = useState('');
   const [wheel_style, setWheel_style] = useState('');
@@ -43,7 +24,7 @@ function Customized_add(props) {
   const [back_text, setBack_text] = useState('');
   const [back_sticker, setBack_sticker] = useState('');
   const [back_img, setBack_img] = useState('');
-  const [price, setPrice] = useState('');
+  const [price, setPrice] = useState(1980);
   const [created_date, setCreated_date] = useState('');
 
   const addCustome = () => {
@@ -54,8 +35,8 @@ function Customized_add(props) {
         },
       })
       .then((res) => {
-          console.log(res)
-          axios
+        console.log(res);
+        axios
           .post('http://localhost:3000/custom', {
             member_id: res.data.sid,
             custom_product_name: custom_product_name,
@@ -70,34 +51,18 @@ function Customized_add(props) {
             back_img: back_img,
             price: price,
             // created_date:created_date
+          }).then((res)=>{
+            if(res.data.affectedRows === 1){
+              console.log('333',res.data);
+              setLastInsertID(res.data.insertId);
+            }
+          }).then(()=>{
+            navigate('/customized/create/wheel')
           })
-          .then((res) => {
-            console.log(res.data.insertId);
-            setLastInsertID(res.data.insertId);
-          });
-
+         
       });
 
-    // axios
-    //   .post('http://localhost:3000/custom', {
-    //     member_id: member_id,
-    //     custom_product_name: custom_product_name,
-    //     wheel_style: wheel_style,
-    //     carrier: carrier,
-    //     front_color: front_color,
-    //     back_style: back_style,
-    //     back_pattern: back_pattern,
-    //     back_color: back_color,
-    //     back_text: back_text,
-    //     back_sticker: back_sticker,
-    //     back_img: back_img,
-    //     price: price,
-    //     // created_date:created_date
-    //   })
-    //   .then((res) => {
-    //     console.log(res.data.insertId);
-    //     setLastInsertID(res.data.insertId);
-    //   });
+   
   };
 
   return (
@@ -121,19 +86,29 @@ function Customized_add(props) {
 
           <div className="cus_card_container">
             <div className="step-control">
-              <Link to={'/customized/create'}>
-                <button className="skbtn-prev"></button>
-              </Link>
+              <div className="price-container m-0 px-3">
+                <h4>
+                  NT<span className="price">{price}</span>
+                </h4>
+              </div>
 
-              <Link to={'/customized/create/wheel'} onClick={addCustome}>
-                <button className="skbtn-next"></button>
-              </Link>
+              <div class="links">
+                <Link to={'/customized/create'}>
+                  <button className="skbtn-prev"></button>
+                </Link>
+                <div onClick={addCustome}>
+                  <button className="skbtn-next"></button>
+                </div>
+
+                {/* <Link to={'/customized/create/wheel'} onClick={addCustome}>
+                  <button className="skbtn-next"></button>
+                </Link> */}
+              </div>
             </div>
 
             <div className="cus_card">
               <div className="cus_product_card">
                 <h3 className="text-black">Project Name</h3>
-              
 
                 <input
                   type="text"
