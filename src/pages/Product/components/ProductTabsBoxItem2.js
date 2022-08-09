@@ -17,18 +17,17 @@ const ProductTabsBoxItem2 = (props) => {
     {
       name: 'Jul',
       uv: 100,
-      amt: 100,
+      amt: 0,
     },
     {
       name: 'Aug',
       uv: 100,
-      amt: 300,
+      amt: 150,
     },
   ];
 
   priceData.map((r, i) => {
     data[i].uv = r.quantity;
-
     switch (r.orderData) {
       case 1:
         r.orderData = 'Jan';
@@ -69,7 +68,6 @@ const ProductTabsBoxItem2 = (props) => {
       default:
         r.orderData = 0;
     }
-
     data[i].name = r.orderData;
   });
 

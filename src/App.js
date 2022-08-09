@@ -102,6 +102,8 @@ function App() {
                           setData={setData}
                           favoritesNum={favoritesNum}
                           setFavoritesNum={setFavoritesNum}
+                          cartTotalDep={cartTotalDep}
+                          setCartTotalDep={setCartTotalDep}
                         />
                       }
                     />

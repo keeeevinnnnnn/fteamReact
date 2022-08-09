@@ -5,6 +5,8 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Link } from 'react-router-dom';
 import AuthContext from '../../../components/AuthContext';
+import { alert } from '../../../components/AlertComponent';
+import { useNavigate } from 'react-router-dom';
 
 const ProductList = (props) => {
   const {
@@ -16,10 +18,16 @@ const ProductList = (props) => {
     setFavoritesNum,
     whoFavorites,
     setWhoFavorites,
+    setCartTotalDep,
+    cartTotalDep,
   } = props;
 
   // auth為登入判斷(true,false) token為會員JWT的token logout是登出涵式
-  const { token } = useContext(AuthContext);
+  const { token, auth } = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  // 為了購物車
+  const [memId, setMemId] = useState(0);
 
   // 收藏成功提示訊息設定
   const favoriteSuccess = () => {
@@ -71,6 +79,20 @@ const ProductList = (props) => {
       });
   };
 
+  // 加入購物車
+  const getCarts = async () => {
+    const addCarts = {
+      sid: sid,
+      type: 'product',
+      quantity: 1,
+      memID: memId,
+    };
+
+    await axios.post('/carts', addCarts).then((res) => {
+      console.log('res.data===', res.data);
+    });
+  };
+
   //紀錄重新渲染時誰收藏;
   let findWhoFavorites = whoFavorites.filter((v) => v === sid);
 
@@ -100,6 +122,15 @@ const ProductList = (props) => {
       .then((res) => {
         // console.log(res.data);
         setWhoFavorites(res.data);
+      });
+    axios
+      .get('/member/memberself', {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((res) => {
+        setMemId(res.data.sid);
       });
   }, [heart]);
 
@@ -153,6 +184,7 @@ const ProductList = (props) => {
             viewBox="0 0 24 24"
             stroke="currentColor"
             stroke-width="2"
+            onClick={getCarts}
           >
             <path
               stroke-linecap="round"
