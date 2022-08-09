@@ -54,6 +54,10 @@ export default function LessonTabPanel(props) {
     setLessonDisplay,
     lessonSelectDance,
     setLessonSelectDance,
+    //
+    danceListOption,
+    danceList,
+    setDanceList,
   } = props;
 
   // console.log('LessonTabPanel:', { lessonDisplay });
@@ -87,21 +91,25 @@ export default function LessonTabPanel(props) {
         </Tabs>
       </Box>
       <TabPanel value={value} index={0}>
-        <div className="w-100 h-20 d-flex cooler_lessonselect">
+        <div className="w-100 h-100 d-flex cooler_lessonselect">
           <LessonSelectTime />
           <LessonSelectDance
-            lessonRaw={lessonRaw}
-            setLessonRaw={setLessonRaw}
-            lessonDisplay={lessonDisplay}
-            setLessonDisplay={setLessonDisplay}
-            lessonSelectDance={lessonSelectDance}
-            setlessonSelectDance={setLessonSelectDance}
+            danceListOption={danceListOption}
+            danceList={danceList}
+            setDanceList={setDanceList}
           />
           <LessonSelectPrice />
         </div>
         <div className="w-100 h-80">
           <ScrollBox>
-            <LessonCard lessonDisplay={lessonDisplay} />
+            <LessonCard
+              lessonRaw={lessonRaw}
+              setLessonRaw={setLessonRaw}
+              lessonDisplay={lessonDisplay}
+              setLessonDisplay={setLessonDisplay}
+              danceList={danceList}
+              setDanceList={setDanceList}
+            />
           </ScrollBox>
         </div>
       </TabPanel>

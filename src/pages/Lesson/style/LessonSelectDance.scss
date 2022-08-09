@@ -13,6 +13,20 @@
   border-color: #adadad;
 }
 
+.cooler_select {
+  border: none;
+}
+
+.cooler_select:focus {
+  color: #fff;
+  background-color: #676666;
+  border: none;
+}
+
+.cooler_lessonselect {
+  width: 100%;
+}
+
 // -----------RWD------------------------
 @media (max-width: 500px) {
   .form-select {

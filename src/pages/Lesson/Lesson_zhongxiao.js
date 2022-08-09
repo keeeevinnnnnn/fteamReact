@@ -9,7 +9,8 @@ const Lesson_zhongxiao = () => {
   // 呈現資料用
   const [lessonDisplay, setLessonDisplay] = useState([]);
   const [lessonSelectDance, setLessonSelectDance] = useState([]);
-
+  const [danceList, setDanceList] = useState('');
+  const danceListOption = ['Hip Hop', 'Popping', 'Locking', 'Choreography'];
   // useEffect(() => {
   //   axios
   //     .get(
@@ -110,7 +111,8 @@ const Lesson_zhongxiao = () => {
                 </div>
               </div>
             </div>
-            <div className="  col-md-8 col-12 h-100">
+
+            <div className="col-md-8 col-12 h-100">
               <LessonTabPanel
                 lessonRaw={lessonRaw}
                 setLessonRaw={setLessonRaw}
@@ -118,6 +120,10 @@ const Lesson_zhongxiao = () => {
                 setLessonDisplay={setLessonDisplay}
                 lessonSelectDance={lessonSelectDance}
                 setlessonSelectDance={setLessonSelectDance}
+                //
+                danceListOption={danceListOption}
+                danceList={danceList}
+                setDanceList={setDanceList}
               />
             </div>
           </div>

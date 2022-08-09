@@ -1,13 +1,30 @@
 // import { render } from '@testing-library/react';
-import React, { Fragment } from 'react';
+import React, { Fragment, useEffect } from 'react';
 import '../style/Lesson_card.scss';
 
 function Lesson_card(props) {
-  const {  lessonDisplay } = props;
+  const {
+    lessonDisplay,
+    setLessonDisplay,
+    lessonRaw,
+    setLessonRaw,
+    danceList,
+    setDanceList,
+  } = props;
+
+  useEffect(() => {
+    refresh();
+  }, [danceList]);
+
+  const refresh = () => {
+    const newLessonDisplay = lessonRaw.filter((v, i) => {
+      return v.type.includes(danceList);
+    });
+    setLessonDisplay(newLessonDisplay);
+  };
   // console.log('Lesson_card:', lessonDisplay);
-  return lessonDisplay.map((v, i) => {
+  const displayTable = lessonDisplay.map((v, i) => {
     return (
-      // <Fragment >
       <div
         key={v.sid}
         className=" col-sm-11 col-12 cooler_lesson_card   h-20 d-flex flex-wrap border-bottom "
@@ -34,8 +51,6 @@ function Lesson_card(props) {
             {v.teacher_name}
           </p>
           <div className=" cooler_gray">
-            {/* <p>{v.duringtime_begin}</p> */}
-            {/* <p>{v.duringtime_end}</p> */}
             <span>{v.duringtime_begin.slice(5, 7)}</span>
             <span>/</span>
             <span>{v.duringtime_begin.slice(8, 10)}</span>
@@ -82,8 +97,9 @@ function Lesson_card(props) {
           </div>
         </div>
       </div>
-      // </Fragment>
     );
   });
+
+  return <>{displayTable}</>;
 }
 export default Lesson_card;

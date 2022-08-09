@@ -1,47 +1,28 @@
 import '../style/LessonSelectDance.scss';
 
-import Form from 'react-bootstrap/Form';
-
 function LessonSelectDance(props) {
-  const {
-    lessonRaw,
-    setLessonRaw,
-    lessonDisplay,
-    setLessonDisplay,
-    lessonSelectDance,
-    setLessonSelectDance,
-  } = props;
-  console.log('lessonRaw', lessonRaw);
+  const { danceListOption, danceList, setDanceList } = props;
+  // console.log('lessonRaw', lessonRaw);
   return (
-    <div className="w-40">
-      <Form.Select aria-label="Default select example">
-        <option>DANCE</option>
-        {lessonSelectDance.map((v, i) => {
+    <div className="w-33 ">
+      <select
+        className="h-100 cooler_select"
+        value={danceList}
+        onChange={(e) => {
+          setDanceList(e.target.value);
+        }}
+      >
+        <option className="cooler_select" value="">
+          DANCE
+        </option>
+        {danceListOption.map((v, i) => {
           return (
-            <option
-              key={v.sid}
-              value={v.type}
-              onChange={(e) => {
-                setLessonSelectDance(e.target.value);
-                
-                if (setLessonDisplay) {
-                  const newLessonDisplay = lessonRaw.filter((v, i) =>
-                    v.type.includes(setLessonSelectDance)
-                  );
-
-                  // setlessonSelectDance(newLessonDisplay);
-                } else {
-                  // reset
-                  // setlessonSelectDance(lessonRaw);
-                }
-              }}
-            >
-              {v.type}
+            <option className="cooler_select" key={i} value={v}>
+              {v}
             </option>
           );
         })}
-        ;
-      </Form.Select>
+      </select>
     </div>
   );
 }
