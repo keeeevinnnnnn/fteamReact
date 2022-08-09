@@ -5,9 +5,11 @@ import axios from 'axios';
 
 const Lesson_zhongxiao = () => {
   // 第一次記錄伺服器的原始資料用
-  // const [lessonRaw, setLessonRaw] = useState([]);
+  const [lessonRaw, setLessonRaw] = useState([]);
   // 呈現資料用
-  const [lessonDisplay, setlessonDisplay] = useState([]);
+  const [lessonDisplay, setLessonDisplay] = useState([]);
+  const [lessonSelectDance, setLessonSelectDance] = useState([]);
+
   // useEffect(() => {
   //   axios
   //     .get(
@@ -24,23 +26,31 @@ const Lesson_zhongxiao = () => {
       `http://localhost:3000/lesson?location=忠孝館`
     );
     // 設定到state
-    // setLessonRaw(response.data);
+    setLessonRaw(response.data);
 
-    setlessonDisplay(response.data);
+    setLessonDisplay(response.data);
+  };
+
+  const getLessonSelectDanceData = async () => {
+    const response = await axios.get(
+      `http://localhost:3000/lesson/dance_category`
+    );
+    setLessonSelectDance(response.data);
   };
 
   useEffect(() => {
     // 開啟載入指示動態
     getLessonData();
+    getLessonSelectDanceData();
   }, []);
 
   return (
     <>
-      <div className="w-100 vh-100 d-flex justify-content-end align-items-end">
+      <div className=" w-100 vh-100 d-flex justify-content-end align-items-end">
         <div className="work-area col-12 col-md-10 p-0">
           <div className="w-100 h-100 d-flex flex-wrap cooler_lesson_position">
             <div className=" mb-5 col-md-4 flex-wrap col-12  d-flex  justify-content-center cooler_card_wrap align-items-center">
-              <div className="lesson-card-wrap w-100 h-100">
+              <div className="cooler_lesson_background lesson-card-wrap w-100 h-100">
                 <div className="lesson_card shadow border w-100 h-100 d-flex flex-column justify-content-around ">
                   <div className="w-100 h-30 cooler_card_zhongxiao_img"></div>
                   <div className="w-100 h-70 d-flex flex-column ">
@@ -50,7 +60,7 @@ const Lesson_zhongxiao = () => {
                       </h4>
                       <h5 className="fw-bold text-center">【忠孝館】</h5>
                     </div>
-                    <div className="coolertest w-100 h-80 p-3 ">
+                    <div className=" w-100 h-75 p-3 ">
                       <div className="h-15 ">
                         <div className="coolermap d-inline-block">
                           <a href="#/">
@@ -101,7 +111,14 @@ const Lesson_zhongxiao = () => {
               </div>
             </div>
             <div className="  col-md-8 col-12 h-100">
-              <LessonTabPanel lessonDisplay={lessonDisplay} />
+              <LessonTabPanel
+                lessonRaw={lessonRaw}
+                setLessonRaw={setLessonRaw}
+                lessonDisplay={lessonDisplay}
+                setLessonDisplay={setLessonDisplay}
+                lessonSelectDance={lessonSelectDance}
+                setlessonSelectDance={setLessonSelectDance}
+              />
             </div>
           </div>
         </div>

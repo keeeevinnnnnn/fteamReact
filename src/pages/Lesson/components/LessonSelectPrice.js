@@ -4,7 +4,7 @@ import Form from 'react-bootstrap/Form';
 
 function LessonSelectPrice() {
   return (
-    <div className="w-35 ">
+    <div className="w-40 ">
       <Form.Select aria-label="Default select example">
         <option>PRICE</option>
         <option value="1">One</option>

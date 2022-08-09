@@ -47,7 +47,14 @@ function a11yProps(index) {
 }
 
 export default function LessonTabPanel(props) {
-  const { lessonDisplay } = props;
+  const {
+    lessonRaw,
+    setLessonRaw,
+    lessonDisplay,
+    setLessonDisplay,
+    lessonSelectDance,
+    setLessonSelectDance,
+  } = props;
 
   // console.log('LessonTabPanel:', { lessonDisplay });
 
@@ -80,9 +87,16 @@ export default function LessonTabPanel(props) {
         </Tabs>
       </Box>
       <TabPanel value={value} index={0}>
-        <div className="w-80 h-20 d-flex cooler_lessonselect">
+        <div className="w-100 h-20 d-flex cooler_lessonselect">
           <LessonSelectTime />
-          <LessonSelectDance />
+          <LessonSelectDance
+            lessonRaw={lessonRaw}
+            setLessonRaw={setLessonRaw}
+            lessonDisplay={lessonDisplay}
+            setLessonDisplay={setLessonDisplay}
+            lessonSelectDance={lessonSelectDance}
+            setlessonSelectDance={setLessonSelectDance}
+          />
           <LessonSelectPrice />
         </div>
         <div className="w-100 h-80">

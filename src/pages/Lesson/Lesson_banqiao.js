@@ -5,19 +5,28 @@ import axios from 'axios';
 
 const Lesson_banqiao = () => {
   const [lessonDisplay, setlessonDisplay] = useState([]);
+  const [lessonSelectDance, setlessonSelectDance] = useState([]);
   const getLessonData = async () => {
     const response = await axios.get(
       `http://localhost:3000/lesson?location=板橋民生旗艦館`
     );
     // 設定到state
     // setLessonRaw(response.data);
-    
+
     setlessonDisplay(response.data);
+  };
+
+  const getLessonSelectDanceData = async () => {
+    const response = await axios.get(
+      `http://localhost:3000/lesson/dance_category`
+    );
+    setlessonSelectDance(response.data);
   };
 
   useEffect(() => {
     // 開啟載入指示動態
     getLessonData();
+    getLessonSelectDanceData();
   }, []);
 
   return (
@@ -26,7 +35,7 @@ const Lesson_banqiao = () => {
         <div className="work-area col-12 col-md-10 p-0">
           <div className="w-100 h-100 d-flex flex-wrap cooler_lesson_position">
             <div className=" mb-5 col-md-4 flex-wrap col-12  d-flex  justify-content-center cooler_card_wrap align-items-center">
-              <div className="lesson-card-wrap w-100 h-100">
+              <div className="cooler_lesson_background lesson-card-wrap w-100 h-100">
                 <div className="lesson_card shadow border w-100 h-100 d-flex flex-column justify-content-around ">
                   <div className="w-100 h-30 cooler_card_banqiao_img"></div>
                   <div className="w-100 h-70 d-flex flex-column ">
@@ -38,7 +47,7 @@ const Lesson_banqiao = () => {
                         【板橋民生旗艦館】
                       </h5>
                     </div>
-                    <div className="coolertest w-100 h-80 p-3 ">
+                    <div className=" w-100 h-75 p-3 ">
                       <div className="h-15 ">
                         <div className="coolermap d-inline-block">
                           <a href="#/">
@@ -89,7 +98,10 @@ const Lesson_banqiao = () => {
               </div>
             </div>
             <div className="  col-md-8 col-12 h-100">
-              <LessonTabPanel lessonDisplay={lessonDisplay} />
+              <LessonTabPanel
+                lessonDisplay={lessonDisplay}
+                lessonSelectDance={lessonSelectDance}
+              />
             </div>
           </div>
         </div>

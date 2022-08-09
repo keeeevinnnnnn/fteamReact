@@ -1,9 +1,9 @@
 // import { render } from '@testing-library/react';
-// import React, { Fragment } from 'react';
+import React, { Fragment } from 'react';
 import '../style/Lesson_card.scss';
 
 function Lesson_card(props) {
-  const { lessonDisplay } = props;
+  const {  lessonDisplay } = props;
   // console.log('Lesson_card:', lessonDisplay);
   return lessonDisplay.map((v, i) => {
     return (
