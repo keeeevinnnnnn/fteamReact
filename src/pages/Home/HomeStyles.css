@@ -36,6 +36,25 @@
   margin-left: auto;
   margin-right: auto;
 }
+
+.swiper-button-prev, .swiper-button-next {
+  transition: .3s ease;
+}
+.swiper-button-prev:hover, .swiper-button-next:hover{
+  transform: scale(1.5);
+}
+.swiper-button-prev::after{
+  content: '⇦'!important;
+  font-size:1.8rem!important;
+  color: black!important;
+  font-family: none!important;
+}
+.swiper-button-next::after{
+  content: '⇨'!important;
+  font-size:1.8rem!important;
+  color: black!important;
+  font-family: none!important;
+}
 .HomeBg2 {
   background:url(../../Images/Home/HomeBg/HomeBg2.png);
   filter: brightness(1);
