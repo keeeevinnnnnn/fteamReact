@@ -95,7 +95,7 @@ const PasswordEdit = ({ setmoveTrain }) => {
     <>
       <div className="h-100 d-flex justify-content-center align-items-center">
         {/* 修改密碼 */}
-        <div className="w-80 passwordEdit pt-5">
+        <div className="w-80 passwordEdit pt-3">
           <form
             className="text-center"
             // 表單點擊
@@ -105,36 +105,40 @@ const PasswordEdit = ({ setmoveTrain }) => {
             // 表單有更動時
             onChange={handleFormChange}
           >
-            <h4>USER Password</h4>
-            <input
-              type="password"
-              name="password"
-              autoComplete="off"
-              required
-              value={fields.password}
-              onChange={handleFieldsChange}
-            />
-            <p>{fieldErrors.password}</p>
-            <h4>New Password</h4>
-            <input
-              type="password"
-              name="newPassword"
-              autoComplete="off"
-              required
-              value={fields.newPassword}
-              onChange={handleFieldsChange}
-            />
-            <p>{fieldErrors.newPassword}</p>
-            <h4>Check Password</h4>
-            <input
-              type="password"
-              name="confirmPassword"
-              autoComplete="off"
-              required
-              value={fields.confirmPassword}
-              onChange={handleFieldsChange}
-            />
-            <p>{fieldErrors.confirmPassword}</p>
+            <div className="h-80 d-flex justify-content-center align-items-center">
+              <div>
+                <h4>USER Password</h4>
+                <input
+                  type="password"
+                  name="password"
+                  autoComplete="off"
+                  required
+                  value={fields.password}
+                  onChange={handleFieldsChange}
+                />
+                <p>{fieldErrors.password}</p>
+                <h4>New Password</h4>
+                <input
+                  type="password"
+                  name="newPassword"
+                  autoComplete="off"
+                  required
+                  value={fields.newPassword}
+                  onChange={handleFieldsChange}
+                />
+                <p>{fieldErrors.newPassword}</p>
+                <h4>Check Password</h4>
+                <input
+                  type="password"
+                  name="confirmPassword"
+                  autoComplete="off"
+                  required
+                  value={fields.confirmPassword}
+                  onChange={handleFieldsChange}
+                />
+                <p>{fieldErrors.confirmPassword}</p>
+              </div>
+            </div>
             <div className="d-flex justify-content-around">
               <button
                 onClick={(e) => {

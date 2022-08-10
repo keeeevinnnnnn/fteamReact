@@ -257,7 +257,7 @@ const Register = ({
               onClick={clickErrorText}
             />
             <p>{fieldErrors.email}</p>
-            <div className="h-20 w-100 d-flex justify-content-around">
+            <div className="h-24 w-100 d-flex justify-content-around">
               <button
                 className="buttonChangePage"
                 onClick={(e) => {
