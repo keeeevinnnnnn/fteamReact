@@ -39,7 +39,7 @@ const RecordCard = ({ products, customized }) => {
     }
   }, []);
   // console.log(recordProducts);
-  console.log(recordCustomized);
+  // console.log(recordCustomized);
   return (
     <>
       {/* 商品 */}
@@ -104,10 +104,20 @@ const RecordCard = ({ products, customized }) => {
                     objectFit: 'cover',
                     aspectRatio: '1/1',
                   }}
+                  onClick={() => {
+                    navigate(`/customized/create/detail/${v.sid}`);
+                  }}
                 />
               </div>
               <div className="col-9">
-                <p className="h-50 p-3 recordName">{v.custom_product_name}</p>
+                <p
+                  className="h-50 p-3 recordName"
+                  onClick={() => {
+                    navigate(`/customized/create/detail/${v.sid}`);
+                  }}
+                >
+                  {v.custom_product_name}
+                </p>
                 <div className="h-50 d-flex justify-content-between p-3">
                   <h5 className="text-gray">{v.order_date}</h5>
                   <h5 className="text-gray">Customized</h5>
