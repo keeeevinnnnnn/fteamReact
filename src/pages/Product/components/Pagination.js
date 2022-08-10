@@ -16,7 +16,6 @@ export default function Pagination(props) {
           .fill(1)
           .map((v, i) => {
             const isActive = page === page + i - 5 ? 'active' : '';
-
             return page + i - 5 >= 1 && page + i - 5 <= totalPages ? (
               <li
                 className={`page-item ${isActive}`}

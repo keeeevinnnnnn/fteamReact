@@ -7,8 +7,14 @@ import ProductList from './components/ProductList';
 import Pagination from './components/Pagination';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 const ProductMain = (props) => {
-  const { data, setData, favoritesNum, setFavoritesNum, countFavorites } =
-    props;
+  const {
+    data,
+    setData,
+    favoritesNum,
+    setFavoritesNum,
+    cartTotalDep,
+    setCartTotalDep,
+  } = props;
 
   // 原始資料
   //  {
@@ -46,7 +52,7 @@ const ProductMain = (props) => {
     setFilter({ ...filter, searchName: text });
   };
 
-  console.log('filter==', filter);
+  // console.log('filter==', filter);
 
   useEffect(() => {
     axios
@@ -69,7 +75,7 @@ const ProductMain = (props) => {
       });
   }, [filter]);
 
-  console.log('dada==', data);
+  // console.log('dada==', data);
 
   return (
     <div className="bg w-100 vh-100 d-flex justify-content-end align-items-end">
@@ -177,6 +183,8 @@ const ProductMain = (props) => {
                         setFavoritesNum={setFavoritesNum}
                         whoFavorites={whoFavorites}
                         setWhoFavorites={setWhoFavorites}
+                        cartTotalDep={cartTotalDep}
+                        setCartTotalDep={setCartTotalDep}
                       />
                     </CSSTransition>
                   );
@@ -187,7 +195,7 @@ const ProductMain = (props) => {
 
         <div className="row paginationBox p-0 m-0">
           <div className="col-4">
-            {data && data.totalPages ? (
+            {data.rows && data.rows !== [] ? (
               <Pagination
                 page={data.page}
                 totalPages={data.totalPages}
