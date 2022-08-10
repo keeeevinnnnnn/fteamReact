@@ -12,7 +12,7 @@ const Member = () => {
   }, []);
   return (
     <>
-      {spinner}
+      {/* {spinner} */}
       <div className="member-bg w-100 vh-100 d-flex justify-content-end align-items-end">
         <div className="work-area col-12 col-md-10 p-0 d-flex flex-wrap">
           <div className="col-12 col-xl-4 h-100">
