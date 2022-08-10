@@ -171,7 +171,7 @@ const LoginMember = ({
             </button>
           </div>
         </form>
-        <div className="w-100 d-flex justify-content-center googleFBsvgBox">
+        <div className="w-100 d-flex justify-content-center googleFBsvgBox d-none">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 488 512"

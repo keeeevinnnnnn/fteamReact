@@ -125,7 +125,7 @@ const PasswordEdit = ({ setmoveTrain }) => {
               onChange={handleFieldsChange}
             />
             <p>{fieldErrors.newPassword}</p>
-            <h4>Confirm Password</h4>
+            <h4>Check Password</h4>
             <input
               type="password"
               name="confirmPassword"
