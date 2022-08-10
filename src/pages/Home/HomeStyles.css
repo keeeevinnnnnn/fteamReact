@@ -1,5 +1,3 @@
-
-
 .swiper {
   width: 100%;
   height: 100%;
@@ -37,57 +35,73 @@
   margin-right: auto;
 }
 
-.swiper-button-prev, .swiper-button-next {
+.swiper-button-prev {
+  width: 75px !important;
+  height: 75px !important;
+  background: url(../../Images/Public-SVG/arrow-left.svg);
+  background-size: cover;
   transition: .3s ease;
 }
-.swiper-button-prev:hover, .swiper-button-next:hover{
-  transform: scale(1.5);
+
+.swiper-button-next {
+  width: 75px !important;
+  height: 75px !important;
+  background: url(../../Images/Public-SVG/arrow-right.svg);
+  background-size: cover;
+  transition: .3s ease;
 }
-.swiper-button-prev::after{
-  content: '⇦'!important;
-  font-size:1.8rem!important;
-  color: black!important;
-  font-family: none!important;
+
+.swiper-button-prev:hover,
+.swiper-button-next:hover {
+  transform: scale(1.2);
 }
-.swiper-button-next::after{
-  content: '⇨'!important;
-  font-size:1.8rem!important;
-  color: black!important;
-  font-family: none!important;
+
+.swiper-button-prev::after {
+  content: '' !important;
 }
+
+.swiper-button-next::after {
+  content: '' !important;
+}
+
 .HomeBg2 {
-  background:url(../../Images/Home/HomeBg/HomeBg2.png);
+  background: url(../../Images/Home/HomeBg/HomeBg2.png);
   filter: brightness(1);
   background-size: cover;
   /* opacity: .8; */
-  }
-  .HomeBg3 {
-    background:url(../../Images/Home/HomeBg/HomeBg3.png);
-    filter: brightness(1);
-    background-size: cover;
-    /* opacity: .8; */
-    }
-    .HomeBg4 {
-      background:url(../../Images/Home/HomeBg/HomeBg4.png);
-      filter: brightness(1);
-      background-size: cover;
-      /* opacity: .8; */
-      }
-      .HomeBg5 {
-        background:url(../../Images/Home/HomeBg/HomeBg5.png);
-        filter: brightness(1);
-        background-size: cover;
-        /* opacity: .8; */
-        }
-        .HomeBg6 {
-          background:url(../../Images/Home/HomeBg/HomeBg6.png);
-          filter: brightness(1);
-          background-size: cover;
-          /* opacity: .8; */
-          }
-          .HomeBg7 {
-            background:url(../../Images/Home/HomeBg/HomeBg7.png);
-            filter: brightness(1);
-            background-size: cover;
-            /* opacity: .8; */
-            }
+}
+
+.HomeBg3 {
+  background: url(../../Images/Home/HomeBg/HomeBg3.png);
+  filter: brightness(1);
+  background-size: cover;
+  /* opacity: .8; */
+}
+
+.HomeBg4 {
+  background: url(../../Images/Home/HomeBg/HomeBg4.png);
+  filter: brightness(1);
+  background-size: cover;
+  /* opacity: .8; */
+}
+
+.HomeBg5 {
+  background: url(../../Images/Home/HomeBg/HomeBg5.png);
+  filter: brightness(1);
+  background-size: cover;
+  /* opacity: .8; */
+}
+
+.HomeBg6 {
+  background: url(../../Images/Home/HomeBg/HomeBg6.png);
+  filter: brightness(1);
+  background-size: cover;
+  /* opacity: .8; */
+}
+
+.HomeBg7 {
+  background: url(../../Images/Home/HomeBg/HomeBg7.png);
+  filter: brightness(1);
+  background-size: cover;
+  /* opacity: .8; */
+}
