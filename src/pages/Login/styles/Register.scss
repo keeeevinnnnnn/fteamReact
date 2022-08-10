@@ -2,11 +2,12 @@
     background: linear-gradient(to right, #2D2D2D 0%, #2D2D2D 50%, #555555 100%);
 
     .LoginLogoRWDbox {
-        height: 20%;
+        height: 15%;
     }
 
     form {
-        height: 80%;
+        height: 85%;
+        padding-top: 3%;
     }
 
     img {
@@ -29,7 +30,7 @@
         border: none;
         border-bottom: 1px solid gray;
         padding-bottom: 5px;
-        margin-bottom: 15px;
+        // margin-bottom: 15px;
     }
 
     input:focus {
@@ -41,7 +42,7 @@
     }
 
     .buttonChangePage {
-        height: 30%;
+        height: 35%;
         padding: .5em 2em .5em 2em;
         background-color: var(--main);
         box-shadow: 3px 3px 0 0 #61dafb82;

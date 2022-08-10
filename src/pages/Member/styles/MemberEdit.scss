@@ -23,12 +23,14 @@
     p {
         margin-bottom: 0;
         color: red;
+        font-size: 12px;
     }
 
     button {
-        margin-top: 2%;
+        margin-top: 15%;
         margin-bottom: 5%;
-        padding: .5em;
+        margin-left: 5%;
+        padding: .6em;
         background-color: var(--main);
         box-shadow: 3px 3px 0 0 #61dafb82;
         border: none;
@@ -51,14 +53,15 @@
 // 電腦版
 @media screen and (min-width: 1200px) {
     .memberEdit {
-        height: 75%;
+        height: 90%;
         background: rgba(0, 0, 0, 0.770);
         color: white;
         border: 1px solid #2ce6ff;
         border-radius: 0 30px 0 0;
         box-shadow: 5px 5px 15px 5px #000000;
         h5 {
-            margin-top: 1%;
+            margin-top: 3%;
+            font-size: 18px;
         }
 
         input,textarea {
@@ -80,8 +83,9 @@
 
         button {
             margin-top: 5%;
+            margin-left: 1%;
             margin-bottom: 5%;
-            padding: .5em 2em .5em 2em;
+            padding: .4em 1em .4em 1em;
             background-color: var(--main);
             box-shadow: 3px 3px 0 0 #61dafb82;
             border: none;
