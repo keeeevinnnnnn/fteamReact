@@ -170,11 +170,11 @@ const FavoriteCard = () => {
           return (
             <div className="w-95 m-3 favoriteCard" key={uuidv4()}>
               <div className="d-flex h-100 w-100">
-                <div className="col-xl-3">
+                <div className="col-3 d-flex justify-content-center align-items-center">
                   <img
                     src={`/imgs/Products/${v.favoriteImg}`}
                     alt=""
-                    className="h-100"
+                    className="h-85"
                     style={{
                       objectFit: 'cover',
                       aspectRatio: '1/1',
@@ -184,7 +184,7 @@ const FavoriteCard = () => {
                     }}
                   />
                 </div>
-                <div className="col-xl-9">
+                <div className="col-9">
                   <p
                     className="h-50 p-3 m-0"
                     onClick={() => {
@@ -194,7 +194,7 @@ const FavoriteCard = () => {
                     {v.favoriteName}
                   </p>
                   <div className="h-50 d-flex justify-content-between align-items-center">
-                    <h5 className="text-gray p-3">$ {v.favoritePrice}</h5>
+                    <h5 className="p-3">$ {v.favoritePrice}</h5>
                     <div className="d-flex h-100 svgBox">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -214,7 +214,7 @@ const FavoriteCard = () => {
                         className="cartSvg"
                         fill="none"
                         viewBox="0 0 24 24"
-                        stroke="rgb(207, 207, 207)"
+                        stroke="black"
                         strokeWidth={2}
                         onClick={() => {
                           goToCarts(v);

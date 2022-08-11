@@ -1,14 +1,16 @@
 .favoriteCard {
     cursor: pointer;
     height: 20%;
-    background: rgba(0, 0, 0, 0.770);
-    color: white;
-    border: 1px solid var(--main);
+    // background: rgba(0, 0, 0, 0.770);
+    // color: white;
+    // border: 3px solid var(--main);
+    // border: 1px solid black;
     transition: .3s;
-    box-shadow: 5px 5px 15px 5px #000000;
-    img {
-        border-right: 1px solid black;
-    }
+    box-shadow: 0px 0px 10px 0px #000000 inset;
+    border-radius: 5px;
+    // img {
+    //     border-right: 1px solid black;
+    // }
     p {
         font-size: 1rem;
     }
@@ -41,7 +43,8 @@
 
 .favoriteCard:hover {
     transform: translateY(-4px);
-    box-shadow: 2px 2px 12px 2px white;
+    // box-shadow: 2px 2px 12px 2px white;
+    box-shadow: 5px 5px 15px 5px #000000;
     p {
         // font-size: 1rem;
         font-weight: 600;
