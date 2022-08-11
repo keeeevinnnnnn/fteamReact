@@ -1,6 +1,6 @@
 .recordCard {
     cursor: pointer;
-    height: 17.5%;
+    height: 20%;
     background: rgba(0, 0, 0, 0.871);
     color: white;
     border: 1px solid var(--main);
@@ -20,7 +20,11 @@
         border-radius: 50%;
         aspect-ratio: 1/1;
     }
+    p {
+        font-size: .8rem;
+    }
     h5 {
+        font-size: 1rem;
         font-weight: 600;
     }
 }
@@ -29,15 +33,16 @@
     transform: translateY(-4px);
     box-shadow: 2px 2px 12px 2px white;
     p {
-        font-size: 1.2rem;
+        font-size: 1rem;
         font-weight: 600;
-        transform: skew(-10deg, 0deg);
+        transform: skew(-6deg, 0deg);
     }
 }
 
 // 手機版
 @media screen and (max-width: 1200px) {
     .recordCard {
+        height: 17.5%;
         P {
             font-size: 0.8rem;
             margin-bottom: 5px;
