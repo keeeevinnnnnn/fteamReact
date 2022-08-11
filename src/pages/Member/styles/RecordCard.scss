@@ -15,11 +15,7 @@
         text-align: justify; // 文字左右切齊設定
         text-justify: inter-ideograph;
         word-wrap: break-word;
-    }
-    .recordProductsColor {
-        height: 80%;
-        border-radius: 50%;
-        aspect-ratio: 1/1;
+        margin: 0;
     }
     p {
         font-size: .8rem;
@@ -54,12 +50,13 @@
             height: 100%;
             margin: 0;
             font-size: 1rem;
-        }
-        h6 {
-            padding-left: 3%;
-        }
-        h5 {
             padding-right: 3%;
         }
+        // h6 {
+        //     padding-left: 3%;
+        // }
+        // h5 {
+        //     padding-right: 3%;
+        // }
     }
 }

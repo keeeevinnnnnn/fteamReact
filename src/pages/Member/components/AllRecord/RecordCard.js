@@ -70,7 +70,7 @@ const RecordCard = ({ products, customized }) => {
                 >
                   {v.name}
                 </p>
-                <div className="h-50 d-flex justify-content-around">
+                <div className="h-50 d-flex justify-content-around align-items-center">
                   <h5>{v.order_date}</h5>
                   <h5
                     // className="recordProductsColor"
@@ -118,7 +118,7 @@ const RecordCard = ({ products, customized }) => {
                 >
                   {v.custom_product_name}
                 </p>
-                <div className="h-50 d-flex justify-content-around">
+                <div className="h-50 d-flex justify-content-around align-items-center">
                   <h5>{v.order_date}</h5>
                   <h5>Customized</h5>
                   <h5>$ {v.price}</h5>
