@@ -3,6 +3,7 @@ import { Link,useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './Cus_product_card_wheel.scss';
 import { gsap } from "gsap";
+import {alert} from '../Carts/Nathan_components/AlertComponent'
 
 const whselect = [
   {
