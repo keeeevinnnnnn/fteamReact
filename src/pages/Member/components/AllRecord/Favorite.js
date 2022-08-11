@@ -22,7 +22,7 @@ const Favorite = () => {
               Top
             </button>
           </div>
-          <div className="favoriteWarp h-92">
+          <div className="favoriteWarp h-95">
             <ScrollBox>
               <FavoriteCard />
             </ScrollBox>
