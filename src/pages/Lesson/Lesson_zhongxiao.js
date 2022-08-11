@@ -5,7 +5,8 @@ import axios from 'axios';
 import AuthContext from '../../components/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import { alert } from '../Carts/Nathan_components/AlertComponent';
-const Lesson_zhongxiao = () => {
+const Lesson_zhongxiao = (props) => {
+  const {setCartTotalDep} = props;
   const { auth, token } = useContext(AuthContext);
   const navigate = useNavigate();
   const [loginID, setLoginID] = useState(0);
@@ -21,7 +22,22 @@ const Lesson_zhongxiao = () => {
   // 舞種選項
   const danceListOption = ['Hip Hop', 'Popping', 'Locking', 'Choreography'];
   // 時間選項
-  // const timeListOption = ['Hip Hop', 'Popping', 'Locking', 'Choreography'];
+  // const timeListOption = [
+  //   'Jan',
+  //   'Feb',
+  //   'Mar',
+  //   'Apr',
+  //   'May',
+  //   'Jun',
+  //   'Jul',
+  //   'Aug',
+  //   'Sep',
+  //   'Oct',
+  //   'Nov',
+  //   'Dec',
+  // ];
+  const timeListOption = ['2022-08-25', '09', '10', '11'];
+
   useEffect(() => {
     if (!auth) {
       let i = alert('請登入會員');
@@ -136,6 +152,12 @@ const Lesson_zhongxiao = () => {
                 danceListOption={danceListOption}
                 danceList={danceList}
                 setDanceList={setDanceList}
+                //
+                timeListOption={timeListOption}
+                timeList={timeList}
+                setTimeList={setTimeList}
+                loginID={loginID}
+                setCartTotalDep={setCartTotalDep}
               />
             </div>
           </div>
