@@ -1,6 +1,6 @@
 .favoriteCard {
     cursor: pointer;
-    height: 17.5%;
+    height: 20%;
     background: rgba(0, 0, 0, 0.770);
     color: white;
     border: 1px solid var(--main);
@@ -8,6 +8,12 @@
     box-shadow: 5px 5px 15px 5px #000000;
     img {
         border-right: 1px solid black;
+    }
+    p {
+        font-size: .8rem;
+    }
+    h5 {
+        font-size: 1rem;
     }
     .svgBox {
         width: 25%;
@@ -37,7 +43,7 @@
     transform: translateY(-4px);
     box-shadow: 2px 2px 12px 2px white;
     p {
-        font-size: 1.2rem;
+        font-size: 1rem;
         font-weight: 600;
         transform: skew(-10deg, 0deg);
     }
@@ -46,6 +52,7 @@
 // 手機版
 @media screen and (max-width: 1200px) {
     .favoriteCard {
+        height: 17.5%;
         cursor: pointer;
         background: rgba(0, 0, 0, 0.770);
         color: white;
