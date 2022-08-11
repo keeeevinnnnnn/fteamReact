@@ -3,14 +3,7 @@ import React, { Fragment, useEffect } from 'react';
 import '../style/Lesson_card.scss';
 
 function Lesson_card(props) {
-  const {
-    lessonDisplay,
-    setLessonDisplay,
-    lessonRaw,
-    setLessonRaw,
-    danceList,
-    setDanceList,
-  } = props;
+  const { lessonDisplay, setLessonDisplay, lessonRaw, danceList } = props;
 
   useEffect(() => {
     refresh();
@@ -22,7 +15,7 @@ function Lesson_card(props) {
     });
     setLessonDisplay(newLessonDisplay);
   };
-  // console.log('Lesson_card:', lessonDisplay);
+
   const displayTable = lessonDisplay.map((v, i) => {
     return (
       <div

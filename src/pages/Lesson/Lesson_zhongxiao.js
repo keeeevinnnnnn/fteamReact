@@ -1,26 +1,48 @@
 import './style/Lesson_zhongxiao.scss';
 import LessonTabPanel from './components/LessonTabPanel';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
-
+import AuthContext from '../../components/AuthContext';
+import { useNavigate } from 'react-router-dom';
+import { alert } from '../Carts/Nathan_components/AlertComponent';
 const Lesson_zhongxiao = () => {
+  const { auth, token } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const [loginID, setLoginID] = useState(0);
   // 第一次記錄伺服器的原始資料用
   const [lessonRaw, setLessonRaw] = useState([]);
   // 呈現資料用
   const [lessonDisplay, setLessonDisplay] = useState([]);
-  const [lessonSelectDance, setLessonSelectDance] = useState([]);
+  // 舞種選單
   const [danceList, setDanceList] = useState('');
+  // 時間選單
+  const [timeList, setTimeList] = useState('');
+
+  // 舞種選項
   const danceListOption = ['Hip Hop', 'Popping', 'Locking', 'Choreography'];
-  // useEffect(() => {
-  //   axios
-  //     .get(
-  //       `http://localhost:3000/lesson?location=忠孝館
-  //   `
-  //     )
-  //     .then((res) => {
-  //
-  //     });
-  // }, []);
+  // 時間選項
+  // const timeListOption = ['Hip Hop', 'Popping', 'Locking', 'Choreography'];
+  useEffect(() => {
+    if (!auth) {
+      let i = alert('請登入會員');
+      i.then((res) => {
+        if (res === true) {
+          navigate('/login');
+        }
+      });
+    } else {
+      axios
+        .get('http://localhost:3000/member/memberself', {
+          // 發JWT一定要加這個headers
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
+        .then((res) => {
+          setLoginID(res.data.sid);
+        });
+    }
+  }, []);
 
   const getLessonData = async () => {
     const response = await axios.get(
@@ -31,20 +53,12 @@ const Lesson_zhongxiao = () => {
 
     setLessonDisplay(response.data);
   };
-
-  const getLessonSelectDanceData = async () => {
-    const response = await axios.get(
-      `http://localhost:3000/lesson/dance_category`
-    );
-    setLessonSelectDance(response.data);
-  };
-
   useEffect(() => {
     // 開啟載入指示動態
     getLessonData();
-    getLessonSelectDanceData();
   }, []);
 
+  console.log('lessonRaw:', lessonRaw);
   return (
     <>
       <div className=" w-100 vh-100 d-flex justify-content-end align-items-end">
@@ -118,8 +132,6 @@ const Lesson_zhongxiao = () => {
                 setLessonRaw={setLessonRaw}
                 lessonDisplay={lessonDisplay}
                 setLessonDisplay={setLessonDisplay}
-                lessonSelectDance={lessonSelectDance}
-                setlessonSelectDance={setLessonSelectDance}
                 //
                 danceListOption={danceListOption}
                 danceList={danceList}

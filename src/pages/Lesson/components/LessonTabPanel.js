@@ -52,8 +52,7 @@ export default function LessonTabPanel(props) {
     setLessonRaw,
     lessonDisplay,
     setLessonDisplay,
-    lessonSelectDance,
-    setLessonSelectDance,
+
     //
     danceListOption,
     danceList,

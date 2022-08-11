@@ -1,16 +1,27 @@
 import '../style/LessonSelectTime.scss';
 
-import Form from 'react-bootstrap/Form';
-
 function LessonSelectTime() {
   return (
-    <div className="w-40 ">
-      <Form.Select aria-label="Default select example ">
-        <option>TIME</option>
-        <option value="1">One</option>
-        <option value="2">Two</option>
-        <option value="3">Three</option>
-      </Form.Select>
+    <div className="w-33 ">
+      {/* <select
+        className="h-100 cooler_select"
+        value={danceList}
+        // 換選項的動作
+        onChange={(e) => {
+          setDanceList(e.target.value);
+        }}
+      >
+        <option className="cooler_select" value="">
+          DANCE
+        </option>
+        {danceListOption.map((v, i) => {
+          return (
+            <option className="cooler_select" key={i} value={v}>
+              {v}
+            </option>
+          );
+        })}
+      </select> */}
     </div>
   );
 }
