@@ -8,6 +8,8 @@
     position: relative;
     .chatScroll {
         overflow: auto;
+        padding-left: 8px;
+        padding-right: 8px;
     }
     .chatScroll::-webkit-scrollbar {
         width: 5px;
