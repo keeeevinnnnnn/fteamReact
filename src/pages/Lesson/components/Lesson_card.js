@@ -1,28 +1,41 @@
 // import { render } from '@testing-library/react';
+import axios from 'axios';
 import React, { Fragment, useEffect } from 'react';
 import '../style/Lesson_card.scss';
-
+import { alert } from '../../Carts/Nathan_components/AlertComponent';
 function Lesson_card(props) {
   const {
     lessonDisplay,
     setLessonDisplay,
     lessonRaw,
-    setLessonRaw,
     danceList,
-    setDanceList,
+    timeList,
+    loginID,
+    setCartTotalDep
   } = props;
 
   useEffect(() => {
-    refresh();
+    danceRefresh();
   }, [danceList]);
 
-  const refresh = () => {
+  useEffect(() => {
+    timeRefresh();
+  }, [timeList]);
+
+  const danceRefresh = () => {
     const newLessonDisplay = lessonRaw.filter((v, i) => {
       return v.type.includes(danceList);
     });
     setLessonDisplay(newLessonDisplay);
   };
-  // console.log('Lesson_card:', lessonDisplay);
+  console.log('lessonRaw:', lessonRaw);
+  const timeRefresh = () => {
+    const newLessonDisplay = lessonRaw.filter((v, i) => {
+      return v.duringtime_begin.includes(timeList);
+    });
+    setLessonDisplay(newLessonDisplay);
+  };
+
   const displayTable = lessonDisplay.map((v, i) => {
     return (
       <div
@@ -51,6 +64,7 @@ function Lesson_card(props) {
             {v.teacher_name}
           </p>
           <div className=" cooler_gray">
+            <span>{v.duringtime_begin}</span>
             <span>{v.duringtime_begin.slice(5, 7)}</span>
             <span>/</span>
             <span>{v.duringtime_begin.slice(8, 10)}</span>
@@ -76,7 +90,28 @@ function Lesson_card(props) {
           </div>
           <div className="w-50 h-100 d-flex align-items-center justify-content-center  ">
             <div className="w-50 h-50 ms-4 col-sm-6 col-4  cooler_lesson_card_btn  d-flex align-items-center justify-content-center">
-              <button className=" cooler_lesson_card_book">BOOK</button>
+              <button
+                className=" cooler_lesson_card_book"
+                onClick={() => {
+                  axios
+                    .post('http://localhost:3000/carts', {
+                      sid: v.sid,
+                      quantity: 1,
+                      type: 'lesson',
+                      memID: loginID,
+                    })
+                    .then((res) => {
+                      if (res.data.success === true) {
+                        setCartTotalDep((prev)=>prev+1)
+                        alert('課程新增成功');
+                      } else {
+                        alert('此課程已經在購物車');
+                      }
+                    });
+                }}
+              >
+                BOOK
+              </button>
             </div>
             <div className=" col-sm-6 h-100 d-flex justify-content-end">
               <div className="cooler_lesson_card_collect w-70  ">

@@ -52,12 +52,16 @@ export default function LessonTabPanel(props) {
     setLessonRaw,
     lessonDisplay,
     setLessonDisplay,
-    lessonSelectDance,
-    setLessonSelectDance,
     //
     danceListOption,
     danceList,
     setDanceList,
+    //
+    timeListOption,
+    timeList,
+    setTimeList,
+    loginID,
+    setCartTotalDep,
   } = props;
 
   // console.log('LessonTabPanel:', { lessonDisplay });
@@ -92,7 +96,11 @@ export default function LessonTabPanel(props) {
       </Box>
       <TabPanel value={value} index={0}>
         <div className="w-100 h-100 d-flex cooler_lessonselect">
-          <LessonSelectTime />
+          <LessonSelectTime
+            timeListOption={timeListOption}
+            timeList={timeList}
+            setTimeList={setTimeList}
+          />
           <LessonSelectDance
             danceListOption={danceListOption}
             danceList={danceList}
@@ -109,6 +117,8 @@ export default function LessonTabPanel(props) {
               setLessonDisplay={setLessonDisplay}
               danceList={danceList}
               setDanceList={setDanceList}
+              loginID={loginID}
+              setCartTotalDep={setCartTotalDep}
             />
           </ScrollBox>
         </div>

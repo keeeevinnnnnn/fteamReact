@@ -9,7 +9,7 @@ function Customized_explore() {
 
   useEffect(()=>{
     axios.get('http://localhost:3000/custom/share').then((res)=>{
-      console.log(res)
+     
       setCusShareData(res.data)
        
     })
