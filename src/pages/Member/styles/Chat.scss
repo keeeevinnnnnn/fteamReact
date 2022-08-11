@@ -1,6 +1,6 @@
 .memberChat {
     width: 70%;
-    height: 90%;
+    height: 95%;
     color: white;
     border: 1px solid var(--main);
     background: rgba(0, 0, 0, 0.871);
@@ -36,11 +36,12 @@
         margin-left: 20px;
     }
     h3 {
+        font-size: 1.2rem;
         color: var(--main);
         margin-bottom: 0;
     }
     a {
-        font-size: 16px;
+        font-size: .5rem;
     }
     span {
         color: white;
