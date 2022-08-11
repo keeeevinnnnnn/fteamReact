@@ -79,7 +79,7 @@ const ProductList = (props) => {
   };
 
   // 加入購物車
-  const getCarts = async () => {
+  const getCarts = () => {
     const addCarts = {
       sid: sid,
       type: 'product',
@@ -87,13 +87,17 @@ const ProductList = (props) => {
       memID: memId,
     };
 
-    await axios.post('/carts', addCarts).then((res) => {
+    axios.post('/carts', addCarts).then((res) => {
       if (res.data.success === true) {
-        alert('Add to Carts Success');
+        let i = alert('Add to Carts Success');
+        i.then((res) => {
+          if (res === true) {
+            setCartTotalDep((prev) => prev + 1);
+          }
+        });
       } else {
         alert('Carts already Has This Product');
       }
-      setCartTotalDep((prev) => prev + 1);
     });
   };
 
