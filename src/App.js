@@ -84,15 +84,15 @@ function App() {
                     <Route path="/lesson" element={<Lesson />} />
                     <Route
                       path="/lesson/lesson_zhongxiao"
-                      element={<Lesson_zhongxiao />}
+                      element={<Lesson_zhongxiao setCartTotalDep={setCartTotalDep} />}
                     />
                     <Route
                       path="/lesson/lesson_banqiao"
-                      element={<Lesson_banqiao />}
+                      element={<Lesson_banqiao setCartTotalDep={setCartTotalDep}/>}
                     />
                     <Route
                       path="/lesson/lesson_taichung"
-                      element={<Lesson_taichung />}
+                      element={<Lesson_taichung setCartTotalDep={setCartTotalDep}/>}
                     />
                     <Route
                       path="products"

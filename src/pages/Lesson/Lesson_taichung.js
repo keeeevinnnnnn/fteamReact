@@ -4,29 +4,38 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 
 const Lesson_taichung = () => {
-  const [lessonDisplay, setlessonDisplay] = useState([]);
-  const [lessonSelectDance, setlessonSelectDance] = useState([]);
+  // 第一次記錄伺服器的原始資料用
+  const [lessonRaw, setLessonRaw] = useState([]);
+  // 呈現資料用
+  const [lessonDisplay, setLessonDisplay] = useState([]);
+  // 舞種選單
+  const [danceList, setDanceList] = useState('');
+  // 舞種選項
+  const danceListOption = ['Hip Hop', 'Popping', 'Locking', 'Choreography'];
+  // useEffect(() => {
+  //   axios
+  //     .get(
+  //       `http://localhost:3000/lesson?location=忠孝館
+  //   `
+  //     )
+  //     .then((res) => {
+  //
+  //     });
+  // }, []);
+
   const getLessonData = async () => {
     const response = await axios.get(
       `http://localhost:3000/lesson?location=台中精誠館`
     );
     // 設定到state
-    // setLessonRaw(response.data);
+    setLessonRaw(response.data);
 
-    setlessonDisplay(response.data);
-  };
-
-  const getLessonSelectDanceData = async () => {
-    const response = await axios.get(
-      `http://localhost:3000/lesson/dance_category`
-    );
-    setlessonSelectDance(response.data);
+    setLessonDisplay(response.data);
   };
 
   useEffect(() => {
     // 開啟載入指示動態
     getLessonData();
-    getLessonSelectDanceData();
   }, []);
 
   return (
@@ -95,8 +104,14 @@ const Lesson_taichung = () => {
             </div>
             <div className="  col-md-8 col-12 h-100">
               <LessonTabPanel
+                lessonRaw={lessonRaw}
+                setLessonRaw={setLessonRaw}
                 lessonDisplay={lessonDisplay}
-                lessonSelectDance={lessonSelectDance}
+                setLessonDisplay={setLessonDisplay}
+                //
+                danceListOption={danceListOption}
+                danceList={danceList}
+                setDanceList={setDanceList}
               />
             </div>
           </div>

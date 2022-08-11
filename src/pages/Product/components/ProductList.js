@@ -19,11 +19,10 @@ const ProductList = (props) => {
     whoFavorites,
     setWhoFavorites,
     setCartTotalDep,
-    cartTotalDep,
   } = props;
 
   // auth為登入判斷(true,false) token為會員JWT的token logout是登出涵式
-  const { token, auth } = useContext(AuthContext);
+  const { token } = useContext(AuthContext);
   const navigate = useNavigate();
 
   // 為了購物車
@@ -89,7 +88,8 @@ const ProductList = (props) => {
     };
 
     await axios.post('/carts', addCarts).then((res) => {
-      console.log('res.data===', res.data);
+      // console.log('res.data===', res.data);
+      setCartTotalDep((prev) => prev + 1);
     });
   };
 

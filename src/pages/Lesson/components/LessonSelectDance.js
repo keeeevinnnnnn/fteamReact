@@ -8,6 +8,7 @@ function LessonSelectDance(props) {
       <select
         className="h-100 cooler_select"
         value={danceList}
+        // 換選項的動作
         onChange={(e) => {
           setDanceList(e.target.value);
         }}

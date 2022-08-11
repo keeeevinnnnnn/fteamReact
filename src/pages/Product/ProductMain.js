@@ -4,7 +4,6 @@ import ToolBox from './components/ToolBox';
 import './styles/ProductMain.scss';
 import axios from './commons/axios';
 import ProductList from './components/ProductList';
-import Pagination from './components/Pagination';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 const ProductMain = (props) => {
   const {
@@ -39,6 +38,7 @@ const ProductMain = (props) => {
     priceRange: [],
     searchName: '',
     check: false,
+    perPage: 15,
   });
 
   // 複合篩選的文字顯示
@@ -52,7 +52,15 @@ const ProductMain = (props) => {
     setFilter({ ...filter, searchName: text });
   };
 
-  // console.log('filter==', filter);
+  const getPage = () => {
+    setFilter({
+      ...filter,
+      perPage:
+        data.page >= data.totalPages ? data.perPage + 0 : data.perPage + 15,
+    });
+  };
+
+  console.log('filter==', filter);
 
   useEffect(() => {
     axios
@@ -68,14 +76,34 @@ const ProductMain = (props) => {
           where: filter.where,
           priceRange: filter.priceRange,
           searchName: filter.searchName,
+          perPage: filter.perPage,
         },
       })
       .then((res) => {
         setData(res.data);
       });
+    //  ----------------------------------------------------------
+    window.addEventListener('scroll', function () {
+      let navY = this.scrollY;
+      let bodyHeight = document.body.scrollHeight;
+      let windowHeight = window.innerHeight;
+      let scorllPercent = Math.round(
+        (navY / (bodyHeight - windowHeight)) * 100
+      );
+
+      if (scorllPercent === 100) {
+        getPage();
+      }
+      // console.log('windowHeight==', windowHeight);
+      // console.log('bodyHeight==', bodyHeight);
+      // console.log('scrollY==', navY);
+      console.log('scorllPercent', scorllPercent);
+    });
   }, [filter]);
 
-  // console.log('dada==', data);
+  useEffect(() => {}, []);
+
+  console.log('dada==', data);
 
   return (
     <div className="bg w-100 vh-100 d-flex justify-content-end align-items-end">
@@ -195,14 +223,15 @@ const ProductMain = (props) => {
 
         <div className="row paginationBox p-0 m-0">
           <div className="col-4">
-            {data.rows && data.rows !== [] ? (
-              <Pagination
-                page={data.page}
-                totalPages={data.totalPages}
-                setFilter={setFilter}
-                filter={filter}
-              />
-            ) : null}
+            <button
+              className="button-38"
+              style={{
+                display: 'none',
+              }}
+              onClick={getPage}
+            >
+              Load More
+            </button>
           </div>
         </div>
       </div>

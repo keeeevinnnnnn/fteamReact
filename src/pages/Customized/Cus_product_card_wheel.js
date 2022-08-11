@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect,useRef} from 'react';
 import { Link,useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './Cus_product_card_wheel.scss';
+import { gsap } from "gsap";
 
 const whselect = [
   {
@@ -34,6 +35,15 @@ function Cus_product_card_wheel(props) {
   
   const [price, setPrice] = useState(0);
   const [originalPrice, setOriginalPrice] = useState(0);
+
+
+  const bgRef = useRef();
+  const bgpicRef = useRef();
+  const priceRef = useRef();
+  const cardRef = useRef();
+
+  const wheelRef = useRef();
+  const[wheeldep,setWheelDep]=useState(0);
   //取得價錢//
   useEffect(() => {
     console.log(lastInsertID);
@@ -48,6 +58,15 @@ function Cus_product_card_wheel(props) {
     }
 
   }, []);
+
+  useEffect(() => {
+    gsap.from(bgRef.current, { opacity: 0,x:100,duration:1 });
+    gsap.from(bgpicRef.current, { opacity: 0, x:-100,duration:2});
+    gsap.from(priceRef.current, { opacity: 0, x:-100,duration:2});
+    gsap.from(cardRef.current, { opacity: 0, y:100,duration:3});
+    gsap.from(wheelRef.current, { rotation:360,duration:2});
+  },[]);
+
   const selectWheel = (e) => {
           const newWheel = e.target.value;
     setWheel(newWheel);
@@ -64,9 +83,15 @@ function Cus_product_card_wheel(props) {
     if (newWheel === 'BlackBlue') {
       setPrice(originalPrice + 1600);
     }
+    setWheelDep(1)
+    gsap.to(wheelRef.current, { rotation:"+=180",duration:0.5});
+
+    
   
 
   };
+
+
 
   const addwheel = () => {
     console.log(price)
@@ -88,6 +113,7 @@ function Cus_product_card_wheel(props) {
   return (
     <div className="w-100 vh-100 d-flex justify-content-end align-items-end">
       <div className="cus_matte w-100 h-100 ovweflow-hidden  ">
+      <img src="/imgs/Customized/cus_bg_06.jpg" className="cus-bg" ref={bgRef} />
         <img src="/imgs/Customized/cus_bg_05.jpg" className="cus-bg" />
       </div>
 
@@ -95,11 +121,14 @@ function Cus_product_card_wheel(props) {
         {lastInsertID}
         <div className="cus_container">
           <div className="cus-product-container">
-            <div className="wheel-img">
+            <div className="wheel-img" ref={bgpicRef}>
+            
               <img
                 src={`/imgs/Customized/display_${wheel}.png`}
                 className="wheel-bg wheel"
                 alt=""
+                ref={wheelRef}
+                
               />
 
               <img
@@ -113,7 +142,7 @@ function Cus_product_card_wheel(props) {
           <div className="cus_card_container ">
             <div className="step-control">
               <div className="price-container m-0 px-3">
-                <h4>
+                <h4 ref={priceRef}>
                   NT
                   <span className="price">
                     {price === 0 ? originalPrice : price}
@@ -131,7 +160,7 @@ function Cus_product_card_wheel(props) {
               </div>
             </div>
 
-            <div className="cus_card flex-column">
+            <div className="cus_card flex-column" ref={cardRef}> 
               <div className="cus_product_card">
                 <p>{wheel}</p>
                 <h3 className="text-black">Choose Your Wheel</h3>

@@ -1,7 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect,useRef} from 'react';
 import { Link,useNavigate } from 'react-router-dom';
 import './Cus_product_card_struct.scss';
 import axios from 'axios';
+import { gsap } from "gsap";
+
 
 function Cus_product_card_struct(props) {
   const materialData = [
@@ -15,6 +17,11 @@ function Cus_product_card_struct(props) {
   const [materialId, setMaterialId] = useState(1);
   const [price, setPrice] = useState(0);
   const [originalPrice, setOriginalPrice] = useState(400);
+
+  const bgRef = useRef();
+  const bgpicRef = useRef();
+  const priceRef = useRef();
+  const cardRef = useRef();
 
   //取得價錢//
   useEffect(() => {
@@ -58,18 +65,27 @@ function Cus_product_card_struct(props) {
       }
       
     })
+
   };
+
+  useEffect(() => {
+    gsap.from(bgRef.current, { opacity: 0,x:100,duration:1 });
+    gsap.from(bgpicRef.current, { opacity: 0, x:-100,duration:2});
+    gsap.from(priceRef.current, { opacity: 0, x:-100,duration:2});
+    gsap.from(cardRef.current, { opacity: 0, y:100,duration:3});
+   
+  },[]);
   return (
     <div className="w-100 vh-100 d-flex justify-content-end align-items-end">
       <div className="cus_matte w-100 h-100 ovweflow-hidden">
-        <img src="/imgs/Customized/cus_bg_05.jpg" className="cus-bg" alt="" />
+        <img src="/imgs/Customized/cus_bg_05.jpg" className="cus-bg" alt="" ref={bgRef}/>
       </div>
 
       <div className="work-area col-12 col-md-10 p-0 overflow-hidden">
         <div className="cus_container">
           <div className="cus-product-container">
             <div className="carrier-img">
-              <div className="carrier-display">
+              <div className="carrier-display" ref={bgpicRef}>
                 <div className="carrier-container">
                   <div
                     className="carriers"
@@ -99,7 +115,7 @@ function Cus_product_card_struct(props) {
           <div className="cus_card_container ">
             <div className="step-control">
             <div className="price-container m-0 px-3">
-                <h4>
+                <h4 ref={priceRef}>
                   NT
                   <span className="price">
                   {price}
@@ -119,7 +135,7 @@ function Cus_product_card_struct(props) {
             </div>
 
             <div className="cus_card flex-column">
-              <div className="cus_product_card">
+              <div className="cus_product_card" ref={cardRef}>
                 <h3 className="text-black">Choose Your Carrier</h3>
 
                 {material}
