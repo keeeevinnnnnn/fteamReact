@@ -22,6 +22,7 @@ const MemberEdit = ({
     birthday: '',
     mobile: '',
     email: '',
+    address: '',
   });
   // 離開這個表單時，如沒變更資料把欄位恢復成最初始值
   const [leaveForm, setLeaveForm] = useState([]);
@@ -34,6 +35,7 @@ const MemberEdit = ({
       mem_birthday,
       mem_mobile,
       mem_email,
+      mem_address,
     } = member;
     if (member.length === 0) {
       return;
@@ -45,6 +47,7 @@ const MemberEdit = ({
       birthday: mem_birthday,
       mobile: mem_mobile,
       email: mem_email,
+      address: mem_address,
     });
     setLeaveForm({
       account: mem_account,
@@ -53,6 +56,7 @@ const MemberEdit = ({
       birthday: mem_birthday,
       mobile: mem_mobile,
       email: mem_email,
+      address: mem_address,
     });
   }, [member]);
   // onChange存值到fields
@@ -170,7 +174,7 @@ const MemberEdit = ({
       >
         {/* 個人資料修改 */}
         <form
-          className="w-80 text-center d-flex justify-content-center align-items-center memberEdit pt-2"
+          className="w-80 text-center memberEdit pt-2"
           // 表單點擊
           onSubmit={handleSubmit}
           // 表單檢查
@@ -178,78 +182,83 @@ const MemberEdit = ({
           // 表單有更動時
           onChange={handleFormChange}
         >
-          <div>
-            <h5>Account</h5>
-            <input
-              type="text"
-              name="account"
-              required
-              value={fields.account}
-              onChange={handleFieldsChange}
-            />
-            <p>{fieldErrors.account}</p>
-            <h5>User Name</h5>
-            <input
-              type="text"
-              name="name"
-              required
-              value={fields.name}
-              onChange={handleFieldsChange}
-            />
-            <p>{fieldErrors.name}</p>
-            <h5>Nickname</h5>
-            <input
-              type="text"
-              name="nickname"
-              value={fields.nickname}
-              onChange={handleFieldsChange}
-            />
-            <h5>Birthday</h5>
-            <input
-              type="date"
-              name="birthday"
-              value={fields.birthday}
-              onChange={handleFieldsChange}
-            />
-            <h5>Mobile</h5>
-            <input
-              type="namber"
-              name="mobile"
-              value={fields.mobile}
-              onChange={handleFieldsChange}
-            />
-            <p>{fieldErrors.mobile}</p>
-            <h5>Email</h5>
-            <input
-              type="email"
-              name="email"
-              required
-              value={fields.email}
-              onChange={handleFieldsChange}
-            />
-            <p>{fieldErrors.email}</p>
-            <div className="d-flex justify-content-around">
-              <button
-                onClick={(e) => {
-                  // 阻擋按鈕預設行為
-                  e.preventDefault();
-                  // 如未更改資料 把表單恢復成原來的值
-                  setFields(leaveForm);
-                  // 把隱藏的大頭貼區塊恢復顯示
-                  setAvatarFromNone('');
-                  // 個人資料區塊從90%設回75%
-                  setInformationWrap('h-75');
-                  // 移動到顯示個人資料
-                  setmoveTrain('translateY(-0%)');
-                  // 離開這個表單時把錯誤訊息清空
-                  setFieldErrors(leaveFormError);
-                }}
-              >
-                Back
-              </button>
-              <button onClick={deleteSelf}>Delete</button>
-              <button>Confirm</button>
-            </div>
+          <h5>Account</h5>
+          <input
+            type="text"
+            name="account"
+            required
+            value={fields.account}
+            onChange={handleFieldsChange}
+          />
+          <p>{fieldErrors.account}</p>
+          <h5>User Name</h5>
+          <input
+            type="text"
+            name="name"
+            required
+            value={fields.name}
+            onChange={handleFieldsChange}
+          />
+          <p>{fieldErrors.name}</p>
+          <h5>Nickname</h5>
+          <input
+            type="text"
+            name="nickname"
+            value={fields.nickname}
+            onChange={handleFieldsChange}
+          />
+          <h5>Birthday</h5>
+          <input
+            type="date"
+            name="birthday"
+            value={fields.birthday}
+            onChange={handleFieldsChange}
+          />
+          <h5>Mobile</h5>
+          <input
+            type="namber"
+            name="mobile"
+            value={fields.mobile}
+            onChange={handleFieldsChange}
+          />
+          <p>{fieldErrors.mobile}</p>
+          <h5>Email</h5>
+          <input
+            type="email"
+            name="email"
+            required
+            value={fields.email}
+            onChange={handleFieldsChange}
+          />
+          <p>{fieldErrors.email}</p>
+          <h5>Address</h5>
+          <textarea
+            type="text"
+            name="address"
+            value={fields.address}
+            onChange={handleFieldsChange}
+          />
+          <div className="d-flex justify-content-around">
+            <button
+              onClick={(e) => {
+                // 阻擋按鈕預設行為
+                e.preventDefault();
+                // 如未更改資料 把表單恢復成原來的值
+                setFields(leaveForm);
+                // 把隱藏的大頭貼區塊恢復顯示
+                setAvatarFromNone('');
+                // 個人資料區塊從90%設回75%
+                setInformationWrap('h-75');
+                // 移動到顯示個人資料
+                setmoveTrain('translateY(-0%)');
+                // 離開這個表單時把錯誤訊息清空
+                setFieldErrors(leaveFormError);
+              }}
+            >
+              Back
+            </button>
+            <button onClick={deleteSelf}>Delete</button>
+            <button>Confirm</button>
           </div>
         </form>
       </div>
