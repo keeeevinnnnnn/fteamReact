@@ -124,7 +124,7 @@ function Cus_product_detail(props) {
               <div className="message mb-2">
                 <h2 className="mb-3">Message Board</h2>
                 <div className="message-area">
-                  <div>
+                {messageboard.length==0 ? <div>
                     <svg
                       width="240"
                       height="240"
@@ -211,8 +211,7 @@ function Cus_product_detail(props) {
                       </defs>
                     </svg>
                     <p>Leave Your Messege Here!</p>
-                  </div>
-                  {messageboard.map((v, i) => {
+                  </div>:messageboard.map((v, i) => {
                     return (
                       <div class="d-flex m-2 border-bottom border-gray">
                         <div class="col-2">
@@ -232,7 +231,9 @@ function Cus_product_detail(props) {
                         </div>
                       </div>
                     );
-                  })}
+                  }) }
+                  
+                  
                 </div>
                 <select
                   className="mb-1"
