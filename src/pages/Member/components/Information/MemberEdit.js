@@ -174,7 +174,7 @@ const MemberEdit = ({
       >
         {/* 個人資料修改 */}
         <form
-          className="w-80 text-center memberEdit pt-2"
+          className="w-80 text-center memberEdit"
           // 表單點擊
           onSubmit={handleSubmit}
           // 表單檢查
