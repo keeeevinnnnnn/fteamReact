@@ -88,7 +88,11 @@ const ProductList = (props) => {
     };
 
     await axios.post('/carts', addCarts).then((res) => {
-      // console.log('res.data===', res.data);
+      if (res.data.success === true) {
+        alert('Add to Carts Success');
+      } else {
+        alert('Carts already Has This Product');
+      }
       setCartTotalDep((prev) => prev + 1);
     });
   };

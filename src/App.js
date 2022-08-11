@@ -65,6 +65,7 @@ function App() {
                   favoritesNum={favoritesNum}
                   setFavoritesNum={setFavoritesNum}
                   cartTotalDep={cartTotalDep}
+                  setCartTotalDep={setCartTotalDep}
                 />
                 <div className="w-100 bottom-grid d-flex">
                   <SideBar />

@@ -1,25 +1,31 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from '../../Product/commons/axios';
-
+import { alert } from '../../Carts/Nathan_components/AlertComponent';
+import { confirm } from '../../Carts/Nathan_components/ConfirmComponent';
 function Prev_card(props) {
-  const { prevdata, singleShareData,setOwnDep } = props;
+  const { prevdata, singleShareData, setOwnDep } = props;
   // console.log(singleShareData)
   console.log(prevdata);
   const navigate = useNavigate();
 
-  const deleteitem=()=>{
-   
-    if (window.confirm("刪除物件？") == true) {
-      axios.delete(`http://localhost:3000/custom/delete?sid=${prevdata.sid}`).then(
-        alert('確認刪除')
-      )
-      
-    }
-    setOwnDep((prev)=>prev-1)
-   
-   
-  }
+  const deleteitem = () => {
+    let i = confirm('刪除物件？');
+    i.then((res) => {
+      if (res === true) {
+        axios
+          .delete(`http://localhost:3000/custom/delete?sid=${prevdata.sid}`)
+          .then(()=>{
+            let i = alert('確認刪除');
+            i.then((res)=>{
+              if(res===true){
+                setOwnDep((prev)=>prev-1)
+              }
+            })
+          });
+      }
+    });
+  };
 
   return (
     <>
@@ -43,8 +49,6 @@ function Prev_card(props) {
                 stroke-linejoin="round"
                 d="M6 18L18 6M6 6l12 12"
               ></path>
-
-              
             </svg>
             <h3> {prevdata.custom_product_name}</h3>
             <div className="share-creator">

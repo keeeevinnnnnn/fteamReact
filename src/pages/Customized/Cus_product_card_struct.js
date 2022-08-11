@@ -69,7 +69,7 @@ function Cus_product_card_struct(props) {
   };
 
   useEffect(() => {
-    gsap.from(bgRef.current, { opacity: 0,x:100,duration:1 });
+    gsap.from(bgRef.current, { opacity: 0,x:100,duration:2 });
     gsap.from(bgpicRef.current, { opacity: 0, x:-100,duration:2});
     gsap.from(priceRef.current, { opacity: 0, x:-100,duration:2});
     gsap.from(cardRef.current, { opacity: 0, y:100,duration:3});
@@ -78,7 +78,8 @@ function Cus_product_card_struct(props) {
   return (
     <div className="w-100 vh-100 d-flex justify-content-end align-items-end">
       <div className="cus_matte w-100 h-100 ovweflow-hidden">
-        <img src="/imgs/Customized/cus_bg_05.jpg" className="cus-bg" alt="" ref={bgRef}/>
+        <img src="/imgs/Customized/cus_bg_07.jpg" className="cus-bg " alt="" ref={bgRef}/>
+        
       </div>
 
       <div className="work-area col-12 col-md-10 p-0 overflow-hidden">

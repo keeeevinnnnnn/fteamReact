@@ -10,6 +10,7 @@ import './Cus_product_detail.scss';
 import { height } from '@mui/system';
 import AuthContext from '../../components/AuthContext';
 import Avatar from '@mui/material/Avatar';
+import {alert} from '../Carts/Nathan_components/AlertComponent'
 
 function Cus_product_detail(props) {
   // {shareCardId}=props

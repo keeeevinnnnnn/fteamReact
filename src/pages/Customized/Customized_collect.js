@@ -5,6 +5,7 @@ import axios from 'axios';
 import AuthContext from '../../components/AuthContext';
 import Prev_card from './cus_component/Prev_card';
 import './Customized_collect.scss';
+import {alert} from '../Carts/Nathan_components/AlertComponent'
 
 function Customized_collect(props) {
   const [prevdata, setPrevData] = useState([]);

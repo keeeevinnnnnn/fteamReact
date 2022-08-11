@@ -8,6 +8,7 @@ import AuthContext from './AuthContext';
 import { useNavigate } from 'react-router-dom';
 import ScrollBox from './ScrollBox/ScrollBox';
 import { confirm } from './ConfirmComponent';
+import { alert } from './AlertComponent';
 const Navbar = (props) => {
   const {
     productTotalQty,
@@ -19,6 +20,7 @@ const Navbar = (props) => {
     favoritesNum,
     setFavoritesNum,
     cartTotalDep,
+    setCartTotalDep,
   } = props;
   const navigate = useNavigate();
   // 從這支Context拿值
@@ -31,6 +33,9 @@ const Navbar = (props) => {
 
   // 收藏清單開關
   const [IamKevin, setIamKevin] = useState(false);
+
+  // 收藏列表清單加入購物車
+  const [kevinCartsMemId, setKevinCartsMemId] = useState(0);
 
   // Icon收藏列表清單
   const [iconFavorites, setIconFavorites] = useState([]);
@@ -58,6 +63,8 @@ const Navbar = (props) => {
           setMember(res.data);
           // 先接會員暱稱 NavBar顯示專用
           setNavName(res.data.mem_nickname);
+          // 收藏列表清單加入購物車
+          setKevinCartsMemId(res.data.sid);
           // 如果會員沒有暱稱改接姓名
           if (res.data.mem_nickname === '') {
             setNavName(res.data.mem_name);
@@ -258,7 +265,33 @@ const Navbar = (props) => {
                         </div>
 
                         <div className="favoritesInt">
-                          <button>Add to Carts</button>
+                          <button
+                            onClick={() => {
+                              const favoritesToCarts = {
+                                sid: r.sid,
+                                type: 'product',
+                                quantity: 1,
+                                memID: kevinCartsMemId,
+                              };
+                              axios
+                                .post(
+                                  'http://localhost:3000/carts',
+                                  favoritesToCarts
+                                )
+                                .then((res) => {
+                                  if (res.data.success === true) {
+                                    alert('Add to Carts Success');
+                                  } else {
+                                    alert('Carts already Has This Product');
+                                  }
+
+                                  console.log('res.data===', res.data);
+                                  setCartTotalDep((prev) => prev + 1);
+                                });
+                            }}
+                          >
+                            Add to Carts
+                          </button>
                         </div>
                       </div>
                     );

@@ -6,6 +6,8 @@ import Cus_tab from './cus_component/Cus_tab';
 import './Cus_product_card_back.scss';
 import { Scale } from 'chart.js';
 import axios from 'axios';
+import { gsap } from "gsap";
+import {alert} from '../Carts/Nathan_components/AlertComponent'
 
 function Cus_product_card_back(props) {
   const navigate = useNavigate();
@@ -23,6 +25,11 @@ function Cus_product_card_back(props) {
   const [price, setPrice] = useState(0);
   const [originalPrice, setOriginalPrice] = useState(0);
 
+  const bgRef = useRef();
+  const bgpicRef = useRef();
+  const priceRef = useRef();
+  const cardRef = useRef();
+
   //取得價錢//
   useEffect(() => {
     console.log(lastInsertID);
@@ -36,8 +43,15 @@ function Cus_product_card_back(props) {
       });
   }, []);
 
-  //canvas喔喔喔//
+  //進場效果//
+  useEffect(() => {
+    gsap.from(bgRef.current, { opacity: 0, x: 100, duration: 2 });
+    gsap.from(bgpicRef.current, { opacity: 0, x: -100, duration: 2 });
+    gsap.from(priceRef.current, { opacity: 0, x: -100, duration: 2 });
+    gsap.from(cardRef.current, { opacity: 0, y: 100, duration: 3 });
+  }, []);
 
+  //canvas喔喔喔//
   useEffect(() => {
     const backimg = new Image();
     backimg.src = `/imgs/Customized/${bgimgName}.png`;
@@ -131,12 +145,12 @@ function Cus_product_card_back(props) {
   return (
     <div className="w-100 vh-100 d-flex justify-content-end align-items-end">
       <div className="cus_matte w-100 h-100 ovweflow-hidden">
-        <img src="/imgs/Customized/cus_bg_05.jpg" className="cus-bg" alt="" />
+        <img src="/imgs/Customized/cus_bg_07.jpg" className="cus-bg" alt="" ref={bgRef}/>
       </div>
 
       <div className="work-area col-12 col-md-10 p-0 overflow-hidden">
         <div className="cus_container">
-          <div className="cus-product-container">
+          <div className="cus-product-container" ref={bgpicRef}>
             <div className="scale">
               <canvas ref={cuscanvas} width={500} height={500} />
             </div>
@@ -145,7 +159,7 @@ function Cus_product_card_back(props) {
           <div className="cus_card_container ">
             <div className="step-control">
               <div className="price-container m-0 px-3">
-                <h4>
+                <h4 ref={priceRef}>
                   NT
                   <span className="price">
                     {price === 0 ? originalPrice : price}
@@ -164,7 +178,7 @@ function Cus_product_card_back(props) {
             </div>
 
             <div className="cus_card flex-column">
-              <div className="cus_product_card">
+              <div className="cus_product_card" ref={cardRef}>
                 <div className="d-flex"></div>
                 {bgimgName}{patternName}{stickerName}{text}
 
