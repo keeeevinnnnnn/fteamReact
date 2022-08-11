@@ -94,10 +94,6 @@ const ProductMain = (props) => {
       if (scorllPercent === 100) {
         getPage();
       }
-      // console.log('windowHeight==', windowHeight);
-      // console.log('bodyHeight==', bodyHeight);
-      // console.log('scrollY==', navY);
-      console.log('scorllPercent', scorllPercent);
     });
   }, [filter]);
 
