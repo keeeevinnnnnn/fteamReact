@@ -164,21 +164,22 @@ const Carts = (props) => {
   const bgRef = useRef(null);
   const mdTabRef = useRef(null);
   const cartItemRef = useRef(null);
+  let i = gsap.timeline();
   useEffect(() => {
     gsap.from(checkoutRef.current, {
-      opacity: 0.6,
-      x: 200,
-      duration: 4,
-      ease: 'expo',
-    });
-    gsap.from(bgRef.current, { opacity: 0, duration: 2, ease: 'expo' });
-    gsap.from(mdTabRef.current, {
       opacity: 0.6,
       x: 200,
       duration: 2,
       ease: 'expo',
     });
-    gsap.from(cartItemRef.current, { opacity: 0, duration: 0.5, ease: 'expo' });
+    gsap.from(bgRef.current, { opacity: 0, duration: 2, ease: 'expo' });
+    gsap.from(mdTabRef.current, {
+      opacity: 0.6,
+      y: -100,
+      duration: 2,
+      ease: 'expo',
+    });
+    gsap.from(cartItemRef.current, { opacity: 0, duration: 4, ease: 'expo' });
   }, []);
   return (
     <>

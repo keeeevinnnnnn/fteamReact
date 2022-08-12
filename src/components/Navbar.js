@@ -21,6 +21,7 @@ const Navbar = (props) => {
     setFavoritesNum,
     cartTotalDep,
     setCartTotalDep,
+    setProductBg,
   } = props;
   const navigate = useNavigate();
   // 從這支Context拿值
@@ -128,7 +129,6 @@ const Navbar = (props) => {
     cartTotalDep,
     favoritesNum,
   ]); // 有變更資料才刷新
-
   return (
     <>
       <div className="w-100 top-grid d-flex">

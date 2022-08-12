@@ -49,18 +49,14 @@ function App() {
 
   // for product background-image
   const [productBg, setProductBg] = useState(false);
-
-  useEffect(() => {
-    setProductBg(false);
-  }, []);
   return (
     <Router>
       {/* 裡面包含ConText(會員登入判斷)及登出涵式 */}
       <AuthContextProvider>
         {/* 會員個人資料 */}
         <MemberContext.Provider value={{ member, setMember }}>
-          {productBg === true ? (
-            <div className=" position-fixed vw-100 vh-100 product-bg"></div>
+          {productBg ? (
+            <div className="position-fixed vw-100 vh-100 product-bg"></div>
           ) : null}
           <div className="container-fluid vh-100 fteam-wrap">
             <div className="row h-100">
@@ -76,6 +72,7 @@ function App() {
                   setFavoritesNum={setFavoritesNum}
                   cartTotalDep={cartTotalDep}
                   setCartTotalDep={setCartTotalDep}
+                  setProductBg={setProductBg}
                 />
                 <div className="w-100 bottom-grid d-flex">
                   <SideBar />

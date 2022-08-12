@@ -40,13 +40,13 @@ const Orders = () => {
   useEffect(() => {
     gsap.from(orderTabRef.current, {
       opacity: 0,
-      x: 200,
-      duration: 1,
+      y: -100,
+      duration: 2,
       ease: 'expo',
     });
     gsap.from(orderCardRef.current, {
       opacity: 0,
-      x: 200,
+      y: 100,
       duration: 2,
       ease: 'expo',
     });

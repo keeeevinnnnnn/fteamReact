@@ -121,12 +121,16 @@ const ProductMain = (props) => {
       duration: 1,
       ease: 'expo',
     });
-    setProductBg(true);
   }, []);
-
+  useEffect(() => {
+    setProductBg(true);
+    return () => {
+      setProductBg(false);
+    };
+  }, []);
   return (
     <div
-      className="product-bg w-100 d-flex justify-content-end align-items-end"
+      className="w-100 d-flex justify-content-end align-items-end"
       style={{ hight: `${bodyheight}` }}
     >
       <div className="work-area col-10 text-danger">
@@ -219,31 +223,31 @@ const ProductMain = (props) => {
           <TransitionGroup component={null}>
             {data && data.rows
               ? data.rows.map((r) => {
-                  return (
-                    <CSSTransition
-                      classNames="product-item"
-                      timeout={300}
-                      key={r.id}
-                    >
-                      <ProductList
-                        sid={r.sid}
-                        img={r.img}
-                        name={r.name}
-                        brand={r.brand}
-                        price={r.price}
-                        info={r.info}
-                        data={data}
-                        setData={setData}
-                        favoritesNum={favoritesNum}
-                        setFavoritesNum={setFavoritesNum}
-                        whoFavorites={whoFavorites}
-                        setWhoFavorites={setWhoFavorites}
-                        cartTotalDep={cartTotalDep}
-                        setCartTotalDep={setCartTotalDep}
-                      />
-                    </CSSTransition>
-                  );
-                })
+                return (
+                  <CSSTransition
+                    classNames="product-item"
+                    timeout={300}
+                    key={r.id}
+                  >
+                    <ProductList
+                      sid={r.sid}
+                      img={r.img}
+                      name={r.name}
+                      brand={r.brand}
+                      price={r.price}
+                      info={r.info}
+                      data={data}
+                      setData={setData}
+                      favoritesNum={favoritesNum}
+                      setFavoritesNum={setFavoritesNum}
+                      whoFavorites={whoFavorites}
+                      setWhoFavorites={setWhoFavorites}
+                      cartTotalDep={cartTotalDep}
+                      setCartTotalDep={setCartTotalDep}
+                    />
+                  </CSSTransition>
+                );
+              })
               : null}
           </TransitionGroup>
         </div>
