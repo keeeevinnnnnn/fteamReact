@@ -136,9 +136,9 @@ const Admin = () => {
                 }}
               />
             </div>
-            <button onClick={searchAllMember}>All Member</button>
-            <button onClick={searchTrue}>Enable Member</button>
-            <button onClick={searchFalse}>Disable Member</button>
+            <button onClick={searchAllMember}>All</button>
+            <button onClick={searchTrue}>Enable</button>
+            <button onClick={searchFalse}>Disable</button>
           </div>
           <div className="w-90 h-80">
             <table className="h-100">
