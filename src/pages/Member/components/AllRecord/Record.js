@@ -173,7 +173,7 @@ const Record = () => {
                 >
                   Top
                 </button>
-                <section className="recordFilter pt-2">
+                <section className="recordFilter pt-2 pb-2">
                   <select
                     value={select}
                     onChange={(e) => {
