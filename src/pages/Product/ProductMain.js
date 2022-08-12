@@ -7,6 +7,10 @@ import ProductList from './components/ProductList';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import { gsap } from 'gsap';
 const ProductMain = (props) => {
+  // let bodyheight = document.body.scrollHeight;
+  const [bodyheight, setBodyheight] = useState(document.body.scrollHeight);
+
+  console.log(bodyheight);
   const {
     data,
     setData,
@@ -14,6 +18,7 @@ const ProductMain = (props) => {
     setFavoritesNum,
     cartTotalDep,
     setCartTotalDep,
+    setProductBg,
   } = props;
 
   const productCardRef = useRef(null);
@@ -116,12 +121,14 @@ const ProductMain = (props) => {
       duration: 1,
       ease: 'expo',
     });
+    setProductBg(true);
   }, []);
 
-  console.log('dada==', data);
-
   return (
-    <div className="bg w-100 vh-100 d-flex justify-content-end align-items-end">
+    <div
+      className="product-bg w-100 d-flex justify-content-end align-items-end"
+      style={{ hight: `${bodyheight}` }}
+    >
       <div className="work-area col-10 text-danger">
         <div ref={toolBoxRef}>
           <ToolBox filter={filter} setFilter={setFilter} />
