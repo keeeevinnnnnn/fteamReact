@@ -225,6 +225,7 @@
 
 .kevinSearch{
     display: flex;
+    justify-content: center;
     height: 80%;
 }
 
@@ -247,7 +248,7 @@
     border-bottom-left-radius: 40px;
     background-color: rgba(211, 211, 211, 0.495);
     outline: none;
- 
+    width: 60%;
     padding: 10px;
 }
 
@@ -281,7 +282,7 @@
     width: 24px;
     svg{
         width: 100%;
-        color: #9F353A;
+        color: black;
     }
 }
 

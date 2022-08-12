@@ -28,30 +28,30 @@ const ProductList = (props) => {
   // 為了購物車
   const [memId, setMemId] = useState(0);
 
-  // 收藏成功提示訊息設定
-  const favoriteSuccess = () => {
-    toast.success('Add Favorites Success', {
-      position: 'top-center',
-      autoClose: 1500,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    });
-  };
-  // 取消收藏成功提示訊息設定
-  const favoriteError = () => {
-    toast.error('Cancel Favorites Success', {
-      position: 'top-center',
-      autoClose: 1500,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    });
-  };
+  // // 收藏成功提示訊息設定
+  // const favoriteSuccess = () => {
+  //   toast.success('Add Favorites Success', {
+  //     position: 'top-center',
+  //     autoClose: 1500,
+  //     hideProgressBar: false,
+  //     closeOnClick: true,
+  //     pauseOnHover: true,
+  //     draggable: true,
+  //     progress: undefined,
+  //   });
+  // };
+  // // 取消收藏成功提示訊息設定
+  // const favoriteError = () => {
+  //   toast.error('Cancel Favorites Success', {
+  //     position: 'top-center',
+  //     autoClose: 1500,
+  //     hideProgressBar: false,
+  //     closeOnClick: true,
+  //     pauseOnHover: true,
+  //     draggable: true,
+  //     progress: undefined,
+  //   });
+  // };
   // 收藏按鈕開關
   const [heart, setHeart] = useState(false);
   // 收藏商品與取消收藏商品;
@@ -72,7 +72,16 @@ const ProductList = (props) => {
       })
       .then((res) => {
         // 拿到成功或失敗的訊息
-        res.data.success === 'true' ? favoriteSuccess() : favoriteError();
+        if (res.data.success === 'true') {
+          let i = alert('商品收藏成功');
+          i.then((res) => {
+            if (res === true) {
+              setCartTotalDep((prev) => prev + 1);
+            }
+          });
+        } else {
+          alert('商品取消收藏');
+        }
         setHeart(!heart);
         countSonFavorites();
       });
@@ -89,14 +98,14 @@ const ProductList = (props) => {
 
     axios.post('/carts', addCarts).then((res) => {
       if (res.data.success === true) {
-        let i = alert('Add to Carts Success');
+        let i = alert('商品加入購物車成功');
         i.then((res) => {
           if (res === true) {
             setCartTotalDep((prev) => prev + 1);
           }
         });
       } else {
-        alert('Carts already Has This Product');
+        alert('商品已經存在購物車');
       }
     });
   };
