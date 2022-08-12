@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './App.css';
 import './Nootstrap.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
@@ -46,12 +46,22 @@ function App() {
   const [data, setData] = useState({});
   // 商品收藏後icon + 1
   const [favoritesNum, setFavoritesNum] = useState(0);
+
+  // for product background-image
+  const [productBg, setProductBg] = useState(false);
+
+  useEffect(() => {
+    setProductBg(false);
+  }, []);
   return (
     <Router>
       {/* 裡面包含ConText(會員登入判斷)及登出涵式 */}
       <AuthContextProvider>
         {/* 會員個人資料 */}
         <MemberContext.Provider value={{ member, setMember }}>
+          {productBg === true ? (
+            <div className=" position-fixed vw-100 vh-100 product-bg"></div>
+          ) : null}
           <div className="container-fluid vh-100 fteam-wrap">
             <div className="row h-100">
               <div className="p-0 d-flex flex-column w-100 h-100">
@@ -76,7 +86,11 @@ function App() {
                   <Routes>
                     <Route path="/" element={<Home />} />
                     <Route path="/login" element={<Login />} />
-                    <Route path="/member" element={<Member />} setCartTotalDep={setCartTotalDep} />
+                    <Route
+                      path="/member"
+                      element={<Member />}
+                      setCartTotalDep={setCartTotalDep}
+                    />
                     <Route path="/admin" element={<Admin />} />
                     <Route
                       path="admin/memberfavorite/:memberId"
@@ -111,6 +125,7 @@ function App() {
                           setFavoritesNum={setFavoritesNum}
                           cartTotalDep={cartTotalDep}
                           setCartTotalDep={setCartTotalDep}
+                          setProductBg={setProductBg}
                         />
                       }
                     />
