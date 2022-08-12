@@ -280,9 +280,9 @@ const Navbar = (props) => {
                                 )
                                 .then((res) => {
                                   if (res.data.success === true) {
-                                    alert('Add to Carts Success');
+                                    alert('商品加入購物車成功');
                                   } else {
-                                    alert('Carts already Has This Product');
+                                    alert('商品已經存在購物車');
                                   }
 
                                   console.log('res.data===', res.data);
