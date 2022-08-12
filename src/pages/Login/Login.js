@@ -4,6 +4,7 @@ import LoginCariusel from './components/LoginCariusel';
 import LoginMember from './components/LoginMember';
 import LoginAdmin from './components/LoginAdmin';
 import Register from './components/Register';
+import { v4 as uuidv4 } from 'uuid';
 
 const Login = () => {
   // 點擊後卡片翻轉
@@ -12,6 +13,8 @@ const Login = () => {
   const [registerNone, setRegisterNone] = useState('d-none');
   // 文字動畫
   const [loginLogoText, setLoginLogoText] = useState('Login');
+  // Logo GSAP動畫
+  const [logoMove, setLogoMove] = useState(uuidv4());
 
   return (
     <>
@@ -25,10 +28,14 @@ const Login = () => {
                 setRegisterNone={setRegisterNone}
                 loginLogoText={loginLogoText}
                 setLoginLogoText={setLoginLogoText}
+                setLogoMove={setLogoMove}
+                logoMove={logoMove}
               />
               <LoginAdmin
                 setLoginCard={setLoginCard}
                 loginLogoText={loginLogoText}
+                setLogoMove={setLogoMove}
+                logoMove={logoMove}
               />
               <Register
                 registerNone={registerNone}
@@ -36,6 +43,8 @@ const Login = () => {
                 setLoginCard={setLoginCard}
                 loginLogoText={loginLogoText}
                 setLoginLogoText={setLoginLogoText}
+                setLogoMove={setLogoMove}
+                logoMove={logoMove}
               />
             </div>
           </div>

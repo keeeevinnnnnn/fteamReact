@@ -6,12 +6,15 @@ import '../styles/Btn8.scss';
 import LoginLogo from './LoginLogo';
 import AuthContext from '../../../components/AuthContext';
 import { alert } from '../../../components/AlertComponent';
+import { v4 as uuidv4 } from 'uuid';
 
 const LoginMember = ({
   setLoginCard,
   setRegisterNone,
   loginLogoText,
   setLoginLogoText,
+  setLogoMove,
+  logoMove
 }) => {
   const { auths, setAuths } = useContext(AuthContext);
   // 頁面導向
@@ -88,7 +91,7 @@ const LoginMember = ({
     <>
       <div className="h-100 w-100 LoginMember LoginFront">
         <div className="w-100 LoginLogoRWDbox">
-          <LoginLogo loginLogoText={loginLogoText} />
+          <LoginLogo loginLogoText={loginLogoText} logoMove={logoMove} />
         </div>
         <form
           className="w-100 text-white text-center"
@@ -166,6 +169,7 @@ const LoginMember = ({
                 setLoginCard('LoginCardRotate');
                 setRegisterNone('');
                 setLoginLogoText('Register');
+                setLogoMove(345364634);
               }}
             >
               <span>SIGN UP</span>
@@ -210,6 +214,7 @@ const LoginMember = ({
             onClick={() => {
               setLoginCard('LoginCardRotate');
               setRegisterNone('d-none');
+              setLogoMove(uuidv4());
             }}
           >
             Admin

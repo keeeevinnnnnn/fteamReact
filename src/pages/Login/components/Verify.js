@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { alert } from '../../../components/AlertComponent';
+import { v4 as uuidv4 } from 'uuid';
 
 const Verify = ({
   fields,
@@ -9,6 +10,7 @@ const Verify = ({
   setFields,
   setLoginCard,
   setLoginLogoText,
+  setLogoMove,
 }) => {
   // 紀錄Email跟驗證碼的值
   const [verification, setVerification] = useState({
@@ -65,6 +67,7 @@ const Verify = ({
       // 卡片翻回去
       setLoginCard('');
       setLoginLogoText('Login');
+      setLogoMove(uuidv4());
     } else {
       alert('帳號開通失敗');
     }

@@ -6,8 +6,9 @@ import '../styles/LoginAdmin.scss';
 import LoginLogo from './LoginLogo';
 import AuthContext from '../../../components/AuthContext';
 import { alert } from '../../../components/AlertComponent';
+import { v4 as uuidv4 } from 'uuid';
 
-const LoginAdmin = ({ setLoginCard, loginLogoText }) => {
+const LoginAdmin = ({ setLoginCard, loginLogoText, setLogoMove,logoMove }) => {
   const { auths, setAuths } = useContext(AuthContext);
   // 頁面導向
   const navigate = useNavigate();
@@ -81,7 +82,7 @@ const LoginAdmin = ({ setLoginCard, loginLogoText }) => {
     <>
       <div className="h-100 w-100 LoginAdmin LoginBack">
         <div className="w-100 LoginLogoRWDbox">
-          <LoginLogo loginLogoText={loginLogoText} />
+          <LoginLogo loginLogoText={loginLogoText} logoMove={logoMove} />
         </div>
         <form
           className="w-100 text-white text-center"
@@ -109,7 +110,8 @@ const LoginAdmin = ({ setLoginCard, loginLogoText }) => {
             type={adminSeePassword ? 'text' : 'password'}
             placeholder="Admin Password"
             name="password"
-            requiredautoComplete="off"
+            required
+            autoComplete="off"
             value={fields.password}
             onChange={handleFieldsChange}
             onClick={clickErrorText}
@@ -154,6 +156,7 @@ const LoginAdmin = ({ setLoginCard, loginLogoText }) => {
             className="buttonChangePage"
             onClick={() => {
               setLoginCard('');
+              setLogoMove(uuidv4());
             }}
           >
             Member

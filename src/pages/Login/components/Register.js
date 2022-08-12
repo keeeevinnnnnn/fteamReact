@@ -6,12 +6,15 @@ import '../styles/Register.scss';
 import LoginLogo from './LoginLogo';
 import Verify from './Verify';
 import { alert } from '../../../components/AlertComponent';
+import { v4 as uuidv4 } from 'uuid';
 
 const Register = ({
   setLoginCard,
   registerNone,
   loginLogoText,
   setLoginLogoText,
+  setLogoMove,
+  logoMove
 }) => {
   // 頁面導向
   const navigate = useNavigate();
@@ -156,7 +159,7 @@ const Register = ({
     <>
       <div className={`h-100 w-100 Register LoginBack ${registerNone}`}>
         <div className="w-100 LoginLogoRWDbox">
-          <LoginLogo loginLogoText={loginLogoText} />
+          <LoginLogo loginLogoText={loginLogoText} logoMove={logoMove} />
         </div>
         {verify ? (
           <Verify
@@ -166,6 +169,7 @@ const Register = ({
             setFields={setFields}
             setLoginCard={setLoginCard}
             setLoginLogoText={setLoginLogoText}
+            setLogoMove={setLogoMove}
           />
         ) : (
           <form
@@ -264,6 +268,7 @@ const Register = ({
                   e.preventDefault();
                   setLoginCard('');
                   setLoginLogoText('Login');
+                  setLogoMove(uuidv4());
                 }}
               >
                 Login
