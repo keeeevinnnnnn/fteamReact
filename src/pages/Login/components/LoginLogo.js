@@ -12,7 +12,7 @@ const LoginLogo = ({ loginLogoText, logoMove }) => {
     gsap.from(loginLogoRef.current, {
       opacity: 0,
       y: -150,
-      duration: 1.5,
+      duration: 0.5,
       // ease: 'expo',
       ease: 'bounce',
     });
