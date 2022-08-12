@@ -47,11 +47,11 @@ const RecordCard = ({ products, customized }) => {
         return (
           <div className={`w-95 m-3 recordCard ${products}`} key={uuidv4()}>
             <div className="d-flex h-100 w-100">
-              <div className="col-3">
+              <div className="col-3 d-flex justify-content-center align-items-center">
                 <img
                   src={`/imgs/Products/${v.img}`}
                   alt=""
-                  className="h-100"
+                  className="h-85"
                   style={{
                     objectFit: 'cover',
                     aspectRatio: '1/1',
@@ -70,19 +70,19 @@ const RecordCard = ({ products, customized }) => {
                 >
                   {v.name}
                 </p>
-                <div className="h-50 d-flex justify-content-between p-3">
-                  <h5 className="text-gray">{v.order_date}</h5>
+                <div className="h-50 d-flex justify-content-around align-items-center">
+                  <h5>{v.order_date}</h5>
                   <h5
                     // className="recordProductsColor"
                     style={{
-                      color: `${v.color !== 'Black' ? v.color : 'white'}`,
+                      color: `${v.color !== 'White' ? v.color : 'black'}`,
                       // 如果顏色是黑色的話boxShadow顏色改用白色(因為背景是黑色)
                       textShadow: '2px 0px 2px white',
                     }}
                   >
                     {v.color}
                   </h5>
-                  <h5 className="text-gray">$ {v.price}</h5>
+                  <h5>$ {v.price}</h5>
                 </div>
               </div>
             </div>
@@ -95,11 +95,11 @@ const RecordCard = ({ products, customized }) => {
         return (
           <div className={`w-95 m-3 recordCard ${customized}`} key={uuidv4()}>
             <div className="d-flex h-100 w-100">
-              <div className="col-3">
+              <div className="col-3 d-flex justify-content-center align-items-center">
                 <img
                   src={`http://localhost:3000/custom/${v.back_img}`}
                   alt=""
-                  className="h-100"
+                  className="h-85"
                   style={{
                     objectFit: 'cover',
                     aspectRatio: '1/1',
@@ -118,10 +118,10 @@ const RecordCard = ({ products, customized }) => {
                 >
                   {v.custom_product_name}
                 </p>
-                <div className="h-50 d-flex justify-content-between p-3">
-                  <h5 className="text-gray">{v.order_date}</h5>
-                  <h5 className="text-gray">Customized</h5>
-                  <h5 className="text-gray">$ {v.price}</h5>
+                <div className="h-50 d-flex justify-content-around align-items-center">
+                  <h5>{v.order_date}</h5>
+                  <h5>Customized</h5>
+                  <h5>$ {v.price}</h5>
                 </div>
               </div>
             </div>

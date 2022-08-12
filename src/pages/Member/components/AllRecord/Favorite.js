@@ -3,7 +3,7 @@ import FavoriteCard from './FavoriteCard';
 import ScrollBox from '../../../../components/ScrollBox/ScrollBox';
 import '../../styles/Favorite.scss';
 
-const Favorite = () => {
+const Favorite = ({setCartTotalDep}) => {
   return (
     <>
       <div className="w-100 h-100 d-flex justify-content-center">
@@ -22,9 +22,9 @@ const Favorite = () => {
               Top
             </button>
           </div>
-          <div className="favoriteWarp h-92">
+          <div className="favoriteWarp h-95">
             <ScrollBox>
-              <FavoriteCard />
+              <FavoriteCard setCartTotalDep={setCartTotalDep} />
             </ScrollBox>
           </div>
         </div>

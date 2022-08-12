@@ -8,7 +8,7 @@ import '../style/LessonTabPanel.scss';
 import LessonCard from './Lesson_card';
 import LessonSelectTime from './LessonSelectTime';
 import LessonSelectDance from './LessonSelectDance';
-import LessonSelectPrice from './LessonSelectPrice';
+// import LessonSelectPrice from './LessonSelectPrice';
 import LessonTeacher from './LessonTeacher';
 
 import ScrollBox from '../components/ScrollBox/ScrollBox';
@@ -60,8 +60,11 @@ export default function LessonTabPanel(props) {
     timeListOption,
     timeList,
     setTimeList,
+    //
     loginID,
     setCartTotalDep,
+    //
+    teacherDisplay,
   } = props;
 
   // console.log('LessonTabPanel:', { lessonDisplay });
@@ -106,7 +109,7 @@ export default function LessonTabPanel(props) {
             danceList={danceList}
             setDanceList={setDanceList}
           />
-          <LessonSelectPrice />
+          {/* <LessonSelectPrice /> */}
         </div>
         <div className="w-100 h-80">
           <ScrollBox>
@@ -117,6 +120,8 @@ export default function LessonTabPanel(props) {
               setLessonDisplay={setLessonDisplay}
               danceList={danceList}
               setDanceList={setDanceList}
+              timeList={timeList}
+              setTimeList={setTimeList}
               loginID={loginID}
               setCartTotalDep={setCartTotalDep}
             />
@@ -126,10 +131,10 @@ export default function LessonTabPanel(props) {
       <TabPanel value={value} index={1}>
         <ScrollBox>
           <div className="  w-100 h-100 d-flex flex-wrap justify-content-between">
-            <LessonTeacher />
-            <LessonTeacher />
-            <LessonTeacher />
-            <LessonTeacher />
+            <LessonTeacher
+              lessonDisplay={lessonDisplay}
+              teacherDisplay={teacherDisplay}
+            />
           </div>
         </ScrollBox>
       </TabPanel>

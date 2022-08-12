@@ -17,8 +17,30 @@ function LessonSelectTime(props) {
         </option>
         {timeListOption.map((v, i) => {
           return (
-            <option className="cooler_select" key={i} value={v}>
-              {v}
+            <option className="cooler_select" key={i} value={v} disabled="">
+              {v === '01'
+                ? 'Jan'
+                : v === '02'
+                ? 'Feb'
+                : v === '03'
+                ? 'Mar'
+                : v === '04'
+                ? 'Apr'
+                : v === '05'
+                ? 'May'
+                : v === '06'
+                ? 'Jun'
+                : v === '07'
+                ? 'Jul'
+                : v === '08'
+                ? 'Aug'
+                : v === '09'
+                ? 'Sep'
+                : v === '10'
+                ? 'Oct'
+                : v === '11'
+                ? 'Nov'
+                : 'Dec'}
             </option>
           );
         })}

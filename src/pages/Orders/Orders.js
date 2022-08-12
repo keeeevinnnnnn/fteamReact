@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useContext, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../Orders/Orders.scss';
 import OrderMuiTabs from './components/OrderMuiTabs';
@@ -6,6 +6,7 @@ import Scroll from 'react-scroll';
 import OrderCard from './components/OrderCard';
 import AuthContext from '../../components/AuthContext';
 import axios from 'axios';
+import { gsap } from 'gsap';
 const Orders = () => {
   const navigate = useNavigate();
   const { auth, token } = useContext(AuthContext);
@@ -15,7 +16,7 @@ const Orders = () => {
     if (!auth) {
       alert('請先登入會員');
       navigate('/login');
-      return
+      return;
     }
     axios
       .get('http://localhost:3000/member/memberself', {
@@ -34,18 +35,37 @@ const Orders = () => {
           });
       });
   }, []);
+  const orderCardRef = useRef(null);
+  const orderTabRef = useRef(null);
+  useEffect(() => {
+    gsap.from(orderTabRef.current, {
+      opacity: 0,
+      y: -100,
+      duration: 2,
+      ease: 'expo',
+    });
+    gsap.from(orderCardRef.current, {
+      opacity: 0,
+      y: 100,
+      duration: 2,
+      ease: 'expo',
+    });
+  }, []);
   return (
     <>
       <div className="orders-bg w-100 vh-100 d-flex justify-content-end align-items-end">
         <div className="work-area col-12 col-md-10 p-0 d-flex">
           <div className="col-12 col-md-10 h-100">
-            <div className="w-100 h-10">
+            <div className="w-100 h-10" ref={orderTabRef}>
               <OrderMuiTabs
                 setAllOrders={setAllOrders}
                 loginMemberID={loginMemberID}
               />
             </div>
-            <div className="w-100 d-flex justify-content-center order-section">
+            <div
+              className="w-100 d-flex justify-content-center order-section"
+              ref={orderCardRef}
+            >
               <Scroll.Element className="orders-card-scroll">
                 {allOrders.map((v, i) => {
                   return <OrderCard key={v.sid} singleOrder={v} />;

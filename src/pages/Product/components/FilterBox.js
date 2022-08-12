@@ -1,6 +1,7 @@
 import Box from '@mui/material/Box';
 import Slider from '@mui/material/Slider';
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
+import { gsap } from 'gsap';
 
 const FilterBox = (props) => {
   // 按鈕 SVG 開關
@@ -70,6 +71,22 @@ const FilterBox = (props) => {
     'purpleBox',
   ]);
 
+  // const colourRef = useRef(null);
+  // const colourGsap = () => {
+  //   gsap.from(colourRef.current, {
+  //     opacity: 0,
+  //     duration: 2,
+  //     ease: 'expo',
+  //   });
+  // };
+
+  // useEffect(() => {
+  //   gsap.from(optionRef.current, {
+  //     opacity: 0,
+  //     duration: 2,
+  //     ease: 'expo',
+  //   });
+  // }, [colour]);
   return (
     <>
       <div className="row filterBox p-0 m-0">
@@ -545,15 +562,14 @@ const FilterBox = (props) => {
 
         <div className="col-2 d-flex kevinSearch">
           <input
-            className="col-10 kevinSearch-input"
+            className="col-10 kevinSearch-input justify-content-end"
             type="search"
             placeholder=" Search"
             aria-label="Search"
             value={searchText}
-            style={{ width: '50%' }}
             onChange={handleSearchText}
           />
-          <button className="col-2 kevinSearch-btn">
+          <button className="col-2 kevinSearch-btn justify-content-end">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-6 w-6"

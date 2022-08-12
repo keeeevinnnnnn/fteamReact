@@ -1,11 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import FilterBox from './components/FilterBox';
 import ToolBox from './components/ToolBox';
 import './styles/ProductMain.scss';
 import axios from './commons/axios';
 import ProductList from './components/ProductList';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
+import { gsap } from 'gsap';
 const ProductMain = (props) => {
+  // let bodyheight = document.body.scrollHeight;
+  const [bodyheight, setBodyheight] = useState(document.body.scrollHeight);
+
+  console.log(bodyheight);
   const {
     data,
     setData,
@@ -13,7 +18,11 @@ const ProductMain = (props) => {
     setFavoritesNum,
     cartTotalDep,
     setCartTotalDep,
+    setProductBg,
   } = props;
+
+  const productCardRef = useRef(null);
+  const toolBoxRef = useRef(null);
 
   // 原始資料
   //  {
@@ -52,6 +61,7 @@ const ProductMain = (props) => {
     setFilter({ ...filter, searchName: text });
   };
 
+  // scroll 自動渲染下一頁效果
   const getPage = () => {
     setFilter({
       ...filter,
@@ -97,14 +107,36 @@ const ProductMain = (props) => {
     });
   }, [filter]);
 
-  useEffect(() => {}, []);
-
-  console.log('dada==', data);
-
+  // GSAP 進場動畫效果
+  useEffect(() => {
+    gsap.from(productCardRef.current, {
+      opacity: 0,
+      x: -200,
+      duration: 3,
+      ease: 'expo',
+    });
+    gsap.from(toolBoxRef.current, {
+      opacity: 0,
+      y: -200,
+      duration: 1,
+      ease: 'expo',
+    });
+  }, []);
+  useEffect(() => {
+    setProductBg(true);
+    return () => {
+      setProductBg(false);
+    };
+  }, []);
   return (
-    <div className="bg w-100 vh-100 d-flex justify-content-end align-items-end">
+    <div
+      className="w-100 d-flex justify-content-end align-items-end"
+      style={{ hight: `${bodyheight}` }}
+    >
       <div className="work-area col-10 text-danger">
-        <ToolBox filter={filter} setFilter={setFilter} />
+        <div ref={toolBoxRef}>
+          <ToolBox filter={filter} setFilter={setFilter} />
+        </div>
         <FilterBox
           filter={filter}
           setFilter={setFilter}
@@ -184,35 +216,38 @@ const ProductMain = (props) => {
           </button>
         </div>
 
-        <div className="product-list p-0 m-0 d-flex flex-wrap">
+        <div
+          className="product-list p-0 m-0 d-flex flex-wrap"
+          ref={productCardRef}
+        >
           <TransitionGroup component={null}>
             {data && data.rows
               ? data.rows.map((r) => {
-                  return (
-                    <CSSTransition
-                      classNames="product-item"
-                      timeout={300}
-                      key={r.id}
-                    >
-                      <ProductList
-                        sid={r.sid}
-                        img={r.img}
-                        name={r.name}
-                        brand={r.brand}
-                        price={r.price}
-                        info={r.info}
-                        data={data}
-                        setData={setData}
-                        favoritesNum={favoritesNum}
-                        setFavoritesNum={setFavoritesNum}
-                        whoFavorites={whoFavorites}
-                        setWhoFavorites={setWhoFavorites}
-                        cartTotalDep={cartTotalDep}
-                        setCartTotalDep={setCartTotalDep}
-                      />
-                    </CSSTransition>
-                  );
-                })
+                return (
+                  <CSSTransition
+                    classNames="product-item"
+                    timeout={300}
+                    key={r.id}
+                  >
+                    <ProductList
+                      sid={r.sid}
+                      img={r.img}
+                      name={r.name}
+                      brand={r.brand}
+                      price={r.price}
+                      info={r.info}
+                      data={data}
+                      setData={setData}
+                      favoritesNum={favoritesNum}
+                      setFavoritesNum={setFavoritesNum}
+                      whoFavorites={whoFavorites}
+                      setWhoFavorites={setWhoFavorites}
+                      cartTotalDep={cartTotalDep}
+                      setCartTotalDep={setCartTotalDep}
+                    />
+                  </CSSTransition>
+                );
+              })
               : null}
           </TransitionGroup>
         </div>

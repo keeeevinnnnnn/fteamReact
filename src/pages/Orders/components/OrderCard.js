@@ -45,7 +45,10 @@ const OrderCard = (props) => {
         </div>
         <div className="w-100 h-45 d-flex">
           <div className="col-6 h-100 d-flex justify-content-start align-items-start py-2">
-            付款方式 ： {singleOrder.pay_method}
+            付款方式 ：{' '}
+            {singleOrder.pay_method.toUpperCase() === 'CREDIT'
+              ? 'CREDIT CARD'
+              : singleOrder.pay_method.toUpperCase()}
           </div>
           <div className="col-6 h-100 d-flex justify-content-end align-items-start py-2 fw-bold">
             Total ： $ {singleOrder.total}

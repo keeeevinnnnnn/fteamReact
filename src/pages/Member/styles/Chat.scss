@@ -1,13 +1,16 @@
 .memberChat {
     width: 70%;
-    height: 90%;
+    height: 95%;
     color: white;
     border: 1px solid var(--main);
     background: rgba(0, 0, 0, 0.871);
+    // background: rgba(0, 0, 0, 0.770);
     box-shadow: 5px 5px 15px 5px #000000;
     position: relative;
     .chatScroll {
         overflow: auto;
+        padding-left: 8px;
+        padding-right: 8px;
     }
     .chatScroll::-webkit-scrollbar {
         width: 5px;
@@ -36,11 +39,12 @@
         margin-left: 20px;
     }
     h3 {
+        font-size: 1.2rem;
         color: var(--main);
         margin-bottom: 0;
     }
     a {
-        font-size: 16px;
+        font-size: .5rem;
     }
     span {
         color: white;

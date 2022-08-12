@@ -21,6 +21,7 @@ const Navbar = (props) => {
     setFavoritesNum,
     cartTotalDep,
     setCartTotalDep,
+    setProductBg,
   } = props;
   const navigate = useNavigate();
   // 從這支Context拿值
@@ -128,7 +129,6 @@ const Navbar = (props) => {
     cartTotalDep,
     favoritesNum,
   ]); // 有變更資料才刷新
-
   return (
     <>
       <div className="w-100 top-grid d-flex">
@@ -205,7 +205,12 @@ const Navbar = (props) => {
                 </div>
               </Link>
             )}
-            <div className="like-icon-wrap">
+            <div
+              className="like-icon-wrap"
+              onClick={() => {
+                setIamKevin(!IamKevin);
+              }}
+            >
               <div
                 className="like-icon-count"
                 style={{ display: favoritesNum === 0 ? 'none' : '' }}
@@ -221,9 +226,6 @@ const Navbar = (props) => {
                 viewBox="0 0 24 24"
                 stroke="currentColor"
                 strokeWidth={2}
-                onClick={() => {
-                  setIamKevin(!IamKevin);
-                }}
               >
                 <path
                   strokeLinecap="round"
@@ -280,9 +282,9 @@ const Navbar = (props) => {
                                 )
                                 .then((res) => {
                                   if (res.data.success === true) {
-                                    alert('Add to Carts Success');
+                                    alert('商品加入購物車成功');
                                   } else {
-                                    alert('Carts already Has This Product');
+                                    alert('商品已經存在購物車');
                                   }
 
                                   console.log('res.data===', res.data);

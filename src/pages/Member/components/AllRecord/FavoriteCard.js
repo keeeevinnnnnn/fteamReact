@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import { confirm } from '../../../../components/ConfirmComponent';
 import { alert } from '../../../../components/AlertComponent';
 
-const FavoriteCard = () => {
+const FavoriteCard = ({ setCartTotalDep }) => {
   const navigate = useNavigate();
   const { auth, token, auths, setAuths } = useContext(AuthContext);
   const [favoriteCard, setFavoriteCard] = useState([]);
@@ -82,6 +82,7 @@ const FavoriteCard = () => {
                     alert('商品成功加入購物車');
                   }
                 });
+              setCartTotalDep((pre) => pre + 1);
             } else {
               alert('商品加入失敗');
             }
@@ -100,8 +101,8 @@ const FavoriteCard = () => {
           xmlns="http://www.w3.org/2000/svg"
         >
           <path
-            fill-rule="evenodd"
-            clip-rule="evenodd"
+            fillRule="evenodd"
+            clipRule="evenodd"
             d="M513.5 131C520.956 131 527 124.956 527 117.5C527 110.044 520.956 104 513.5 104C506.044 104 500 110.044 500 117.5C500 124.956 506.044 131 513.5 131ZM145 265C145 326.312 181.064 379.201 233.136 403.61C255.86 484.607 330.244 544 418.5 544C524.815 544 611 457.815 611 351.5C611 245.185 524.815 159 418.5 159C415.171 159 411.861 159.085 408.573 159.252C380.718 130.134 341.477 112 298 112C213.5 112 145 180.5 145 265ZM151 354.5C151 361.956 144.956 368 137.5 368C130.044 368 124 361.956 124 354.5C124 347.044 130.044 341 137.5 341C144.956 341 151 347.044 151 354.5ZM128.5 236C132.09 236 135 233.09 135 229.5C135 225.91 132.09 223 128.5 223C124.91 223 122 225.91 122 229.5C122 233.09 124.91 236 128.5 236Z"
             fill="url(#paint0_radial_132_4)"
           />
@@ -148,8 +149,8 @@ const FavoriteCard = () => {
           <path
             d="M312.325 422C289.527 406.477 246.189 367.42 255.219 335.373C266.508 295.314 372.75 305.329 414.584 287.302C456.417 269.276 454.073 208.687 414.584 208.687C378 208.687 299.781 184.91 286.5 145.5C280.014 126.252 279.345 94.186 275.804 81"
             stroke="#5BEAE1"
-            stroke-width="7"
-            stroke-dasharray="14 14"
+            strokeWidth="7"
+            strokeDasharray="14 14"
           />
           <defs>
             <radialGradient
@@ -160,8 +161,8 @@ const FavoriteCard = () => {
               gradientUnits="userSpaceOnUse"
               gradientTransform="translate(310.5 544) rotate(-74.1508) scale(367.989 408.97)"
             >
-              <stop stop-color="#5BEAE1" />
-              <stop offset="1" stop-color="#3F454B" />
+              <stop stopColor="#5BEAE1" />
+              <stop offset="1" stopColor="#3F454B" />
             </radialGradient>
           </defs>
         </svg>
@@ -170,11 +171,11 @@ const FavoriteCard = () => {
           return (
             <div className="w-95 m-3 favoriteCard" key={uuidv4()}>
               <div className="d-flex h-100 w-100">
-                <div className="col-xl-3">
+                <div className="col-3 d-flex justify-content-center align-items-center">
                   <img
                     src={`/imgs/Products/${v.favoriteImg}`}
                     alt=""
-                    className="h-100"
+                    className="h-85"
                     style={{
                       objectFit: 'cover',
                       aspectRatio: '1/1',
@@ -184,7 +185,7 @@ const FavoriteCard = () => {
                     }}
                   />
                 </div>
-                <div className="col-xl-9">
+                <div className="col-9">
                   <p
                     className="h-50 p-3 m-0"
                     onClick={() => {
@@ -194,8 +195,8 @@ const FavoriteCard = () => {
                     {v.favoriteName}
                   </p>
                   <div className="h-50 d-flex justify-content-between align-items-center">
-                    <h5 className="text-gray p-3">$ {v.favoritePrice}</h5>
-                    <div className="d-flex h-100 svgBox">
+                    <h5 className="p-3">$ {v.favoritePrice}</h5>
+                    <div className="d-flex justify-content-center svgBox">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 448 512"
@@ -214,7 +215,7 @@ const FavoriteCard = () => {
                         className="cartSvg"
                         fill="none"
                         viewBox="0 0 24 24"
-                        stroke="rgb(207, 207, 207)"
+                        stroke="black"
                         strokeWidth={2}
                         onClick={() => {
                           goToCarts(v);
