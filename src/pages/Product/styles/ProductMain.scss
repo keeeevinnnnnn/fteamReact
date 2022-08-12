@@ -223,36 +223,34 @@
     background-color: #61DAFB;
 }
 
-   
-    
-
-
-
 .kevinSearch{
-    height: 45px;
+    display: flex;
+    height: 80%;
 }
+
 
 .kevinSearch-btn{
     border: 1px solid rgba(211, 211, 211, 0.495);
     border-left: none;
     background-color: rgba(211, 211, 211, 0.495);
-    border-top-right-radius: 15px;
-    border-bottom-right-radius: 15px;
-    
+    border-top-right-radius: 40px;
+    border-bottom-right-radius: 40px;
+    padding-right: 40px;
     svg{
         width: 24px;
     }
 }
-
 .kevinSearch-input{
     border: 1px solid rgba(211, 211, 211, 0.495);
     border-right: none;
-    border-top-left-radius: 15px;
-    border-bottom-left-radius: 15px;
+    border-top-left-radius: 40px;
+    border-bottom-left-radius: 40px;
     background-color: rgba(211, 211, 211, 0.495);
     outline: none;
+ 
     padding: 10px;
 }
+
 
 .product-item-enter {
     opacity: 0;
@@ -278,7 +276,21 @@
 }
 
 .pro-favorites{
+    transition: .3s ease;
     cursor: pointer;
+    width: 24px;
+    svg{
+        width: 100%;
+        color: #9F353A;
+    }
+}
+
+.pro-favorites:hover{
+    transform: scale(1.3);
+}
+
+.pro-cart{
+    transition: .3s ease;
     width: 24px;
     svg{
         width: 100%;
@@ -286,13 +298,8 @@
     }
 }
 
-.pro-cart{
-    
-    width: 24px;
-    svg{
-        width: 100%;
-        color: #0B1013;
-    }
+.pro-cart:hover{
+    transform: scale(1.3);
 }
 
 .productImg{

@@ -52,6 +52,7 @@ const ProductMain = (props) => {
     setFilter({ ...filter, searchName: text });
   };
 
+  // scroll 自動渲染下一頁效果
   const getPage = () => {
     setFilter({
       ...filter,

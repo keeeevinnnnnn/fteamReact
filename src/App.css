@@ -254,6 +254,11 @@
   width: 100%;
   height: 100%;
   margin-right: 16px;
+  transition: 0.3s ease;
+}
+
+.userLogin-icon-box:hover {
+  transform: scale(1.3);
 }
 
 .userLogin-icon-wrap {

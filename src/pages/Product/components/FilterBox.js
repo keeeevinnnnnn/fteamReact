@@ -545,15 +545,14 @@ const FilterBox = (props) => {
 
         <div className="col-2 d-flex kevinSearch">
           <input
-            className="col-10 kevinSearch-input"
+            className="col-10 kevinSearch-input justify-content-end"
             type="search"
             placeholder=" Search"
             aria-label="Search"
             value={searchText}
-            style={{ width: '50%' }}
             onChange={handleSearchText}
           />
-          <button className="col-2 kevinSearch-btn">
+          <button className="col-2 kevinSearch-btn justify-content-end">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-6 w-6"
