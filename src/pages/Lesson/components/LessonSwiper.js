@@ -32,7 +32,7 @@ export default function LessonSwiper() {
               <div className="h-60 p-3">
                 <div className="h-25 ">
                   <h4 className=" text-center h-40 fw-bold">HRC 舞蹈工作室</h4>
-                  <h5 className=" text-center h-30 fw-bold">【忠孝館】</h5>
+                  <h5 className=" text-center h-30 fw-bold">【台北忠孝館】</h5>
                 </div>
                 <div className="h-15 d-flex ">
                   <div className="coolermap d-inline-block">

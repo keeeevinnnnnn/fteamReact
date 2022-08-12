@@ -1,27 +1,67 @@
-import './style/Lesson_taichung.scss';
+import './style/Lesson_zhongxiao.scss';
 import LessonTabPanel from './components/LessonTabPanel';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
-
-const Lesson_taichung = () => {
+import AuthContext from '../../components/AuthContext';
+import { useNavigate } from 'react-router-dom';
+import { alert } from '../Carts/Nathan_components/AlertComponent';
+const Lesson_taichung = (props) => {
+  const { setCartTotalDep } = props;
+  const { auth, token } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const [loginID, setLoginID] = useState(0);
   // 第一次記錄伺服器的原始資料用
   const [lessonRaw, setLessonRaw] = useState([]);
   // 呈現資料用
   const [lessonDisplay, setLessonDisplay] = useState([]);
+  //呈現老師資料
+  const [teacherDisplay, setTeacherDisplay] = useState([]);
   // 舞種選單
   const [danceList, setDanceList] = useState('');
+  // 時間選單
+  const [timeList, setTimeList] = useState('');
+  // 價格選單
+  // const [priceList, setpriceList] = useState('');
+
   // 舞種選項
   const danceListOption = ['Hip Hop', 'Popping', 'Locking', 'Choreography'];
-  // useEffect(() => {
-  //   axios
-  //     .get(
-  //       `http://localhost:3000/lesson?location=忠孝館
-  //   `
-  //     )
-  //     .then((res) => {
-  //
-  //     });
-  // }, []);
+  // 時間選項
+  const timeListOption = [
+    '01',
+    '02',
+    '03',
+    '04',
+    '05',
+    '06',
+    '07',
+    '08',
+    '09',
+    '10',
+    '11',
+    '12',
+  ];
+
+  useEffect(() => {
+    if (!auth) {
+      let i = alert('請登入會員');
+      i.then((res) => {
+        if (res === true) {
+          navigate('/login');
+        }
+      });
+    } else {
+      axios
+        .get('http://localhost:3000/member/memberself', {
+          // 發JWT一定要加這個headers
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
+        .then((res) => {
+          setLoginID(res.data.sid);
+        });
+    }
+  }, []);
 
   const getLessonData = async () => {
     const response = await axios.get(
@@ -32,10 +72,22 @@ const Lesson_taichung = () => {
 
     setLessonDisplay(response.data);
   };
+  useEffect(() => {
+    getLessonData();
+  }, []);
+
+  const getTeacherData = async () => {
+    const response = await axios.get(
+      `http://localhost:3000/lesson/teacher_category?location=台中精誠館`
+    );
+    // 設定到state
+    setTeacherDisplay(response.data);
+  };
+
+  // console.log('teacherDisplay:', teacherDisplay);
 
   useEffect(() => {
-    // 開啟載入指示動態
-    getLessonData();
+    getTeacherData();
   }, []);
 
   return (
@@ -46,7 +98,13 @@ const Lesson_taichung = () => {
             <div className=" mb-5 col-md-4 flex-wrap col-12  d-flex  justify-content-center cooler_card_wrap align-items-center">
               <div className="cooler_lesson_background lesson-card-wrap w-100 h-100">
                 <div className="lesson_card shadow border w-100 h-100 d-flex flex-column justify-content-around ">
-                  <div className="w-100 h-30 cooler_card_taichung_img"></div>
+                  <div className="w-100 h-30 ">
+                    <img
+                      className="cooler_card_zhongxiao_img"
+                      src="/imgs/lesson_imgs/l03.jpg"
+                      alt=""
+                    />
+                  </div>
                   <div className="w-100 h-70 d-flex flex-column ">
                     <div className="w-100 h-20 ">
                       <h4 className=" fw-bold text-center pt-2">
@@ -102,16 +160,27 @@ const Lesson_taichung = () => {
                 </div>
               </div>
             </div>
-            <div className="  col-md-8 col-12 h-100">
+            <div className="col-md-8 col-12 h-100">
               <LessonTabPanel
+                // 課程畫面
                 lessonRaw={lessonRaw}
                 setLessonRaw={setLessonRaw}
                 lessonDisplay={lessonDisplay}
                 setLessonDisplay={setLessonDisplay}
-                //
+                //舞種類
                 danceListOption={danceListOption}
                 danceList={danceList}
                 setDanceList={setDanceList}
+                //月份種類
+                timeListOption={timeListOption}
+                timeList={timeList}
+                setTimeList={setTimeList}
+                // 會員ID
+                loginID={loginID}
+                // 購物車新增數字
+                setCartTotalDep={setCartTotalDep}
+                //老師資料
+                teacherDisplay={teacherDisplay}
               />
             </div>
           </div>

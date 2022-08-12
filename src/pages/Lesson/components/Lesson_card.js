@@ -11,7 +11,7 @@ function Lesson_card(props) {
     danceList,
     timeList,
     loginID,
-    setCartTotalDep
+    setCartTotalDep,
   } = props;
 
   useEffect(() => {
@@ -26,13 +26,15 @@ function Lesson_card(props) {
     const newLessonDisplay = lessonRaw.filter((v, i) => {
       return v.type.includes(danceList);
     });
+    console.log('danceRefresh', newLessonDisplay);
     setLessonDisplay(newLessonDisplay);
   };
-  console.log('lessonRaw:', lessonRaw);
+
   const timeRefresh = () => {
     const newLessonDisplay = lessonRaw.filter((v, i) => {
       return v.duringtime_begin.includes(timeList);
     });
+    console.log('timeRefresh', newLessonDisplay);
     setLessonDisplay(newLessonDisplay);
   };
 
@@ -64,7 +66,7 @@ function Lesson_card(props) {
             {v.teacher_name}
           </p>
           <div className=" cooler_gray">
-            <span>{v.duringtime_begin}</span>
+            {/* <span>{v.duringtime_begin}</span> */}
             <span>{v.duringtime_begin.slice(5, 7)}</span>
             <span>/</span>
             <span>{v.duringtime_begin.slice(8, 10)}</span>
@@ -102,7 +104,7 @@ function Lesson_card(props) {
                     })
                     .then((res) => {
                       if (res.data.success === true) {
-                        setCartTotalDep((prev)=>prev+1)
+                        setCartTotalDep((prev) => prev + 1);
                         alert('課程新增成功');
                       } else {
                         alert('此課程已經在購物車');
