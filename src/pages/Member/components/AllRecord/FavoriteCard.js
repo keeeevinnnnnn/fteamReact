@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import { confirm } from '../../../../components/ConfirmComponent';
 import { alert } from '../../../../components/AlertComponent';
 
-const FavoriteCard = () => {
+const FavoriteCard = ({ setCartTotalDep }) => {
   const navigate = useNavigate();
   const { auth, token, auths, setAuths } = useContext(AuthContext);
   const [favoriteCard, setFavoriteCard] = useState([]);
@@ -82,6 +82,7 @@ const FavoriteCard = () => {
                     alert('商品成功加入購物車');
                   }
                 });
+              setCartTotalDep((pre) => pre + 1);
             } else {
               alert('商品加入失敗');
             }

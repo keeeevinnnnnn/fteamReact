@@ -5,7 +5,7 @@ import AllRecord from './components/AllRecord/AllRecord';
 import './styles/Member.scss';
 import { gsap } from 'gsap';
 
-const Member = () => {
+const Member = ({setCartTotalDep}) => {
   // 過場動畫
   const { spinner, setLoading } = useSpinner(4000);
   useEffect(() => {
@@ -40,7 +40,7 @@ const Member = () => {
             <Information />
           </div>
           <div className="col-12 col-xl-8 h-100" ref={allRecordRef}>
-            <AllRecord />
+            <AllRecord setCartTotalDep={setCartTotalDep} />
           </div>
         </div>
       </div>

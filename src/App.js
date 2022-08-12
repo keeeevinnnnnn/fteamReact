@@ -76,7 +76,7 @@ function App() {
                   <Routes>
                     <Route path="/" element={<Home />} />
                     <Route path="/login" element={<Login />} />
-                    <Route path="/member" element={<Member />} />
+                    <Route path="/member" element={<Member />} setCartTotalDep={setCartTotalDep} />
                     <Route path="/admin" element={<Admin />} />
                     <Route
                       path="admin/memberfavorite/:memberId"

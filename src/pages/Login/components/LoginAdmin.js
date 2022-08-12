@@ -98,6 +98,7 @@ const LoginAdmin = ({ setLoginCard, loginLogoText }) => {
             placeholder="Admin Account"
             name="account"
             required
+            autoComplete="off"
             value={fields.account}
             onChange={handleFieldsChange}
             onClick={clickErrorText}
@@ -108,11 +109,10 @@ const LoginAdmin = ({ setLoginCard, loginLogoText }) => {
             type={adminSeePassword ? 'text' : 'password'}
             placeholder="Admin Password"
             name="password"
-            required
+            requiredautoComplete="off"
             value={fields.password}
             onChange={handleFieldsChange}
             onClick={clickErrorText}
-            autoComplete="on"
             className="passwordInput"
           />
           {adminSeePassword ? (
