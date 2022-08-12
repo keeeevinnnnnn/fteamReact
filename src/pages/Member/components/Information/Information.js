@@ -24,7 +24,7 @@ const Information = () => {
     gsap.from(avatarForm.current, {
       opacity: 0,
       y: -250,
-      duration: 1,
+      duration: 3,
       // ease: 'expo',
       ease: 'circ',
     });
