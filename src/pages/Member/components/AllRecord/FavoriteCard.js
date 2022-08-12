@@ -195,7 +195,7 @@ const FavoriteCard = () => {
                   </p>
                   <div className="h-50 d-flex justify-content-between align-items-center">
                     <h5 className="p-3">$ {v.favoritePrice}</h5>
-                    <div className="d-flex h-100 svgBox">
+                    <div className="d-flex justify-content-center svgBox">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 448 512"
