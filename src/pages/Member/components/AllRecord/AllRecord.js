@@ -6,7 +6,7 @@ import Record from './Record';
 import Lesson from './Lesson';
 import Chat from './Chat';
 
-const AllRecord = () => {
+const AllRecord = ({setCartTotalDep}) => {
   const [selectItem, setSelectItem] = useState('FAVORITE');
   let moveTrain = 'translateX(0%)';
   if (selectItem === 'RECORD') {
@@ -32,7 +32,7 @@ const AllRecord = () => {
             }}
           >
             <div className="w-25">
-              <Favorite />
+              <Favorite setCartTotalDep={setCartTotalDep} />
             </div>
             <div className="w-25">
               <Record />
