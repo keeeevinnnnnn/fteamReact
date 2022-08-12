@@ -37,7 +37,7 @@ const WatchFavorite = () => {
               viewBox="0 0 448 512"
               className="w-10 cursorpointer"
               onClick={() => {
-                navigate(-1);
+                navigate('/admin');
               }}
             >
               <path
