@@ -205,7 +205,12 @@ const Navbar = (props) => {
                 </div>
               </Link>
             )}
-            <div className="like-icon-wrap">
+            <div
+              className="like-icon-wrap"
+              onClick={() => {
+                setIamKevin(!IamKevin);
+              }}
+            >
               <div
                 className="like-icon-count"
                 style={{ display: favoritesNum === 0 ? 'none' : '' }}
@@ -221,9 +226,6 @@ const Navbar = (props) => {
                 viewBox="0 0 24 24"
                 stroke="currentColor"
                 strokeWidth={2}
-                onClick={() => {
-                  setIamKevin(!IamKevin);
-                }}
               >
                 <path
                   strokeLinecap="round"
