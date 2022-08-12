@@ -85,15 +85,21 @@ function App() {
                     <Route path="/lesson" element={<Lesson />} />
                     <Route
                       path="/lesson/lesson_zhongxiao"
-                      element={<Lesson_zhongxiao setCartTotalDep={setCartTotalDep} />}
+                      element={
+                        <Lesson_zhongxiao setCartTotalDep={setCartTotalDep} />
+                      }
                     />
                     <Route
                       path="/lesson/lesson_banqiao"
-                      element={<Lesson_banqiao setCartTotalDep={setCartTotalDep}/>}
+                      element={
+                        <Lesson_banqiao setCartTotalDep={setCartTotalDep} />
+                      }
                     />
                     <Route
                       path="/lesson/lesson_taichung"
-                      element={<Lesson_taichung setCartTotalDep={setCartTotalDep}/>}
+                      element={
+                        <Lesson_taichung setCartTotalDep={setCartTotalDep} />
+                      }
                     />
                     <Route
                       path="products"
@@ -112,7 +118,10 @@ function App() {
                     <Route
                       path="products/details/:productId"
                       element={
-                        <ProductDetails setFavoritesNum={setFavoritesNum} />
+                        <ProductDetails
+                          setFavoritesNum={setFavoritesNum}
+                          setCartTotalDep={setCartTotalDep}
+                        />
                       }
                     />
                     <Route path="/customized" element={<Customized />} />

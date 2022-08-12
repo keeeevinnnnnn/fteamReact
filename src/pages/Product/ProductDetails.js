@@ -6,6 +6,7 @@ import './styles/ProductDetails.scss';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import AuthContext from '../../components/AuthContext';
+import { alert } from '../../components/AlertComponent';
 
 const ProductDetails = (props) => {
   // 商品細節原始資料
@@ -18,15 +19,20 @@ const ProductDetails = (props) => {
     info: '',
   });
 
-  const { setFavoritesNum } = props;
+  const { setFavoritesNum, setCartTotalDep } = props;
 
   // auth為登入判斷(true,false) token為會員JWT的token logout是登出涵式
   const { token } = useContext(AuthContext);
   // 收藏svg開關
   const [heart, setHeart] = useState(false);
 
+  // 購物車 memId
+  const [memId, setMemId] = useState(0);
+
+  // 細節頁誰收藏
   const [detailsWhoFavorites, setDetailsWhoFavorites] = useState([]);
 
+  // 各月份銷售數據
   const [priceData, setPriceData] = useState({
     orderData: 0,
     itemId: 0,
@@ -132,12 +138,50 @@ const ProductDetails = (props) => {
     });
   };
 
+  // 購物車需要的會員id
+  const getCartsMemId = () => {
+    axios
+      .get('/member/memberself', {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((res) => {
+        setMemId(res.data.sid);
+      });
+  };
+
+  // 加入購物車
+  const getCarts = () => {
+    const addCarts = {
+      sid: details.sid,
+      type: 'product',
+      quantity: 1,
+      memID: memId,
+    };
+
+    axios.post('/carts', addCarts).then((res) => {
+      if (res.data.success === true) {
+        let i = alert('Add to Carts Success');
+        i.then((res) => {
+          if (res === true) {
+            setCartTotalDep((prev) => prev + 1);
+          }
+        });
+      } else {
+        alert('Carts already Has This Product');
+      }
+    });
+  };
+  console.log(memId);
+
   const params = useParams();
 
   useEffect(() => {
     axiosProductDetails(params.productId);
     findFetailsWhoFavorites();
     ChartData(params.productId);
+    getCartsMemId();
   }, [params.productId, heart]);
 
   return (
@@ -158,7 +202,7 @@ const ProductDetails = (props) => {
               </div>
 
               <div className="detail-int-cart mb-3">
-                <button>
+                <button onClick={getCarts}>
                   <span>Add to Bag</span>
                 </button>
               </div>
