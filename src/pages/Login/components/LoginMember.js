@@ -105,6 +105,7 @@ const LoginMember = ({
             placeholder="User Account"
             name="account"
             required
+            autoComplete="off"
             value={fields.account}
             onChange={handleFieldsChange}
             onClick={clickErrorText}
@@ -116,10 +117,10 @@ const LoginMember = ({
             placeholder="User Password"
             name="password"
             required
+            autoComplete="off"
             value={fields.password}
             onChange={handleFieldsChange}
             onClick={clickErrorText}
-            autoComplete="on"
             className="passwordInput"
           />
           {memberSeePassword ? (

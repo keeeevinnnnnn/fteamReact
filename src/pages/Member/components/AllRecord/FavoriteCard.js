@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import { confirm } from '../../../../components/ConfirmComponent';
 import { alert } from '../../../../components/AlertComponent';
 
-const FavoriteCard = () => {
+const FavoriteCard = ({ setCartTotalDep }) => {
   const navigate = useNavigate();
   const { auth, token, auths, setAuths } = useContext(AuthContext);
   const [favoriteCard, setFavoriteCard] = useState([]);
@@ -82,6 +82,7 @@ const FavoriteCard = () => {
                     alert('商品成功加入購物車');
                   }
                 });
+              setCartTotalDep((pre) => pre + 1);
             } else {
               alert('商品加入失敗');
             }
@@ -195,7 +196,7 @@ const FavoriteCard = () => {
                   </p>
                   <div className="h-50 d-flex justify-content-between align-items-center">
                     <h5 className="p-3">$ {v.favoritePrice}</h5>
-                    <div className="d-flex h-100 svgBox">
+                    <div className="d-flex justify-content-center svgBox">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 448 512"

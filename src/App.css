@@ -24,10 +24,14 @@
 /* mui tabs setting */
 /* 要拿掉click特效 在<Tab/> 加上 disableRipple={true} */
 
-.css-1a0mt41-MuiButtonBase-root-MuiTab-root.Mui-selected,
-.css-12a74cf-MuiButtonBase-root-MuiTab-root.Mui-selected {
+.css-1a0mt41-MuiButtonBase-root-MuiTab-root.Mui-selected {
   font-weight: 700;
   color: rgb(58, 58, 58) !important;
+}
+
+.css-12a74cf-MuiButtonBase-root-MuiTab-root.Mui-selected {
+  font-weight: 800;
+  color: black !important;
 }
 
 /* border color */
