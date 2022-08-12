@@ -1,4 +1,10 @@
-import React, { useState, Fragment, useEffect, useContext } from 'react';
+import React, {
+  useState,
+  Fragment,
+  useEffect,
+  useContext,
+  useRef,
+} from 'react';
 import { useNavigate } from 'react-router-dom';
 import ProductCard from './Nathan_components/ProductCard';
 import Scroll from 'react-scroll';
@@ -10,7 +16,7 @@ import CustomCard from './Nathan_components/CustomCard';
 import LessonCard from './Nathan_components/LessonCard';
 import AuthContext from '../../components/AuthContext';
 import { alert } from './Nathan_components/AlertComponent';
-
+import { gsap } from 'gsap';
 const Carts = (props) => {
   const {
     productTotalQty,
@@ -151,17 +157,39 @@ const Carts = (props) => {
           });
       });
   }, [lessonDep]);
-
   // Tabs所有選項
   const cartItemArr = ['PRODUCTS', 'CUSTOMIZED', 'LESSONS'];
   const [selectItem, setSelectItem] = useState('PRODUCTS');
+  const checkoutRef = useRef(null);
+  const bgRef = useRef(null);
+  const mdTabRef = useRef(null);
+  const cartItemRef = useRef(null);
+  useEffect(() => {
+    gsap.from(checkoutRef.current, {
+      opacity: 0.6,
+      x: 200,
+      duration: 4,
+      ease: 'expo',
+    });
+    gsap.from(bgRef.current, { opacity: 0, duration: 2, ease: 'expo' });
+    gsap.from(mdTabRef.current, {
+      opacity: 0.6,
+      x: 200,
+      duration: 2,
+      ease: 'expo',
+    });
+    gsap.from(cartItemRef.current, { opacity: 0, duration: 0.5, ease: 'expo' });
+  }, []);
   return (
     <>
-      <div className="carts-bg w-100 vh-100 d-flex justify-content-end align-items-end">
+      <div
+        className="carts-bg w-100 vh-100 d-flex justify-content-end align-items-end"
+        ref={bgRef}
+      >
         <div className="work-area col-12 col-md-10 p-0 d-flex">
           <div className="col-12 col-md-10 h-100">
             <div className="tabs-section w-100">
-              <div className="w-100 h-100 d-none d-md-block">
+              <div className="w-100 h-100 d-none d-md-block" ref={mdTabRef}>
                 <CartMuiTabs
                   selectItem={selectItem}
                   setSelectItem={setSelectItem}
@@ -200,6 +228,7 @@ const Carts = (props) => {
               <div className="carts-card-wrap w-100 h-100 px-4 px-md-0">
                 <div className="card-scroll-list-wrap">
                   <div
+                    ref={cartItemRef}
                     style={{
                       left:
                         selectItem === 'PRODUCTS'
@@ -212,9 +241,16 @@ const Carts = (props) => {
                   >
                     <Scroll.Element className="products-card-scroll">
                       {productCartItems.length === 0 ? (
-                        <div className="w-100 h-100 d-flex justify-content-center align-items-center">
+                        <div
+                          style={{
+                            filter: 'grayscale(100%)',
+                            backgroundColor: 'rgb(245,245,245)',
+                            border: '1px solid black',
+                          }}
+                          className="w-91 h-100 d-flex flex-column justify-content-center align-items-center"
+                        >
                           <svg
-                            className=" w-50 h-50"
+                            className=" w-40 h-40"
                             width="720"
                             height="720"
                             viewBox="0 0 720 720"
@@ -299,6 +335,7 @@ const Carts = (props) => {
                               </radialGradient>
                             </defs>
                           </svg>
+                          <span className="fw-bold opacity-50">EMPTY</span>
                         </div>
                       ) : (
                         productCartItems.map((v, i) => {
@@ -318,9 +355,16 @@ const Carts = (props) => {
                     </Scroll.Element>
                     <Scroll.Element className="customized-card-scroll">
                       {customCartItems.length === 0 ? (
-                        <div className="w-100 h-100 d-flex justify-content-center align-items-center">
+                        <div
+                          style={{
+                            filter: 'grayscale(100%)',
+                            backgroundColor: 'rgb(245,245,245)',
+                            border: '1px solid black',
+                          }}
+                          className="w-91 h-100 d-flex flex-column justify-content-center align-items-center"
+                        >
                           <svg
-                            className=" w-50 h-50"
+                            className=" w-40 h-40"
                             width="720"
                             height="720"
                             viewBox="0 0 720 720"
@@ -405,6 +449,7 @@ const Carts = (props) => {
                               </radialGradient>
                             </defs>
                           </svg>
+                          <span className="fw-bold opacity-50">EMPTY</span>
                         </div>
                       ) : (
                         customCartItems.map((v, i) => {
@@ -424,9 +469,16 @@ const Carts = (props) => {
                     </Scroll.Element>
                     <Scroll.Element className="lesson-card-scroll">
                       {lessonCartItems.length === 0 ? (
-                        <div className="w-100 h-100 d-flex flex-column justify-content-center align-items-center">
+                        <div
+                          style={{
+                            filter: 'grayscale(100%)',
+                            backgroundColor: 'rgb(245,245,245)',
+                            border: '1px solid black',
+                          }}
+                          className="w-91 h-100 d-flex flex-column justify-content-center align-items-center"
+                        >
                           <svg
-                            className=" w-50 h-50"
+                            className=" w-40 h-40"
                             width="720"
                             height="720"
                             viewBox="0 0 720 720"
@@ -511,6 +563,7 @@ const Carts = (props) => {
                               </radialGradient>
                             </defs>
                           </svg>
+                          <span className="fw-bold opacity-50">EMPTY</span>
                         </div>
                       ) : (
                         lessonCartItems.map((v, i) => {
@@ -531,7 +584,7 @@ const Carts = (props) => {
                 </div>
               </div>
             </div>
-            <div className="total-count-section w-100">
+            <div ref={checkoutRef} className="total-count-section w-100">
               <div className="total-count-wrap h-100 m-0">
                 <div className="total-top-grid w-100 d-flex">
                   <div className="cart-total-title col-4 h-100 d-flex justify-content-center align-items-center">

@@ -14,7 +14,7 @@ const OrderDetailCard = (props) => {
             >
               <div className="w-50 h-100 d-flex flex-column justify-content-between">
                 {/* 商品名稱 */}
-                <div className="w-100 h-33 px-3">ID</div>
+                <div className="w-100 h-33 px-3">Product Number</div>
                 {/* 商品類型 */}
                 <div className="w-100 h-33 px-3">Type</div>
                 <div className="w-100 h-33 fw-bold px-3">
@@ -27,7 +27,9 @@ const OrderDetailCard = (props) => {
                 </div>
                 {/* item_type */}
                 <div className="w-100 h-33 fw-bold text-end px-3">
-                  {v.item_type.toUpperCase()}
+                  {v.item_type.toUpperCase() === 'CUSTOM'
+                    ? 'CUSTOMIZED'
+                    : v.item_type.toUpperCase()}
                 </div>
                 <div className="w-100 h-33 fw-bold text-end px-3">
                   $ {v.price}
