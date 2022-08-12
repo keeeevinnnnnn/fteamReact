@@ -19,10 +19,11 @@ const LoginLogo = ({ loginLogoText, logoMove }) => {
   }, [logoMove]);
   return (
     <>
-      <div className="LoginLogoBox d-flex align-items-center">
-        <div className="text-center LoginLogoBoxText" ref={loginLogoRef}>
-          {loginLogoText}
-        </div>
+      <div
+        className="LoginLogoBox text-center d-flex justify-content-center align-items-center"
+        ref={loginLogoRef}
+      >
+        <h2>{loginLogoText}</h2>
       </div>
     </>
   );
