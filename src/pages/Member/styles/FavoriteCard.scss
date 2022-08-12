@@ -60,14 +60,7 @@
     .favoriteCard {
         height: 17.5%;
         cursor: pointer;
-        background: rgba(0, 0, 0, 0.770);
-        color: white;
-        border: 1px solid var(--main);
         transition: .3s;
-        box-shadow: 5px 5px 15px 5px #000000;
-        img {
-            border-right: 1px solid black;
-        }
         p {
             font-size: 14px;
         }
@@ -76,24 +69,6 @@
         }
         .svgBox {
             width: 50%;
-            padding-top: 5%;
-        }
-        .deleteSvg {
-            height: 50%;
-            margin-right: 10%;
-        }
-
-        .deleteSvg:hover {
-            height: 70%;
-        }
-
-        .cartSvg {
-            height: 50%;
-            margin-right: 5%;
-         }
-
-        .cartSvg:hover {
-            height: 70%;
         }
     }
 
