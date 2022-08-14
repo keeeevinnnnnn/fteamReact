@@ -6,7 +6,7 @@ import axios from './commons/axios';
 import ProductList from './components/ProductList';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import { gsap } from 'gsap';
-import PropagateLoader from 'react-spinners/PropagateLoader';
+import PropagateLoader from 'react-spinners/ScaleLoader';
 const ProductMain = (props) => {
   const {
     favoritesNum,
