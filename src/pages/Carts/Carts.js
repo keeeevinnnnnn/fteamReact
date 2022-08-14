@@ -52,6 +52,7 @@ const Carts = (props) => {
     if (!auth) {
       alert('請先登入會員');
       navigate('/login');
+      return
     }
     axios
       .get('http://localhost:3000/member/memberself', {
