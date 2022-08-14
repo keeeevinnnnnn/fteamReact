@@ -48,6 +48,7 @@ const Orders = () => {
       opacity: 0,
       y: 100,
       duration: 2,
+      delay: 0.7,
       ease: 'expo',
     });
   }, []);

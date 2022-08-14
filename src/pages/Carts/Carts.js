@@ -164,8 +164,15 @@ const Carts = (props) => {
   const bgRef = useRef(null);
   const mdTabRef = useRef(null);
   const cartItemRef = useRef(null);
-  let i = gsap.timeline();
+  // let tl = gsap.timeline();
   useEffect(() => {
+    gsap.from(cartItemRef.current, {
+      display: 'none',
+      opacity: 0,
+      duration: 0.5,
+      delay: 1,
+      ease: 'expo',
+    });
     gsap.from(checkoutRef.current, {
       opacity: 0.6,
       x: 200,
@@ -179,7 +186,6 @@ const Carts = (props) => {
       duration: 2,
       ease: 'expo',
     });
-    gsap.from(cartItemRef.current, { opacity: 0, duration: 4, ease: 'expo' });
   }, []);
   return (
     <>
