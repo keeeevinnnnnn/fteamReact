@@ -166,7 +166,7 @@ const Carts = (props) => {
   const bgRef = useRef(null);
   const mdTabRef = useRef(null);
   const cartItemRef = useRef(null);
-  // let tl = gsap.timeline();
+  // gsap setting
   useEffect(() => {
     gsap.from(cartItemRef.current, {
       display: 'none',

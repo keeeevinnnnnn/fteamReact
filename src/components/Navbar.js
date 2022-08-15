@@ -9,6 +9,7 @@ import { useNavigate } from 'react-router-dom';
 import ScrollBox from './ScrollBox/ScrollBox';
 import { confirm } from './ConfirmComponent';
 import { alert } from './AlertComponent';
+import CustomChat from '../pages/Carts/Nathan_components/CustomChat';
 const Navbar = (props) => {
   const {
     productTotalQty,
@@ -129,6 +130,7 @@ const Navbar = (props) => {
     cartTotalDep,
     favoritesNum,
   ]); // 有變更資料才刷新
+  const [isChatOpen, setIsChatOpen] = useState(false);
   return (
     <>
       <div className="w-100 top-grid d-flex">
@@ -465,6 +467,7 @@ const Navbar = (props) => {
             )}
           </div>
         </div>
+        <CustomChat isChatOpen={isChatOpen} setIsChatOpen={setIsChatOpen} />
       </div>
     </>
   );
