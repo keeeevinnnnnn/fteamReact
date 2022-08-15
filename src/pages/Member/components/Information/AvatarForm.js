@@ -83,7 +83,7 @@ const AvatarForm = ({ member }) => {
             />
             <figure className="d-flex justify-content-center h-70">
               <img
-                src={`http://localhost:3000/avatar/${field}`}
+                src={field}
                 alt=""
                 onClick={clickAvatar}
                 // 大頭貼更換成功動畫效果
