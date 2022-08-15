@@ -2,6 +2,7 @@
 // 呈現區域
 import React, { useEffect } from 'react';
 
+// 引入過場動畫
 // import { useSpinner } from '../../components/useSpinner/useSpinner';
 
 const Sample = () => {
