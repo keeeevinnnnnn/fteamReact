@@ -213,6 +213,7 @@ function App() {
                           setProductTotalQty={setProductTotalQty}
                           setCustomTotalQty={setCustomTotalQty}
                           setLessonTotalQty={setLessonTotalQty}
+                          cartTotalDep={cartTotalDep}
                         />
                       }
                     />
