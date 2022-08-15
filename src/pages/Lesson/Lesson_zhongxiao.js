@@ -84,8 +84,6 @@ const Lesson_zhongxiao = (props) => {
     setTeacherDisplay(response.data);
   };
 
-  // console.log('teacherDisplay:', teacherDisplay);
-
   useEffect(() => {
     getTeacherData();
   }, []);
