@@ -161,7 +161,7 @@ const Navbar = (props) => {
                         borderRadius: '50%',
                         aspectRatio: '1/1',
                       }}
-                      src={`http://localhost:3000/avatar/${member.mem_avatar}`}
+                      src={member.mem_avatar}
                       alt=""
                     />
                     <span className="user-icon-text col-6">{navName}</span>

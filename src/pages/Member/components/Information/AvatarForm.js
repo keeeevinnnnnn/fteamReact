@@ -34,7 +34,8 @@ const AvatarForm = ({ member }) => {
       'http://localhost:3000/member/upload',
       data
     );
-    setField(response.data.filename);
+    const avatarURL = 'http://localhost:3000/avatar/' + response.data.filename;
+    setField(avatarURL);
   }
 
   // 表單點擊送出後
