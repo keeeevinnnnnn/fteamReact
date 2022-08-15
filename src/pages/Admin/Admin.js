@@ -167,7 +167,7 @@ const Admin = () => {
                             borderRadius: '50%',
                             aspectRatio: '1/1',
                           }}
-                          src={`http://localhost:3000/avatar/${v.mem_avatar}`}
+                          src={v.mem_avatar}
                           alt=""
                         />
                       </td>
@@ -188,7 +188,7 @@ const Admin = () => {
                       </td>
                       <td>{v.mem_name}</td>
                       <td>{v.mem_nickname}</td>
-                      <td className='emailTD'>{v.mem_email}</td>
+                      <td className="emailTD">{v.mem_email}</td>
                       <td>{v.mem_created_at}</td>
                       <td>
                         <Link to={`memberfavorite/${v.sid}`}>
