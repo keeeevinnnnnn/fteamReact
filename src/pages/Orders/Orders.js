@@ -46,9 +46,9 @@ const Orders = () => {
     });
     gsap.from(orderCardRef.current, {
       opacity: 0,
-      y: 100,
-      duration: 2,
-      delay: 0.7,
+      // y: 100,
+      duration: 1.5,
+      delay: 0.9,
       ease: 'expo',
     });
   }, []);
