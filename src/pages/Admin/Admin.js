@@ -5,8 +5,13 @@ import './styles/Admin.scss';
 import { confirm } from '../../components/ConfirmComponent';
 import { alert } from '../../components/AlertComponent';
 import { Link } from 'react-router-dom';
+import { useSpinner } from '../../components/useSpinner/useSpinner';
 
 const Admin = () => {
+  const { spinner, setLoading } = useSpinner(4000);
+  useEffect(() => {
+    setLoading(true);
+  }, []);
   // 發fetch更新畫面用
   const [change, setChange] = useState('');
   // 接收會員的狀態 雖然沒用到但先放著
@@ -122,6 +127,7 @@ const Admin = () => {
 
   return (
     <>
+      {spinner}
       <div className="member-bg w-100 vh-100 d-flex justify-content-end align-items-end">
         <div className="work-area col-12 col-md-10 p-0 adminTable">
           <div className="d-flex align-items-center adminFilter">
