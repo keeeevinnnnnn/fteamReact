@@ -10,7 +10,7 @@ const Home = () => {
           <HomeSwiper />
         </div>
 
-        <div className="work-area d-block d-md-none col-12 text-danger">
+        <div className="work-area d-block d-md-none col-10 text-danger  ">
           <div className="w-100 vh-100 d-flex justify-content-center align-items-center ">
             <div className=" w-100 h-100 HomeMbo02"></div>
           </div>
