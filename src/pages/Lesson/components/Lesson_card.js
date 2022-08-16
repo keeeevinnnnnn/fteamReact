@@ -1,6 +1,6 @@
 // import { render } from '@testing-library/react';
 import axios from 'axios';
-import React, { Fragment, useEffect } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import '../style/Lesson_card.scss';
 import { alert } from '../../Carts/Nathan_components/AlertComponent';
 function Lesson_card(props) {
@@ -10,34 +10,92 @@ function Lesson_card(props) {
     lessonRaw,
     danceList,
     timeList,
+    priceSortSelect,
+    // setPriceSortSelect,
     loginID,
     setCartTotalDep,
   } = props;
+  const [lessonDisplayDep, setLessonDisplayDep] = useState(0);
+  // useEffect(() => {
+  //   danceRefresh();
+  // }, [danceList]);
 
+  // useEffect(() => {
+  //   timeRefresh();
+  // }, [timeList]);
+
+  // useEffect(() => {
+  //   priceRefresh();
+  // }, [priceSortSelect]);
+
+  // const danceRefresh = () => {
+  //   const newLessonDisplay = lessonRaw.filter((v, i) => {
+  //     return v.type.includes(danceList);
+  //   });
+  //   console.log('danceRefresh', newLessonDisplay);
+  //   setLessonDisplay(newLessonDisplay);
+  // };
+
+  // const timeRefresh = () => {
+  //   const newLessonDisplay = lessonRaw.filter((v, i) => {
+  //     return v.duringtime_begin.includes(timeList);
+  //   });
+  //   console.log('timeRefresh', newLessonDisplay);
+  //   setLessonDisplay(newLessonDisplay);
+  // };
+
+  // const priceRefresh = () => {
+  //   const oringinRaw = JSON.parse(JSON.stringify(lessonRaw));
+  //   if (priceSortSelect === 'PRICE') {
+  //     setLessonDisplay(oringinRaw);
+  //   }
+  //   if (priceSortSelect === 'Low') {
+  //     const newLessonDisplay = oringinRaw.sort((a, b) => {
+  //       return a.price - b.price;
+  //     });
+  //     // console.log('Low-priceRefresh', newLessonDisplay);
+  //     setLessonDisplay(newLessonDisplay);
+  //   }
+  //   if (priceSortSelect === 'High') {
+  //     const newLessonDisplay = oringinRaw.sort((a, b) => {
+  //       return b.price - a.price;
+  //     });
+  //     // console.log('High-priceRefresh', newLessonDisplay);
+  //     setLessonDisplay(newLessonDisplay);
+  //   }
+  // };
   useEffect(() => {
-    danceRefresh();
-  }, [danceList]);
-
-  useEffect(() => {
-    timeRefresh();
-  }, [timeList]);
-
-  const danceRefresh = () => {
-    const newLessonDisplay = lessonRaw.filter((v, i) => {
-      return v.type.includes(danceList);
-    });
-    console.log('danceRefresh', newLessonDisplay);
-    setLessonDisplay(newLessonDisplay);
+    fillterAllSelector();
+  }, [lessonDisplayDep]);
+  const fillterAllSelector = () => {
+    const oringinRaw = JSON.parse(JSON.stringify(lessonRaw));
+    if (
+      danceList === 'DANCE' &&
+      timeList === 'TIME' &&
+      priceSortSelect === 'PRICE'
+    ) {
+      setLessonDisplay(lessonRaw);
+    } else {
+      let newLessonDisplay = oringinRaw.filter((v, i) => {
+        return v.duringtime_begin.includes(timeList);
+      });
+      newLessonDisplay = newLessonDisplay.filter((v, i) => {
+        return v.type.includes(danceList);
+      });
+      if (priceSortSelect === 'Low') {
+        newLessonDisplay = newLessonDisplay.sort((a, b) => {
+          return a.price - b.price;
+        });
+      }
+      if (priceSortSelect === 'High') {
+        newLessonDisplay = newLessonDisplay.sort((a, b) => {
+          return b.price - a.price;
+        });
+      }
+      setLessonDisplay(newLessonDisplay);
+      setLessonDisplayDep((prev) => prev + 1);
+    }
   };
-
-  const timeRefresh = () => {
-    const newLessonDisplay = lessonRaw.filter((v, i) => {
-      return v.duringtime_begin.includes(timeList);
-    });
-    console.log('timeRefresh', newLessonDisplay);
-    setLessonDisplay(newLessonDisplay);
-  };
-
   const displayTable =
     lessonDisplay.length === 0 ? (
       <div className="w-100 h-100 d-flex justify-content-center align-items-center">
@@ -115,6 +173,7 @@ function Lesson_card(props) {
             </radialGradient>
           </defs>
         </svg>
+        <p className=" fs-5">There are no courses on the page</p>
       </div>
     ) : (
       lessonDisplay.map((v, i) => {
@@ -170,9 +229,18 @@ function Lesson_card(props) {
                 </p>
               </div>
               <div className="w-50 h-100 d-flex align-items-center justify-content-center  ">
-                <div className="w-50 h-50 ms-4 col-sm-6 col-4  cooler_lesson_card_btn  d-flex align-items-center justify-content-center">
+                <div className="w-50 h-50 ms-4 col-sm-6 col-4 d-flex align-items-center justify-content-center">
                   <button
-                    className=" cooler_lesson_card_book"
+                    disabled={v.quota === 0 ? true : false}
+                    style={{
+                      fontSize: '.8rem',
+                      backgroundColor:
+                        v.quota === 0 ? '#373737' : 'var(--main)',
+                      color: v.quota === 0 ? 'white' : 'black',
+                      boxShadow:
+                        v.quota === 0 ? 'none' : '6px 6px 0 0 #61dafb82',
+                    }}
+                    className={'btn'}
                     onClick={() => {
                       axios
                         .post('http://localhost:3000/carts', {
@@ -191,7 +259,7 @@ function Lesson_card(props) {
                         });
                     }}
                   >
-                    BOOK
+                    {v.quota === 0 ? 'FULL' : 'BOOK'}
                   </button>
                 </div>
                 <div className=" col-sm-6 h-100 d-flex justify-content-end">
