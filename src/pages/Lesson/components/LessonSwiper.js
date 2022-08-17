@@ -101,7 +101,7 @@ export default function LessonSwiper() {
                     />
                   </div>
                   <div className=" w-75 fs-6 fw-bold">
-                    <p className="h-100 d-flex align-items-center">新埔店</p>
+                    <p className="h-100 d-flex align-items-center">新埔站</p>
                   </div>
                 </div>
                 <div className="h-55">
@@ -144,7 +144,7 @@ export default function LessonSwiper() {
                     />
                   </div>
                   <div className=" w-75 fs-6 fw-bold">
-                    <p className="h-100 d-flex align-items-center">新埔店</p>
+                    <p className="h-100 d-flex align-items-center">新埔站</p>
                   </div>
                 </div>
                 <div className="h-55">
