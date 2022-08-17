@@ -39,7 +39,7 @@ const LoginMember = ({
     password: '',
   });
   // onChange存值到material
-  const handleFieldsChange = (e) => {
+  const handleMaterialChange = (e) => {
     setMaterial({ ...material, [e.target.name]: e.target.value });
   };
   // 記錄表單每個欄位有錯誤時的訊息
@@ -102,7 +102,15 @@ const LoginMember = ({
   return (
     <>
       <div className="h-100 w-100 LoginMember LoginFront">
-        <div className="w-100 LoginLogoRWDbox">
+        <div
+          className="w-100 LoginLogoRWDbox"
+          onClick={() => {
+            setMaterial({
+              account: 'zzz',
+              password: 'zzz',
+            });
+          }}
+        >
           <LoginLogo loginLogoText={loginLogoText} logoMove={logoMove} />
         </div>
         <form
@@ -122,7 +130,7 @@ const LoginMember = ({
             required
             autoComplete="off"
             value={material.account}
-            onChange={handleFieldsChange}
+            onChange={handleMaterialChange}
             onClick={clickErrorText}
           />
           <p>{materialErrors.account}</p>
@@ -134,7 +142,7 @@ const LoginMember = ({
             required
             autoComplete="off"
             value={material.password}
-            onChange={handleFieldsChange}
+            onChange={handleMaterialChange}
             onClick={clickErrorText}
             className="passwordInput"
           />
