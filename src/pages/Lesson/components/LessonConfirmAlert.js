@@ -50,7 +50,7 @@ BootstrapDialogTitle.propTypes = {
 };
 
 export default function LessonConfirmAlert(props) {
-  const { center } = props;
+  const { center, lessonClassName } = props;
   const { isLoaded } = useJsApiLoader({
     googleMapsApiKey: 'AIzaSyDLkElszSVl12F3Pt6hA1Jo7_7eWP_ERno',
   });
@@ -92,7 +92,7 @@ export default function LessonConfirmAlert(props) {
           id="customized-dialog-title"
           onClose={handleClose}
         >
-          HRC 舞蹈工作室【台北忠孝館】
+          {lessonClassName}
         </BootstrapDialogTitle>
         <DialogContent dividers>
           <Typography className="cooler_map_size" gutterBottom>
@@ -104,14 +104,14 @@ export default function LessonConfirmAlert(props) {
             >
               <Marker
                 position={center}
-                icon={{ url: './imgs/lesson_imgs/197057.jpg' }}
+                icon={{ url: '../imgs/lesson_imgs/abandoned.png' }}
               ></Marker>
             </GoogleMap>
           </Typography>
         </DialogContent>
         <DialogActions>
           <Button autoFocus onClick={handleClose}>
-            Save changes
+            EXIT
           </Button>
         </DialogActions>
       </BootstrapDialog>

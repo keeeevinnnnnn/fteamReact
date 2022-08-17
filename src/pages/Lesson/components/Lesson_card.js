@@ -77,7 +77,7 @@ function Lesson_card(props) {
       setLessonDisplay(lessonRaw);
     } else {
       let newLessonDisplay = oringinRaw.filter((v, i) => {
-        return v.duringtime_begin.includes(timeList);
+        return v.duringtime_begin.slice(5, 7).includes(timeList);
       });
       newLessonDisplay = newLessonDisplay.filter((v, i) => {
         return v.type.includes(danceList);

@@ -1,4 +1,4 @@
-body{
+body {
   background-color: #b6b2b2;
 }
 .swiper {
@@ -43,7 +43,7 @@ body{
   height: 75px !important;
   background: url(../../Images/Public-SVG/arrow-left.svg);
   background-size: cover;
-  transition: .3s ease;
+  transition: 0.3s ease;
 }
 
 .swiper-button-next {
@@ -51,7 +51,7 @@ body{
   height: 75px !important;
   background: url(../../Images/Public-SVG/arrow-right.svg);
   background-size: cover;
-  transition: .3s ease;
+  transition: 0.3s ease;
 }
 
 .swiper-button-prev:hover,
@@ -109,37 +109,33 @@ body{
   /* opacity: .8; */
 }
 
-
-
-.HomeMbo02{
+.HomeMbo02 {
   background: url(../../Images/Home/HomeBg/HomeMbo2.png) no-repeat;
   filter: brightness(1);
   background-size: 90% 100%;
 }
-.HomeMbo03{
+.HomeMbo03 {
   background: url(../../Images/Home/HomeBg/HomeMbo3.png) no-repeat;
   filter: brightness(1);
   background-size: 90% 100%;
 }
-.HomeMbo04{
+.HomeMbo04 {
   background: url(../../Images/Home/HomeBg/HomeMbo4.png) no-repeat;
   filter: brightness(1);
   background-size: 90% 100%;
 }
-.HomeMbo05{
+.HomeMbo05 {
   background: url(../../Images/Home/HomeBg/HomeMbo5.png) no-repeat;
   filter: brightness(1);
   background-size: 90% 100%;
 }
-.HomeMbo06{
+.HomeMbo06 {
   background: url(../../Images/Home/HomeBg/HomeMbo6.png) no-repeat;
   filter: brightness(1);
   background-size: 90% 100%;
 }
-.HomeMbo07{
+.HomeMbo07 {
   background: url(../../Images/Home/HomeBg/HomeMbo7.png) no-repeat;
   filter: brightness(1);
   background-size: 90% 100%;
 }
-
-
