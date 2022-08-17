@@ -8,7 +8,7 @@ import AuthContext from '../../../components/AuthContext';
 import { alert } from '../../../components/AlertComponent';
 import { v4 as uuidv4 } from 'uuid';
 
-const LoginAdmin = ({ setLoginCard, loginLogoText, setLogoMove,logoMove }) => {
+const LoginAdmin = ({ setLoginCard, loginLogoText, setLogoMove, logoMove }) => {
   const { auths, setAuths } = useContext(AuthContext);
   // 頁面導向
   const navigate = useNavigate();
@@ -81,7 +81,15 @@ const LoginAdmin = ({ setLoginCard, loginLogoText, setLogoMove,logoMove }) => {
   return (
     <>
       <div className="h-100 w-100 LoginAdmin LoginBack">
-        <div className="w-100 LoginLogoRWDbox">
+        <div
+          className="w-100 LoginLogoRWDbox"
+          onClick={() => {
+            setMaterial({
+              account: 'admin',
+              password: 'admin',
+            });
+          }}
+        >
           <LoginLogo loginLogoText={loginLogoText} logoMove={logoMove} />
         </div>
         <form

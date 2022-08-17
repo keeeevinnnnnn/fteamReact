@@ -102,7 +102,15 @@ const LoginMember = ({
   return (
     <>
       <div className="h-100 w-100 LoginMember LoginFront">
-        <div className="w-100 LoginLogoRWDbox">
+        <div
+          className="w-100 LoginLogoRWDbox"
+          onClick={() => {
+            setMaterial({
+              account: 'zzz',
+              password: 'zzz',
+            });
+          }}
+        >
           <LoginLogo loginLogoText={loginLogoText} logoMove={logoMove} />
         </div>
         <form

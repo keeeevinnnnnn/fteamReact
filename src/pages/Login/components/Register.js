@@ -14,7 +14,7 @@ const Register = ({
   loginLogoText,
   setLoginLogoText,
   setLogoMove,
-  logoMove
+  logoMove,
 }) => {
   // 頁面導向
   const navigate = useNavigate();
@@ -158,7 +158,19 @@ const Register = ({
   return (
     <>
       <div className={`h-100 w-100 Register LoginBack ${registerNone}`}>
-        <div className="w-100 LoginLogoRWDbox">
+        <div
+          className="w-100 LoginLogoRWDbox"
+          onClick={() => {
+            setMaterial({
+              avatar: '',
+              name: '芎道遂宮圓',
+              account: 'zzz',
+              password: 'zzz',
+              confirmPassword: 'zzz',
+              email: 'garylin0969@gmail.com',
+            });
+          }}
+        >
           <LoginLogo loginLogoText={loginLogoText} logoMove={logoMove} />
         </div>
         {verify ? (
