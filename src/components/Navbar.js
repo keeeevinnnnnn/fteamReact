@@ -53,6 +53,9 @@ const Navbar = (props) => {
       setFavoritesNum(0);
       return;
     } else {
+      if (grade !== 'low') {
+        return;
+      }
       axios
         .get('http://localhost:3000/member/memberself', {
           // 發JWT一定要加這個headers
