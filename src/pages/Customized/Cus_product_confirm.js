@@ -59,12 +59,12 @@ function Cus_product_confirm(props) {
 
   useEffect(() => {
     gsap.from(titleRef.current, { opacity: 0,x:50,duration:1 });
-    gsap.from(productRef.current, { opacity: 0,x:-50,duration:2});
-    gsap.from(list1Ref.current, { opacity: 0,x:20,duration:2});
-    gsap.from(list2Ref.current, { opacity: 0,x:30, duration:2});
-    gsap.from(list3Ref.current, { opacity: 0,x:40,duration:2});
-    gsap.from(list4Ref.current, { opacity: 0,x:50, duration:2});
-    gsap.from(list5Ref.current, { opacity: 0,x:60, duration:2});
+    gsap.from(productRef.current, { opacity: 0,x:-50, deley:.2,duration:2});
+    gsap.from(list1Ref.current, { opacity: 0,x:20,deley:.4,duration:2});
+    gsap.from(list2Ref.current, { opacity: 0,x:30,deley:.6, duration:2});
+    gsap.from(list3Ref.current, { opacity: 0,x:40,deley:.8,duration:2});
+    gsap.from(list4Ref.current, { opacity: 0,x:50,deley:1, duration:2});
+    gsap.from(list5Ref.current, { opacity: 0,x:60,deley:1.2, duration:2});
   },[]);
 
   return (
