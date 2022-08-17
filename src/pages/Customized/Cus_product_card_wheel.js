@@ -119,7 +119,7 @@ function Cus_product_card_wheel(props) {
       </div>
 
       <div className="work-area col-12 col-md-10 p-0 overflow-hidden">
-        {lastInsertID}
+        {/* {lastInsertID} */}
         <div className="cus_container">
           <div className="cus-product-container">
             <div className="wheel-img" ref={bgpicRef}>
