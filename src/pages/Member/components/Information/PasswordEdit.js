@@ -95,7 +95,7 @@ const PasswordEdit = ({ setmoveTrain }) => {
     <>
       <div className="h-100 d-flex justify-content-center align-items-center">
         {/* 修改密碼 */}
-        <div className="w-80 passwordEdit pt-5">
+        <div className="w-80 passwordEdit">
           <form
             className="text-center"
             // 表單點擊
