@@ -15,16 +15,16 @@ const LoginAdmin = ({ setLoginCard, loginLogoText, setLogoMove,logoMove }) => {
   // 眼睛查看密碼
   const [adminSeePassword, setAdminSeePassword] = useState(false);
   // 記錄表單每個欄位輸入值
-  const [fields, setFields] = useState({
+  const [material, setMaterial] = useState({
     account: '',
     password: '',
   });
-  // onChange存值到fields
-  const handleFieldsChange = (e) => {
-    setFields({ ...fields, [e.target.name]: e.target.value });
+  // onChange存值到material
+  const handleMaterialChange = (e) => {
+    setMaterial({ ...material, [e.target.name]: e.target.value });
   };
   // 記錄表單每個欄位有錯誤時的訊息
-  const [fieldErrors, setFieldErrors] = useState({
+  const [materialErrors, setMaterialErrors] = useState({
     account: '',
     password: '',
   });
@@ -33,21 +33,21 @@ const LoginAdmin = ({ setLoginCard, loginLogoText, setLogoMove,logoMove }) => {
     // 先阻擋預設行為-泡泡訊息
     e.preventDefault();
     // 填入錯誤訊息
-    setFieldErrors({
-      ...fieldErrors,
+    setMaterialErrors({
+      ...materialErrors,
       [e.target.name]: e.target.validationMessage,
     });
   };
   // 表單更動時用於讓使用者清空某個正在修改的欄位的錯誤訊息
   const handleFormChange = (e) => {
-    setFieldErrors({
-      ...fieldErrors,
+    setMaterialErrors({
+      ...materialErrors,
       [e.target.name]: '',
     });
   };
   const clickErrorText = (e) => {
-    setFieldErrors({
-      ...fieldErrors,
+    setMaterialErrors({
+      ...materialErrors,
       [e.target.name]: '',
     });
   };
@@ -58,7 +58,7 @@ const LoginAdmin = ({ setLoginCard, loginLogoText, setLogoMove,logoMove }) => {
 
     const response = await axios.post(
       'http://localhost:3000/admin/login',
-      fields
+      material
     );
     console.log(response.data);
     // 如果登入成功
@@ -100,11 +100,11 @@ const LoginAdmin = ({ setLoginCard, loginLogoText, setLogoMove,logoMove }) => {
             name="account"
             required
             autoComplete="off"
-            value={fields.account}
-            onChange={handleFieldsChange}
+            value={material.account}
+            onChange={handleMaterialChange}
             onClick={clickErrorText}
           />
-          <p>{fieldErrors.account}</p>
+          <p>{materialErrors.account}</p>
           <h3>Admin Password</h3>
           <input
             type={adminSeePassword ? 'text' : 'password'}
@@ -112,8 +112,8 @@ const LoginAdmin = ({ setLoginCard, loginLogoText, setLogoMove,logoMove }) => {
             name="password"
             required
             autoComplete="off"
-            value={fields.password}
-            onChange={handleFieldsChange}
+            value={material.password}
+            onChange={handleMaterialChange}
             onClick={clickErrorText}
             className="passwordInput"
           />
@@ -146,7 +146,7 @@ const LoginAdmin = ({ setLoginCard, loginLogoText, setLogoMove,logoMove }) => {
               />
             </svg>
           )}
-          <p>{fieldErrors.password}</p>
+          <p>{materialErrors.password}</p>
           <button className="custom-btn btn-8">
             <span>LOGIN</span>
           </button>
