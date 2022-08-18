@@ -5,6 +5,7 @@ import axios from 'axios';
 import AuthContext from '../../components/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import { alert } from '../Carts/Nathan_components/AlertComponent';
+import LessonConfirmAlert from './components/LessonConfirmAlert';
 const Lesson_taichung = (props) => {
   const { setCartTotalDep } = props;
   const { auth, token } = useContext(AuthContext);
@@ -90,6 +91,20 @@ const Lesson_taichung = (props) => {
     getTeacherData();
   }, []);
 
+  // 三個座標
+  const center = [
+    { lat: 25.041851651290155, lng: 121.55534122649684 },
+    { lat: 25.031099292075666, lng: 121.46450972649664 },
+    { lat: 24.155632861663089, lng: 120.65585056881044 },
+  ];
+
+  // 三個店名
+  const lessonClassName = [
+    'HRC 舞蹈工作室【台北忠孝館】',
+    'HRC 舞蹈工作室【板橋民生旗艦館】',
+    'HRC 舞蹈工作室【台中精誠館】',
+  ];
+
   return (
     <>
       <div className="w-100 vh-100 d-flex justify-content-end align-items-end">
@@ -113,25 +128,18 @@ const Lesson_taichung = (props) => {
                       <h5 className="fw-bold text-center">【台中精誠館】</h5>
                     </div>
                     <div className=" w-100 h-75 p-3 ">
-                      <div className="h-15 ">
-                        <div className="coolermap d-inline-block">
-                          <a href="#/">
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              className="h-5 w-5"
-                              viewBox="0 0 20 20"
-                              fill="none"
-                              stroke="black"
-                            >
-                              <path
-                                fillRule="evenodd"
-                                d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
-                                clipRule="evenodd"
-                              />
-                            </svg>
-                          </a>
+                      <div className="h-15 d-flex ">
+                        <div className="w-15 coolermap d-inline-block">
+                          <LessonConfirmAlert
+                            center={center[0]}
+                            lessonClassName={lessonClassName[0]}
+                          />
                         </div>
-                        <span className="fw-5 ">403台中市西區精誠路92號B1</span>
+                        <div className=" w-85 fs-6 fw-bold">
+                          <p className="h-100 d-flex align-items-center">
+                            403台中市西區精誠路92號B1
+                          </p>
+                        </div>
                       </div>
 
                       <div className="h-75 cooler_gray">
@@ -143,7 +151,7 @@ const Lesson_taichung = (props) => {
                         </p>
                       </div>
                       <div className="h-10 cooler_gray d-flex pt-2">
-                        <div className="coolermap  px-1">
+                        <div className="coolerphone px-1">
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
                             className="h-5 w-5"
