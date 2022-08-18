@@ -1,4 +1,5 @@
 import '../style/LessonTeacher.scss';
+import LessonVideoAlert from './LessonVideoAlert';
 
 const LessonTeacher = (props) => {
   const { teacherDisplay } = props;
@@ -15,7 +16,7 @@ const LessonTeacher = (props) => {
                   src={`/imgs/lesson_imgs/${v.teacher_head}`}
                   alt=""
                 />
-                {/* <div className="cooler_teacher_card_head"></div> */}
+                <LessonVideoAlert />
               </div>
             </div>
             <div className=" w-45 cooler_teacher_card_right ">
