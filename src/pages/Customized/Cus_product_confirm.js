@@ -3,10 +3,15 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import AuthContext from '../../components/AuthContext';
 
+
 import { red } from '@mui/material/colors';
 import {alert} from '../Carts/Nathan_components/AlertComponent'
+import { AddToCartalert } from './cus_component/AddToCartComponent';
 import './Cus_product_confirm.scss';
 import { gsap } from "gsap";
+import { Player } from "@lottiefiles/react-lottie-player";
+
+
 
 function Cus_product_confirm(props) {
   const { lastInsertID, setLastInsertID, setCartTotalDep } = props;
@@ -38,10 +43,10 @@ function Cus_product_confirm(props) {
           })
           .then((res) => {
             if (res.data.success) {
-              alert('加入成功');
+              AddToCartalert('加入成功');
               setCartTotalDep((prev) => prev + 1);
             } else {
-              alert('商品已存在購物車');
+              AddToCartalert('商品已存在購物車');
             }
           });
       });
@@ -77,12 +82,18 @@ function Cus_product_confirm(props) {
                 CUSTOM PRODUCT <br /> DETAIE
               </h2>
               <p ref={titleRef}>Created at {cusData.created_date} </p>
+              
               <div className="cusdetail-pic col-12 col-sm-6" ref={productRef}>
+             
                 <img
                   src={`http://localhost:3000/custom/${cusData.back_img}`}
                   className="img-fluid"
                 />
               </div>
+
+              <div>
+        
+      </div>
 
               <div className="attribuies" ref={list1Ref}>
                 <p>Project Name</p>

@@ -11,6 +11,7 @@ import { height } from '@mui/system';
 import AuthContext from '../../components/AuthContext';
 import Avatar from '@mui/material/Avatar';
 import { alert } from '../Carts/Nathan_components/AlertComponent';
+import { AddToCartalert } from './cus_component/AddToCartComponent';
 import { gsap } from 'gsap';
 
 function Cus_product_detail(props) {
@@ -58,10 +59,10 @@ function Cus_product_detail(props) {
             })
             .then((res) => {
               if (res.data.success) {
-                alert('加入成功');
+                AddToCartalert('加入成功');
                 setCartTotalDep((prev) => prev + 1);
               } else {
-                alert('商品已存在購物車');
+                AddToCartalert('商品已存在購物車');
               }
             });
         } else {

@@ -28,6 +28,7 @@ function Share_card(props) {
             />
           </div>
           <div className="share-right " ref={titleRef}>
+          <img src={'/imgs/Customized/before.png'} className="hover" />
             <h3> {singleShareData.custom_product_name}</h3>
             <div className="share-creator">
               <div className="share-ava">

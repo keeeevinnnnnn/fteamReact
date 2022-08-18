@@ -42,6 +42,7 @@ export default function Cus_tab(props) {
     setText,
     originalPrice,
     setPrice,
+    setBgimgdep,
   } = props;
   const [value, setValue] = useState(0);
 
@@ -60,6 +61,7 @@ export default function Cus_tab(props) {
   const selectBGName = (e) => {
     const newSelectBg = e.target.value;
     setBgimgName(newSelectBg);
+    setBgimgdep(1);
 
     if (newSelectBg === 'style_01') {
       setBGPrice(100);
