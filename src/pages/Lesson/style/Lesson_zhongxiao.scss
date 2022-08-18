@@ -41,11 +41,34 @@
   }
 }
 
-// @media (max-width: 1630px) {
-//   .lesson_card {
-//     p,
-//     span {
-//       font-size: 0.99rem;
-//     }
-//   }
-// }
+@media (max-width: 1630px) {
+  .lesson_card {
+    h4 {
+      font-size: 1.3rem;
+    }
+    h5 {
+      font-size: 1.2rem;
+    }
+
+    p,
+    span {
+      font-size: 0.6rem;
+    }
+  }
+}
+
+@media (max-width: 500px) {
+  .lesson_card {
+    h4 {
+      font-size: 1.5em;
+    }
+    h5 {
+      font-size: 1.3em;
+    }
+
+    p,
+    span {
+      font-size: 1em;
+    }
+  }
+}
