@@ -1,11 +1,13 @@
 import React from 'react';
 import ReactPlayer from 'react-player/lazy';
 
-const LessonVideoPlay = () => {
+const LessonVideoPlay = (props) => {
+  const { teacherUrl } = props;
+  console.log('teacherUrl:', teacherUrl);
   return (
     <>
       <ReactPlayer
-        url="https://www.youtube.com/watch?v=DjhXZFy8_CI&t=2s&ab_channel=HRCdanceTV"
+        url={teacherUrl}
         playing={true}
         controls={true}
         width="100%"

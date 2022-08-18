@@ -49,7 +49,8 @@ BootstrapDialogTitle.propTypes = {
   onClose: PropTypes.func.isRequired,
 };
 
-export default function LessonVideoAlert() {
+export default function LessonVideoAlert(props) {
+  const { teacherUrl } = props;
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -71,7 +72,7 @@ export default function LessonVideoAlert() {
       >
         <DialogContent dividers>
           <Typography gutterBottom width="30rem" height="29rem">
-            <LessonVideoPlay />
+            <LessonVideoPlay teacherUrl={teacherUrl} />
           </Typography>
         </DialogContent>
       </BootstrapDialog>
