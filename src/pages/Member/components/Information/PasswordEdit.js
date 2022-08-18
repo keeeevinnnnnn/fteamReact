@@ -125,7 +125,7 @@ const PasswordEdit = ({ setmoveTrain }) => {
               onChange={handleMaterialChange}
             />
             <p>{materialErrors.newPassword}</p>
-            <h4>Check Password</h4>
+            <h4>Re-enter Password</h4>
             <input
               type="password"
               name="confirmPassword"

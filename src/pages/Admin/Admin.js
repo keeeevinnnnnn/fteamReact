@@ -143,8 +143,8 @@ const Admin = () => {
               />
             </div>
             <button onClick={searchAllMember}>All</button>
-            <button onClick={searchTrue}>Enable</button>
-            <button onClick={searchFalse}>Disable</button>
+            <button onClick={searchTrue}>Active</button>
+            <button onClick={searchFalse}>Block</button>
           </div>
           <div className="w-90 h-80">
             <table className="h-100">
@@ -179,7 +179,7 @@ const Admin = () => {
                       </td>
                       <td>{v.sid}</td>
                       <td>
-                        {v.mem_bollen === 1 ? 'Enable ' : 'Disable '}
+                        {v.mem_bollen === 1 ? 'Active ' : 'Block '}
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           viewBox="0 0 512 512"

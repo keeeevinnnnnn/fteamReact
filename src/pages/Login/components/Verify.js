@@ -95,7 +95,7 @@ const Verify = ({
             onChange={handleverifyChange}
           />
           <p>{fieldErrors.email}</p>
-          <h3>Verification</h3>
+          <h3>Verification Code</h3>
           <input
             type="text"
             name="verify"
