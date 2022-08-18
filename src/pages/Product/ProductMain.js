@@ -70,7 +70,7 @@ const ProductMain = (props) => {
   };
 
   // console.log('filter==', filter);
-  console.log('data==', data);
+  // console.log('data==', data);
 
   useEffect(() => {
     axios
@@ -107,8 +107,6 @@ const ProductMain = (props) => {
       }
     });
   }, [filter]);
-
-  console.log(loading);
 
   // GSAP 進場動畫效果
   useEffect(() => {

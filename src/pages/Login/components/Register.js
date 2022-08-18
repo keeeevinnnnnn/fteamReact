@@ -249,7 +249,7 @@ const Register = ({
                   autoComplete="on"
                 />
                 <p>{materialErrors.password}</p>
-                <h3>Check</h3>
+                <h3>Re-enter Password</h3>
                 <input
                   type="password"
                   name="confirmPassword"

@@ -41,7 +41,9 @@ const Navbar = (props) => {
 
   // Icon收藏列表清單
   const [iconFavorites, setIconFavorites] = useState([]);
-
+  // custom chat
+  const [msgArr, setMsgArr] = useState([]);
+  const [msgDataStore, setMsgDataStore] = useState([]);
   // 判斷有沒有登入存的值
   useEffect(() => {
     // 登入狀態不是false再執行 否則直接return
@@ -470,7 +472,14 @@ const Navbar = (props) => {
             )}
           </div>
         </div>
-        <CustomChat isChatOpen={isChatOpen} setIsChatOpen={setIsChatOpen} />
+        <CustomChat
+          msgArr={msgArr}
+          setMsgArr={setMsgArr}
+          msgDataStore={msgDataStore}
+          setMsgDataStore={setMsgDataStore}
+          isChatOpen={isChatOpen}
+          setIsChatOpen={setIsChatOpen}
+        />
       </div>
     </>
   );
