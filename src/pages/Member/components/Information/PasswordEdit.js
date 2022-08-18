@@ -105,7 +105,7 @@ const PasswordEdit = ({ setmoveTrain }) => {
             // 表單有更動時
             onChange={handleFormChange}
           >
-            <h4>USER Password</h4>
+            <h4>User Password</h4>
             <input
               type="password"
               name="password"
