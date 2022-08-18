@@ -1,4 +1,4 @@
-import React,{useEffect,useRef} from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from '../../Product/commons/axios';
 import { alert } from '../../Carts/Nathan_components/AlertComponent';
@@ -14,7 +14,6 @@ function Prev_card(props) {
   const bgRef = useRef();
   const titleRef = useRef();
   const boardPicRef = useRef();
-  
 
   const deleteitem = () => {
     let i = confirm('刪除物件？');
@@ -22,23 +21,23 @@ function Prev_card(props) {
       if (res === true) {
         axios
           .delete(`http://localhost:3000/custom/delete?sid=${prevdata.sid}`)
-          .then(()=>{
+          .then(() => {
             let i = alert('確認刪除');
-            i.then((res)=>{
-              if(res===true){
-                setOwnDep((prev)=>prev-1)
+            i.then((res) => {
+              if (res === true) {
+                setOwnDep((prev) => prev - 1);
               }
-            })
+            });
           });
       }
     });
   };
 
   useEffect(() => {
-    gsap.from(bgRef.current, { opacity: 0,y:100,duration:1});
-    gsap.from(titleRef.current, { opacity: 0, y:100,duration:2});
-    gsap.from(boardPicRef.current, { opacity: 0, x:100,duration:1});
-  },[]);
+    gsap.from(bgRef.current, { opacity: 0, y: 100, duration: 1 });
+    gsap.from(titleRef.current, { opacity: 0, y: 100, duration: 2 });
+    gsap.from(boardPicRef.current, { opacity: 0, x: 100, duration: 1 });
+  }, []);
 
   return (
     <>
@@ -54,12 +53,12 @@ function Prev_card(props) {
               fill="none"
               viewBox="0 0 24 24"
               stroke="black"
-              stroke-width="2"
+              strokeWidth="2"
               onClick={deleteitem}
             >
               <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeLinecap="round"
+                strokeLinejoin="round"
                 d="M6 18L18 6M6 6l12 12"
               ></path>
             </svg>
