@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 import { useSpinner } from '../../components/useSpinner/useSpinner';
 
 const Admin = () => {
-  const { spinner, setLoading } = useSpinner(4000);
+  const { spinner, setLoading } = useSpinner(1500);
   useEffect(() => {
     setLoading(true);
   }, []);
