@@ -95,11 +95,16 @@ export default function LessonConfirmAlert(props) {
           {lessonClassName}
         </BootstrapDialogTitle>
         <DialogContent dividers>
-          <Typography className="cooler_map_size" gutterBottom>
+          <Typography
+            // className="cooler_map_size"
+            gutterBottom
+            width="30rem"
+            height="28rem"
+          >
             <GoogleMap
               center={center}
               zoom={14}
-              mapContainerStyle={{ width: '51%', height: '45%' }}
+              mapContainerStyle={{ width: '100%', height: '84%' }}
               option={{ disableDefaultUI: true }}
             >
               <Marker

@@ -131,6 +131,7 @@ const Lesson_zhongxiao = (props) => {
                           <LessonConfirmAlert
                             center={center[0]}
                             lessonClassName={lessonClassName[0]}
+                            
                           />
                         </div>
                         <div className=" w-85 fs-6 fw-bold">
