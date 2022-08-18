@@ -119,21 +119,21 @@ const Lesson_zhongxiao = (props) => {
                     />
                   </div>
                   <div className="w-100 h-70 d-flex flex-column ">
-                    <div className="w-100 h-20 ">
+                    <div className="w-100 h-20 d-flex flex-column justify-content-center">
                       <h4 className=" fw-bold text-center pt-2">
                         HRC舞蹈工作室
                       </h4>
                       <h5 className="fw-bold text-center">【台北忠孝館】</h5>
                     </div>
                     <div className=" w-100 h-75 p-3 ">
-                      <div className="h-15 d-flex ">
-                        <div className="w-15 coolermap d-inline-block">
+                      <div className="h-25 d-flex ">
+                        <div className="d-flex align-items-center w-15 h-100 coolermap d-inline-block">
                           <LessonConfirmAlert
                             center={center[0]}
                             lessonClassName={lessonClassName[0]}
                           />
                         </div>
-                        <div className=" w-85 fs-6 fw-bold">
+                        <div className=" w-85 h-100 fs-6 fw-bold">
                           <p className="h-100 d-flex align-items-center">
                             台北市大安區忠孝東路四段299號B1
                           </p>
@@ -147,19 +147,19 @@ const Lesson_zhongxiao = (props) => {
                         <p>
                           一起讓生活充滿節奏，用舞蹈豐富生活，加入HRC舞蹈生活館，讓生活多一件喜歡的事！
                         </p>
-                      </div>
-                      <div className="h-10 cooler_gray d-flex pt-2">
-                        <div className="coolerphone px-1">
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            className="h-5 w-5"
-                            viewBox="0 0 20 20"
-                            fill="currentColor"
-                          >
-                            <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
-                          </svg>
+                        <div className=" cooler_gray d-flex align-items-center  pt-2">
+                          <div className="coolerphone px-1">
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              className="h-5 w-5"
+                              viewBox="0 0 20 20"
+                              fill="currentColor"
+                            >
+                              <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
+                            </svg>
+                          </div>
+                          <p>忠孝館Tel:(02)2711-3104</p>
                         </div>
-                        <p>忠孝館Tel:(02)2711-3104</p>
                       </div>
                     </div>
                   </div>
