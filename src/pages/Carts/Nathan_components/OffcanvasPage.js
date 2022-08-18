@@ -471,7 +471,7 @@ export default function OffcanvasPage(props) {
                       >
                         <div className="relative">
                           <input
-                            className="border-bottom w-100 text-gray bg-transparent checkout-input"
+                            className="border-bottom w-100 focus-none text-gray bg-transparent checkout-input"
                             name="fullName"
                             value={toHomeForm.fullName}
                             type="text"
