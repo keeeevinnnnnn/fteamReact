@@ -113,7 +113,7 @@ const Lesson_zhongxiao = (props) => {
                 <div className="lesson_card shadow border w-100 h-100 d-flex flex-column  ">
                   <div className="w-100 h-30 ">
                     <img
-                      className="cooler_card_zhongxiao_img"
+                      className="cooler_card_img"
                       src="/imgs/lesson_imgs/l01.jpg"
                       alt=""
                     />
