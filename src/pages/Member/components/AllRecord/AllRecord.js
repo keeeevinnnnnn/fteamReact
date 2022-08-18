@@ -13,7 +13,7 @@ const AllRecord = ({ setCartTotalDep }) => {
   if (selectItem === 'PURCHASED') {
     moveTrain = 'translateX(-25%)';
   }
-  if (selectItem === 'LESSON') {
+  if (selectItem === 'LESSONS') {
     moveTrain = 'translateX(-50%)';
   }
   if (selectItem === 'CHAT') {

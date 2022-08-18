@@ -31,8 +31,8 @@ const MuiTabs = ({ selectItem, setSelectItem }) => {
             <Tab
               sx={{ fontSize: '0.7rem' }}
               disableRipple={true}
-              label="LESSON"
-              value={'LESSON'}
+              label="LESSONS"
+              value={'LESSONS'}
             />
             <Tab
               sx={{ fontSize: '0.7rem' }}
