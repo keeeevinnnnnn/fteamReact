@@ -108,9 +108,9 @@ const Lesson_zhongxiao = (props) => {
       <div className=" w-100 vh-100 d-flex justify-content-end align-items-end cooler_lessoncard_background">
         <div className="work-area col-12 col-md-10 p-0 ">
           <div className="w-100 h-100 d-flex flex-wrap cooler_lesson_position">
-            <div className=" mb-5 col-md-4 flex-wrap col-12  d-flex  justify-content-center cooler_card_wrap align-items-center">
+            <div className=" mb-5 col-md-4 flex-wrap col-12  d-flex  justify-content-center  align-items-center">
               <div className=" lesson-card-wrap w-100 h-100">
-                <div className="lesson_card shadow border w-100 h-100 d-flex flex-column justify-content-around ">
+                <div className="lesson_card shadow border w-100 h-100 d-flex flex-column  ">
                   <div className="w-100 h-30 ">
                     <img
                       className="cooler_card_zhongxiao_img"
