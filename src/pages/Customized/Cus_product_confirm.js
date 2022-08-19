@@ -75,7 +75,7 @@ function Cus_product_confirm(props) {
   return (
     <>
       <div className="w-100 vh-100 d-flex justify-content-end align-items-end">
-        <div className="work-area col-12 col-md-10 p-0">
+        <div className="work-area col-12 col-md-10 p-0 overflow-hidden">
           <div className="d-flex flex-wrap px-5">
             <div className="left col-12 col-sm-6 p-0 pe-sm-5 ">
               <h2 ref={titleRef}>
