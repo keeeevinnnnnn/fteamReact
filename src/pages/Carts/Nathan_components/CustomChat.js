@@ -30,7 +30,7 @@ const CustomChat = (props) => {
     if (currentMsg !== '') {
       const msgData = {
         room: loginMemData.sid,
-        author: loginMemData.mem_nickname,
+        author: loginMemData.mem_name,
         avatar: loginMemData.mem_avatar,
         msg: currentMsg,
         time:
@@ -205,7 +205,7 @@ const CustomChat = (props) => {
                           v.author !== 'admin' ? 'row' : 'row-reverse',
                       }}
                       key={i}
-                      className="w-100 h-20 d-flex align-items-center"
+                      className="w-100 h-auto d-flex align-items-center flex-wrap pt-3"
                     >
                       <div className="chat-avatar">
                         <img className="w-100 h-100" src={v.avatar} alt="" />
@@ -351,7 +351,7 @@ const CustomChat = (props) => {
                                       : 'row-reverse',
                                 }}
                                 key={i}
-                                className="w-100 h-20 d-flex align-items-center"
+                                className="w-100 h-auto d-flex flex-wrap align-items-center pt-3"
                               >
                                 <div className="chat-avatar">
                                   <img
