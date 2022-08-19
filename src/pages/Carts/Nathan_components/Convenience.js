@@ -200,7 +200,7 @@ function Convenience(props) {
                   ? 'rgb(120, 120, 120)'
                   : 'rgb(207, 207,207)',
             }}
-            className="w-30 bg-transparent text-gray border-0 focus-none"
+            className="w-30 bg-transparent border-0 focus-none"
             value={convenceCountryInd}
             onChange={(e) => {
               setConvenceCountryInd(Number(e.target.value));
@@ -231,7 +231,7 @@ function Convenience(props) {
                   : 'rgb(207, 207,207)',
             }}
             value={convenceTownsShipInd}
-            className="w-30 bg-transparent text-gray border-0 focus-none"
+            className="w-30 bg-transparent border-0 focus-none"
             onChange={(e) => {
               setConvenceTownsShipInd(Number(e.target.value));
               setToConvenceFrom({
@@ -259,7 +259,7 @@ function Convenience(props) {
             }}
             disabled={!isDisable}
             defaultValue={-1}
-            className="w-30 bg-transparent text-gray border-0 focus-none"
+            className="w-30 bg-transparent border-0 focus-none"
             onChange={(e) => {
               setToConvenceFrom({
                 ...toConvenceFrom,

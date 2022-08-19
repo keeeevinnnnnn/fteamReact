@@ -79,7 +79,7 @@ function MyMap(props) {
                                                   : { lat: 23.6, lng: 121 };
   return (
     // AIzaSyDcDVpo-0xdVNcs0_HDYD0QKQPDfJ4QAQk
-    <LoadScript googleMapsApiKey={''}>
+    <LoadScript googleMapsApiKey={'AIzaSyDcDVpo-0xdVNcs0_HDYD0QKQPDfJ4QAQk'}>
       <GoogleMap
         mapContainerClassName="my-map"
         center={center}

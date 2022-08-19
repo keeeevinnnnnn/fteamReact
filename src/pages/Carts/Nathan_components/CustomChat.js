@@ -27,7 +27,6 @@ const CustomChat = (props) => {
   const [currentMsg, setCurrentMsg] = useState('');
   const [roomID, setRoomID] = useState(0);
   const sendMsg = async () => {
-    // localStorage.clear();
     if (currentMsg !== '') {
       const msgData = {
         room: loginMemData.sid,
@@ -74,6 +73,7 @@ const CustomChat = (props) => {
   const leaveRoomHandler = (v) => {
     setIsEnterChat(false);
   };
+  // 判斷是否登入者為 member 還是 admin
   useEffect(() => {
     if (!auth) {
       return;
@@ -323,7 +323,7 @@ const CustomChat = (props) => {
                     style={{
                       transition: '.3s ease',
                     }}
-                    className="d-none d-md-flex flex-column w-70 h-85 align-items-center admin-chat-window"
+                    className="d-none d-md-flex flex-column w-80 h-70 align-items-center admin-chat-window"
                   >
                     <div className="w-97 h-10 d-flex justify-content-between align-items-center admin-window-title">
                       <span className="px-2">Admin Chat</span>
@@ -353,7 +353,7 @@ const CustomChat = (props) => {
                                 key={i}
                                 className="w-100 h-20 d-flex align-items-center"
                               >
-                                <div className="w-20 h-75 chat-avatar">
+                                <div className="chat-avatar">
                                   <img
                                     className="w-100 h-100"
                                     src={v.avatar}
