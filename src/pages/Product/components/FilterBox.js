@@ -75,8 +75,8 @@ const FilterBox = (props) => {
   return (
     <>
       <div className="row filterBox p-0 m-0">
-        <div className="col-10 d-flex justify-content-center">
-          <div className="col-3">
+        <div className="col-10 d-flex justify-content-center filterBoxRwd">
+          <div className="col-3 filterBoxItem">
             <div
               className="filter"
               onClick={() => {
@@ -166,7 +166,7 @@ const FilterBox = (props) => {
               </div>
             </div>
           </div>
-          <div className="col-3">
+          <div className="col-3 filterBoxItem">
             <div
               className="filter"
               onClick={() => {
@@ -276,7 +276,7 @@ const FilterBox = (props) => {
             </div>
           </div>
 
-          <div className="col-3">
+          <div className="col-3 filterBoxItem">
             <div
               className="filter"
               onClick={() => {
@@ -379,7 +379,7 @@ const FilterBox = (props) => {
             </div>
           </div>
 
-          <div className="col-3">
+          <div className="col-3 filterBoxItem">
             <div
               className="filter"
               onClick={() => {
