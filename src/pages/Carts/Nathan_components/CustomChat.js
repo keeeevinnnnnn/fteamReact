@@ -110,7 +110,7 @@ const CustomChat = (props) => {
         });
       }
     }
-  }, []);
+  }, [auth]);
   useEffect(() => {
     socket.on('receive_msg', (data) => {
       console.log(data);
@@ -207,7 +207,7 @@ const CustomChat = (props) => {
                       key={i}
                       className="w-100 h-20 d-flex align-items-center"
                     >
-                      <div className="w-15 h-75 chat-avatar">
+                      <div className="chat-avatar">
                         <img className="w-100 h-100" src={v.avatar} alt="" />
                       </div>
                       <div className=" d-flex align-items-center">
@@ -301,10 +301,10 @@ const CustomChat = (props) => {
                             enterRoomHandler(v);
                           }}
                           style={{ cursor: 'pointer' }}
-                          className="chat-room-card mb-3 d-flex align-items-center"
+                          className="chat-room-card mb-3 d-flex flex-wrap align-items-center"
                           key={i}
                         >
-                          <div className="w-14 h-100 chat-avatar">
+                          <div className="chat-avatar">
                             <img
                               className="w-100 h-100"
                               src={v.avatar}
