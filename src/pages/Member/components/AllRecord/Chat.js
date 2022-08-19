@@ -184,7 +184,7 @@ const Chat = ({ selectItem }) => {
       });
   }
 
-  // 打開emoji盒子
+  // 開關emoji盒子
   const [emojiBox, setEmojiBox] = useState(false);
   // 傳入emoji訊息
   const emojiClick = (e) => {
