@@ -66,7 +66,7 @@ function Lesson_card(props) {
   // };
   useEffect(() => {
     fillterAllSelector();
-  }, [lessonDisplayDep]);
+  }, [danceList, timeList, priceSortSelect]);
   const fillterAllSelector = () => {
     const oringinRaw = JSON.parse(JSON.stringify(lessonRaw));
     if (
@@ -93,7 +93,7 @@ function Lesson_card(props) {
         });
       }
       setLessonDisplay(newLessonDisplay);
-      setLessonDisplayDep((prev) => prev + 1);
+      // setLessonDisplayDep((prev) => prev + 1);
     }
   };
   const displayTable =
