@@ -153,7 +153,7 @@ const ProductMain = (props) => {
           searchProducts={searchProducts}
         />
 
-        <div className="d-flex productText p-0 m-0">
+        <div className="d-flex productText p-0 m-0 flex-wrap">
           {messages.map((msg) => {
             return (
               <button

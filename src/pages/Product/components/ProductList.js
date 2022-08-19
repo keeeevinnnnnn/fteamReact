@@ -127,7 +127,7 @@ const ProductList = (props) => {
   }, [heart]);
 
   return (
-    <div className="col-4 mt-5">
+    <div className="col-4 mt-5 productListRwd">
       <div className="product-header">
         <div className="pro-favorites mb-2">
           <svg
@@ -194,7 +194,7 @@ const ProductList = (props) => {
 
       <div className="productBody">
         <h5 className="card-name">{name}</h5>
-        <p className="card-brand flex-grow-1">{brand}</p>
+        <p className="card-brand">{brand}</p>
         <p className="card-price">
           <span>$ {price}</span>
         </p>
