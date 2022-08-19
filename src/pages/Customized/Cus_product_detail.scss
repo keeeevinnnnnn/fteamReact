@@ -1,8 +1,10 @@
 .message{
+    -ms-overflow-style: none; 
     .message-area{
         margin: 24px 0;
         height: 300px;
         overflow: scroll;
+       
     }
 
     
@@ -21,6 +23,10 @@
     }
 }
 }
+
+.message::-webkit-scrollbar {
+    display: none;
+  }
 
 
 
