@@ -4,7 +4,8 @@ import axios from '../../Product/commons/axios';
 import { alert } from '../../Carts/Nathan_components/AlertComponent';
 import { confirm } from '../../Carts/Nathan_components/ConfirmComponent';
 import { gsap } from 'gsap';
-
+import { deleteItemalert } from './DeleteItemComponent';
+import {questionalert} from './QuestionComponent'
 function Prev_card(props) {
   const { prevdata, singleShareData, setOwnDep } = props;
   // console.log(singleShareData)
@@ -16,13 +17,13 @@ function Prev_card(props) {
   const boardPicRef = useRef();
 
   const deleteitem = () => {
-    let i = confirm('刪除物件？');
+    let i = questionalert('刪除物件？');
     i.then((res) => {
       if (res === true) {
         axios
           .delete(`http://localhost:3000/custom/delete?sid=${prevdata.sid}`)
           .then(() => {
-            let i = alert('確認刪除');
+            let i = deleteItemalert('確認刪除');
             i.then((res) => {
               if (res === true) {
                 setOwnDep((prev) => prev - 1);
@@ -44,7 +45,7 @@ function Prev_card(props) {
       <div className="share-card-con p-3 ">
         <div className="share-card" ref={bgRef}>
           <div className="board" ref={boardPicRef}>
-            <img src={prevdata.back_img} />
+            <img src={`http://localhost:3000/custom/${prevdata.back_img}`} />
           </div>
           <div className="share-right " ref={titleRef}>
             <svg
@@ -62,12 +63,11 @@ function Prev_card(props) {
                 d="M6 18L18 6M6 6l12 12"
               ></path>
             </svg>
+            <img src={'/imgs/Customized/before.png'} className="hover" />
             <h3> {prevdata.custom_product_name}</h3>
             <div className="share-creator">
               <div className="share-ava">
-                <img
-                  src={`http://localhost:3000/avatar/${prevdata.mem_avatar}`}
-                />
+                <img src={prevdata.mem_avatar} />
               </div>
               <div className="share-name">
                 <h6>{prevdata.mem_name}</h6>

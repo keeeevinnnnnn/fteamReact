@@ -25,55 +25,73 @@ function CustBar(props) {
   const [beforedata, setbeforedata] = useState([]);
   console.log(lastdaydata);
 
+
+
   //撈留言//
   useEffect(() => {
-    let newDateArr = messageboard[0].created_time.slice(0, 10).split('-');
-    let newDate =
-      newDateArr[0] + '-' + newDateArr[1] + '-' + (Number(newDateArr[2]) + 1);
-    let yesterday =
-      newDateArr[0] + '-' + newDateArr[1] + '-' + Number(newDateArr[2]);
+    if(messageboard.length !== 0){
+      let newDateArr = messageboard[0].created_time.slice(0, 10).split('-');
+      let newDate =
+        newDateArr[0] + '-' + newDateArr[1] + '-' + (Number(newDateArr[2]) + 1);
+      let yesterday =
+        newDateArr[0] + '-' + newDateArr[1] + '-' + Number(newDateArr[2]);
+  
+      axios
+        .get(
+          `http://localhost:3000/custom/cardbardata?mes_cusproduct_id=${messageboard[0].mes_cusproduct_id}&created_time=${newDate}`
+        )
+        .then((res) => {
+          console.log('datemsg', res.data);
+          setLatestdate(newDate);
+          setYesterday(yesterday);
+  
+          setLastdaydata(res.data);
+        });
 
-    axios
-      .get(
-        `http://localhost:3000/custom/cardbardata?mes_cusproduct_id=${messageboard[0].mes_cusproduct_id}&created_time=${newDate}`
-      )
-      .then((res) => {
-        console.log('datemsg', res.data);
-        setLatestdate(newDate);
-        setYesterday(yesterday);
-
-        setLastdaydata(res.data);
-      });
+    }
+   
   }, []);
 
   useEffect(() => {
-    let newDateArr = messageboard[0].created_time.slice(0, 10).split('-');
-    let yesterday =
-      newDateArr[0] + '-' + newDateArr[1] + '-' + Number(newDateArr[2]);
-    axios
-      .get(
-        `http://localhost:3000/custom/cardbardata?mes_cusproduct_id=${messageboard[0].mes_cusproduct_id}&created_time=${yesterday}`
-      )
-      .then((res) => {
-        setYesterday(yesterday);
+    if(messageboard.length !== 0){
+      let newDateArr = messageboard[0].created_time.slice(0, 10).split('-');
+      let yesterday =
+        newDateArr[0] + '-' + newDateArr[1] + '-' + Number(newDateArr[2]);
+      axios
+        .get(
+          `http://localhost:3000/custom/cardbardata?mes_cusproduct_id=${messageboard[0].mes_cusproduct_id}&created_time=${yesterday}`
+        )
+        .then((res) => {
+          setYesterday(yesterday);
+  
+          setyesterdaydata(res.data);
+        });
 
-        setyesterdaydata(res.data);
-      });
+
+
+    }
+    
+      
+   
   }, []);
 
   useEffect(() => {
-    let newDateArr = messageboard[0].created_time.slice(0, 10).split('-');
-    let beforeyesterday =
-      newDateArr[0] + '-' + newDateArr[1] + '-' + (Number(newDateArr[2]) - 1);
-    axios
-      .get(
-        `http://localhost:3000/custom/cardbardata?mes_cusproduct_id=${messageboard[0].mes_cusproduct_id}&created_time=${beforeyesterday}`
-      )
-      .then((res) => {
-        setBeforyesterday(beforeyesterday);
+    if(messageboard.length !== 0){
+      let newDateArr = messageboard[0].created_time.slice(0, 10).split('-');
+      let beforeyesterday =
+        newDateArr[0] + '-' + newDateArr[1] + '-' + (Number(newDateArr[2]) - 1);
+      axios
+        .get(
+          `http://localhost:3000/custom/cardbardata?mes_cusproduct_id=${messageboard[0].mes_cusproduct_id}&created_time=${beforeyesterday}`
+        )
+        .then((res) => {
+          setBeforyesterday(beforeyesterday);
+  
+          setbeforedata(res.data);
+        });
 
-        setbeforedata(res.data);
-      });
+    }
+   
   }, []);
 
   //最近一天的留言量//
@@ -180,7 +198,7 @@ function CustBar(props) {
   
 
   
-  console.log(messageboard[0].created_time.slice(0, 10));
+  // console.log(messageboard[0].created_time.slice(0, 10));
 
   return (
     <>

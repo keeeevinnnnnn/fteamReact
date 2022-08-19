@@ -66,7 +66,7 @@ function Lesson_card(props) {
   // };
   useEffect(() => {
     fillterAllSelector();
-  }, [lessonDisplayDep]);
+  }, [danceList, timeList, priceSortSelect]);
   const fillterAllSelector = () => {
     const oringinRaw = JSON.parse(JSON.stringify(lessonRaw));
     if (
@@ -93,7 +93,7 @@ function Lesson_card(props) {
         });
       }
       setLessonDisplay(newLessonDisplay);
-      setLessonDisplayDep((prev) => prev + 1);
+      // setLessonDisplayDep((prev) => prev + 1);
     }
   };
   const displayTable =
@@ -185,7 +185,7 @@ function Lesson_card(props) {
             <div className=" col-sm-6 col-12">
               <div className="cooler_lesson_card_title_collect d-flex">
                 <h5 className="cooler_lesson_card_title w-90">{v.name}</h5>
-                <div className="cooler_lesson_card_collect w-10   d-flex justify-content-end">
+                {/* <div className="cooler_lesson_card_collect w-10   d-flex justify-content-end">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     className="h-1 w-1"
@@ -198,7 +198,7 @@ function Lesson_card(props) {
                       clipRule="evenodd"
                     />
                   </svg>
-                </div>
+                </div> */}
               </div>
               <p className="cooler_lesson_card_name text-center m-0  ">
                 {v.teacher_name}
@@ -263,7 +263,7 @@ function Lesson_card(props) {
                   </button>
                 </div>
                 <div className=" col-sm-6 h-100 d-flex justify-content-end">
-                  <div className="cooler_lesson_card_collect w-70  ">
+                  {/* <div className="cooler_lesson_card_collect w-70  ">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       className="h-1 w-1"
@@ -276,7 +276,7 @@ function Lesson_card(props) {
                         clipRule="evenodd"
                       />
                     </svg>
-                  </div>
+                  </div> */}
                 </div>
               </div>
             </div>
