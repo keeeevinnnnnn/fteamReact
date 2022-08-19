@@ -18,7 +18,7 @@ function TWZipCode(props) {
     <div className="w-100 d-flex justify-content-between adress-input-wrap">
       <div className="w-40">
         <select
-          className=" w-100 bg-transparent text-gray border-0 border-bottom focus-none fs-6"
+          className=" w-100 bg-transparent border-0 border-bottom focus-none fs-6"
           value={countryIndex}
           onChange={(e) => {
             // 注意e.target.value為字串類型(由網頁上傳入都是字串值)
@@ -47,7 +47,7 @@ function TWZipCode(props) {
       </div>
       <div className="w-40">
         <select
-          className=" w-100 bg-transparent text-gray border-0 border-bottom focus-none fs-6"
+          className=" w-100 bg-transparent border-0 border-bottom focus-none fs-6"
           value={townshipIndex}
           onChange={(e) => {
             // 注意e.target.value為字串類型(由網頁上傳入都是字串值)

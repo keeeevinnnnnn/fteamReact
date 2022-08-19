@@ -194,12 +194,6 @@ function Convenience(props) {
         <div className="w-100 h-33 d-flex justify-content-between">
           <select
             disabled={toConvenceFrom.convenceStore !== '' ? true : false}
-            style={{
-              color:
-                toConvenceFrom.convenceStore !== ''
-                  ? 'rgb(120, 120, 120)'
-                  : 'rgb(207, 207,207)',
-            }}
             className="w-30 bg-transparent border-0 focus-none"
             value={convenceCountryInd}
             onChange={(e) => {
@@ -224,12 +218,6 @@ function Convenience(props) {
           </select>
           <select
             disabled={toConvenceFrom.convenceStore !== '' ? true : false}
-            style={{
-              color:
-                toConvenceFrom.convenceStore !== ''
-                  ? 'rgb(120, 120, 120)'
-                  : 'rgb(207, 207,207)',
-            }}
             value={convenceTownsShipInd}
             className="w-30 bg-transparent border-0 focus-none"
             onChange={(e) => {
@@ -254,9 +242,6 @@ function Convenience(props) {
               })}
           </select>
           <select
-            style={{
-              color: !isDisable ? 'rgb(120, 120, 120)' : 'rgb(207, 207,207)',
-            }}
             disabled={!isDisable}
             defaultValue={-1}
             className="w-30 bg-transparent border-0 focus-none"
