@@ -337,7 +337,7 @@ const CustomChat = (props) => {
                     </div>
                     {/* window body */}
                     <div className="w-100 h-80 chat-window-body">
-                      <ScrollToBottom className="w-100 h-100 admin-body-scroll swiper-scrollbar-drag">
+                      <ScrollToBottom className="w-98 h-100 admin-body-scroll">
                         <div className="w-100 h-100">
                           {msgArr.map((v, i) => {
                             return (
