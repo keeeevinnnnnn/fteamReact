@@ -471,7 +471,7 @@ export default function OffcanvasPage(props) {
                       >
                         <div className="relative">
                           <input
-                            className="border-bottom w-100 focus-none text-gray bg-transparent checkout-input"
+                            className="border-bottom w-100 text-gray bg-transparent checkout-input"
                             name="fullName"
                             value={toHomeForm.fullName}
                             type="text"
@@ -495,7 +495,7 @@ export default function OffcanvasPage(props) {
                         </div>
                         <div className="relative">
                           <input
-                            className="border-bottom w-100 focus-none text-gray bg-transparent checkout-input"
+                            className="border-bottom w-100 text-gray bg-transparent checkout-input"
                             name="mobile"
                             pattern="09\d{2}(\d{6}|-\d{3}-\d{3})"
                             value={toHomeForm.mobile}
@@ -520,7 +520,7 @@ export default function OffcanvasPage(props) {
                         </div>
                         <div className="relative">
                           <input
-                            className=" border-bottom w-100 focus-none text-gray bg-transparent checkout-input"
+                            className=" border-bottom w-100 text-gray bg-transparent checkout-input"
                             name="email"
                             value={toHomeForm.email}
                             type="text"
@@ -548,7 +548,7 @@ export default function OffcanvasPage(props) {
                         />
                         <div className="relative">
                           <input
-                            className=" border-bottom w-100 focus-none text-gray bg-transparent checkout-input"
+                            className=" border-bottom w-100 text-gray bg-transparent checkout-input"
                             name="fullAddress"
                             value={toHomeForm.fullAddress}
                             type="text"
