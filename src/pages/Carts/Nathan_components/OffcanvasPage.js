@@ -436,7 +436,7 @@ export default function OffcanvasPage(props) {
                           onChange={(e) => {
                             setDelivery(e.target.value);
                           }}
-                          className="focus-none bg-transparent border-0 fs-6"
+                          className="focus-none text-gray bg-transparent border-0 fs-6"
                         >
                           <option value="" disabled>
                             配送方式

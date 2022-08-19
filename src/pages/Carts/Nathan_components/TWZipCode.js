@@ -18,7 +18,7 @@ function TWZipCode(props) {
     <div className="w-100 d-flex justify-content-between adress-input-wrap">
       <div className="w-40">
         <select
-          className=" w-100 bg-transparent border-0 border-bottom focus-none fs-6"
+          className=" w-100 bg-transparent text-gray border-0 border-bottom focus-none fs-6"
           value={countryIndex}
           onChange={(e) => {
             // 注意e.target.value為字串類型(由網頁上傳入都是字串值)
@@ -33,12 +33,12 @@ function TWZipCode(props) {
             setTownshipIndex(-1);
           }}
         >
-          <option value="-1" disabled>
+          <option className="text-black" value="-1" disabled>
             *請選擇縣市
           </option>
           {countries.map((v, i) => {
             return (
-              <option key={i} value={i}>
+              <option className="text-black" key={i} value={i}>
                 {v}
               </option>
             );
@@ -47,7 +47,7 @@ function TWZipCode(props) {
       </div>
       <div className="w-40">
         <select
-          className=" w-100 bg-transparent border-0 border-bottom focus-none fs-6"
+          className=" w-100 bg-transparent text-gray border-0 border-bottom focus-none fs-6"
           value={townshipIndex}
           onChange={(e) => {
             // 注意e.target.value為字串類型(由網頁上傳入都是字串值)
@@ -59,12 +59,14 @@ function TWZipCode(props) {
             });
           }}
         >
-          <option value="-1">*請選擇區域</option>
+          <option className="text-black" value="-1">
+            *請選擇區域
+          </option>
           {/* 當有選擇縣市(countryIndex >)時才要作map，呈現其它的區域選項 */}
           {countryIndex > -1 &&
             townships[countryIndex].map((v, i) => {
               return (
-                <option key={i} value={i}>
+                <option className="text-black" key={i} value={i}>
                   {v}
                 </option>
               );
