@@ -72,10 +72,10 @@ const CreditForm = (props) => {
       });
     } else {
       setCreditForm({
-        num_1: 4242,
-        num_2: 4242,
-        num_3: 4242,
-        num_4: 4242,
+        num_1: '4242',
+        num_2: '4242',
+        num_3: '4242',
+        num_4: '4242',
         validMonth: '01',
         validYear: '23',
         CVV: '123',
