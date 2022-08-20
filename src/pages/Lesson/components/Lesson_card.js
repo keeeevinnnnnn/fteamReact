@@ -66,12 +66,12 @@ function Lesson_card(props) {
   // };
   useEffect(() => {
     fillterAllSelector();
-  }, [danceList, timeList, priceSortSelect]);
+  }, [timeList, danceList, priceSortSelect]);
   const fillterAllSelector = () => {
     const oringinRaw = JSON.parse(JSON.stringify(lessonRaw));
     if (
-      danceList === 'DANCE' &&
       timeList === 'TIME' &&
+      danceList === 'DANCE' &&
       priceSortSelect === 'PRICE'
     ) {
       setLessonDisplay(lessonRaw);
