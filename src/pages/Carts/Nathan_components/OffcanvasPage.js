@@ -436,13 +436,17 @@ export default function OffcanvasPage(props) {
                           onChange={(e) => {
                             setDelivery(e.target.value);
                           }}
-                          className="focus-none bg-transparent border-0 text-gray fs-6"
+                          className="focus-none text-gray bg-transparent border-0 fs-6"
                         >
                           <option value="" disabled>
                             配送方式
                           </option>
-                          <option value="toHome">宅配到府</option>
-                          <option value="pickSelf">超商取貨</option>
+                          <option className="text-black" value="toHome">
+                            宅配到府
+                          </option>
+                          <option className="text-black" value="pickSelf">
+                            超商取貨
+                          </option>
                         </select>
                       </div>
                       {/* 同會員資料 */}

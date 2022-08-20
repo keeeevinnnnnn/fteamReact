@@ -30,7 +30,7 @@ const CustomChat = (props) => {
     if (currentMsg !== '') {
       const msgData = {
         room: loginMemData.sid,
-        author: loginMemData.mem_nickname,
+        author: loginMemData.mem_name,
         avatar: loginMemData.mem_avatar,
         msg: currentMsg,
         time:
@@ -110,7 +110,7 @@ const CustomChat = (props) => {
         });
       }
     }
-  }, []);
+  }, [auth]);
   useEffect(() => {
     socket.on('receive_msg', (data) => {
       console.log(data);
@@ -205,9 +205,9 @@ const CustomChat = (props) => {
                           v.author !== 'admin' ? 'row' : 'row-reverse',
                       }}
                       key={i}
-                      className="w-100 h-20 d-flex align-items-center"
+                      className="w-100 h-auto d-flex align-items-center flex-wrap pt-3"
                     >
-                      <div className="w-15 h-75 chat-avatar">
+                      <div className="chat-avatar">
                         <img className="w-100 h-100" src={v.avatar} alt="" />
                       </div>
                       <div className=" d-flex align-items-center">
@@ -301,10 +301,10 @@ const CustomChat = (props) => {
                             enterRoomHandler(v);
                           }}
                           style={{ cursor: 'pointer' }}
-                          className="chat-room-card mb-3 d-flex align-items-center"
+                          className="chat-room-card mb-3 d-flex flex-wrap align-items-center"
                           key={i}
                         >
-                          <div className="w-14 h-100 chat-avatar">
+                          <div className="chat-avatar">
                             <img
                               className="w-100 h-100"
                               src={v.avatar}
@@ -337,7 +337,7 @@ const CustomChat = (props) => {
                     </div>
                     {/* window body */}
                     <div className="w-100 h-80 chat-window-body">
-                      <ScrollToBottom className="w-100 h-100 admin-body-scroll swiper-scrollbar-drag">
+                      <ScrollToBottom className="w-98 h-100 admin-body-scroll">
                         <div className="w-100 h-100">
                           {msgArr.map((v, i) => {
                             return (
@@ -351,7 +351,7 @@ const CustomChat = (props) => {
                                       : 'row-reverse',
                                 }}
                                 key={i}
-                                className="w-100 h-20 d-flex align-items-center"
+                                className="w-100 h-auto d-flex flex-wrap align-items-center pt-3"
                               >
                                 <div className="chat-avatar">
                                   <img
