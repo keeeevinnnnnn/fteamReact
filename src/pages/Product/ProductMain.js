@@ -1,4 +1,6 @@
-import React, { useState, useEffect, useRef, CSSProperties } from 'react';
+import React, { useState, useEffect, useRef, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
+import AuthContext from '../../components/AuthContext';
 import FilterBox from './components/FilterBox';
 import ToolBox from './components/ToolBox';
 import './styles/ProductMain.scss';
@@ -15,9 +17,14 @@ const ProductMain = (props) => {
     setCartTotalDep,
     setProductBg,
   } = props;
-
+  // gsap 動畫用
   const productCardRef = useRef(null);
   const toolBoxRef = useRef(null);
+
+  // set nevigate hook
+  const navigate = useNavigate();
+
+  const { auth, token } = useContext(AuthContext);
 
   const [loading, setLoading] = useState(false);
 
@@ -73,6 +80,12 @@ const ProductMain = (props) => {
   // console.log('data==', data);
 
   useEffect(() => {
+    // 防止沒有登入會員，拿不到token，server 崩潰
+    if (!auth) {
+      alert('請先登入會員');
+      navigate('/login');
+      return;
+    }
     axios
       .get('/product', {
         params: {
