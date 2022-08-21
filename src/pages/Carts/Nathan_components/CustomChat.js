@@ -202,7 +202,7 @@ const CustomChat = (props) => {
                       style={{
                         justifyConten: v.author !== 'admin' ? 'end' : 'start',
                         flexDirection:
-                          v.author !== 'admin' ? 'row' : 'row-reverse',
+                          v.author === 'admin' ? 'row' : 'row-reverse',
                       }}
                       key={i}
                       className="w-100 h-auto d-flex align-items-center flex-wrap pt-3"
