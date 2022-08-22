@@ -14,6 +14,6 @@
 
 5. 訂單系統---結帳完成寫入訂單及訂單明細資料庫，訂單頁面可使用訂單編號即時搜尋。
 
-  ## react 前端-主要檔案 src>pages> Carts & Orders 兩個資料夾
-  
 6. 客服聊天室-socket.io建立每個會員與管理者的專屬聊天室
+
+  ## react 前端-主要檔案 src>pages> Carts & Orders 兩個資料夾
