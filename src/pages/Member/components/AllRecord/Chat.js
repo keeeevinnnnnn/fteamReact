@@ -192,8 +192,6 @@ const Chat = ({ selectItem }) => {
     setMessageState({ message: (message += e.native) });
   };
 
-  const emojiWrap = useRef(null);
-
   useEffect(() => {
     function emojiClick() {
       setEmojiBox(false);
@@ -446,7 +444,12 @@ const Chat = ({ selectItem }) => {
         ) : (
           ''
         )} */}
-        <div className={emojiBox ? 'emojiBox' : 'd-none'} ref={emojiWrap}>
+        <div
+          className={emojiBox ? 'emojiBox' : 'd-none'}
+          onClick={(e) => {
+            e.stopPropagation();
+          }}
+        >
           <Picker emojiSize={24} onEmojiSelect={emojiClick} />
         </div>
       </div>
